@@ -820,8 +820,8 @@ const FlatNavigator = ({
 
 const LINKING = {
   // TODO figure out what we are going to use
-  // note: `bluesky://` is what is used in app.config.js
-  prefixes: ['bsky://', 'bluesky://', 'https://bsky.app'],
+  // note: `plumblines://` is what is used in app.config.js
+  prefixes: ['plumblines://', 'https://plumblines.uk'],
 
   getPathFromState(state: State) {
     // find the current node in the navigation tree
@@ -852,7 +852,7 @@ const LINKING = {
     // Chat invite URLs (`/chat/:code`) are handled by `useIntentHandler`, which
     // opens the GroupChatJoinDialog (or the logged-out join flow). Route the
     // path to Home so the dialog overlays Home instead of NotFound. On native,
-    // react-navigation strips the `bluesky://` prefix and passes the path
+    // react-navigation strips the `plumblines://` prefix and passes the path
     // without a leading slash, so normalize before matching.
     const normalizedPath = path.startsWith('/') ? path : `/${path}`
     if (CHAT_INVITE_CODE_REGEX.test(normalizedPath.split('?')[0])) {

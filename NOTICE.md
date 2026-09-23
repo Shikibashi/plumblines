@@ -60,3 +60,15 @@ Copyright (c) 2020 @catamphetamine <purecatamphetamine@gmail.com>
 ---
 
 For the licensing position of assets that are **not** covered by our MIT license — commissioned artwork, the licensed icon system, Bluesky trademarks, third-party marks, and the product imagery in `assets/images/` — see [`ASSETS.md`](./ASSETS.md), which names known rights holders and identifies the product imagery whose provenance is still being documented.
+
+
+## Plumblines replacement icons
+
+Runtime UI glyphs in `src/components/icons/` and the replacement SVGs in
+`assets/plumblines/lucide/` and `bskyembed/assets/` derive from Lucide revision
+`f06ac67e33d645c40b8ce19a0419c85c5d7dd751`. The complete ISC and Feather MIT
+license notices are retained in [licenses/LUCIDE.txt](./licenses/LUCIDE.txt).
+The export-to-source map is `assets/plumblines/icon-map.json`.
+
+The plumb-bob mark and editorial ornament in `assets/plumblines/` are original
+Plumblines artwork distributed under this repository's MIT license.

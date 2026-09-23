@@ -1,3 +1,19 @@
+# Plumblines asset replacement status
+
+The upstream inventory below is preserved as provenance, not as a description
+of the replacement artwork now used by this fork. Runtime React icon adapters
+use vendored Lucide glyphs (see NOTICE.md and licenses/LUCIDE.txt). Logos, app
+icons, favicons, splash and product images are original Plumblines artwork.
+Exact regenerated raster paths are listed in assets/plumblines/raster-manifest.json.
+
+Unused upstream SVG source files at the top level of assets/icons remain as
+source history and are **not licensed for redistribution**. The runtime does not
+import these glyphs; do not copy this directory into a release or regenerate the
+old glyphs. Flags and third-party service identifiers retain their own notices.
+The SVG input directory for replacement icons is assets/plumblines/lucide.
+
+---
+
 # Asset licensing
 
 The [MIT license](./LICENSE) in this repository covers our source code. It does not cover every file in the tree.

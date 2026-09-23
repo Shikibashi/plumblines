@@ -1,0 +1,11 @@
+{
+  "name": "Plumblines",
+  "slug": "plumblines",
+  "domain": "plumblines.uk",
+  "website": "https://plumblines.uk",
+  "supportUrl": "https://github.com/Shikibashi/plumblines/issues",
+  "sourceUrl": "https://github.com/Shikibashi/plumblines",
+  "applicationId": "uk.plumblines.app",
+  "scheme": "plumblines",
+  "description": "An independent AT Protocol client. Free people, free thought, free association."
+}

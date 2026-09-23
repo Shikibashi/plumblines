@@ -1,20 +1,18 @@
 import {useEffect, useEffectEvent, useState} from 'react'
 import {Pressable, View} from 'react-native'
-import {ImageBackground} from 'expo-image'
 import {Trans, useLingui} from '@lingui/react/macro'
 import * as FocusGuards from '@radix-ui/react-focus-guards'
 import * as FocusScope from '@radix-ui/react-focus-scope'
 
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {Logo} from '#/view/icons/Logo'
-import {atoms as a, flatten, useBreakpoints, web} from '#/alf'
+import {atoms as a, flatten, useBreakpoints, useTheme, web} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import {type WelcomeModalControl} from '#/components/hooks/useWelcomeModal.shared'
 import {TimesLarge_Stroke2_Corner0_Rounded as XIcon} from '#/components/icons/Times'
 import {Text} from '#/components/Typography'
 import {useAnalytics} from '#/analytics'
-
-const welcomeModalBg = require('../../assets/images/welcome-modal-bg.jpg')
+import {APP_CONFIG} from '#/plumblines/config'
 
 interface WelcomeModalProps {
   control: WelcomeModalControl
@@ -22,6 +20,7 @@ interface WelcomeModalProps {
 
 export function WelcomeModal({control}: WelcomeModalProps) {
   const {t: l} = useLingui()
+  const t = useTheme()
   const ax = useAnalytics()
   const {requestSwitchToAccount} = useLoggedOutViewControls()
   const {gtMobile} = useBreakpoints()
@@ -86,16 +85,13 @@ export function WelcomeModal({control}: WelcomeModalProps) {
               maxHeight: 600,
               width: '90%',
               height: '90%',
-              backgroundColor: '#C0DCF0',
+              backgroundColor: t.atoms.bg.backgroundColor,
             },
             a.rounded_lg,
             a.overflow_hidden,
             a.zoom_in,
           ])}>
-          <ImageBackground
-            source={welcomeModalBg}
-            style={[a.flex_1, a.justify_center]}
-            contentFit="cover">
+          <View style={[a.flex_1, a.justify_center]}>
             <View style={[a.gap_2xl, a.align_center, a.p_4xl]}>
               <View
                 style={[
@@ -112,9 +108,9 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                       a.text_2xl,
                       a.font_semi_bold,
                       a.user_select_none,
-                      {color: '#354358', letterSpacing: -0.5},
+                      {color: t.atoms.text.color, letterSpacing: 1},
                     ]}>
-                    Bluesky
+                    {APP_CONFIG.name}
                   </Text>
                 </View>
               </View>
@@ -131,23 +127,14 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                     gtMobile ? a.text_4xl : a.text_3xl,
                     a.font_semi_bold,
                     a.text_center,
-                    {color: '#354358'},
-                    web({
-                      backgroundImage:
-                        'linear-gradient(180deg, #313F54 0%, #667B99 83.65%, rgba(102, 123, 153, 0.50) 100%)',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      color: 'transparent',
-                      lineHeight: 1.2,
-                      letterSpacing: -0.5,
-                    }),
+                    t.atoms.text,
+                    web({lineHeight: 1.2, letterSpacing: 0}),
                   ]}>
-                  <Trans>Real people.</Trans>
+                  <Trans>Free people.</Trans>
                   {'\n'}
-                  <Trans>Real conversations.</Trans>
+                  <Trans>Free thought.</Trans>
                   {'\n'}
-                  <Trans>Social media you control.</Trans>
+                  <Trans>Free association.</Trans>
                 </Text>
               </View>
               <View style={[a.gap_md, a.align_center]}>
@@ -159,7 +146,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                     color="primary"
                     style={{
                       width: 200,
-                      backgroundColor: '#006AFF',
+                      backgroundColor: t.palette.primary_500,
                     }}>
                     <ButtonText>
                       <Trans>Create account</Trans>
@@ -175,7 +162,10 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                     hoverStyle={[a.bg_transparent]}>
                     {({hovered}) => (
                       <ButtonText
-                        style={[hovered && [a.underline], {color: '#006AFF'}]}>
+                        style={[
+                          hovered && [a.underline],
+                          {color: t.palette.primary_500},
+                        ]}>
                         <Trans>Explore the app</Trans>
                       </ButtonText>
                     )}
@@ -186,7 +176,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                     style={[
                       a.text_md,
                       a.text_center,
-                      {color: '#405168', lineHeight: 24},
+                      {color: t.atoms.text.color, lineHeight: 24},
                     ]}>
                     <Trans>Already have an account?</Trans>{' '}
                     <Pressable
@@ -200,7 +190,7 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                         style={[
                           a.font_medium,
                           {
-                            color: '#006AFF',
+                            color: t.palette.primary_500,
                             fontSize: undefined,
                           },
                           signInLinkHovered && a.underline,
@@ -235,13 +225,13 @@ export function WelcomeModal({control}: WelcomeModalProps) {
                 <XIcon
                   size="md"
                   style={{
-                    color: '#354358',
+                    color: t.atoms.text.color,
                     opacity: hovered || pressed || focused ? 1 : 0.7,
                   }}
                 />
               )}
             </Button>
-          </ImageBackground>
+          </View>
         </View>
       </FocusScope.FocusScope>
     </View>

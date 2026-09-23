@@ -33,6 +33,7 @@ import {Loader} from '#/components/Loader'
 import {Text} from '#/components/Typography'
 import {IS_IOS, IS_NATIVE} from '#/env'
 import {type com} from '#/lexicons'
+import {APP_CONFIG} from '#/plumblines/config'
 import {ConfirmHostingProviderDialog} from './components/ConfirmHostingProviderDialog'
 import {HostingProviderDialog} from './components/HostingProviderDialog'
 import {FormContainer} from './FormContainer'
@@ -568,7 +569,7 @@ export const LoginForm = ({
       {IS_NATIVE && (
         <Text style={[a.text_md, native([a.text_center, a.mx_auto]), a.mt_sm]}>
           <Trans>
-            New to Bluesky?{' '}
+            New to {APP_CONFIG.name}?{' '}
             <InlineLinkText
               label={l`Sign up`}
               style={[a.text_md, native(a.text_center)]}
