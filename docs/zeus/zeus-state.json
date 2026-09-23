@@ -90,8 +90,8 @@
     "Existing zone analytics injection is blocked by CSP; zone RUM configuration access returns 403"
   ],
   "result": "PARTIAL",
-  "completedAt": "2026-09-23T05:04:04.149892+00:00",
-  "updatedAt": "2026-09-23T07:11:29.758678+00:00",
+  "completedAt": "2026-09-23T10:18:36Z",
+  "updatedAt": "2026-09-23T10:18:36Z",
   "activeExpansion": null,
   "activeExpansionPlan": "docs/plan/plumblines-newspaper-v1/plan.md",
   "expansionEvidence": {
@@ -108,5 +108,32 @@
     "scopedResult": "PASS",
     "fullAcceptance": "PARTIAL"
   },
-  "completedExpansion": "Newspaper v1 sections, local attention, reading, record information, PWA metadata"
+  "completedExpansion": "Newspaper v1 sections, local attention, reading, record information, PWA metadata",
+  "editorialFrontPageExpansion": {
+    "objective": "Redesign the existing Plumblines branch as an editorial newspaper and deploy the verified web artifact.",
+    "status": "completed",
+    "result": "PARTIAL",
+    "sourceBranch": "codex/plumblines-v1",
+    "sourceCommit": "e65ebee3b239229a2c6063bad602db703bc7fa9d",
+    "previewDeploymentId": "2dc89d59-275f-4ca3-bd8e-a2cd437ad505",
+    "productionDeploymentId": "1abaaf7f-e124-4fe3-aa1b-9c50ed955a63",
+    "productionUrl": "https://plumblines.uk",
+    "rollbackDeploymentId": "a1ec660d-f432-44dc-aaf4-9919babb15d3",
+    "artifactFiles": 389,
+    "artifactIndexSha256": "47a108e44a12b1d3b40c87cde9570332c3d9ff0a840322ae310bc429de53e9e6",
+    "verification": {
+      "lint": "PASS",
+      "typecheck": "PASS iOS Android web",
+      "focusedUnit": "PASS 19 tests in 3 suites",
+      "webExport": "PASS optimized",
+      "browserPreview": "PASS 40/40",
+      "browserProduction": "PASS 40/40",
+      "standardReaderLiveSmoke": "PASS 20 index items, 4 body-bearing; real document rendered in browser",
+      "docker": "PASS healthz ok, HTTP 200, non-root UID 101",
+      "fullInheritedJest": "NOT RUN in this expansion"
+    },
+    "scope": "Deployed web design/Reading scope passes. Authenticated mutations, native device acceptance, assistive technology certification, and OS-level PWA installation remain unverified.",
+    "receipt": "docs/zeus/editorial-frontpage-deployment-2026-09-23.md",
+    "verificationReport": "docs/plan/plumblines-editorial-frontpage/verify-report.md"
+  }
 }

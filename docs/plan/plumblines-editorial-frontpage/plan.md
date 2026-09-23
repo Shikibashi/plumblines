@@ -28,4 +28,8 @@ Replace the dashboard-like Home composition with a spatially stable, determinist
 
 No dependencies are added until package inspection establishes clean React Native Web compatibility and the API is verified. No new backend, protocol writes, service worker or proprietary records. If Standard Reader integration cannot satisfy CSP/CORS or moderation/provenance checks, preserve the Reading section as a truthful link/embed surface with the failed assumption documented and continue the front-page architecture.
 
-Implementation map, traceable spec, QA and research references are in this folder. A reviewer can revert the work as focused commits on `codex/plumblines-v1`; rollback of public deployment remains the previous Cloudflare Pages deployment until new deployment completes.
+## Gate outcome
+
+The exact 389-file package passed the preview gate and was promoted to Cloudflare Pages production at `1abaaf7f-e124-4fe3-aa1b-9c50ed955a63`. Preview and live custom-domain browser suites each passed 40/40. The immediately previous production deployment remains available for rollback. See [the receipt](../../zeus/editorial-frontpage-deployment-2026-09-23.md) and [verification report](verify-report.md) for the evidence boundaries and remaining work.
+
+Implementation map, traceable spec, QA and research references are in this folder. A reviewer can revert the work as focused commits on `codex/plumblines-v1` without touching the clean `main` or `develop` baselines.

@@ -1,5 +1,27 @@
 # Zeus report: Plumblines
 
+## Current editorial newspaper expansion — 10:18 UTC
+
+**Implemented and deployed web scope: PASS. Full product acceptance: PARTIAL.** The old Home composition gave configurable feeds equal dashboard columns, per-column controls and independent scroll regions. The new front page uses one document scroll, responsive paper sheets/folios, a newspaper section rail, asymmetric deterministic story treatments and an explicit lead chosen from reader configuration. Social posts continue to use their actual text; Standard.site documents use document titles and the shared Standard Reader renderer.
+
+The implementation is recorded in [the design specification](../plan/plumblines-editorial-frontpage/spec.md), [implementation map](../plan/plumblines-editorial-frontpage/implementation-map.md), and [verification report](../plan/plumblines-editorial-frontpage/verify-report.md). Reused upstream components and the small shared-file surface are listed there. No upstream Home screen, post internals, PDS protocol code or moderation read paths were rewritten. Block/list-block creation remains rejected by the write policy; removal remains allowed.
+
+Production now serves Cloudflare deployment `1abaaf7f-e124-4fe3-aa1b-9c50ed955a63` on <https://plumblines.uk>, built from source `e65ebee`. The exact packaged Pages artifact passed 40/40 browser cases on both preview and the live custom domain. A separate production-browser smoke loaded the public Standard Reader index and rendered a real body-bearing article. See the [deployment receipt](editorial-frontpage-deployment-2026-09-23.md). The immediately previous production version, `a1ec660d-f432-44dc-aaf4-9919babb15d3`, remains available for rollback.
+
+Current checks: optimized web export, lint, iOS/Android/web typechecks, 19 focused Jest tests, 40/40 preview E2E, 40/40 production E2E, live Reading browser smoke, and Docker `/healthz` all pass. The full inherited Jest suite was not rerun in this expansion. Authenticated mutations, native device builds, assistive-technology certification and OS-level installation are not claimed. The upstream search/app-config/geolocation origin limits and previously recorded dependency advisories remain open. Full Zeus/product acceptance is therefore **PARTIAL**.
+
+### Old front page and new composition
+
+| Previous dashboard form | Editorial newspaper form |
+|---|---|
+| Equal feed boxes with controls in the reading flow | Section furniture with controls behind settings |
+| Independent section scrolling | One page scroll with visible sheet/folio landmarks |
+| Upstream `PostFeedItem` as the only front-page treatment | Plumblines deterministic treatment adapter over the same upstream post data |
+| Generic long-form embed prominence | A distinct Reading page/index using Standard.site metadata and renderer |
+| Equal columns imply no reader-selected lead | Lead section and templates follow saved reader configuration; no engagement ranking |
+
+The preceding v1 and initial fork reports below remain historical release records.
+
 ## Current newspaper v1 result — 07:09 UTC
 
 **Scoped v1 implementation and deployment: PASS. Full product acceptance: PARTIAL.** Configurable account-local feed/list/search sections, strict Following, two-column reading, per-section filters, local snoozes, reader/article modes, moderated PNG sharing, post/DID/PDS and custom-record inspection, keyboard controls and PWA metadata are live on https://plumblines.uk. Existing public blocked-content readers and removal-only moderation remain available.
