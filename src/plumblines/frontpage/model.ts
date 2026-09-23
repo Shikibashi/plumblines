@@ -105,7 +105,8 @@ export type FrontPagePackages<Source = unknown> = {
   availableSections: FrontPageSource<Source>[]
 }
 
-export type FrontPageSegment = 'lead' | 'briefs' | 'secondary' | 'section'
+export type FrontPageSegment =
+  'lead' | 'briefs' | 'secondary' | 'section' | 'continuation'
 
 /** Split one source's stable sequence into page packages without reordering it. */
 export function selectFrontPageSegment<T>(
@@ -117,9 +118,11 @@ export function selectFrontPageSegment<T>(
       ? [0, 1]
       : segment === 'briefs'
         ? [1, 4]
-        : segment === 'secondary'
-          ? [0, 4]
-          : [0, items.length]
+        : segment === 'continuation'
+          ? [4, items.length]
+          : segment === 'secondary'
+            ? [0, 4]
+            : [0, items.length]
   return items.slice(range[0], range[1]).map((item, index) => ({
     item,
     index: index + range[0],

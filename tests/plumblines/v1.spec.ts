@@ -367,46 +367,86 @@ test('v1 information shows supplied literal JSON and image sharing downloads a p
   expect(mutations).toEqual([])
 })
 
-test('v1 topic snooze hides matching stories locally, persists, and can be undone', async ({
+test('v1 front page keeps local attention controls in Settings', async ({
   page,
 }) => {
-  const mutations = await installFixtures(page)
+  await installFixtures(page)
+  await page.goto('/')
+  await expect(
+    page.getByRole('button', {name: 'Local attention', exact: true}),
+  ).toHaveCount(0)
+})
+
+test('v1 section fronts fetch the next cursor page as the reader scrolls', async ({
+  page,
+}) => {
+  await installFixtures(page)
+  const nextPage = post('Next-page dispatch fixture.', '3mtf4xncr6c29')
+  await page.route('**/xrpc/app.bsky.feed.getFeed?*', async route => {
+    const cursor = new URL(route.request().url()).searchParams.get('cursor')
+    await route.fulfill({
+      json: cursor
+        ? {feed: [{post: nextPage}]}
+        : {
+            feed: [
+              {post: lead},
+              {post: second},
+              {post: reposted},
+              {post: quoted},
+            ],
+            cursor: 'fixture-page-2',
+          },
+    })
+  })
   await page.goto('/')
   const section = await addFeed(page)
-  await page.getByRole('button', {name: 'Manage sections', exact: true}).click()
-  await page.getByRole('button', {name: 'Local attention', exact: true}).click()
-  await page
-    .getByRole('textbox', {name: 'Word or phrase', exact: true})
-    .fill('orchard')
-  await page.getByRole('button', {name: 'Snooze topic', exact: true}).click()
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
   await expect(
-    page.getByRole('button', {name: 'End snooze for orchard', exact: true}),
-  ).toBeVisible()
+    section.getByText('Next-page dispatch fixture.', {exact: true}),
+  ).toBeVisible({timeout: 20_000})
+})
+
+test('v1 composed front page continues the lead source after its opening package', async ({
+  page,
+}) => {
+  await installFixtures(page)
+  const nextPage = post('Front-page continuation fixture.', '3mtf4xncr6c30')
+  await page.route('**/xrpc/app.bsky.feed.getFeed?*', async route => {
+    const cursor = new URL(route.request().url()).searchParams.get('cursor')
+    await route.fulfill({
+      json: cursor
+        ? {feed: [{post: nextPage}]}
+        : {
+            feed: [
+              {post: lead},
+              {post: second},
+              {post: reposted},
+              {post: quoted},
+            ],
+            cursor: 'fixture-page-2',
+          },
+    })
+  })
+  await page.goto('/')
+  await addFeed(page)
+  await page.getByRole('button', {name: 'Front page', exact: true}).click()
+  await page.locator('.newspaper-layout-settings summary').click()
   await page
-    .getByRole('button', {name: 'Close active dialog', exact: true})
-    .last()
-    .click()
-  await expect(section.getByText(/Orchard dispatch\./)).toHaveCount(0)
-  await expect(
-    section.getByText('Weather dispatch. Ordinary independent story.', {
-      exact: true,
-    }),
-  ).toBeVisible()
+    .locator('.newspaper-layout-controls select')
+    .first()
+    .selectOption({label: 'Fixture wire'})
   await page.reload()
-  await expect(section.getByText(/Orchard dispatch\./)).toHaveCount(0)
-  await page.getByRole('button', {name: 'Local attention', exact: true}).click()
-  await page
-    .getByRole('button', {name: 'End snooze for orchard', exact: true})
-    .click()
+  const continuation = page.getByRole('region', {
+    name: 'More from Fixture wire',
+    exact: true,
+  })
   await expect(
-    page.getByText('No active local snoozes.', {exact: true}),
-  ).toBeVisible()
-  await page
-    .getByRole('button', {name: 'Close active dialog', exact: true})
-    .last()
-    .click()
-  await expect(section.getByText(/Orchard dispatch\./)).toBeVisible()
-  expect(mutations).toEqual([])
+    continuation.getByText('Front-page continuation fixture.', {exact: true}),
+  ).toHaveCount(0)
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
+  await expect(
+    continuation.getByText('Front-page continuation fixture.', {exact: true}),
+  ).toBeVisible({timeout: 20_000})
 })
 
 test('v1 image preview keeps muted content behind its reveal control', async ({
@@ -460,23 +500,6 @@ test('v1 keyboard moves between stories and sections while respecting inputs and
   await input.press('j')
   await expect(input).toHaveValue('j')
   await expect(input).toBeFocused()
-  await page.getByRole('button', {name: 'Local attention', exact: true}).click()
-  const dialog = page.getByRole('dialog', {
-    name: 'Local attention',
-    exact: true,
-  })
-  const close = dialog.getByRole('button', {
-    name: 'Close active dialog',
-    exact: true,
-  })
-  await close.focus()
-  await page.keyboard.press('1')
-  await page.keyboard.press('j')
-  await expect(close).toBeFocused()
-  await expect(
-    page.locator('.newspaper-section-tabs [aria-current="page"]'),
-  ).toHaveText('Fixture wire')
-  await close.click()
   await tabs.getByRole('button', {name: 'Fixture wire', exact: true}).focus()
   await page.keyboard.press('j')
   await expect(stories.nth(0)).toBeFocused()

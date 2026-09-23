@@ -1,5 +1,5 @@
 /* eslint-disable bsky-internal/avoid-unwrapped-text -- This entry is web-only and uses semantic HTML. */
-import {createElement, useState} from 'react'
+import {createElement, useCallback, useEffect, useRef, useState} from 'react'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {defaultImageUrlResolver} from '@standard-reader/renderer-core'
 import {
@@ -335,7 +335,35 @@ export function StandardReading() {
   })
   const items = feed.data?.pages.flatMap(page => page.items) ?? []
   const selected = items.find(item => item.uri === selectedUri)
-  const loadMore = () => void feed.fetchNextPage()
+  const endOfIndex = useRef<HTMLDivElement>(null)
+  const loadMore = useCallback(
+    () => void feed.fetchNextPage(),
+    [feed.fetchNextPage],
+  )
+  useEffect(() => {
+    const element = endOfIndex.current
+    if (
+      !element ||
+      !feed.hasNextPage ||
+      feed.isFetchingNextPage ||
+      feed.isFetchNextPageError ||
+      typeof IntersectionObserver === 'undefined'
+    )
+      return
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries.some(entry => entry.isIntersecting)) loadMore()
+      },
+      {rootMargin: '600px 0px'},
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [
+    feed.hasNextPage,
+    feed.isFetchingNextPage,
+    feed.isFetchNextPageError,
+    loadMore,
+  ])
 
   return (
     <section
@@ -371,6 +399,7 @@ export function StandardReading() {
         .pl-standard-entry time{font-size:12px}
         .pl-standard-entry-labels{font:600 12px/1.4 Arial,sans-serif;color:var(--pl-ink);border-inline-start:2px solid var(--pl-red);padding-inline-start:8px}
         .pl-standard-reading-more,.pl-standard-error button{margin-top:14px;padding:10px 2px;border-bottom:1px solid var(--pl-ink)}
+        .pl-standard-load-sentinel{height:1px;width:100%}
         .pl-standard-reading-more:disabled,.pl-standard-error button:disabled{opacity:.55;cursor:wait}
         .pl-standard-detail{min-width:0;border-left:1px solid var(--pl-rule);padding-left:clamp(16px,3vw,40px)}
         .pl-standard-article{max-width:60ch;margin:0 auto}
@@ -445,6 +474,13 @@ export function StandardReading() {
                 />
               ))}
             </ol>
+            {feed.hasNextPage && (
+              <div
+                ref={endOfIndex}
+                className="pl-standard-load-sentinel"
+                aria-hidden="true"
+              />
+            )}
             {feed.hasNextPage ? (
               <button
                 className="pl-standard-reading-more"

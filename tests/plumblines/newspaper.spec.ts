@@ -188,8 +188,21 @@ test('EFP: composed sheets use the document scroll and expose Reading as a disti
     canonicalUrl: 'https://publication.example/readable',
     hasRenderableBody: true,
   }
-  await page.route('**/xrpc/app.standard-reader.getLatestFeed**', route =>
-    route.fulfill({json: {items: [metadataOnly, renderable]}}),
+  const nextArticle = {
+    ...metadataOnly,
+    uri: 'at://did:plc:abc123/site.standard.document/next-page',
+    title: 'Next reading page fixture',
+  }
+  await page.route(
+    '**/xrpc/app.standard-reader.getLatestFeed**',
+    async route => {
+      const cursor = new URL(route.request().url()).searchParams.get('cursor')
+      await route.fulfill({
+        json: cursor
+          ? {items: [nextArticle]}
+          : {items: [metadataOnly, renderable], cursor: 'reading-page-2'},
+      })
+    },
   )
   await page.route('**/xrpc/app.standard-reader.getDocument**', route =>
     route.fulfill({
@@ -231,6 +244,7 @@ test('EFP: composed sheets use the document scroll and expose Reading as a disti
   await expect(
     page.getByRole('button', {name: 'Reading', exact: true}),
   ).toBeVisible()
+  await expect(page.locator('#newspaper-reading')).toHaveCount(0)
   await page.getByRole('button', {name: 'Reading', exact: true}).click()
   await expect(page.locator('#newspaper-reading')).toBeInViewport()
   await expect(
@@ -239,6 +253,10 @@ test('EFP: composed sheets use the document scroll and expose Reading as a disti
   await expect(page.getByText(/Standard Reader public index/)).toBeVisible({
     timeout: 30_000,
   })
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
+  await expect(
+    page.getByRole('button', {name: /Next reading page fixture/}),
+  ).toBeVisible({timeout: 20_000})
   const firstArticle = page.locator('.pl-standard-entry').first()
   await expect(firstArticle).toBeVisible({timeout: 45_000})
   const actualTitle = await firstArticle

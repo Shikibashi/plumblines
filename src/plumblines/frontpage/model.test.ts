@@ -79,7 +79,7 @@ it('uses only reader configuration to move a section into the lead region', () =
 })
 
 it('splits one ordered source into lead, briefs, and secondary packages', () => {
-  const items = ['one', 'two', 'three', 'four', 'five']
+  const items = ['one', 'two', 'three', 'four', 'five', 'six']
 
   expect(selectFrontPageSegment(items, 'lead')).toEqual([
     {item: 'one', index: 0},
@@ -94,6 +94,10 @@ it('splits one ordered source into lead, briefs, and secondary packages', () => 
     {item: 'two', index: 1},
     {item: 'three', index: 2},
     {item: 'four', index: 3},
+  ])
+  expect(selectFrontPageSegment(items, 'continuation')).toEqual([
+    {item: 'five', index: 4},
+    {item: 'six', index: 5},
   ])
   expect(
     selectFrontPageSegment(items, 'section').map(value => value.item),

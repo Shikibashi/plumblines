@@ -1030,6 +1030,12 @@ textarea:focus-visible {
   padding-left: clamp(16px, 2vw, 32px);
   border-left: 1px solid var(--press-rule);
 }
+.newspaper-region[data-slot='continuation'] {
+  grid-column: 1 / -1;
+  border-top: 3px double var(--press-ink);
+  border-left: 0;
+  padding: 18px 0 0;
+}
 .newspaper-region[data-slot='secondary-left'],
 .newspaper-region[data-slot='secondary-right'] {
   grid-row: 2;
@@ -1301,6 +1307,15 @@ textarea:focus-visible {
 }
 .newspaper-page-colophon a {
   color: inherit;
+}
+.newspaper-page-colophon button {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.newspaper-load-sentinel {
+  height: 1px;
+  width: 100%;
 }
 body[data-plumblines-front-page='true'] {
   --press-height: 140px;

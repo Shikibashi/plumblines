@@ -1,5 +1,5 @@
 /* eslint-disable bsky-internal/avoid-unwrapped-text -- This feature is mounted only in the web newspaper shell. */
-import {Fragment, useMemo, useRef, useState} from 'react'
+import {Fragment, useEffect, useMemo, useRef, useState} from 'react'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 import {usePostAuthorShadowFilter} from '#/state/cache/profile-shadow'
@@ -69,7 +69,12 @@ export function NewspaperSections() {
   const secondaryLeftSection = sectionFor(packages.secondaryLeft)
   const secondaryRightSection = sectionFor(packages.secondaryRight)
   const root = useRef<HTMLDivElement>(null)
-  const [activePage, setActivePage] = useState<'front' | 'section'>('front')
+  const [activePage, setActivePage] = useState<'front' | 'section' | 'reading'>(
+    'front',
+  )
+  useEffect(() => {
+    if (activePage !== 'front') window.scrollTo({top: 0, behavior: 'auto'})
+  }, [activePage])
   useSectionKeyboard(root, config, save, () => setActivePage('section'))
   const [managing, setManaging] = useState(false)
   const [title, setTitle] = useState('')
@@ -118,7 +123,11 @@ export function NewspaperSections() {
       className="newspaper-sections"
       data-testid="newspaper-sections">
       <h1 className="sr-only">
-        <Trans>Front page</Trans>
+        {activePage === 'reading' ? (
+          <Trans>Reading Edition</Trans>
+        ) : (
+          <Trans>Front page</Trans>
+        )}
       </h1>
       <div className="newspaper-navigation-row">
         <nav
@@ -151,7 +160,8 @@ export function NewspaperSections() {
             <Trans>Manage sections</Trans>
           </button>
           <button
-            onClick={() => scrollToNewspaperLandmark('newspaper-reading')}>
+            aria-current={activePage === 'reading' ? 'page' : undefined}
+            onClick={() => setActivePage('reading')}>
             <Trans>Reading</Trans>
           </button>
         </nav>
@@ -308,134 +318,138 @@ export function NewspaperSections() {
           </form>
         </section>
       )}
-      <div className="newspaper-sheet" id="newspaper-page-1">
-        <div className="newspaper-folio">
-          <span>
-            {activePage === 'front' ? l`Live Edition` : l`Section front`}
-          </span>
-          <span>
-            {activePage === 'front' ? l`Page 1` : activeSection?.title}
-          </span>
-        </div>
-        {activePage === 'front' ? (
-          <div
-            className="newspaper-layout"
-            data-template={frontPage.template}
-            data-secondary-count={
-              Number(!!secondaryLeftSection) + Number(!!secondaryRightSection)
-            }
-            data-testid="newspaper-layout">
-            {leadSection && (
-              <NewspaperRegion
-                section={leadSection}
-                slot="lead"
-                segment="lead"
-                onUpdate={update}
-                isConfiguredLead
-              />
-            )}
-            {briefsSection &&
-              (hasSession ||
-                !['following', 'search'].includes(
-                  briefsSection.source.kind,
-                )) && (
+      {activePage !== 'reading' && (
+        <div className="newspaper-sheet" id="newspaper-page-1">
+          <div className="newspaper-folio">
+            <span>
+              {activePage === 'front' ? l`Live Edition` : l`Section front`}
+            </span>
+            <span>
+              {activePage === 'front' ? l`Page 1` : activeSection?.title}
+            </span>
+          </div>
+          {activePage === 'front' ? (
+            <div
+              className="newspaper-layout"
+              data-template={frontPage.template}
+              data-secondary-count={
+                Number(!!secondaryLeftSection) + Number(!!secondaryRightSection)
+              }
+              data-testid="newspaper-layout">
+              {leadSection && (
                 <NewspaperRegion
-                  section={briefsSection}
-                  slot="briefs"
-                  segment="briefs"
+                  section={leadSection}
+                  slot="lead"
+                  segment="lead"
                   onUpdate={update}
                   isConfiguredLead
                 />
               )}
-            {secondaryLeftSection && (
-              <NewspaperRegion
-                section={secondaryLeftSection}
-                slot="secondary-left"
-                segment="secondary"
-                onUpdate={update}
-              />
+              {briefsSection &&
+                (hasSession ||
+                  !['following', 'search'].includes(
+                    briefsSection.source.kind,
+                  )) && (
+                  <NewspaperRegion
+                    section={briefsSection}
+                    slot="briefs"
+                    segment="briefs"
+                    onUpdate={update}
+                    isConfiguredLead
+                  />
+                )}
+              {secondaryLeftSection && (
+                <NewspaperRegion
+                  section={secondaryLeftSection}
+                  slot="secondary-left"
+                  segment="secondary"
+                  onUpdate={update}
+                />
+              )}
+              {secondaryRightSection && (
+                <NewspaperRegion
+                  section={secondaryRightSection}
+                  slot="secondary-right"
+                  segment="secondary"
+                  onUpdate={update}
+                />
+              )}
+              {leadSection &&
+                (hasSession ||
+                  !['following', 'search'].includes(
+                    leadSection.source.kind,
+                  )) && (
+                  <NewspaperRegion
+                    section={leadSection}
+                    slot="continuation"
+                    segment="continuation"
+                    onUpdate={update}
+                  />
+                )}
+              {!secondaryLeftSection && !secondaryRightSection && (
+                <section className="newspaper-reading-promo">
+                  <h2>
+                    <Trans>Reading</Trans>
+                  </h2>
+                  <p>
+                    <Trans>
+                      Long-form writing from the Atmosphere, collected in its
+                      own index.
+                    </Trans>
+                  </p>
+                  <button onClick={() => setActivePage('reading')}>
+                    <Trans>Open the reading index</Trans> →
+                  </button>
+                </section>
+              )}
+            </div>
+          ) : activePage === 'section' && activeSection ? (
+            <NewspaperRegion
+              section={activeSection}
+              slot="section-front"
+              segment="section"
+              onUpdate={update}
+            />
+          ) : null}
+          <footer className="newspaper-page-colophon">
+            <span>PLUMBLINES</span>
+            {activePage === 'section' ? (
+              <button onClick={() => setActivePage('front')}>
+                <Trans>Back to front page</Trans>
+              </button>
+            ) : (
+              <span />
             )}
-            {secondaryRightSection && (
-              <NewspaperRegion
-                section={secondaryRightSection}
-                slot="secondary-right"
-                segment="secondary"
-                onUpdate={update}
-              />
-            )}
-            {!secondaryLeftSection && !secondaryRightSection && (
-              <section className="newspaper-reading-promo">
-                <h2>
-                  <Trans>Reading</Trans>
-                </h2>
-                <p>
-                  <Trans>
-                    Long-form writing from the Atmosphere, collected in its own
-                    index.
-                  </Trans>
-                </p>
-                <button
-                  onClick={() =>
-                    scrollToNewspaperLandmark('newspaper-reading')
-                  }>
-                  <Trans>Open the reading index</Trans> →
-                </button>
-              </section>
-            )}
-          </div>
-        ) : activeSection ? (
-          <NewspaperRegion
-            section={activeSection}
-            slot="section-front"
-            segment="section"
-            onUpdate={update}
-          />
-        ) : null}
-        <footer className="newspaper-page-colophon">
-          <span>PLUMBLINES</span>
-          {activePage === 'section' ? (
-            <button onClick={() => setActivePage('front')}>
-              <Trans>Back to front page</Trans>
+            <span>
+              {activePage === 'front' ? l`Page 1` : activeSection?.title}
+            </span>
+            <button onClick={() => setActivePage('reading')}>
+              <Trans>Reading index</Trans>
             </button>
-          ) : (
-            <span />
-          )}
-          <span>
-            {activePage === 'front' ? l`Page 1` : activeSection?.title}
-          </span>
-          <a href="#newspaper-reading">
-            <Trans>Reading index</Trans>
-          </a>
-        </footer>
-      </div>
-      <div className="newspaper-sheet" id="newspaper-reading">
-        <div className="newspaper-folio">
-          <span>
-            <Trans>Long-form index</Trans>
-          </span>
-          <span>{l`Page 2`}</span>
+          </footer>
         </div>
-        <StandardReading />
-        <footer className="newspaper-page-colophon">
-          <span>PLUMBLINES</span>
-          <a href="#newspaper-page-1">
-            <Trans>Previous page</Trans>
-          </a>
-          <span>{l`Page 2`}</span>
-          <span />
-        </footer>
-      </div>
+      )}
+      {activePage === 'reading' && (
+        <div className="newspaper-sheet" id="newspaper-reading">
+          <div className="newspaper-folio">
+            <span>
+              <Trans>Reading Edition</Trans>
+            </span>
+            <span>{l`Long-form index`}</span>
+          </div>
+          <StandardReading />
+          <footer className="newspaper-page-colophon">
+            <span>PLUMBLINES</span>
+            <button onClick={() => setActivePage('front')}>
+              <Trans>Return to the front page</Trans>
+            </button>
+            <span>{l`Reading`}</span>
+            <span />
+          </footer>
+        </div>
+      )}
     </div>
   )
-}
-
-function scrollToNewspaperLandmark(id: string) {
-  document.getElementById(id)?.scrollIntoView({
-    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
-      ? 'auto'
-      : 'smooth',
-    block: 'start',
-  })
 }
 
 function NewspaperRegion({
@@ -447,7 +461,12 @@ function NewspaperRegion({
 }: {
   section: NewspaperSection
   slot:
-    'lead' | 'briefs' | 'secondary-left' | 'secondary-right' | 'section-front'
+    | 'lead'
+    | 'continuation'
+    | 'briefs'
+    | 'secondary-left'
+    | 'secondary-right'
+    | 'section-front'
   segment: FrontPageSegment
   onUpdate: (section: NewspaperSection) => void
   isConfiguredLead?: boolean
@@ -461,11 +480,21 @@ function NewspaperRegion({
       data-slot={slot}
       data-active={slot === 'section-front' ? 'true' : undefined}
       aria-label={
-        slot === 'briefs' ? l`Dispatches from ${section.title}` : section.title
+        slot === 'briefs'
+          ? l`Dispatches from ${section.title}`
+          : slot === 'continuation'
+            ? l`More from ${section.title}`
+            : section.title
       }>
       <header className="newspaper-region-heading">
         <h2>
-          {slot === 'briefs' ? <Trans>Dispatches</Trans> : section.title}
+          {slot === 'briefs' ? (
+            <Trans>Dispatches</Trans>
+          ) : slot === 'continuation' ? (
+            <Trans>More dispatches</Trans>
+          ) : (
+            section.title
+          )}
           {slot === 'lead' && (
             <span className="newspaper-lead-label">
               <Trans>Lead position</Trans>
@@ -669,6 +698,14 @@ function FeedColumn({
         ),
       ) ?? []
   const selected = selectFrontPageSegment(slices, segment)
+  const endOfStories = useRef<HTMLDivElement>(null)
+  useNewspaperInfiniteScroll(
+    endOfStories,
+    (segment === 'section' || segment === 'continuation') && result.hasNextPage,
+    result.isFetchingNextPage,
+    result.isFetchNextPageError,
+    result.fetchNextPage,
+  )
   return (
     <FeedFeedbackProvider value={feedback}>
       <div className="newspaper-stories" tabIndex={0} data-segment={segment}>
@@ -691,7 +728,16 @@ function FeedColumn({
             dispatchLabel={l`Dispatch`}
           />
         ))}
-        {segment === 'section' && <MoreButton result={result} />}
+        {(segment === 'section' || segment === 'continuation') && (
+          <>
+            <div
+              ref={endOfStories}
+              className="newspaper-load-sentinel"
+              aria-hidden="true"
+            />
+            <MoreButton result={result} />
+          </>
+        )}
       </div>
     </FeedFeedbackProvider>
   )
@@ -791,6 +837,14 @@ function SearchColumn({
         return true
       }) ?? []
   const selectedPosts = selectPostSegments(posts, segment)
+  const endOfStories = useRef<HTMLDivElement>(null)
+  useNewspaperInfiniteScroll(
+    endOfStories,
+    (segment === 'section' || segment === 'continuation') && result.hasNextPage,
+    result.isFetchingNextPage,
+    result.isFetchNextPageError,
+    result.fetchNextPage,
+  )
   return (
     <div className="newspaper-stories" tabIndex={0} data-segment={segment}>
       {(segment === 'lead' || segment === 'section') && (
@@ -814,7 +868,16 @@ function SearchColumn({
           <Post post={post} />
         </DispatchStory>
       ))}
-      {segment === 'section' && <MoreButton result={result} />}
+      {(segment === 'section' || segment === 'continuation') && (
+        <>
+          <div
+            ref={endOfStories}
+            className="newspaper-load-sentinel"
+            aria-hidden="true"
+          />
+          <MoreButton result={result} />
+        </>
+      )}
     </div>
   )
 }
@@ -845,6 +908,8 @@ function treatmentForSegment(
 
 type QueryStatus = {
   isFetching: boolean
+  isFetchingNextPage: boolean
+  isFetchNextPageError: boolean
   isPending: boolean
   isError: boolean
   refetch: () => Promise<unknown>
@@ -887,4 +952,40 @@ function MoreButton({result}: {result: QueryStatus}) {
       <Trans>Load more posts</Trans>
     </button>
   ) : null
+}
+
+function useNewspaperInfiniteScroll(
+  ref: React.RefObject<HTMLDivElement | null>,
+  hasNextPage: boolean,
+  isFetchingNextPage: boolean,
+  isFetchNextPageError: boolean,
+  fetchNextPage: () => Promise<unknown>,
+) {
+  useEffect(() => {
+    const element = ref.current
+    if (
+      !element ||
+      !hasNextPage ||
+      isFetchingNextPage ||
+      isFetchNextPageError ||
+      typeof IntersectionObserver === 'undefined'
+    )
+      return
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          void fetchNextPage()
+        }
+      },
+      {rootMargin: '600px 0px'},
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [
+    ref,
+    hasNextPage,
+    isFetchingNextPage,
+    isFetchNextPageError,
+    fetchNextPage,
+  ])
 }

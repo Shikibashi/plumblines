@@ -69,6 +69,7 @@ import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL, IS_IOS, IS_NATIVE} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {type app} from '#/lexicons'
+import {LocalAttentionDialog} from '#/plumblines/local-attention'
 import {device, useStorage} from '#/storage'
 import {useActivitySubscriptionsNudged} from '#/storage/hooks/activity-subscriptions-nudged'
 
@@ -80,6 +81,7 @@ export function SettingsScreen({}: Props) {
   const {logoutEveryAccount} = useSessionApi()
   const {accounts, currentAccount} = useSession()
   const switchAccountControl = useDialogControl()
+  const localAttentionControl = useDialogControl()
   const signOutPromptControl = Prompt.usePromptControl()
   const {data: profile} = useProfileQuery({did: currentAccount?.did})
   const {data: otherProfiles} = useProfilesQuery({
@@ -196,6 +198,15 @@ export function SettingsScreen({}: Props) {
               <Trans>Moderation and content filters</Trans>
             </SettingsList.ItemText>
           </SettingsList.LinkItem>
+          <SettingsList.PressableItem
+            onPress={localAttentionControl.open}
+            label={l`Local attention`}
+            contentContainerStyle={{minHeight: 48}}>
+            <SettingsList.ItemIcon icon={HandIcon} />
+            <SettingsList.ItemText>
+              <Trans>Local attention</Trans>
+            </SettingsList.ItemText>
+          </SettingsList.PressableItem>
           <SettingsList.LinkItem
             to="/settings/notifications"
             label={l`Notifications`}>
@@ -314,6 +325,7 @@ export function SettingsScreen({}: Props) {
       />
 
       <SwitchAccountDialog control={switchAccountControl} />
+      <LocalAttentionDialog control={localAttentionControl} />
     </Layout.Screen>
   )
 }
