@@ -41,10 +41,6 @@ import {
 import {useToggleQuoteDetachmentMutation} from '#/state/queries/postgate'
 import {getMaybeDetachedQuoteEmbed} from '#/state/queries/postgate/util'
 import {
-  useProfileBlockMutationQueue,
-  useProfileMuteMutationQueue,
-} from '#/state/queries/profile'
-import {
   InvalidInteractionSettingsError,
   MAX_HIDDEN_REPLIES,
   MaxHiddenRepliesError,
@@ -72,7 +68,6 @@ import {
   Mute_Stroke2_Corner0_Rounded as Mute,
   Mute_Stroke2_Corner0_Rounded as MuteIcon,
 } from '#/components/icons/Mute'
-import {PersonX_Stroke2_Corner0_Rounded as PersonX} from '#/components/icons/Person'
 import {Pin_Stroke2_Corner0_Rounded as PinIcon} from '#/components/icons/Pin'
 import {SettingsGear2_Stroke2_Corner0_Rounded as Gear} from '#/components/icons/SettingsGear2'
 import {
@@ -83,7 +78,6 @@ import {Trash_Stroke2_Corner0_Rounded as Trash} from '#/components/icons/Trash'
 import {Warning_Stroke2_Corner0_Rounded as Warning} from '#/components/icons/Warning'
 import {Loader} from '#/components/Loader'
 import * as Menu from '#/components/Menu'
-import {BlockDialog} from '#/components/moderation/BlockDialog'
 import {
   ReportDialog,
   useReportDialogControl,
@@ -93,7 +87,11 @@ import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL} from '#/env'
 import {type app} from '#/lexicons'
-import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
+import {useAccountActions} from '#/plumblines/account-actions'
+import {
+  UnblockAccountDialog,
+  useUnblockAccountMenuItem,
+} from '#/plumblines/components/UnblockAccountMenuItem'
 
 let PostMenuItems = ({
   post,
@@ -139,7 +137,7 @@ let PostMenuItems = ({
   })
   const navigation = useNavigation<NavigationProp>()
   const {mutedWordsDialogControl} = useGlobalDialogsControlContext()
-  const blockPromptControl = useDialogControl()
+  const unblockPromptControl = useDialogControl()
   const reportDialogControl = useReportDialogControl()
   const deletePromptControl = useDialogControl()
   const hidePromptControl = useDialogControl()
@@ -178,8 +176,7 @@ let PostMenuItems = ({
   const {mutateAsync: toggleQuoteDetachment, isPending: isDetachPending} =
     useToggleQuoteDetachmentMutation()
 
-  const [queueBlock] = useProfileBlockMutationQueue(postAuthor)
-  const [queueMute, queueUnmute] = useProfileMuteMutationQueue(postAuthor)
+  const {mute: queueMute, unmute: queueUnmute} = useAccountActions(postAuthor)
 
   const prefetchPostInteractionSettings = usePrefetchPostInteractionSettings({
     postUri: post.uri,
@@ -418,27 +415,6 @@ let PostMenuItems = ({
     })
   }
 
-  const onBlockAuthor = async () => {
-    try {
-      await queueBlock()
-      Toast.show(l({message: 'Account blocked', context: 'toast'}))
-    } catch (err) {
-      const e = err as Error
-      if (e?.name !== 'AbortError') {
-        logger.error('Failed to block account', {message: e})
-        Toast.show(l`There was an issue! ${e.toString()}`, {
-          type: 'error',
-        })
-      }
-    }
-    ax.metric('postMenu:blockAccount', {
-      uri: postUri,
-      authorDid: postAuthor.did,
-      logContext,
-      feedDescriptor: feedFeedback.feedDescriptor,
-    })
-  }
-
   const onMuteAuthor = async () => {
     if (postAuthor.viewer?.muted) {
       try {
@@ -503,6 +479,12 @@ let PostMenuItems = ({
     IS_INTERNAL ||
     DISCOVER_DEBUG_DIDS[currentAccount?.did || ''] ||
     ax.features.enabled(ax.features.DebugFeedContext)
+
+  const unblockMenuItem = useUnblockAccountMenuItem({
+    profile: postAuthor,
+    onPress: unblockPromptControl.open,
+    testID: 'postDropdownUnblockBtn',
+  })
 
   return (
     <>
@@ -760,15 +742,7 @@ let PostMenuItems = ({
                     />
                   </Menu.Item>
 
-                  {CAN_CREATE_BLOCKS && !postAuthor.viewer?.blocking && (
-                    <Menu.Item
-                      testID="postDropdownBlockBtn"
-                      label={l`Block account`}
-                      onPress={() => blockPromptControl.open()}>
-                      <Menu.ItemText>{l`Block account`}</Menu.ItemText>
-                      <Menu.ItemIcon icon={PersonX} position="right" />
-                    </Menu.Item>
-                  )}
+                  {unblockMenuItem}
 
                   <Menu.Item
                     testID="postDropdownReportBtn"
@@ -864,10 +838,9 @@ let PostMenuItems = ({
         onConfirm={() => void onToggleReplyVisibility()}
         confirmButtonCta={l`Yes, hide`}
       />
-      <BlockDialog
-        control={blockPromptControl}
+      <UnblockAccountDialog
+        control={unblockPromptControl}
         profile={postAuthor}
-        onBlock={onBlockAuthor}
       />
     </>
   )

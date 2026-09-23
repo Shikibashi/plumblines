@@ -386,7 +386,7 @@ export function ModerationScreenInner({
           to="/moderation/blocked-accounts">
           {state => (
             <SubItem
-              title={l`Existing account blocks`}
+              title={l`Existing Blocks`}
               icon={CircleBanSign}
               style={[
                 (state.hovered || state.pressed) && [t.atoms.bg_contrast_50],

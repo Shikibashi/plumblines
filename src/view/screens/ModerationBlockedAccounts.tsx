@@ -49,7 +49,7 @@ export function ModerationBlockedAccounts({}: Props) {
     try {
       await refetch()
     } catch (err) {
-      logger.error('Failed to refresh my muted accounts', {message: err})
+      logger.error('Failed to refresh existing account blocks', {message: err})
     }
     setIsPTRing(false)
   }, [refetch, setIsPTRing])
@@ -60,7 +60,9 @@ export function ModerationBlockedAccounts({}: Props) {
     try {
       await fetchNextPage()
     } catch (err) {
-      logger.error('Failed to load more of my muted accounts', {message: err})
+      logger.error('Failed to load more existing account blocks', {
+        message: err,
+      })
     }
   }, [isFetching, hasNextPage, isError, fetchNextPage])
 
@@ -92,7 +94,7 @@ export function ModerationBlockedAccounts({}: Props) {
           <Layout.Header.BackButton />
           <Layout.Header.Content>
             <Layout.Header.TitleText>
-              <Trans>Blocked Accounts</Trans>
+              <Trans>Existing Blocks</Trans>
             </Layout.Header.TitleText>
           </Layout.Header.Content>
           <Layout.Header.Slot />
@@ -178,9 +180,8 @@ function Info({style}: {style?: StyleProp<ViewStyle>}) {
       ]}>
       <Text style={[a.text_center, a.text_sm, t.atoms.text_contrast_high]}>
         <Trans>
-          Plumblines does not create blocks. Existing AT Protocol blocks may
-          still be enforced by network services. You can review and remove
-          existing blocks here.
+          Blocks stored in your AT Protocol account. Plumblines does not create
+          blocks. Blocks created through other clients can be removed here.
         </Trans>
       </Text>
     </View>

@@ -4,15 +4,11 @@ import {StackActions, useNavigation} from '@react-navigation/native'
 import {useQueryClient} from '@tanstack/react-query'
 
 import {type NavigationProp} from '#/lib/routes/types'
-import {useProfileShadow} from '#/state/cache/profile-shadow'
 import {useEmail} from '#/state/email-verification'
 import {useAcceptConversation} from '#/state/queries/messages/accept-conversation'
 import {precacheConvoQuery} from '#/state/queries/messages/conversation'
 import {useLeaveConvo} from '#/state/queries/messages/leave-conversation'
-import {
-  unstableCacheProfileView,
-  useProfileBlockMutationQueue,
-} from '#/state/queries/profile'
+import {useMuteConvo} from '#/state/queries/messages/mute-conversation'
 import {useSession} from '#/state/session'
 import {
   Button,
@@ -35,13 +31,13 @@ import {ArrowBoxLeft_Stroke2_Corner0_Rounded as LeaveIcon} from '#/components/ic
 import {Check_Stroke2_Corner0_Rounded as CheckIcon} from '#/components/icons/Check'
 import {CircleX_Stroke2_Corner0_Rounded} from '#/components/icons/CircleX'
 import {Flag_Stroke2_Corner0_Rounded as FlagIcon} from '#/components/icons/Flag'
-import {PersonX_Stroke2_Corner0_Rounded as PersonXIcon} from '#/components/icons/Person'
+import {Mute_Stroke2_Corner0_Rounded as MuteIcon} from '#/components/icons/Mute'
+import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon} from '#/components/icons/Speaker'
 import {Loader} from '#/components/Loader'
 import * as Menu from '#/components/Menu'
 import {ReportDialog} from '#/components/moderation/ReportDialog'
 import * as Toast from '#/components/Toast'
 import {type chat} from '#/lexicons'
-import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 
 export function RejectMenu({
   convo,
@@ -63,9 +59,7 @@ export function RejectMenu({
 }) {
   const {t: l} = useLingui()
   const {currentAccount} = useSession()
-  const shadowedProfile = useProfileShadow(profile)
   const navigation = useNavigation<NavigationProp>()
-  const queryClient = useQueryClient()
 
   const {mutate: leaveConvo} = useLeaveConvo(convo.view.id, {
     onMutate: () => {
@@ -85,7 +79,19 @@ export function RejectMenu({
       )
     },
   })
-  const [queueBlock] = useProfileBlockMutationQueue(shadowedProfile)
+
+  const {mutate: muteConvo} = useMuteConvo(convo.view.id, {
+    onSuccess: data => {
+      Toast.show(
+        data.convo.muted
+          ? l({message: 'Chat muted', context: 'toast'})
+          : l({message: 'Chat unmuted', context: 'toast'}),
+      )
+    },
+    onError: () => {
+      Toast.show(l`Could not mute chat`, {type: 'error'})
+    },
+  })
 
   const onPressDelete = useCallback(() => {
     Toast.show(
@@ -100,24 +106,8 @@ export function RejectMenu({
     leaveConvo()
   }, [leaveConvo, l])
 
-  const onPressBlock = useCallback(() => {
-    if (!CAN_CREATE_BLOCKS) return
-    Toast.show(
-      l({
-        context: 'toast',
-        message: 'Account blocked',
-      }),
-      {
-        type: 'success',
-      },
-    )
-    // block and also delete convo
-    void queueBlock()
-    leaveConvo()
-  }, [queueBlock, leaveConvo, l])
-
   const reportControl = useDialogControl()
-  const blockOrDeleteControl = useDialogControl()
+  const afterReportControl = useDialogControl()
 
   const reportSubject = getConvoReportSubject(convo, currentAccount?.did)
 
@@ -153,14 +143,20 @@ export function RejectMenu({
                 <Menu.ItemIcon icon={CircleX_Stroke2_Corner0_Rounded} />
               </Menu.Item>
             )}
-            {CAN_CREATE_BLOCKS && (
-              <Menu.Item label={l`Block account`} onPress={onPressBlock}>
-                <Menu.ItemText>
-                  <Trans>Block account</Trans>
-                </Menu.ItemText>
-                <Menu.ItemIcon icon={PersonXIcon} />
-              </Menu.Item>
-            )}
+            <Menu.Item
+              label={
+                convo.view.muted ? l`Unmute conversation` : l`Mute conversation`
+              }
+              onPress={() => muteConvo({mute: !convo.view.muted})}>
+              <Menu.ItemText>
+                {convo.view.muted ? (
+                  <Trans>Unmute conversation</Trans>
+                ) : (
+                  <Trans>Mute conversation</Trans>
+                )}
+              </Menu.ItemText>
+              <Menu.ItemIcon icon={convo.view.muted ? UnmuteIcon : MuteIcon} />
+            </Menu.Item>
             <Menu.Item
               label={l`Report conversation`}
               onPress={reportControl.open}>
@@ -178,14 +174,13 @@ export function RejectMenu({
           subject={reportSubject}
           control={reportControl}
           onAfterSubmit={() => {
-            unstableCacheProfileView(queryClient, profile)
-            blockOrDeleteControl.open()
+            afterReportControl.open()
           }}
         />
       )}
       {convo.kind === 'group' ? (
         <AfterReportConversationDialog
-          control={blockOrDeleteControl}
+          control={afterReportControl}
           currentScreen={currentScreen}
           params={{
             convoId: convo.view.id,
@@ -194,7 +189,7 @@ export function RejectMenu({
         />
       ) : (
         <AfterReportDialog
-          control={blockOrDeleteControl}
+          control={afterReportControl}
           currentScreen={currentScreen}
           params={{
             convoId: convo.view.id,

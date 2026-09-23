@@ -759,7 +759,7 @@ msgstr "{MAX_DESCRIPTION, plural, other {Beschreibung ist zu lang. Die maximale 
 msgid "{MAX_DISPLAY_NAME, plural, other {Display name is too long. The maximum number of characters is #.}}"
 msgstr "{MAX_DISPLAY_NAME, plural, other {Anzeigename ist zu lang. Die maximale Zeichenanzahl beträgt #.}}"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:392
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:389
 msgid "{MAX_HIDDEN_REPLIES, plural, other {You can hide a maximum of # replies.}}"
 msgstr "{MAX_HIDDEN_REPLIES, plural, other {Du kannst maximal # Antworten ausblenden.}}"
 
@@ -1025,8 +1025,6 @@ msgstr "Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Internetverb
 #: src/components/dms/dialogs/ShareViaChatDialog.tsx:69
 #: src/components/dms/dialogs/ShareViaChatDialog.tsx:105
 #: src/components/dms/LeaveConvoPrompt.tsx:39
-#: src/components/moderation/BlockDialog.tsx:283
-#: src/components/moderation/BlockDialog.tsx:312
 #: src/screens/Messages/JoinRequests.tsx:189
 #: src/screens/Messages/JoinRequests.tsx:221
 msgid "A network error occurred. Please check your internet connection."
@@ -1084,7 +1082,7 @@ msgid "Abusive or discriminatory behavior"
 msgstr "Missbräuchliches oder diskriminierendes Verhalten"
 
 #. Accept a chat request
-#: src/screens/Messages/components/RequestButtons.tsx:291
+#: src/screens/Messages/components/RequestButtons.tsx:286
 msgid "Accept"
 msgstr "Annehmen"
 
@@ -1094,7 +1092,7 @@ msgctxt "button"
 msgid "Accept"
 msgstr "Annehmen"
 
-#: src/screens/Messages/components/RequestButtons.tsx:285
+#: src/screens/Messages/components/RequestButtons.tsx:280
 msgid "Accept chat request"
 msgstr "Chat-Anfrage annehmen"
 
@@ -1132,15 +1130,7 @@ msgstr "Barrierefreiheitseinstellungen"
 msgid "Account"
 msgstr "Account"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:424
-#: src/screens/Messages/components/RequestButtons.tsx:106
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:123
-#: src/view/com/profile/ProfileMenu.tsx:212
-msgctxt "toast"
-msgid "Account blocked"
-msgstr "Account blockiert"
-
-#: src/view/com/profile/ProfileMenu.tsx:228
+#: src/view/com/profile/ProfileMenu.tsx:196
 msgctxt "toast"
 msgid "Account followed"
 msgstr "Account gefolgt"
@@ -1158,8 +1148,8 @@ msgctxt "moderation-inbox-setting"
 msgid "Account labeling notifications"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:465
-#: src/view/com/profile/ProfileMenu.tsx:148
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:441
+#: src/view/com/profile/ProfileMenu.tsx:146
 msgctxt "toast"
 msgid "Account muted"
 msgstr "Account stummgeschaltet"
@@ -1181,21 +1171,20 @@ msgstr "Account-Optionen"
 msgid "Account removed from quick access"
 msgstr "Account aus dem Schnellzugriff entfernt"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:110
+#: src/plumblines/components/UnblockAccountMenuItem.tsx:49
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:87
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:301
-#: src/view/com/profile/ProfileMenu.tsx:199
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:299
 msgctxt "toast"
 msgid "Account unblocked"
 msgstr "Account entblockt"
 
-#: src/view/com/profile/ProfileMenu.tsx:243
+#: src/view/com/profile/ProfileMenu.tsx:211
 msgctxt "toast"
 msgid "Account unfollowed"
 msgstr "Account entfolgt"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:446
-#: src/view/com/profile/ProfileMenu.tsx:135
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:422
+#: src/view/com/profile/ProfileMenu.tsx:133
 msgctxt "toast"
 msgid "Account unmuted"
 msgstr "Account nicht mehr stummgeschaltet"
@@ -1391,8 +1380,8 @@ msgstr "Füge den folgenden DNS-Eintrag zu deiner Domain hinzu:"
 msgid "Add this feed to your feeds"
 msgstr "Füge diesen Feed zu deinen Feeds hinzu"
 
-#: src/view/com/profile/ProfileMenu.tsx:378
-#: src/view/com/profile/ProfileMenu.tsx:381
+#: src/view/com/profile/ProfileMenu.tsx:352
+#: src/view/com/profile/ProfileMenu.tsx:355
 msgid "Add to lists"
 msgstr "Zu Listen hinzufügen"
 
@@ -1401,8 +1390,8 @@ msgid "Add to saved posts"
 msgstr "Zu gespeicherten Posts hinzufügen"
 
 #: src/components/dialogs/StarterPackDialog.tsx:178
-#: src/view/com/profile/ProfileMenu.tsx:369
-#: src/view/com/profile/ProfileMenu.tsx:372
+#: src/view/com/profile/ProfileMenu.tsx:343
+#: src/view/com/profile/ProfileMenu.tsx:346
 msgid "Add to Starter Packs"
 msgstr ""
 
@@ -1446,7 +1435,7 @@ msgid "Additional details (limit 300 characters)"
 msgstr "Zusätzliche Details (max. 300 Zeichen)"
 
 #: src/screens/Messages/ConversationSettings/Member.tsx:94
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:158
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:126
 msgid "Admin"
 msgstr "Admin"
 
@@ -2076,8 +2065,8 @@ msgstr "Apps und Websites darum bitten, meinen Account ausgeloggten Nutzern nich
 msgid "Ask apps to hide my posts from algorithmic recommendations"
 msgstr "Apps darum bitten, meine Posts aus algorithmischen Empfehlungen auszublenden"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:617
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:619
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:599
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:601
 msgid "Assign topic for algo"
 msgstr "Thema für den Algorithmus festlegen"
 
@@ -2229,7 +2218,7 @@ msgstr "Bevor du einen Post erstellen oder antworten kannst, musst du zuerst dei
 msgid "Before creating a Starter Pack, you must first verify your email."
 msgstr ""
 
-#: src/screens/Messages/components/RequestButtons.tsx:264
+#: src/screens/Messages/components/RequestButtons.tsx:259
 msgid "Before you can accept this chat request, you must first verify your email."
 msgstr "Bevor du diese Chat-Anfrage annehmen kannst, musst du zuerst deine E-Mail verifizieren."
 
@@ -2244,7 +2233,7 @@ msgstr "Bevor du Mitteilungen zu den Posts von {name} erhalten kannst, musst du 
 #: src/screens/Messages/ChatList.tsx:287
 #: src/screens/Messages/ChatList.tsx:543
 #: src/screens/Messages/Conversation.tsx:206
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:100
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:96
 msgid "Before you can message another user, you must first verify your email."
 msgstr "Bevor du einem anderen Nutzer eine Nachricht senden kannst, musst du zuerst deine E-Mail verifizieren."
 
@@ -2295,94 +2284,21 @@ msgstr "Geburtsdatum"
 msgid "Birthday"
 msgstr "Geburtstag"
 
-#: src/components/moderation/BlockDialog.tsx:186
-#: src/components/moderation/BlockDialog.tsx:192
-#: src/components/moderation/BlockDialog.tsx:212
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:230
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:190
-msgid "Block"
-msgstr "Blockieren"
-
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:219
-msgid "Block {displayName}"
-msgstr "{displayName} blockieren"
-
-#: src/components/dms/ConvoMenu.tsx:285
-#: src/components/dms/ConvoMenu.tsx:289
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:766
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:768
-#: src/screens/Messages/components/RequestButtons.tsx:157
-#: src/screens/Messages/components/RequestButtons.tsx:159
-#: src/view/com/profile/ProfileMenu.tsx:497
-#: src/view/com/profile/ProfileMenu.tsx:504
-msgid "Block account"
-msgstr "Account blockieren"
-
-#: src/components/moderation/BlockDialog.tsx:147
-msgid "Block account?"
-msgstr "Account blockieren?"
-
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:93
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:96
-msgid "Block accounts"
-msgstr "Accounts blockieren"
-
-#: src/components/dms/AfterReportDialog.tsx:149
-msgid "Block and delete"
-msgstr "Blockieren und löschen"
-
-#. After-report action for a conversation
-#: src/components/dms/AfterReportConversationDialog.tsx:168
-msgctxt "button"
-msgid "Block and leave"
-msgstr "Blockieren und verlassen"
-
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:123
-msgid "Block list"
-msgstr "Blockliste"
-
 #: src/screens/Messages/components/ChatStatusInfo.tsx:61
 msgid "Block or report"
 msgstr "Blockieren oder melden"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:118
-msgid "Block these accounts?"
-msgstr "Diese Accounts blockieren?"
-
-#: src/components/dms/AfterReportConversationDialog.tsx:223
-#: src/components/dms/AfterReportConversationDialog.tsx:226
-#: src/components/dms/AfterReportDialog.tsx:155
-#: src/components/dms/AfterReportDialog.tsx:191
-#: src/components/dms/AfterReportDialog.tsx:194
-msgid "Block user"
-msgstr "Nutzer blockieren"
-
-#. After-report action for a conversation
-#: src/components/dms/AfterReportConversationDialog.tsx:183
-msgctxt "button"
-msgid "Block user"
-msgstr "Nutzer blockieren"
-
 #: src/Navigation.tsx:218
-#: src/view/screens/ModerationBlockedAccounts.tsx:95
 msgid "Blocked Accounts"
 msgstr "Blockierte Accounts"
-
-#: src/components/moderation/BlockDialog.tsx:162
-msgid "Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
-msgstr "Blockierte Accounts können nicht in deinen Threads antworten, dich erwähnen oder anderweitig mit dir interagieren."
 
 #: src/screens/Profile/Sections/Labels.tsx:204
 msgid "Blocking does not prevent this labeler from placing labels on your account."
 msgstr "Blockieren hindert diesen Kennzeichnungsdienst nicht daran, Kennzeichnungen zu deinem Account hinzuzufügen."
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:120
-msgid "Blocking is public. Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you."
-msgstr "Die Blockierung ist öffentlich. Blockierte Accounts können nicht in deinen Threads antworten, dich erwähnen oder anderweitig mit dir interagieren."
-
-#: src/components/moderation/BlockDialog.tsx:156
-msgid "Blocking will not prevent labels from being applied on your account, but it will stop this account from replying in your threads or interacting with you."
-msgstr "Blockieren verhindert nicht, dass Kennzeichnungen zu deinem Account hinzugefügt werden, verhindert aber, dass dieser Account in deinen Threads antworten oder interagieren kann."
+#: src/view/screens/ModerationBlockedAccounts.tsx:182
+msgid "Blocks stored in your AT Protocol account. Plumblines does not create blocks. Blocks created through other clients can be removed here."
+msgstr ""
 
 #. Advanced search: Examples of hashtags
 #: src/screens/Search/components/AdvancedSearchDialog/hooks.tsx:17
@@ -2618,7 +2534,6 @@ msgstr "Kamerazugriff erforderlich"
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:175
 #: src/components/dialogs/nuxs/InviteFriendsAnnouncement.tsx:181
 #: src/components/Menu/index.tsx:373
-#: src/components/moderation/BlockDialog.tsx:203
 #: src/components/PostControls/RepostButton.tsx:210
 #: src/components/Prompt.tsx:152
 #: src/components/Prompt.tsx:154
@@ -2788,8 +2703,8 @@ msgstr ""
 msgid "Chat"
 msgstr "Chat"
 
-#: src/screens/Messages/components/RequestButtons.tsx:92
-#: src/screens/Messages/components/RequestButtons.tsx:335
+#: src/screens/Messages/components/RequestButtons.tsx:98
+#: src/screens/Messages/components/RequestButtons.tsx:330
 msgctxt "toast"
 msgid "Chat deleted"
 msgstr "Chat gelöscht"
@@ -2816,25 +2731,17 @@ msgstr "Chatnachrichten – stumm"
 msgid "Chat messages - sound"
 msgstr "Chatnachrichten – Ton"
 
-#: src/components/dms/ConvoMenu.tsx:207
+#: src/components/dms/ConvoMenu.tsx:206
+#: src/screens/Messages/components/RequestButtons.tsx:87
 msgctxt "toast"
 msgid "Chat muted"
 msgstr "Chat stummgeschaltet"
-
-#: src/components/moderation/BlockDialog.tsx:287
-#: src/components/moderation/BlockDialog.tsx:316
-msgid "Chat not found."
-msgstr "Chat nicht gefunden."
 
 #: src/screens/Messages/ChatList.tsx:569
 #: src/screens/Messages/ChatList.tsx:604
 #: src/screens/Messages/ChatList.tsx:651
 msgid "Chat options"
 msgstr "Chat-Optionen"
-
-#: src/components/moderation/BlockDialog.tsx:290
-msgid "Chat owners cannot leave a group chat."
-msgstr "Chat-Inhaber können einen Gruppenchat nicht verlassen."
 
 #: src/components/dms/dialogs/NewChatDialog.tsx:67
 #: src/components/dms/dialogs/ShareViaChatDialog.tsx:82
@@ -2850,7 +2757,7 @@ msgstr "Posteingang für Chat-Anfragen"
 msgid "Chat requests"
 msgstr "Chat-Anfragen"
 
-#: src/components/dms/ConvoMenu.tsx:89
+#: src/components/dms/ConvoMenu.tsx:86
 #: src/Navigation.tsx:548
 #: src/screens/Messages/ChatList.tsx:97
 #: src/screens/Messages/ChatList.tsx:101
@@ -2877,7 +2784,8 @@ msgstr "Chatname wurde zu {0} geändert"
 msgid "Chat unlocked"
 msgstr "Chat entsperrt"
 
-#: src/components/dms/ConvoMenu.tsx:209
+#: src/components/dms/ConvoMenu.tsx:208
+#: src/screens/Messages/components/RequestButtons.tsx:88
 msgctxt "toast"
 msgid "Chat unmuted"
 msgstr "Chat nicht mehr stummgeschaltet"
@@ -3102,14 +3010,10 @@ msgstr "Klicke hier, um die fehlgeschlagene Nachricht erneut zu senden"
 #: src/components/dialogs/SearchablePeopleList.tsx:336
 #: src/components/dialogs/StarterPackDialog.tsx:181
 #: src/components/dms/AddMembersFlow.tsx:384
-#: src/components/dms/AfterReportConversationDialog.tsx:92
-#: src/components/dms/AfterReportConversationDialog.tsx:97
-#: src/components/dms/AfterReportConversationDialog.tsx:250
-#: src/components/dms/AfterReportConversationDialog.tsx:255
-#: src/components/dms/AfterReportDialog.tsx:95
-#: src/components/dms/AfterReportDialog.tsx:100
-#: src/components/dms/AfterReportDialog.tsx:215
-#: src/components/dms/AfterReportDialog.tsx:220
+#: src/components/dms/AfterReportConversationDialog.tsx:131
+#: src/components/dms/AfterReportConversationDialog.tsx:136
+#: src/components/dms/AfterReportDialog.tsx:134
+#: src/components/dms/AfterReportDialog.tsx:139
 #: src/components/dms/EmojiPopup.android.tsx:59
 #: src/components/dms/InitiateChatFlow.tsx:670
 #: src/components/intents/GroupChatJoinDialog.tsx:251
@@ -3156,7 +3060,6 @@ msgstr "Banner schließen"
 #: src/components/dialogs/LanguageSelectDialog.tsx:322
 #: src/components/dialogs/LanguageSelectDialog.tsx:354
 #: src/components/dialogs/NotificationSettingsDialog.tsx:102
-#: src/components/moderation/BlockDialog.tsx:200
 #: src/components/verification/VerificationsDialog.tsx:139
 #: src/components/verification/VerifierDialog.tsx:141
 #: src/features/gifPicker/components/GifPickerErrorBoundary.tsx:36
@@ -3455,14 +3358,12 @@ msgstr "Konversation"
 msgid "Conversation deleted"
 msgstr "Konversation gelöscht"
 
-#: src/components/dms/AfterReportDialog.tsx:150
-#: src/components/dms/AfterReportDialog.tsx:153
+#: src/components/dms/AfterReportDialog.tsx:86
 msgctxt "toast"
 msgid "Conversation deleted"
 msgstr "Konversation gelöscht"
 
-#: src/components/dms/AfterReportConversationDialog.tsx:173
-#: src/components/dms/AfterReportConversationDialog.tsx:180
+#: src/components/dms/AfterReportConversationDialog.tsx:83
 msgctxt "toast"
 msgid "Conversation left"
 msgstr "Konversation verlassen"
@@ -3484,7 +3385,7 @@ msgstr "Link in die Zwischenablage kopiert"
 #: src/components/dms/ChatInvite/Root.tsx:100
 #: src/components/dms/MessageContextMenu.tsx:96
 #: src/components/PostControls/DiscoverDebug.tsx:36
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:270
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:267
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:75
 #: src/lib/sharing.ts:24
 #: src/lib/sharing.ts:42
@@ -3514,8 +3415,8 @@ msgstr "Kopieren"
 msgid "Copy App Password"
 msgstr "App-Passwort kopieren"
 
-#: src/view/com/profile/ProfileMenu.tsx:536
-#: src/view/com/profile/ProfileMenu.tsx:539
+#: src/view/com/profile/ProfileMenu.tsx:482
+#: src/view/com/profile/ProfileMenu.tsx:485
 msgid "Copy at:// URI"
 msgstr "at://-URI kopieren"
 
@@ -3530,8 +3431,8 @@ msgid "Copy code"
 msgstr "Kopiere den Code"
 
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:504
-#: src/view/com/profile/ProfileMenu.tsx:545
-#: src/view/com/profile/ProfileMenu.tsx:548
+#: src/view/com/profile/ProfileMenu.tsx:491
+#: src/view/com/profile/ProfileMenu.tsx:494
 msgid "Copy DID"
 msgstr "DID kopieren"
 
@@ -3565,8 +3466,8 @@ msgstr "Link zur Liste kopieren"
 msgid "Copy link to post"
 msgstr "Link zum Post kopieren"
 
-#: src/view/com/profile/ProfileMenu.tsx:306
-#: src/view/com/profile/ProfileMenu.tsx:316
+#: src/view/com/profile/ProfileMenu.tsx:280
+#: src/view/com/profile/ProfileMenu.tsx:290
 msgid "Copy link to profile"
 msgstr "Link zum Profil kopieren"
 
@@ -3584,8 +3485,8 @@ msgstr "Nachrichtentext kopieren"
 msgid "Copy post at:// URI"
 msgstr "at://-URI des Posts kopieren"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:572
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:574
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:554
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:556
 msgid "Copy post text"
 msgstr "Post-Text kopieren"
 
@@ -3643,15 +3544,11 @@ msgstr "Nicht alle Übereinstimmungen konnten gefolgt werden. Bitte überprüfe 
 msgid "Could not follow all matches. {0}"
 msgstr "Nicht alle Übereinstimmungen konnten gefolgt werden. {0}"
 
-#: src/components/dms/AfterReportConversationDialog.tsx:159
-#: src/components/dms/AfterReportDialog.tsx:140
+#: src/components/dms/AfterReportConversationDialog.tsx:73
+#: src/components/dms/AfterReportDialog.tsx:76
 #: src/components/dms/LeaveConvoPrompt.tsx:37
 msgid "Could not leave chat"
 msgstr "Du konntest den Chat nicht verlassen"
-
-#: src/components/moderation/BlockDialog.tsx:281
-msgid "Could not leave chat."
-msgstr "Chat konnte nicht verlassen werden."
 
 #: src/screens/CustomFeed/index.tsx:72
 msgid "Could not load feed"
@@ -3671,13 +3568,10 @@ msgstr "Profil konnte nicht geladen werden"
 msgid "Could not load public quotes. Please try again."
 msgstr ""
 
-#: src/components/dms/ConvoMenu.tsx:213
+#: src/components/dms/ConvoMenu.tsx:212
+#: src/screens/Messages/components/RequestButtons.tsx:92
 msgid "Could not mute chat"
 msgstr "Chat konnte nicht stummgeschaltet werden"
-
-#: src/components/moderation/BlockDialog.tsx:310
-msgid "Could not remove member."
-msgstr "Mitglied konnte nicht entfernt werden."
 
 #. placeholder {0}: cleanError(error)
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:292
@@ -3687,6 +3581,10 @@ msgstr "Änderungen konnten nicht gespeichert werden: {0}"
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:64
 msgid "Could not share – please try again"
 msgstr "Konnte nicht geteilt werden – bitte versuche es erneut"
+
+#: src/plumblines/components/UnblockAccountMenuItem.tsx:51
+msgid "Could not unblock this account. Please try again."
+msgstr ""
 
 #: src/state/queries/notifications/settings.ts:123
 msgid "Could not update notification settings"
@@ -3853,10 +3751,6 @@ msgstr "Kultur"
 msgid "Current beta features"
 msgstr "Aktuelle Beta-Funktionen"
 
-#: src/components/moderation/BlockDialog.tsx:378
-msgid "Current chat"
-msgstr "Aktueller Chat"
-
 #: src/plumblines/components/FeedContext.tsx:38
 msgid "Current page"
 msgstr ""
@@ -3937,7 +3831,7 @@ msgid "Default icons"
 msgstr "Standardsymbole"
 
 #: src/components/dms/MessageOverlays.tsx:184
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:822
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:796
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:320
 #: src/screens/Settings/AppPasswords.tsx:214
 #: src/screens/StarterPack/StarterPackScreen.tsx:628
@@ -3964,8 +3858,8 @@ msgstr "App-Passwort löschen"
 msgid "Delete app password?"
 msgstr "App-Passwort löschen?"
 
-#: src/screens/Messages/components/RequestButtons.tsx:348
-#: src/screens/Messages/components/RequestButtons.tsx:354
+#: src/screens/Messages/components/RequestButtons.tsx:343
+#: src/screens/Messages/components/RequestButtons.tsx:349
 msgid "Delete chat"
 msgstr "Chat löschen"
 
@@ -3978,11 +3872,11 @@ msgstr "Datensatz für die Chat-Erklärung löschen"
 msgid "Delete contacts"
 msgstr "Kontakte löschen"
 
-#: src/components/dms/AfterReportDialog.tsx:152
-#: src/components/dms/AfterReportDialog.tsx:198
-#: src/components/dms/AfterReportDialog.tsx:201
-#: src/screens/Messages/components/RequestButtons.tsx:149
-#: src/screens/Messages/components/RequestButtons.tsx:151
+#: src/components/dms/AfterReportDialog.tsx:85
+#: src/components/dms/AfterReportDialog.tsx:117
+#: src/components/dms/AfterReportDialog.tsx:120
+#: src/screens/Messages/components/RequestButtons.tsx:139
+#: src/screens/Messages/components/RequestButtons.tsx:141
 msgid "Delete conversation"
 msgstr "Konversation löschen"
 
@@ -4007,8 +3901,8 @@ msgstr "Nachricht für mich löschen"
 msgid "Delete my account"
 msgstr "Meinen Account löschen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:806
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:808
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:780
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:782
 #: src/view/com/composer/Composer.tsx:1737
 msgid "Delete post"
 msgstr "Post löschen"
@@ -4022,7 +3916,7 @@ msgstr ""
 msgid "Delete Starter Pack?"
 msgstr ""
 
-#: src/components/dms/AfterReportDialog.tsx:186
+#: src/components/dms/AfterReportDialog.tsx:113
 msgid "Delete this conversation"
 msgstr ""
 
@@ -4030,7 +3924,7 @@ msgstr ""
 msgid "Delete this list?"
 msgstr "Diese Liste löschen?"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:819
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:793
 msgid "Delete this post?"
 msgstr "Diesen Post löschen?"
 
@@ -4071,12 +3965,12 @@ msgstr "Beschreibung (max. 1000 Zeichen)"
 msgid "Descriptive alt text"
 msgstr "Beschreibender Alt-Text"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:710
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:720
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:692
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:702
 msgid "Detach quote"
 msgstr "Zitat trennen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:855
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:829
 msgid "Detach quote post?"
 msgstr "Zitat-Post trennen?"
 
@@ -4320,8 +4214,8 @@ msgstr "Keine Sorge! Alle vorhandenen Nachrichten und Einstellungen werden gespe
 #: src/components/dialogs/NotificationSettingsDialog.tsx:106
 #: src/components/dialogs/ServerInput.tsx:237
 #: src/components/dialogs/ServerInput.tsx:239
-#: src/components/dms/AfterReportConversationDialog.tsx:165
-#: src/components/dms/AfterReportDialog.tsx:146
+#: src/components/dms/AfterReportConversationDialog.tsx:79
+#: src/components/dms/AfterReportDialog.tsx:82
 #: src/components/forms/DateField/index.tsx:128
 #: src/components/forms/DateField/index.tsx:145
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:148
@@ -4494,8 +4388,8 @@ msgstr "Gruppenname bearbeiten"
 msgid "Edit image"
 msgstr "Bild bearbeiten"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:787
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:800
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:761
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:774
 msgid "Edit interaction settings"
 msgstr "Interaktionseinstellungen bearbeiten"
 
@@ -4522,8 +4416,8 @@ msgstr "Link-Einstellungen bearbeiten"
 msgid "Edit list details"
 msgstr "Details der Liste bearbeiten"
 
-#: src/view/com/profile/ProfileMenu.tsx:392
-#: src/view/com/profile/ProfileMenu.tsx:406
+#: src/view/com/profile/ProfileMenu.tsx:366
+#: src/view/com/profile/ProfileMenu.tsx:380
 msgid "Edit live status"
 msgstr "Live-Status bearbeiten"
 
@@ -4557,12 +4451,12 @@ msgstr "Post-Interaktionseinstellungen bearbeiten"
 #: src/screens/Profile/Header/EditProfileDialog.tsx:265
 #: src/screens/Profile/Header/EditProfileDialog.tsx:271
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:299
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:336
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:334
 msgid "Edit profile"
 msgstr "Profil bearbeiten"
 
 #: src/screens/Profile/Header/ProfileHeaderLabeler.tsx:302
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:338
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:336
 msgid "Edit Profile"
 msgstr "Profil bearbeiten"
 
@@ -4883,7 +4777,8 @@ msgid "Excludes users you follow"
 msgstr "Nutzer ausgeschlossen, denen du folgst"
 
 #: src/screens/Moderation/index.tsx:389
-msgid "Existing account blocks"
+#: src/view/screens/ModerationBlockedAccounts.tsx:97
+msgid "Existing Blocks"
 msgstr ""
 
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/web-controls/VideoControls.tsx:419
@@ -5002,7 +4897,7 @@ msgstr "Externe Medienpräferenzen"
 msgid "Extremist content"
 msgstr "Extremistische Inhalte"
 
-#: src/screens/Messages/components/RequestButtons.tsx:248
+#: src/screens/Messages/components/RequestButtons.tsx:243
 msgctxt "toast"
 msgid "Failed to accept chat"
 msgstr "Chat konnte nicht angenommen werden"
@@ -5044,7 +4939,7 @@ msgid "Failed to create app password. Please try again."
 msgstr "Fehler beim Erstellen des App-Passworts. Bitte versuche es erneut."
 
 #: src/components/dms/MessageProfileButton.tsx:38
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:67
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:64
 msgid "Failed to create conversation"
 msgstr "Fehler beim Erstellen der Konversation"
 
@@ -5057,8 +4952,8 @@ msgstr "Einladungslink konnte nicht erstellt werden"
 msgid "Failed to create Starter Pack"
 msgstr ""
 
-#: src/screens/Messages/components/RequestButtons.tsx:78
-#: src/screens/Messages/components/RequestButtons.tsx:322
+#: src/screens/Messages/components/RequestButtons.tsx:72
+#: src/screens/Messages/components/RequestButtons.tsx:317
 msgctxt "toast"
 msgid "Failed to delete chat"
 msgstr "Chat konnte nicht gelöscht werden"
@@ -5067,7 +4962,7 @@ msgstr "Chat konnte nicht gelöscht werden"
 msgid "Failed to delete message"
 msgstr "Nachricht konnte nicht gelöscht werden"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:217
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:214
 msgid "Failed to delete post, please try again"
 msgstr "Post konnte nicht gelöscht werden, bitte versuche es erneut"
 
@@ -5229,7 +5124,7 @@ msgid "Failed to remove from Starter Pack"
 msgstr ""
 
 #: src/screens/Messages/ConversationSettings/Member.tsx:56
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:77
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:74
 msgid "Failed to remove group chat member"
 msgstr "Gruppenmitglied konnte nicht entfernt werden"
 
@@ -5284,7 +5179,7 @@ msgstr "Meldung konnte nicht gesendet werden"
 msgid "Failed to submit appeal, please try again."
 msgstr "Einspruch konnte nicht eingereicht werden. Bitte versuche es erneut."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:249
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:246
 msgid "Failed to toggle thread mute, please try again"
 msgstr "Du konntest die Stummschaltung des Threads nicht aktivieren oder deaktivieren. Bitte versuche es erneut"
 
@@ -5392,8 +5287,8 @@ msgstr "Feed nicht verfügbar"
 msgid "Feedback"
 msgstr "Feedback"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:305
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:328
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:302
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:325
 msgctxt "toast"
 msgid "Feedback sent to feed operator"
 msgstr "Feedback an Feed-Betreiber gesendet"
@@ -5584,7 +5479,7 @@ msgstr "Suchfeld fokussieren"
 #: src/components/ProfileHoverCard/index.web.tsx:514
 #: src/screens/Messages/ConversationSettings/Member.tsx:170
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:157
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:415
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:413
 #: src/screens/VideoFeed/index.tsx:994
 #: src/view/com/notifications/NotificationFeedItem.tsx:890
 #: src/view/com/notifications/NotificationFeedItem.tsx:897
@@ -5593,7 +5488,7 @@ msgstr "Folgen"
 
 #. placeholder {0}: profile.handle
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:144
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:403
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:401
 msgid "Follow {0}"
 msgstr "{0} folgen"
 
@@ -5617,8 +5512,8 @@ msgstr "Folge 10 Personen, um loszulegen"
 msgid "Follow 7 accounts"
 msgstr "Folge 7 Accounts"
 
-#: src/view/com/profile/ProfileMenu.tsx:346
-#: src/view/com/profile/ProfileMenu.tsx:357
+#: src/view/com/profile/ProfileMenu.tsx:320
+#: src/view/com/profile/ProfileMenu.tsx:331
 msgid "Follow account"
 msgstr "Account folgen"
 
@@ -5641,7 +5536,7 @@ msgstr "Allen Accounts folgen"
 #. User is not following this account, click to follow back
 #: src/components/ProfileCard.tsx:552
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:155
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:413
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:411
 #: src/view/com/notifications/NotificationFeedItem.tsx:890
 #: src/view/com/notifications/NotificationFeedItem.tsx:897
 msgid "Follow back"
@@ -5703,7 +5598,7 @@ msgstr "Follower, die du kennst"
 #: src/components/ProfileHoverCard/index.web.tsx:502
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:411
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/screens/VideoFeed/index.tsx:992
 #: src/view/com/notifications/NotificationFeedItem.tsx:869
 #: src/view/com/notifications/NotificationFeedItem.tsx:885
@@ -5721,7 +5616,7 @@ msgstr "Folge ich"
 #. placeholder {0}: sanitizeDisplayName( displayNameOrHandle, moderation.ui('displayName'), )
 #. placeholder {0}: sanitizeDisplayName( profile.displayName || profile.handle, )
 #: src/components/ProfileCard.tsx:501
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:250
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:248
 #: src/view/com/notifications/NotificationFeedItem.tsx:820
 msgid "Following {0}"
 msgstr "Du folgst jetzt {0}"
@@ -6066,8 +5961,8 @@ msgstr "Zum vorherigen Schritt zurückgehen"
 msgid "Go home"
 msgstr "Zur Startseite"
 
-#: src/view/com/profile/ProfileMenu.tsx:393
-#: src/view/com/profile/ProfileMenu.tsx:408
+#: src/view/com/profile/ProfileMenu.tsx:367
+#: src/view/com/profile/ProfileMenu.tsx:382
 msgid "Go live"
 msgstr "Live gehen"
 
@@ -6078,8 +5973,8 @@ msgstr "Live gehen"
 msgid "Go Live"
 msgstr "Live gehen"
 
-#: src/view/com/profile/ProfileMenu.tsx:390
-#: src/view/com/profile/ProfileMenu.tsx:404
+#: src/view/com/profile/ProfileMenu.tsx:364
+#: src/view/com/profile/ProfileMenu.tsx:378
 msgid "Go live (disabled)"
 msgstr "Live gehen (deaktiviert)"
 
@@ -6116,9 +6011,9 @@ msgstr "Zum Feed gehen"
 msgid "Go to next"
 msgstr "Zum nächsten Schritt wechseln"
 
-#: src/components/dms/ConvoMenu.tsx:263
+#: src/components/dms/ConvoMenu.tsx:252
 #: src/screens/Messages/components/MessagesListInfoPanel.tsx:102
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:197
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:165
 #: src/view/shell/desktop/LeftNav.tsx:337
 #: src/view/shell/desktop/LeftNav.tsx:343
 msgid "Go to profile"
@@ -6128,7 +6023,7 @@ msgstr "Zum Profil"
 msgid "Go to the group chat named \"{chatName}\""
 msgstr "Zum Gruppenchat „{chatName}“ wechseln"
 
-#: src/components/dms/ConvoMenu.tsx:259
+#: src/components/dms/ConvoMenu.tsx:248
 msgid "Go to user's profile"
 msgstr "Zum Profil des Nutzers gehen"
 
@@ -6377,7 +6272,7 @@ msgstr "Ausgeblendete Liste"
 #: src/components/moderation/ContentHider.tsx:208
 #: src/components/moderation/LabelPreference.tsx:141
 #: src/components/moderation/PostHider.tsx:137
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:830
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:804
 #: src/lib/moderation/useLabelBehaviorDescription.ts:18
 #: src/lib/moderation/useLabelBehaviorDescription.ts:23
 #: src/lib/moderation/useLabelBehaviorDescription.ts:28
@@ -6406,23 +6301,23 @@ msgstr "Listen ausblenden"
 msgid "Hide password"
 msgstr "Passwort ausblenden"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:670
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:673
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:652
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:655
 msgid "Hide post for me"
 msgstr "Post für mich ausblenden"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:684
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:694
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:666
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:676
 msgid "Hide reply for everyone"
 msgstr "Antwort für alle ausblenden"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:670
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:673
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:652
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:655
 msgid "Hide reply for me"
 msgstr "Antwort für mich ausblenden"
 
-#: src/view/com/profile/ProfileMenu.tsx:448
-#: src/view/com/profile/ProfileMenu.tsx:455
+#: src/view/com/profile/ProfileMenu.tsx:421
+#: src/view/com/profile/ProfileMenu.tsx:428
 msgid "Hide reposts in feeds"
 msgstr "Reposts in Feeds ausblenden"
 
@@ -6430,19 +6325,19 @@ msgstr "Reposts in Feeds ausblenden"
 msgid "Hide this card"
 msgstr "Diese Karte ausblenden"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:827
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:801
 msgid "Hide this post?"
 msgstr "Diesen Post ausblenden?"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:827
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:862
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:801
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:836
 msgid "Hide this reply?"
 msgstr "Diese Antwort ausblenden?"
 
 #: src/components/Post/Translated/index.tsx:213
 #: src/components/Post/Translated/index.tsx:347
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:547
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:549
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:529
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:531
 msgid "Hide translation"
 msgstr "Übersetzung ausblenden"
 
@@ -6617,7 +6512,7 @@ msgstr "Wenn du eine eigene Domain hast, kannst du diese als deinen Handle verwe
 msgid "If you need to update your email, <0>click here</0>."
 msgstr "Wenn du deine E-Mail aktualisieren musst, <0>klicke hier</0>."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:820
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:794
 msgid "If you remove this post, you won't be able to recover it."
 msgstr "Wenn du diesen Post löschst, kannst du ihn nicht wiederherstellen."
 
@@ -6877,7 +6772,7 @@ msgstr "Ungültiger Gruppenchat-Code."
 msgid "Invalid handle. Please try a different one."
 msgstr "Ungültiger handle. Bitte versuche einen anderen."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:398
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:395
 msgctxt "toast"
 msgid "Invalid interaction settings."
 msgstr "Ungültige Interaktionseinstellungen."
@@ -6916,7 +6811,7 @@ msgstr "Einladungscode"
 msgid "Invite code not accepted. Check that you input it correctly and try again."
 msgstr "Einladungscode nicht akzeptiert. Überprüfe, ob du ihn richtig eingegeben hast und versuche es erneut."
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:358
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:356
 #: src/view/shell/Drawer.tsx:122
 msgid "Invite friends"
 msgstr "Freunde einladen"
@@ -6979,7 +6874,7 @@ msgstr "Lade deine Freunde ein"
 msgid "Invite your friends to follow your favorite feeds and people"
 msgstr "Lade deine Freunde ein, deinen liebsten Feeds und Personen zu folgen"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:158
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:126
 msgid "Invited"
 msgstr "Eingeladen"
 
@@ -7053,8 +6948,8 @@ msgstr "Halte mich auf dem Laufenden"
 msgid "KWS website"
 msgstr "KWS-Website"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:625
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:627
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:607
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:609
 msgid "Label reply for algo"
 msgstr "Antwort für den Algorithmus kennzeichnen"
 
@@ -7222,26 +7117,19 @@ msgstr "Verlassen"
 
 #: src/components/dms/MessagesListBlockedFooter.tsx:109
 #: src/components/dms/MessagesListBlockedFooter.tsx:116
-#: src/components/moderation/BlockDialog.tsx:384
-#: src/components/moderation/BlockDialog.tsx:391
 #: src/screens/Messages/components/ChatEnded.tsx:66
 #: src/screens/Messages/components/ChatLocked.tsx:116
 msgid "Leave chat"
 msgstr "Chat verlassen"
 
-#: src/components/dms/AfterReportConversationDialog.tsx:232
-#: src/components/dms/AfterReportConversationDialog.tsx:236
-#: src/components/dms/ConvoMenu.tsx:237
-#: src/components/dms/ConvoMenu.tsx:241
-#: src/components/dms/ConvoMenu.tsx:309
-#: src/components/dms/ConvoMenu.tsx:313
+#: src/components/dms/AfterReportConversationDialog.tsx:82
+#: src/components/dms/AfterReportConversationDialog.tsx:114
+#: src/components/dms/AfterReportConversationDialog.tsx:117
+#: src/components/dms/ConvoMenu.tsx:226
+#: src/components/dms/ConvoMenu.tsx:230
+#: src/components/dms/ConvoMenu.tsx:302
+#: src/components/dms/ConvoMenu.tsx:306
 #: src/components/dms/LeaveConvoPrompt.tsx:57
-msgid "Leave conversation"
-msgstr "Konversation verlassen"
-
-#. After-report action for a conversation
-#: src/components/dms/AfterReportConversationDialog.tsx:175
-msgctxt "button"
 msgid "Leave conversation"
 msgstr "Konversation verlassen"
 
@@ -7250,7 +7138,7 @@ msgstr "Konversation verlassen"
 msgid "Leave group chat"
 msgstr "Gruppenchat verlassen"
 
-#: src/components/dms/AfterReportConversationDialog.tsx:218
+#: src/components/dms/AfterReportConversationDialog.tsx:110
 msgid "Leave this conversation"
 msgstr ""
 
@@ -7266,10 +7154,6 @@ msgstr "Bluesky verlassen"
 #: src/screens/Messages/ConversationSettings/prompts.tsx:153
 msgid "Leaving this chat will lock it permanently and you won’t be able to rejoin."
 msgstr "Wenn du diesen Chat verlässt, wird er dauerhaft gesperrt und du kannst ihm nicht erneut beitreten."
-
-#: src/components/moderation/BlockDialog.tsx:273
-msgid "Left group chat."
-msgstr "Gruppenchat verlassen."
 
 #: src/screens/SignupQueued.tsx:164
 msgid "left to go."
@@ -7412,11 +7296,6 @@ msgstr ""
 msgid "List avatar"
 msgstr "Listenbild"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:49
-msgctxt "toast"
-msgid "List blocked"
-msgstr "Liste blockiert"
-
 #. placeholder {0}: sanitizeHandle(creator.handle, '@')
 #. placeholder {0}: sanitizeHandle(feed.creatorHandle, '@')
 #: src/components/ListCard.tsx:150
@@ -7465,7 +7344,7 @@ msgstr "Liste ausgeblendet"
 msgid "List must have a name."
 msgstr "Liste muss einen Namen haben."
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:34
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:26
 msgctxt "toast"
 msgid "List muted"
 msgstr "Liste stummgeschaltet"
@@ -7716,8 +7595,8 @@ msgstr ""
 msgid "Mark all requests as read"
 msgstr "Alle Anfragen als gelesen markieren"
 
-#: src/components/dms/ConvoMenu.tsx:249
-#: src/components/dms/ConvoMenu.tsx:253
+#: src/components/dms/ConvoMenu.tsx:238
+#: src/components/dms/ConvoMenu.tsx:242
 msgid "Mark as read"
 msgstr "Als gelesen markieren"
 
@@ -7763,10 +7642,6 @@ msgstr "Auf einem anderen Gerät gespeicherte Medien"
 msgid "Media that may be disturbing or inappropriate for some audiences."
 msgstr "Medien, die für einige Zielgruppen verstörend oder unangemessen sein könnten."
 
-#: src/components/moderation/BlockDialog.tsx:302
-msgid "Member removed from group chat."
-msgstr "Mitglied aus dem Gruppenchat entfernt."
-
 #. The heading above the list of chat members.
 #: src/screens/Messages/ConversationSettings/MembersAndRequests.tsx:34
 msgid "Members"
@@ -7796,7 +7671,7 @@ msgstr "Erwähnungen dieser Personen"
 msgid "Menu"
 msgstr "Menü"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:206
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:174
 msgctxt "action"
 msgid "Message"
 msgstr "Nachricht senden"
@@ -7811,7 +7686,7 @@ msgstr "Nachricht"
 msgid "Message {0}"
 msgstr "{0} anschreiben"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:202
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:170
 msgid "Message {displayName}"
 msgstr "Nachricht an {displayName} senden"
 
@@ -7990,8 +7865,8 @@ msgstr "Weitere Sprachen..."
 
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:168
 #: src/view/com/composer/drafts/DraftItem.tsx:191
-#: src/view/com/profile/ProfileMenu.tsx:281
-#: src/view/com/profile/ProfileMenu.tsx:287
+#: src/view/com/profile/ProfileMenu.tsx:255
+#: src/view/com/profile/ProfileMenu.tsx:261
 msgid "More options"
 msgstr "Mehr Optionen"
 
@@ -8031,20 +7906,22 @@ msgstr "Stummschalten"
 msgid "Mute {0}"
 msgstr "{0} stummschalten"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:749
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:755
-#: src/view/com/profile/ProfileMenu.tsx:472
-#: src/view/com/profile/ProfileMenu.tsx:479
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:731
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:737
+#: src/view/com/profile/ProfileMenu.tsx:445
+#: src/view/com/profile/ProfileMenu.tsx:452
 msgid "Mute account"
 msgstr "Account stummschalten"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:84
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:87
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:61
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:64
 msgid "Mute accounts"
 msgstr "Accounts stummschalten"
 
-#: src/components/dms/ConvoMenu.tsx:268
-#: src/components/dms/ConvoMenu.tsx:275
+#: src/components/dms/ConvoMenu.tsx:257
+#: src/components/dms/ConvoMenu.tsx:264
+#: src/screens/Messages/components/RequestButtons.tsx:148
+#: src/screens/Messages/components/RequestButtons.tsx:155
 msgid "Mute conversation"
 msgstr "Konversation stummschalten"
 
@@ -8052,11 +7929,11 @@ msgstr "Konversation stummschalten"
 msgid "Mute in:"
 msgstr "Stummschalten in:"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:112
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:79
 msgid "Mute list"
 msgstr "Liste stummschalten"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:107
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:74
 msgid "Mute these accounts?"
 msgstr "Diese Accounts stummschalten?"
 
@@ -8088,13 +7965,13 @@ msgstr "Dieses Wort nur in Tags stummschalten"
 msgid "Mute this word until you unmute it"
 msgstr "Dieses Wort stummschalten, bis du es wieder freigibst"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:640
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:643
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:622
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:625
 msgid "Mute thread"
 msgstr "Thread stummschalten"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:653
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:655
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:635
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:637
 msgid "Mute words & tags"
 msgstr "Wörter und Tags stummschalten"
 
@@ -8130,13 +8007,9 @@ msgstr "Stummgeschaltet über \"{0}\""
 msgid "Muted words & tags"
 msgstr "Stummgeschaltete Wörter und Tags"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:109
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:76
 msgid "Muting is private. Muted accounts can interact with you, but you will not see their posts or receive notifications from them."
 msgstr "Stummschaltung ist privat. Stummgeschaltete Accounts können mit dir interagieren, aber du siehst ihre Posts nicht und erhältst keine Mitteilungen von ihnen."
-
-#: src/components/moderation/BlockDialog.tsx:173
-msgid "Mutual group chats"
-msgstr "Gemeinsame Gruppenchats"
 
 #: src/components/dialogs/BirthDateSettings.tsx:54
 #: src/components/dialogs/BirthDateSettings.tsx:58
@@ -8477,7 +8350,7 @@ msgstr "Keine Listen"
 #. placeholder {0}: sanitizeDisplayName( displayNameOrHandle, moderation.ui('displayName'), )
 #. placeholder {0}: sanitizeDisplayName( profile.displayName || profile.handle, )
 #: src/components/ProfileCard.tsx:529
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:279
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:277
 #: src/view/com/notifications/NotificationFeedItem.tsx:841
 msgid "No longer following {0}"
 msgstr "Du folgst {0} nicht mehr"
@@ -8706,7 +8579,7 @@ msgstr ""
 msgid "Not ready to hit post? Keep your best ideas in Drafts until the timing is just right."
 msgstr "Noch nicht bereit zum Posten? Bewahre deine besten Ideen in den Entwürfen auf, bis der richtige Moment gekommen ist."
 
-#: src/view/com/profile/ProfileMenu.tsx:581
+#: src/view/com/profile/ProfileMenu.tsx:523
 msgid "Note about sharing"
 msgstr "Hinweis über das Teilen"
 
@@ -8958,7 +8831,7 @@ msgstr "Kamera öffnen"
 msgid "Open chat"
 msgstr "Chat öffnen"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:145
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:113
 msgid "Open chat member options for {displayName}"
 msgstr "Chat-Mitglieds-Optionen für {displayName} öffnen"
 
@@ -9007,8 +8880,8 @@ msgstr "Gruppenchat öffnen"
 msgid "Open group chat settings"
 msgstr "Gruppenchat-Einstellungen öffnen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:557
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:563
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:539
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:545
 msgid "Open in Google Translate"
 msgstr "In Google Übersetzer öffnen"
 
@@ -9314,10 +9187,8 @@ msgstr "Sonstige gewalttätige Inhalte"
 msgid "Our blog post"
 msgstr "Unser Blogpost"
 
-#: src/components/dms/AfterReportConversationDialog.tsx:87
-#: src/components/dms/AfterReportConversationDialog.tsx:214
-#: src/components/dms/AfterReportDialog.tsx:90
-#: src/components/dms/AfterReportDialog.tsx:182
+#: src/components/dms/AfterReportConversationDialog.tsx:106
+#: src/components/dms/AfterReportDialog.tsx:109
 msgid "Our moderation team has received your report."
 msgstr "Unser Moderationsteam hat deinen Bericht erhalten."
 
@@ -9496,8 +9367,8 @@ msgstr "An die Startseite anheften"
 msgid "Pin to Home"
 msgstr "An Startbildschirm anheften"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:516
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:521
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:498
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:503
 msgid "Pin to your profile"
 msgstr "An dein Profil anheften"
 
@@ -9723,10 +9594,6 @@ msgstr "Bitte verifiziere deine E-Mail"
 msgid "Plumblines does not create blocks. Existing AT Protocol block relationships may still be respected by network services."
 msgstr ""
 
-#: src/view/screens/ModerationBlockedAccounts.tsx:180
-msgid "Plumblines does not create blocks. Existing AT Protocol blocks may still be enforced by network services. You can review and remove existing blocks here."
-msgstr ""
-
 #: src/lib/interests.ts:70
 #: src/screens/Search/modules/ExploreTrendingTopics.tsx:246
 msgid "Politics"
@@ -9792,7 +9659,7 @@ msgstr "Post von @{0}"
 msgid "Post created"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:197
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:194
 msgctxt "toast"
 msgid "Post deleted"
 msgstr "Post gelöscht"
@@ -10113,11 +9980,11 @@ msgstr ""
 msgid "Quote post"
 msgstr "Post zitieren"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:348
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:345
 msgid "Quote post was re-attached"
 msgstr "Zitat-Post wurde erneut angehängt"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:347
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:344
 msgid "Quote post was successfully detached"
 msgstr "Zitat wurde erfolgreich getrennt"
 
@@ -10147,8 +10014,8 @@ msgstr "Limit überschritten – du hast innerhalb kurzer Zeit zu oft versucht, 
 msgid "Rate limit exceeded. Please try again later."
 msgstr "Limit für Anfragen überschritten. Bitte versuche es später erneut."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:709
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:719
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:691
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:701
 msgid "Re-attach quote"
 msgstr "Zitat wieder anhängen"
 
@@ -10253,7 +10120,7 @@ msgid "Reconnect"
 msgstr "Erneut verbinden"
 
 #. Reject a chat request, this opens a menu with options
-#: src/screens/Messages/components/RequestButtons.tsx:138
+#: src/screens/Messages/components/RequestButtons.tsx:128
 msgid "Reject"
 msgstr "Ablehnen"
 
@@ -10263,7 +10130,7 @@ msgctxt "button"
 msgid "Reject"
 msgstr "Ablehnen"
 
-#: src/screens/Messages/components/RequestButtons.tsx:127
+#: src/screens/Messages/components/RequestButtons.tsx:117
 msgid "Reject chat request"
 msgstr "Chat-Anfrage ablehnen"
 
@@ -10304,7 +10171,7 @@ msgid "Remove {displayName} from Starter Pack"
 msgstr ""
 
 #: src/screens/Messages/ConversationSettings/Member.tsx:157
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:237
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:185
 msgid "Remove {displayName} from this group chat"
 msgstr "{displayName} aus diesem Gruppenchat entfernen"
 
@@ -10365,7 +10232,7 @@ msgstr "Feed entfernen?"
 msgid "Remove filter"
 msgstr "Filter entfernen"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:241
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:189
 msgid "Remove from chat"
 msgstr "Aus dem Chat entfernen"
 
@@ -10404,11 +10271,6 @@ msgstr "Bild entfernen"
 msgid "Remove live status"
 msgstr "Live-Status entfernen"
 
-#: src/components/moderation/BlockDialog.tsx:365
-#: src/components/moderation/BlockDialog.tsx:372
-msgid "Remove member"
-msgstr "Mitglied entfernen"
-
 #: src/components/dialogs/MutedWords.tsx:615
 msgid "Remove mute word from your list"
 msgstr "Stummgeschaltetes Wort aus deiner Liste entfernen"
@@ -10445,8 +10307,8 @@ msgstr ""
 
 #: src/components/verification/VerificationRemovePrompt.tsx:48
 #: src/components/verification/VerificationsDialog.tsx:251
-#: src/view/com/profile/ProfileMenu.tsx:419
-#: src/view/com/profile/ProfileMenu.tsx:422
+#: src/view/com/profile/ProfileMenu.tsx:393
+#: src/view/com/profile/ProfileMenu.tsx:396
 msgid "Remove verification"
 msgstr "Verifizierung entfernen"
 
@@ -10608,12 +10470,12 @@ msgstr "Antwortsortierung"
 msgid "Reply to {handle}"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:386
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:383
 msgctxt "toast"
 msgid "Reply visibility updated"
 msgstr "Sichtbarkeit der Antwort aktualisiert"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:385
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:382
 msgid "Reply was successfully hidden"
 msgstr "Antwort wurde erfolgreich ausgeblendet"
 
@@ -10623,15 +10485,15 @@ msgstr "Antwort wurde erfolgreich ausgeblendet"
 msgid "Report"
 msgstr "Melden"
 
-#: src/view/com/profile/ProfileMenu.tsx:518
-#: src/view/com/profile/ProfileMenu.tsx:521
+#: src/view/com/profile/ProfileMenu.tsx:464
+#: src/view/com/profile/ProfileMenu.tsx:467
 msgid "Report account"
 msgstr "Account melden"
 
-#: src/components/dms/ConvoMenu.tsx:296
-#: src/components/dms/ConvoMenu.tsx:300
-#: src/screens/Messages/components/RequestButtons.tsx:165
-#: src/screens/Messages/components/RequestButtons.tsx:168
+#: src/components/dms/ConvoMenu.tsx:289
+#: src/components/dms/ConvoMenu.tsx:293
+#: src/screens/Messages/components/RequestButtons.tsx:161
+#: src/screens/Messages/components/RequestButtons.tsx:164
 msgid "Report conversation"
 msgstr "Konversation melden"
 
@@ -10654,8 +10516,8 @@ msgstr "Liste melden"
 msgid "Report message"
 msgstr "Nachricht melden"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:775
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:777
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:749
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:751
 msgid "Report post"
 msgstr "Post melden"
 
@@ -10668,10 +10530,8 @@ msgstr "Meldung gesendet"
 msgid "Report Starter Pack"
 msgstr ""
 
-#: src/components/dms/AfterReportConversationDialog.tsx:84
-#: src/components/dms/AfterReportConversationDialog.tsx:211
-#: src/components/dms/AfterReportDialog.tsx:87
-#: src/components/dms/AfterReportDialog.tsx:179
+#: src/components/dms/AfterReportConversationDialog.tsx:103
+#: src/components/dms/AfterReportDialog.tsx:106
 #: src/screens/ModerationInbox/Report.tsx:86
 msgid "Report submitted"
 msgstr "Meldung eingereicht"
@@ -10769,12 +10629,12 @@ msgstr "Reposts von diesem Post"
 msgid "Reposts of your reposts"
 msgstr "Reposts deiner Reposts"
 
-#: src/view/com/profile/ProfileMenu.tsx:181
+#: src/view/com/profile/ProfileMenu.tsx:179
 msgctxt "toast"
 msgid "Reposts will be hidden in feeds"
 msgstr "Reposts werden in Feeds ausgeblendet"
 
-#: src/view/com/profile/ProfileMenu.tsx:166
+#: src/view/com/profile/ProfileMenu.tsx:164
 msgctxt "toast"
 msgid "Reposts will be shown in feeds"
 msgstr "Reposts werden in Feeds angezeigt"
@@ -10996,6 +10856,11 @@ msgstr "Passwort anzeigen"
 
 #: src/screens/Moderation/index.tsx:384
 msgid "Review existing account blocks"
+msgstr ""
+
+#: src/components/dms/ConvoMenu.tsx:276
+#: src/components/dms/ConvoMenu.tsx:280
+msgid "Review list blocks"
 msgstr ""
 
 #: src/screens/ModerationInbox/Subject.tsx:59
@@ -11241,8 +11106,8 @@ msgstr "Sprachen suchen"
 msgid "Search my posts"
 msgstr "Meine Posts durchsuchen"
 
-#: src/view/com/profile/ProfileMenu.tsx:327
-#: src/view/com/profile/ProfileMenu.tsx:330
+#: src/view/com/profile/ProfileMenu.tsx:301
+#: src/view/com/profile/ProfileMenu.tsx:304
 msgid "Search posts"
 msgstr "Posts durchsuchen"
 
@@ -11725,7 +11590,7 @@ msgstr "Teilen"
 msgid "Share age range"
 msgstr "Altersbereich teilen"
 
-#: src/view/com/profile/ProfileMenu.tsx:584
+#: src/view/com/profile/ProfileMenu.tsx:526
 msgid "Share anyway"
 msgstr "Trotzdem teilen"
 
@@ -11806,8 +11671,8 @@ msgstr ""
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:190
 #: src/screens/StarterPack/StarterPackScreen.tsx:649
 #: src/screens/StarterPack/StarterPackScreen.tsx:657
-#: src/view/com/profile/ProfileMenu.tsx:306
-#: src/view/com/profile/ProfileMenu.tsx:318
+#: src/view/com/profile/ProfileMenu.tsx:280
+#: src/view/com/profile/ProfileMenu.tsx:292
 msgid "Share via..."
 msgstr "Teilen über..."
 
@@ -11879,8 +11744,8 @@ msgstr "Anpassungsoptionen anzeigen"
 msgid "Show group chat updates"
 msgstr "Gruppenchat-Updates anzeigen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:603
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:605
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:585
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:587
 msgid "Show less like this"
 msgstr "Weniger davon anzeigen"
 
@@ -11896,8 +11761,8 @@ msgstr "Listen von Nutzern anzeigen, aus denen du auswählen kannst"
 msgid "Show more"
 msgstr "Mehr anzeigen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:595
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:597
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:577
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:579
 msgid "Show more like this"
 msgstr "Mehr davon anzeigen"
 
@@ -11923,8 +11788,8 @@ msgstr "Antworten anzeigen"
 msgid "Show replies as"
 msgstr "Antworten anzeigen als"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:683
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:693
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:665
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:675
 msgid "Show reply for everyone"
 msgstr "Antwort für alle anzeigen"
 
@@ -11933,8 +11798,8 @@ msgstr "Antwort für alle anzeigen"
 msgid "Show reposts"
 msgstr "Reposts anzeigen"
 
-#: src/view/com/profile/ProfileMenu.tsx:447
-#: src/view/com/profile/ProfileMenu.tsx:453
+#: src/view/com/profile/ProfileMenu.tsx:420
+#: src/view/com/profile/ProfileMenu.tsx:426
 msgid "Show reposts in feeds"
 msgstr "Reposts in Feeds anzeigen"
 
@@ -12029,8 +11894,8 @@ msgstr "Logge dich bei Bluesky ein oder erstelle einen neuen Account"
 msgid "Sign in to request access to this group chat."
 msgstr "Logge dich ein, um Zugang zu diesem Gruppenchat anfragen zu können."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:581
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:583
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:563
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:565
 msgid "Sign in to view post"
 msgstr "Logge dich ein, um den Post zu sehen"
 
@@ -12436,7 +12301,7 @@ msgctxt "english-only-resource"
 msgid "Submit your report through the Report non-consensual intimate imagery (NCII) form"
 msgstr "Reiche deine Meldung über das Formular für nicht einvernehmliche intime Aufnahmen (NCII) ein"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:76
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:53
 msgid "Subscribe"
 msgstr "Abonnieren"
 
@@ -12468,7 +12333,7 @@ msgstr "Kennzeichner abonnieren"
 msgid "Subscribe to this labeler"
 msgstr "Diesen Kennzeichner abonnieren"
 
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:64
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:41
 msgid "Subscribe to this list"
 msgstr "Diese Liste abonnieren"
 
@@ -12760,9 +12625,9 @@ msgstr "Das ist alles, Leute!"
 msgid "That's everything!"
 msgstr "Das ist alles!"
 
-#: src/components/moderation/BlockDialog.tsx:152
+#: src/plumblines/components/UnblockAccountMenuItem.tsx:60
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:184
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:428
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:426
 msgid "The account will be able to interact with you after unblocking."
 msgstr "Nach dem Entblocken kann der Account wieder mit dir interagieren."
 
@@ -13019,26 +12884,21 @@ msgid "There was an issue updating your feeds, please check your internet connec
 msgstr "Beim Aktualisieren deiner Feeds ist ein Problem aufgetreten. Bitte überprüfe deine Internetverbindung und versuche es erneut."
 
 #. placeholder {0}: e.toString()
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:429
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:451
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:470
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:427
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:446
 #: src/screens/Messages/ConversationSettings/Member.tsx:71
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:115
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:128
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:117
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:130
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:92
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:260
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:290
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:306
-#: src/view/com/profile/ProfileMenu.tsx:140
-#: src/view/com/profile/ProfileMenu.tsx:153
-#: src/view/com/profile/ProfileMenu.tsx:172
-#: src/view/com/profile/ProfileMenu.tsx:187
-#: src/view/com/profile/ProfileMenu.tsx:204
-#: src/view/com/profile/ProfileMenu.tsx:217
-#: src/view/com/profile/ProfileMenu.tsx:233
-#: src/view/com/profile/ProfileMenu.tsx:248
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:258
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:288
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:304
+#: src/view/com/profile/ProfileMenu.tsx:138
+#: src/view/com/profile/ProfileMenu.tsx:151
+#: src/view/com/profile/ProfileMenu.tsx:170
+#: src/view/com/profile/ProfileMenu.tsx:185
+#: src/view/com/profile/ProfileMenu.tsx:201
+#: src/view/com/profile/ProfileMenu.tsx:216
 msgid "There was an issue! {0}"
 msgstr "Es gab ein Problem! {0}"
 
@@ -13050,8 +12910,7 @@ msgstr "Es gab ein Problem! {0}"
 #: src/screens/ProfileList/components/Header.tsx:125
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:148
 #: src/screens/ProfileList/components/MoreOptionsMenu.tsx:160
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:39
-#: src/screens/ProfileList/components/SubscribeMenu.tsx:54
+#: src/screens/ProfileList/components/SubscribeMenu.tsx:31
 msgid "There was an issue. Please check your internet connection and try again."
 msgstr "Es ist ein Problem aufgetreten. Bitte überprüfe deine Internetverbindung und versuche es erneut."
 
@@ -13088,10 +12947,6 @@ msgstr "Diese Einstellungen gelten nur für den „Folge ich“-Feed."
 #: src/screens/Search/components/AdvancedSearchDialog/hooks.tsx:58
 msgid "These URLs"
 msgstr "Diese URLs"
-
-#: src/components/moderation/BlockDialog.tsx:356
-msgid "They own this chat"
-msgstr "Du besitzt diesen Chat"
 
 #: src/screens/Messages/ConversationSettings/prompts.tsx:177
 msgid "They won’t be able to rejoin unless you invite them again."
@@ -13382,7 +13237,7 @@ msgstr "Dieser Post ist nur für eingeloggte Nutzer sichtbar."
 msgid "This post was deleted by its author"
 msgstr "Dieser Post wurde vom Autor gelöscht"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:828
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:802
 msgid "This post will be hidden from feeds and threads. This cannot be undone."
 msgstr "Dieser Post wird aus Feeds und Threads ausgeblendet. Dies kann nicht rückgängig gemacht werden."
 
@@ -13394,11 +13249,11 @@ msgstr "Der Autor dieses Posts hat das Zitieren dieses Posts deaktiviert."
 msgid "This profile is not available in the public view."
 msgstr ""
 
-#: src/view/com/profile/ProfileMenu.tsx:582
+#: src/view/com/profile/ProfileMenu.tsx:524
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
 msgstr "Dieses Profil ist nur für eingeloggte Nutzer sichtbar. Es ist nicht sichtbar für Personen, die nicht eingeloggt sind."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:863
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:837
 msgid "This reply will be sorted into a hidden section at the bottom of your thread and will mute notifications for subsequent replies - both for yourself and others."
 msgstr "Diese Antwort wird in einen ausgeblendeten Bereich am Ende deines Threads verschoben und Mitteilungen über nachfolgende Antworten werden sowohl für dich als auch für andere stummgeschaltet."
 
@@ -13494,7 +13349,7 @@ msgstr "Dadurch wird dein Bluesky-Account <0>{currentHandle}</0> und alle damit 
 msgid "This will remove @{0} from the quick access list."
 msgstr "Dadurch wird @{0} aus der Schnellzugriffsliste entfernt."
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:856
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:830
 msgid "This will remove your post from this quote post for all users, and replace it with a placeholder."
 msgstr "Dies wird deinen Post aus diesem Zitat-Post für alle Nutzer entfernen und durch einen Platzhalter ersetzen."
 
@@ -13617,8 +13472,8 @@ msgstr "Thema"
 #: src/components/dms/MessageContextMenu.tsx:193
 #: src/components/Post/Translated/index.tsx:147
 #: src/components/Post/Translated/index.tsx:154
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:558
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:564
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:540
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:546
 msgid "Translate"
 msgstr "Übersetzen"
 
@@ -13630,8 +13485,8 @@ msgstr "Übersetzt"
 msgid "Translating"
 msgstr "Wird übersetzt…"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:539
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:541
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:521
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:523
 msgid "Translating…"
 msgstr "Wird übersetzt…"
 
@@ -13796,40 +13651,31 @@ msgstr "Feed-Information nicht verfügbar"
 #: src/components/dms/MessageItem.tsx:762
 #: src/components/dms/MessagesListBlockedFooter.tsx:97
 #: src/components/dms/MessagesListBlockedFooter.tsx:104
-#: src/components/moderation/BlockDialog.tsx:186
-#: src/components/moderation/BlockDialog.tsx:190
-#: src/components/moderation/BlockDialog.tsx:212
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:230
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:190
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:371
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:433
+#: src/plumblines/components/UnblockAccountMenuItem.tsx:62
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:189
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:369
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:431
 #: src/screens/ProfileList/components/Header.tsx:171
 #: src/screens/ProfileList/components/Header.tsx:178
 msgid "Unblock"
 msgstr "Entblocken"
 
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:375
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:373
 msgctxt "action"
 msgid "Unblock"
 msgstr "Entblocken"
 
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:218
-msgid "Unblock {displayName}"
-msgstr "{displayName} entblocken"
-
-#: src/components/dms/ConvoMenu.tsx:285
-#: src/components/dms/ConvoMenu.tsx:289
-#: src/view/com/profile/ProfileMenu.tsx:496
-#: src/view/com/profile/ProfileMenu.tsx:502
+#: src/plumblines/components/UnblockAccountMenuItem.tsx:26
+#: src/plumblines/components/UnblockAccountMenuItem.tsx:28
 msgid "Unblock account"
 msgstr "Account entblocken"
 
-#: src/components/moderation/BlockDialog.tsx:145
+#: src/plumblines/components/UnblockAccountMenuItem.tsx:59
 msgid "Unblock account?"
 msgstr "Account entblocken?"
 
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:182
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:426
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:424
 msgid "Unblock Account?"
 msgstr "Account entblocken?"
 
@@ -13887,12 +13733,12 @@ msgid "Undo repost ({0, plural, one {# repost} other {# reposts}})"
 msgstr "Repost rückgängig machen ({0, plural, one {# Repost} other {# Reposts}})"
 
 #. placeholder {0}: profile.handle
-#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:402
+#: src/screens/Profile/Header/ProfileHeaderStandard.tsx:400
 msgid "Unfollow {0}"
 msgstr "{0} entfolgen"
 
-#: src/view/com/profile/ProfileMenu.tsx:346
-#: src/view/com/profile/ProfileMenu.tsx:355
+#: src/view/com/profile/ProfileMenu.tsx:320
+#: src/view/com/profile/ProfileMenu.tsx:329
 msgid "Unfollow account"
 msgstr "Account entfolgen"
 
@@ -13959,14 +13805,16 @@ msgstr "Stummschaltung aufheben"
 msgid "Unmute {0}"
 msgstr "Stummschaltung für {0} aufheben"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:748
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:754
-#: src/view/com/profile/ProfileMenu.tsx:471
-#: src/view/com/profile/ProfileMenu.tsx:477
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:730
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:736
+#: src/view/com/profile/ProfileMenu.tsx:444
+#: src/view/com/profile/ProfileMenu.tsx:450
 msgid "Unmute account"
 msgstr "Stummschaltung von Account aufheben"
 
-#: src/components/dms/ConvoMenu.tsx:273
+#: src/components/dms/ConvoMenu.tsx:262
+#: src/screens/Messages/components/RequestButtons.tsx:148
+#: src/screens/Messages/components/RequestButtons.tsx:153
 msgid "Unmute conversation"
 msgstr "Stummschaltung von Konversation aufheben"
 
@@ -13979,8 +13827,8 @@ msgstr "Liste nicht mehr stummschalten"
 msgid "Unmute this group chat"
 msgstr "Stummschaltung für diesen Gruppenchat aufheben"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:640
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:643
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:622
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:625
 msgid "Unmute thread"
 msgstr "Stummschaltung des Threads aufheben"
 
@@ -14005,8 +13853,8 @@ msgstr "Feed lösen"
 msgid "Unpin from home"
 msgstr "Von Startseite lösen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:516
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:521
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:498
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:503
 msgid "Unpin from profile"
 msgstr "Vom Profil lösen"
 
@@ -14115,12 +13963,12 @@ msgstr "Aktualisiere deine E-Mail-Adresse"
 msgid "Update your location"
 msgstr "Standort aktualisieren"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:353
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:350
 msgctxt "toast"
 msgid "Updating quote attachment failed"
 msgstr "Aktualisieren des Zitat-Anhangs ist fehlgeschlagen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:402
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:399
 msgctxt "toast"
 msgid "Updating reply visibility failed"
 msgstr "Aktualisieren der Antwort-Sichtbarkeit ist fehlgeschlagen"
@@ -14208,12 +14056,6 @@ msgstr "Verwende die E-Mail-Adresse deines Accounts oder eine andere echte E-Mai
 #: src/view/screens/Profile.tsx:437
 msgid "user"
 msgstr "Nutzer"
-
-#: src/components/dms/AfterReportConversationDialog.tsx:188
-#: src/components/dms/AfterReportDialog.tsx:156
-msgctxt "toast"
-msgid "User blocked"
-msgstr "Nutzer blockiert"
 
 #: src/components/moderation/ModerationDetailsDialog.tsx:91
 #: src/lib/moderation/useModerationCauseDescription.ts:61
@@ -14322,8 +14164,8 @@ msgstr "Verifiziert von:"
 
 #: src/components/verification/VerificationCreatePrompt.tsx:85
 #: src/components/verification/VerificationCreatePrompt.tsx:87
-#: src/view/com/profile/ProfileMenu.tsx:429
-#: src/view/com/profile/ProfileMenu.tsx:432
+#: src/view/com/profile/ProfileMenu.tsx:403
+#: src/view/com/profile/ProfileMenu.tsx:406
 msgid "Verify account"
 msgstr "Account verifizieren"
 
@@ -14506,7 +14348,7 @@ msgid "View {0}’s profile"
 msgstr "Profil von {0} ansehen"
 
 #: src/components/dms/MessagesListHeader.tsx:111
-#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:191
+#: src/screens/Messages/ConversationSettings/MemberMenu.tsx:159
 msgid "View {displayName}’s profile"
 msgstr "Profil von {displayName} anzeigen"
 
@@ -15069,13 +14911,13 @@ msgstr ""
 msgid "Word filters and hidden posts"
 msgstr ""
 
-#: src/components/dms/AfterReportDialog.tsx:52
-msgid "Would you like to block this user and/or delete this conversation?"
-msgstr "Möchtest du diesen Nutzer blockieren und/oder diese Konversation löschen?"
+#: src/components/dms/AfterReportDialog.tsx:44
+msgid "Would you like to delete this conversation?"
+msgstr ""
 
-#: src/components/dms/AfterReportConversationDialog.tsx:48
-msgid "Would you like to block this user and/or leave this conversation?"
-msgstr "Möchtest du diesen Nutzer blockieren und/oder diese Konversation verlassen?"
+#: src/components/dms/AfterReportConversationDialog.tsx:40
+msgid "Would you like to leave this conversation?"
+msgstr ""
 
 #: src/view/com/composer/drafts/DraftsButton.tsx:106
 msgid "Would you like to save this as a draft before viewing your drafts?"
@@ -15142,11 +14984,11 @@ msgstr "Ja, meinen Account löschen"
 msgid "Yes, delete this Starter Pack"
 msgstr ""
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:858
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:832
 msgid "Yes, detach"
 msgstr "Ja, trennen"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:865
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:839
 msgid "Yes, hide"
 msgstr "Ja, ausblenden"
 
@@ -15397,7 +15239,7 @@ msgstr "Du hast diesen Account stummgeschaltet."
 msgid "You have muted this user"
 msgstr "Du hast diesen Nutzer stummgeschaltet"
 
-#: src/view/screens/ModerationBlockedAccounts.tsx:155
+#: src/view/screens/ModerationBlockedAccounts.tsx:157
 msgid "You have no existing account blocks. Plumblines does not create blocks. You can mute accounts to choose what you see."
 msgstr ""
 
@@ -15485,10 +15327,6 @@ msgstr "Du darfst nur bis zu {STARTER_PACK_MAX_SIZE, plural, other {{STARTER_PAC
 msgid "You may only add up to 3 feeds"
 msgstr "Du kannst nur bis zu 3 Feeds hinzufügen"
 
-#: src/components/moderation/BlockDialog.tsx:319
-msgid "You must be a chat owner to remove a member."
-msgstr "Du musst Inhaber dieses Chats sein, um ein Mitglied entfernen zu können."
-
 #: src/components/dialogs/BirthDateSettings.tsx:177
 msgid "You must be at least 13 years old to use Bluesky. Read our <0>Terms of Service</0> for more information."
 msgstr "Du musst mindestens 13 Jahre alt sein, um Bluesky nutzen zu können. Lies unsere <0>Nutzungsbedingungen</0>, um mehr zu erfahren."
@@ -15509,10 +15347,6 @@ msgstr "Du musst den Zugriff auf deine Galerie erlauben."
 #: src/components/dialogs/EmailDialog/screens/Manage2FA/index.tsx:23
 msgid "You need to verify your email address before you can enable email 2FA."
 msgstr "Du musst deine E-Mail-Adresse verifizieren, bevor du die Zwei-Faktor-Authentisierung (2FA) per E-Mail aktivieren kannst."
-
-#: src/components/moderation/BlockDialog.tsx:352
-msgid "You own this chat"
-msgstr "Du besitzt diesen Chat"
 
 #. placeholder {0}: currentAccount?.handle
 #: src/screens/Deactivated.tsx:124
@@ -15575,11 +15409,11 @@ msgstr ""
 msgid "You will no longer receive notifications for {0}"
 msgstr "Du erhältst keine Mitteilungen mehr für {0}"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:243
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:240
 msgid "You will no longer receive notifications for this thread"
 msgstr "Du wirst keine Mitteilungen mehr für diesen Thread erhalten"
 
-#: src/components/PostControls/PostMenu/PostMenuItems.tsx:234
+#: src/components/PostControls/PostMenu/PostMenuItems.tsx:231
 msgid "You will now receive notifications for this thread"
 msgstr "Du erhältst nun Mitteilungen für diesen Thread"
 

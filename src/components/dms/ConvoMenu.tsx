@@ -3,7 +3,6 @@ import {Keyboard, View} from 'react-native'
 import {type ModerationCause} from '@bsky/sdk/moderation'
 import {Trans, useLingui} from '@lingui/react/macro'
 import {useNavigation} from '@react-navigation/native'
-import {useQueryClient} from '@tanstack/react-query'
 
 import {type NavigationProp} from '#/lib/routes/types'
 import {type Shadow} from '#/state/cache/types'
@@ -12,10 +11,6 @@ import {
   useMarkAsReadMutation,
 } from '#/state/queries/messages/conversation'
 import {useMuteConvo} from '#/state/queries/messages/mute-conversation'
-import {
-  unstableCacheProfileView,
-  useProfileBlockMutationQueue,
-} from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {type ViewStyleProp} from '#/alf'
 import {atoms as a} from '#/alf'
@@ -36,14 +31,16 @@ import {Mute_Stroke2_Corner0_Rounded as Mute} from '#/components/icons/Mute'
 import {
   Person_Stroke2_Corner0_Rounded as Person,
   PersonCheck_Stroke2_Corner0_Rounded as PersonCheck,
-  PersonX_Stroke2_Corner0_Rounded as PersonX,
 } from '#/components/icons/Person'
 import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as Unmute} from '#/components/icons/Speaker'
 import * as Menu from '#/components/Menu'
 import {ReportDialog} from '#/components/moderation/ReportDialog'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
-import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
+import {
+  UnblockAccountDialog,
+  useUnblockAccountMenuItem,
+} from '#/plumblines/components/UnblockAccountMenuItem'
 import type * as bsky from '#/types/bsky'
 
 let ConvoMenu = ({
@@ -69,9 +66,9 @@ let ConvoMenu = ({
   style?: ViewStyleProp['style']
 }): React.ReactNode => {
   const {t: l} = useLingui()
-  const queryClient = useQueryClient()
   const {currentAccount} = useSession()
 
+  const unblockControl = Prompt.usePromptControl()
   const leaveConvoControl = Prompt.usePromptControl()
   const reportControl = Prompt.usePromptControl()
   const blockedByListControl = Prompt.usePromptControl()
@@ -117,9 +114,11 @@ let ConvoMenu = ({
             leaveConvoControl={leaveConvoControl}
             reportControl={reportControl}
             blockedByListControl={blockedByListControl}
+            unblockControl={unblockControl}
           />
         </Menu.Outer>
       </Menu.Root>
+      <UnblockAccountDialog profile={profile} control={unblockControl} />
       <LeaveConvoPrompt
         control={leaveConvoControl}
         convoId={convo.view.id}
@@ -130,7 +129,6 @@ let ConvoMenu = ({
           subject={reportSubject}
           control={reportControl}
           onAfterSubmit={() => {
-            unstableCacheProfileView(queryClient, profile)
             afterReportControl.open()
           }}
         />
@@ -172,6 +170,7 @@ function MenuContent({
   leaveConvoControl,
   reportControl,
   blockedByListControl,
+  unblockControl,
 }: {
   convo: ConvoWithDetails
   profile: Shadow<bsky.profile.AnyProfileView>
@@ -184,13 +183,13 @@ function MenuContent({
   leaveConvoControl: Prompt.PromptControlProps
   reportControl: Prompt.PromptControlProps
   blockedByListControl: Prompt.PromptControlProps
+  unblockControl: Prompt.PromptControlProps
 }) {
   const navigation = useNavigation<NavigationProp>()
   const {t: l} = useLingui()
   const {mutate: markAsRead} = useMarkAsReadMutation()
 
-  const {listBlocks, userBlock} = blockInfo
-  const isBlocking = userBlock || !!listBlocks.length
+  const {listBlocks} = blockInfo
   const isDeletedAccount = profile.handle === 'missing.invalid'
   const isGroupConvo = initialConvo.kind === 'group'
 
@@ -216,20 +215,10 @@ function MenuContent({
     },
   })
 
-  const [queueBlock, queueUnblock] = useProfileBlockMutationQueue(profile)
-
-  const toggleBlock = useCallback(() => {
-    if (listBlocks.length) {
-      blockedByListControl.open()
-      return
-    }
-
-    if (userBlock) {
-      void queueUnblock()
-    } else {
-      void queueBlock()
-    }
-  }, [userBlock, listBlocks, blockedByListControl, queueBlock, queueUnblock])
+  const unblockMenuItem = useUnblockAccountMenuItem({
+    profile,
+    onPress: unblockControl.open,
+  })
 
   return isDeletedAccount ? (
     <Menu.Item
@@ -279,16 +268,20 @@ function MenuContent({
       </Menu.Group>
       <Menu.Divider />
       <Menu.Group>
-        {isGroupConvo || (!CAN_CREATE_BLOCKS && !isBlocking) ? null : (
-          <Menu.Item
-            destructive
-            label={isBlocking ? l`Unblock account` : l`Block account`}
-            onPress={toggleBlock}>
-            <Menu.ItemIcon icon={isBlocking ? PersonCheck : PersonX} />
-            <Menu.ItemText>
-              {isBlocking ? l`Unblock account` : l`Block account`}
-            </Menu.ItemText>
-          </Menu.Item>
+        {!isGroupConvo && (
+          <>
+            {unblockMenuItem}
+            {!!listBlocks.length && (
+              <Menu.Item
+                label={l`Review list blocks`}
+                onPress={blockedByListControl.open}>
+                <Menu.ItemIcon icon={PersonCheck} />
+                <Menu.ItemText>
+                  <Trans>Review list blocks</Trans>
+                </Menu.ItemText>
+              </Menu.Item>
+            )}
+          </>
         )}
         {canReport && (
           <Menu.Item

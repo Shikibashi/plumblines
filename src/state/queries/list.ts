@@ -1,11 +1,6 @@
 import {type $Typed, type Client} from '@atproto/lex'
 import {AtUri, type AtUriString, toDatetimeString} from '@atproto/syntax'
-import {
-  blockActorList,
-  muteActorList,
-  unblockActorList,
-  unmuteActorList,
-} from '@bsky/sdk'
+import {muteActorList, unblockActorList, unmuteActorList} from '@bsky/sdk'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 import chunk from 'lodash.chunk'
 
@@ -15,7 +10,6 @@ import {type ImageMeta} from '#/state/gallery'
 import {STALE} from '#/state/queries'
 import {useAppviewClient, usePdsClient, useSession} from '#/state/session'
 import {app, com} from '#/lexicons'
-import {assertBlockCreationAllowed} from '#/plumblines/policy'
 import {FEED_INFO_RQKEY_ROOT} from './feed'
 import {invalidate as invalidateMyLists} from './my-lists'
 import {RQKEY as PROFILE_LISTS_RQKEY} from './profile-lists'
@@ -379,29 +373,17 @@ export function useListMuteMutation() {
   })
 }
 
-export function useListBlockMutation() {
+export function useListUnblockMutation() {
   const queryClient = useQueryClient()
   const appviewClient = useAppviewClient()
   const pdsClient = usePdsClient()
-  return useMutation<void, Error, {uri: string; block: boolean}>({
-    mutationFn: async ({uri, block}) => {
-      if (block) {
-        assertBlockCreationAllowed()
-        await pdsClient.call(blockActorList, {list: uri as AtUriString})
-      } else {
-        await pdsClient.call(unblockActorList, {list: uri as AtUriString})
-      }
-
-      await whenAppViewReady(appviewClient, uri, v => {
-        return block
-          ? typeof v?.list.viewer?.blocked === 'string'
-          : !v?.list.viewer?.blocked
-      })
+  return useMutation<void, Error, {uri: string}>({
+    mutationFn: async ({uri}) => {
+      await pdsClient.call(unblockActorList, {list: uri as AtUriString})
+      await whenAppViewReady(appviewClient, uri, v => !v?.list.viewer?.blocked)
     },
     onSuccess(data, variables) {
-      queryClient.invalidateQueries({
-        queryKey: RQKEY(variables.uri),
-      })
+      queryClient.invalidateQueries({queryKey: RQKEY(variables.uri)})
     },
   })
 }

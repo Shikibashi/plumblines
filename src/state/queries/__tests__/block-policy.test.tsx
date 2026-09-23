@@ -1,6 +1,5 @@
 import {type PropsWithChildren} from 'react'
 import {
-  blockActorList,
   muteActor,
   muteActorList,
   unblockActorList,
@@ -17,11 +16,10 @@ import {until} from '#/lib/async/until'
 import {updateProfileShadow} from '#/state/cache/profile-shadow'
 import {useAppviewClient, usePdsClient, useSession} from '#/state/session'
 import {app} from '#/lexicons'
-import {useListBlockMutation, useListMuteMutation} from '../list'
-import {
-  useProfileBlockMutationQueue,
-  useProfileMuteMutationQueue,
-} from '../profile'
+import {useAccountActions} from '#/plumblines/account-actions'
+import {useListMuteMutation, useListUnblockMutation} from '../list'
+import {resetProfilePostsQueries} from '../post-feed'
+import {useProfileUnblockMutationQueue} from '../profile'
 
 jest.mock('#/lib/async/until', () => ({until: jest.fn()}))
 jest.mock('#/lib/api', () => ({uploadBlob: jest.fn()}))
@@ -68,22 +66,22 @@ function setup(blocking?: string) {
   )
   const hook = renderHook(
     () => ({
-      profile: useProfileBlockMutationQueue({
+      profile: useProfileUnblockMutationQueue({
         did,
         handle: 'subject.test',
         viewer: {blocking},
       } as never),
-      mute: useProfileMuteMutationQueue({
+      actions: useAccountActions({
         did,
         handle: 'subject.test',
-        viewer: {},
+        viewer: {blocking},
       } as never),
-      list: useListBlockMutation(),
+      list: useListUnblockMutation(),
       muteList: useListMuteMutation(),
     }),
     {wrapper},
   )
-  return {hook, pdsClient, appviewClient}
+  return {hook, pdsClient, appviewClient, queryClient}
 }
 
 beforeAll(() => {
@@ -101,14 +99,21 @@ beforeEach(() => {
   jest.mocked(until).mockResolvedValue(true)
 })
 
-it('rejects account block creation before writes or optimistic profile changes', async () => {
+it('exposes mute capabilities but no block or unblock action for an unblocked account', () => {
+  const {hook} = setup()
+  expect(Object.keys(hook.result.current.actions).sort()).toEqual([
+    'mute',
+    'muteReposts',
+    'unmute',
+    'unmuteReposts',
+  ])
+})
+
+it('unblocking an account without an existing block is a no-op', async () => {
   const {hook, pdsClient} = setup()
   await act(async () => {
-    await expect(hook.result.current.profile[0]()).rejects.toThrow(
-      'Plumblines does not create',
-    )
+    await hook.result.current.profile()
   })
-  expect(pdsClient.create).not.toHaveBeenCalled()
   expect(pdsClient.delete).not.toHaveBeenCalled()
   expect(updateProfileShadow).not.toHaveBeenCalled()
 })
@@ -116,7 +121,7 @@ it('rejects account block creation before writes or optimistic profile changes',
 it('removes an existing account block without creating a replacement', async () => {
   const {hook, pdsClient} = setup(blockUri)
   await act(async () => {
-    await hook.result.current.profile[1]()
+    await hook.result.current.actions.unblock!()
   })
   expect(pdsClient.delete).toHaveBeenCalledWith(app.bsky.graph.block, {
     repo: 'did:plc:viewer',
@@ -128,28 +133,13 @@ it('removes an existing account block without creating a replacement', async () 
   })
 })
 
-it('rejects blocking-list subscriptions without sending requests', async () => {
-  const {hook, pdsClient, appviewClient} = setup()
-  await act(async () => {
-    await expect(
-      hook.result.current.list.mutateAsync({uri: listUri, block: true}),
-    ).rejects.toThrow('Plumblines does not create')
-  })
-  expect(pdsClient.call).not.toHaveBeenCalled()
-  expect(appviewClient.call).not.toHaveBeenCalled()
-  expect(until).not.toHaveBeenCalled()
-})
-
 it('removes existing blocking-list subscriptions', async () => {
   const {hook, pdsClient} = setup()
   await act(async () => {
-    await hook.result.current.list.mutateAsync({uri: listUri, block: false})
+    await hook.result.current.list.mutateAsync({uri: listUri})
   })
   expect(pdsClient.call).toHaveBeenCalledWith(unblockActorList, {list: listUri})
-  expect(pdsClient.call).not.toHaveBeenCalledWith(
-    blockActorList,
-    expect.anything(),
-  )
+  expect(pdsClient.call).not.toHaveBeenCalledWith(expect.anything())
 })
 
 it('retains mute-list subscriptions', async () => {
@@ -165,11 +155,71 @@ it('retains mute-list subscriptions', async () => {
 it('retains account muting and unmuting', async () => {
   const {hook, appviewClient} = setup()
   await act(async () => {
-    await hook.result.current.mute[0]()
+    await hook.result.current.actions.mute()
   })
   expect(appviewClient.call).toHaveBeenCalledWith(muteActor, {actor: did})
   await act(async () => {
-    await hook.result.current.mute[1]()
+    await hook.result.current.actions.unmute()
   })
   expect(appviewClient.call).toHaveBeenCalledWith(unmuteActor, {actor: did})
+})
+
+it('retains repost-only muting and unmuting', async () => {
+  const {hook, appviewClient} = setup()
+  await act(async () => {
+    await hook.result.current.actions.muteReposts()
+  })
+  expect(appviewClient.call).toHaveBeenCalledWith(muteActor, {
+    actor: did,
+    onlyReposts: true,
+  })
+  await act(async () => {
+    await hook.result.current.actions.unmuteReposts()
+  })
+  expect(appviewClient.call).toHaveBeenCalledWith(unmuteActor, {actor: did})
+})
+
+it('coalesces concurrent unblock requests, resolves every caller and refreshes caches', async () => {
+  const {hook, pdsClient, queryClient} = setup(blockUri)
+  const invalidate = jest.spyOn(queryClient, 'invalidateQueries')
+  let release!: () => void
+  pdsClient.delete.mockImplementation(
+    () =>
+      new Promise<void>(resolve => {
+        release = resolve
+      }),
+  )
+  await act(async () => {
+    const first = hook.result.current.profile()
+    const second = hook.result.current.profile()
+    await Promise.resolve()
+    await Promise.resolve()
+    release()
+    await Promise.all([first, second])
+    await hook.result.current.profile()
+  })
+  expect(pdsClient.delete).toHaveBeenCalledTimes(1)
+  expect(invalidate).toHaveBeenCalledWith({queryKey: ['my-blocked-accounts']})
+  expect(invalidate).toHaveBeenCalledWith({queryKey: ['convos']})
+  expect(resetProfilePostsQueries).toHaveBeenCalledWith(queryClient, did, 1000)
+})
+
+it('restores the block shadow after a failed deletion and allows a retry', async () => {
+  const {hook, pdsClient} = setup(blockUri)
+  pdsClient.delete.mockRejectedValueOnce(new Error('network failure'))
+  await act(async () => {
+    await expect(hook.result.current.profile()).rejects.toThrow(
+      'network failure',
+    )
+  })
+  expect(updateProfileShadow).toHaveBeenLastCalledWith(expect.anything(), did, {
+    blockingUri: blockUri,
+  })
+  await act(async () => {
+    await hook.result.current.profile()
+  })
+  expect(pdsClient.delete).toHaveBeenCalledTimes(2)
+  expect(updateProfileShadow).toHaveBeenLastCalledWith(expect.anything(), did, {
+    blockingUri: undefined,
+  })
 })

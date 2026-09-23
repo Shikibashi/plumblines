@@ -7,6 +7,7 @@ import {
   PUBLIC_BSKY_SERVICE,
 } from '#/lib/constants'
 import {createLexClient} from '#/lib/lexClient'
+import {assertPdsWriteAllowed} from '#/plumblines/policy'
 import {networkAwareFetch} from './network'
 
 /**
@@ -28,7 +29,9 @@ import {networkAwareFetch} from './network'
  * fetch, which is `networkAwareFetch` wrapped in the disposal kill switch.
  */
 export function buildAppviewClient(agent: Agent): Client {
-  return createLexClient(agent, {service: BLUESKY_PROXY_HEADER.get()})
+  return createLexClient(withBlockWritePolicy(agent), {
+    service: BLUESKY_PROXY_HEADER.get(),
+  })
 }
 
 /**
@@ -42,7 +45,20 @@ export function buildAppviewClient(agent: Agent): Client {
  * all; without the suppression it would start emitting the global list.
  */
 export function buildPdsClient(agent: Agent): Client {
-  return createLexClient(agent, {appLabelers: null})
+  return createLexClient(withBlockWritePolicy(agent), {appLabelers: null})
+}
+
+/** Shared by authenticated clients because record helpers always target the PDS. */
+function withBlockWritePolicy(agent: Agent): Agent {
+  return {
+    get did() {
+      return agent.did
+    },
+    async fetchHandler(path, init) {
+      assertPdsWriteAllowed(path, init)
+      return agent.fetchHandler(path, init)
+    },
+  }
 }
 
 /**
@@ -60,7 +76,7 @@ export function buildPdsClient(agent: Agent): Client {
  * subscriptions through `configureModerationForAccount`.
  */
 export function buildChatClient(agent: Agent): Client {
-  return createLexClient(agent, {
+  return createLexClient(withBlockWritePolicy(agent), {
     service: CHAT_PROXY_SERVICE,
   })
 }
