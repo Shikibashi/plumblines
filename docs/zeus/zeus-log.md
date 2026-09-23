@@ -90,3 +90,7 @@
 - Browser tests exposed masthead z-index 25 above existing dialog layer 10, intercepting close buttons. Lowered masthead to 5 and rebuilding; tests retain real clicks rather than forcing through overlays. Thread reader controls now use Layout.Center so the desktop rail cannot cover them.
 - Subsequent full static/unit validation: 95 suites / 957 tests PASS, 28 TODO, 21 snapshots; lint PASS. Test fixture userDid and incomplete-thread marker review findings resolved. Source freeze pending final rendered checks.
 - Dialog stack retest contradicted the initial z-index-only fix: the portal Pressable itself creates a stacking context. Promoted that outer web dialog root above the masthead (z-index 30), restored the existing masthead level, and rebuilt. This is the final candidate; no forced-click workaround is accepted as proof.
+
+- Final artifact `pages-afar0d9i`, source `a832af79b19b29433d751bc36d45bd1fc78d864d`, has 389 files matching the SHA-256 manifest. Docker is healthy and 12 selected served JS/CSS/PWA assets match.
+- Final local browser suite 38/38 PASS (1.3m). Muted-image assertion corrected to distinguish warning SVG icons from the actual post preview; reveal then produces the preview through the ordinary button.
+- Expansion preview uploaded to `b653ba13.plumbline-f50.pages.dev`; Python asset hash request received Cloudflare 403/1010. No security settings or client identity were changed. Normal isolated preview browser suite runs separately.

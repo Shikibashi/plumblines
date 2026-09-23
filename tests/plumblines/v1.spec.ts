@@ -424,11 +424,13 @@ test('v1 image preview keeps muted content behind its reveal control', async ({
     exact: true,
   })
   await expect(dialog).toContainText(/muted/i)
-  await expect(dialog.getByRole('img')).toHaveCount(0)
+  await expect(
+    dialog.getByRole('img', {name: /Post text card preview/}),
+  ).toHaveCount(0)
   await expect(
     dialog.getByRole('button', {name: /Download image/}),
   ).toHaveCount(0)
-  await dialog.getByRole('button', {name: /muted account/i}).click()
+  await dialog.getByRole('button', {name: 'Account Muted', exact: true}).click()
   await expect(
     dialog.getByRole('img', {name: 'Post text card preview, page 1'}),
   ).toBeVisible()
