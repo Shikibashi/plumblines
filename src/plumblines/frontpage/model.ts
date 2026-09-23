@@ -108,6 +108,19 @@ export type FrontPagePackages<Source = unknown> = {
 export type FrontPageSegment =
   'lead' | 'briefs' | 'secondary' | 'section' | 'continuation'
 
+/** Group an ordered stream into stable page-sized batches without reordering it. */
+export function splitIntoPages<T>(
+  items: readonly T[],
+  pageSize: number,
+): T[][] {
+  const size = Math.max(1, Math.floor(pageSize))
+  const pages: T[][] = []
+  for (let index = 0; index < items.length; index += size) {
+    pages.push(items.slice(index, index + size))
+  }
+  return pages
+}
+
 /** Split one source's stable sequence into page packages without reordering it. */
 export function selectFrontPageSegment<T>(
   items: readonly T[],

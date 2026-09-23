@@ -26,6 +26,7 @@ import {
   type FrontPageSegment,
   resolveFrontPagePackages,
   selectFrontPageSegment,
+  splitIntoPages,
   type StoryTreatment,
   validateFrontPagePreferences,
 } from '../frontpage/model'
@@ -374,34 +375,20 @@ export function NewspaperSections() {
                   onUpdate={update}
                 />
               )}
-              {leadSection &&
-                (hasSession ||
-                  !['following', 'search'].includes(
-                    leadSection.source.kind,
-                  )) && (
-                  <NewspaperRegion
-                    section={leadSection}
-                    slot="continuation"
-                    segment="continuation"
-                    onUpdate={update}
-                  />
-                )}
-              {!secondaryLeftSection && !secondaryRightSection && (
-                <section className="newspaper-reading-promo">
-                  <h2>
-                    <Trans>Reading</Trans>
-                  </h2>
-                  <p>
-                    <Trans>
-                      Long-form writing from the Atmosphere, collected in its
-                      own index.
-                    </Trans>
-                  </p>
-                  <button onClick={() => setActivePage('reading')}>
-                    <Trans>Open the reading index</Trans> →
-                  </button>
-                </section>
-              )}
+              <section className="newspaper-reading-promo">
+                <h2>
+                  <Trans>Reading</Trans>
+                </h2>
+                <p>
+                  <Trans>
+                    Long-form writing from the Atmosphere, collected in its own
+                    edition.
+                  </Trans>
+                </p>
+                <button onClick={() => setActivePage('reading')}>
+                  <Trans>Open the reading edition</Trans> →
+                </button>
+              </section>
             </div>
           ) : activePage === 'section' && activeSection ? (
             <NewspaperRegion
@@ -423,12 +410,21 @@ export function NewspaperSections() {
             <span>
               {activePage === 'front' ? l`Page 1` : activeSection?.title}
             </span>
-            <button onClick={() => setActivePage('reading')}>
-              <Trans>Reading index</Trans>
-            </button>
+            <span />
           </footer>
         </div>
       )}
+      {activePage === 'front' &&
+        leadSection &&
+        (hasSession ||
+          !['following', 'search'].includes(leadSection.source.kind)) && (
+          <NewspaperRegion
+            section={leadSection}
+            slot="continuation"
+            segment="continuation"
+            onUpdate={update}
+          />
+        )}
       {activePage === 'reading' && (
         <div className="newspaper-sheet" id="newspaper-reading">
           <div className="newspaper-folio">
@@ -698,6 +694,8 @@ function FeedColumn({
         ),
       ) ?? []
   const selected = selectFrontPageSegment(slices, segment)
+  const pageGroups =
+    segment === 'continuation' ? splitIntoPages(selected, 8) : [selected]
   const endOfStories = useRef<HTMLDivElement>(null)
   useNewspaperInfiniteScroll(
     endOfStories,
@@ -717,16 +715,55 @@ function FeedColumn({
             <Trans>Placed here by the front-page layout.</Trans>
           </p>
         )}
-        {selected.map(({item: slice, index}) => (
-          <SectionFeedSlice
-            key={slice._reactKey}
-            slice={slice}
-            offset={0}
-            treatments={Array.from({length: slice.items.length}, () =>
-              treatmentForSegment(segment, index),
+        {pageGroups.map((page, pageIndex) => (
+          <div
+            className={
+              segment === 'continuation'
+                ? 'newspaper-sheet newspaper-stream-sheet'
+                : undefined
+            }
+            id={
+              segment === 'continuation'
+                ? `newspaper-page-${pageIndex + 2}`
+                : undefined
+            }
+            data-page-number={
+              segment === 'continuation' ? pageIndex + 2 : undefined
+            }
+            key={
+              segment === 'continuation' ? `page-${pageIndex + 2}` : 'stories'
+            }>
+            {segment === 'continuation' && (
+              <div className="newspaper-folio">
+                <span>{section.title}</span>
+                <span>
+                  <Trans>Page {pageIndex + 2}</Trans>
+                </span>
+              </div>
             )}
-            dispatchLabel={l`Dispatch`}
-          />
+            {page.map(({item: slice, index}) => (
+              <SectionFeedSlice
+                key={slice._reactKey}
+                slice={slice}
+                offset={0}
+                treatments={Array.from({length: slice.items.length}, () =>
+                  treatmentForSegment(segment, index),
+                )}
+                dispatchLabel={l`Dispatch`}
+              />
+            ))}
+            {segment === 'continuation' && (
+              <footer className="newspaper-page-colophon">
+                <span>PLUMBLINES</span>
+                <a href="#newspaper-page-1">
+                  <Trans>Return to page one</Trans>
+                </a>
+                <span>
+                  <Trans>Page {pageIndex + 2}</Trans>
+                </span>
+              </footer>
+            )}
+          </div>
         ))}
         {(segment === 'section' || segment === 'continuation') && (
           <>
@@ -837,6 +874,10 @@ function SearchColumn({
         return true
       }) ?? []
   const selectedPosts = selectPostSegments(posts, segment)
+  const pageGroups =
+    segment === 'continuation'
+      ? splitIntoPages(selectedPosts, 10)
+      : [selectedPosts]
   const endOfStories = useRef<HTMLDivElement>(null)
   useNewspaperInfiniteScroll(
     endOfStories,
@@ -855,18 +896,57 @@ function SearchColumn({
           <Trans>Placed here by the front-page layout.</Trans>
         </p>
       )}
-      {selectedPosts.map((post, index) => (
-        <DispatchStory
-          key={post.uri}
-          uri={post.uri}
-          treatment={
-            hasImageEmbed(post.embed)
-              ? 'visual'
-              : treatmentForSegment(segment, index)
+      {pageGroups.map((page, pageIndex) => (
+        <div
+          className={
+            segment === 'continuation'
+              ? 'newspaper-sheet newspaper-stream-sheet'
+              : undefined
           }
-          label={l`Dispatch`}>
-          <Post post={post} />
-        </DispatchStory>
+          id={
+            segment === 'continuation'
+              ? `newspaper-page-${pageIndex + 2}`
+              : undefined
+          }
+          data-page-number={
+            segment === 'continuation' ? pageIndex + 2 : undefined
+          }
+          key={
+            segment === 'continuation' ? `page-${pageIndex + 2}` : 'stories'
+          }>
+          {segment === 'continuation' && (
+            <div className="newspaper-folio">
+              <span>{section.title}</span>
+              <span>
+                <Trans>Page {pageIndex + 2}</Trans>
+              </span>
+            </div>
+          )}
+          {page.map((post, index) => (
+            <DispatchStory
+              key={post.uri}
+              uri={post.uri}
+              treatment={
+                hasImageEmbed(post.embed)
+                  ? 'visual'
+                  : treatmentForSegment(segment, index)
+              }
+              label={l`Dispatch`}>
+              <Post post={post} />
+            </DispatchStory>
+          ))}
+          {segment === 'continuation' && (
+            <footer className="newspaper-page-colophon">
+              <span>PLUMBLINES</span>
+              <a href="#newspaper-page-1">
+                <Trans>Return to page one</Trans>
+              </a>
+              <span>
+                <Trans>Page {pageIndex + 2}</Trans>
+              </span>
+            </footer>
+          )}
+        </div>
       ))}
       {(segment === 'section' || segment === 'continuation') && (
         <>

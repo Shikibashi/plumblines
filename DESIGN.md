@@ -7,7 +7,7 @@ A working AT Protocol newspaper: reading and choosing a feed are the primary tas
 ## Tokens
 - Paper: #f5efdf; raised paper: #eee6d5; ink: #24221e; muted ink: #625b50; rule: #a49a87; accent: #8d2924.
 - Web headline/body serif: Georgia, Times New Roman, serif. Keep existing sans-serif where technical handles/forms need clarity. Native uses supported existing fonts unless separately verified.
-- Fine 1px rules and double masthead divider. Square sidebar boxes; avoid card shadows and pill-heavy chrome.
+- Fine 1px rules and double masthead divider. The reading surface is visibly darker than the paper sheet; give each sheet a hairline edge, slight lift, and deliberate gap. Use square newsroom slips; avoid card shadows and pill-heavy chrome.
 - Masthead large uppercase, tightly spaced on desktop, compact on phone. Use publication metadata and a short product strapline (“A newspaper for the Atmosphere”), not manifesto copy or fabricated issue facts.
 
 ## Layout
@@ -24,5 +24,11 @@ Readable body ~16–18px with comfortable line height. Keep accessible action la
 ## Configurable front page
 
 Up to eight local Following/feed/list/latest-search sections retain the existing query and moderation paths. The deterministic compositor uses configured source order and provider item order only. The lead slot is identified without implying an editorial ranking; the next configured sources fill the left and right secondary fronts. A configured section remains directly available in the rail but does not automatically become a permanent feed column. Image-bearing content may receive a visual treatment without reordering it. Section filters and source details live in each section's settings menu. Standard Reader's public latest index adds an explicitly separate long-form Reading sheet; its real document metadata and normalized renderer keep article titles distinct from social dispatch text. No bespoke ranking or reader-state lexicon is introduced. See [the current newspaper behavior](docs/plumblines/newspaper.md).
+
+## Spatial behavior
+- Page 1 is the composed front page. Following continuation begins on Page 2 and flows into stable batches of eight feed slices (or ten latest-search posts), with each loaded cursor page appended under the same document scrollbar. Folios and return links create navigable landmarks; load-more remains as a manual fallback.
+- Reading is a separate destination for the Standard Reader index and article renderer, not another timeline region on the front page.
+- Muted accounts, muted words, and local snoozes are managed in Settings. Contextual hide/report controls remain with the story or account; front-page layout controls do not become moderation controls.
+- The paper metaphor affects surface, organization, and navigation. It does not alter AT Protocol records or invent headlines, rankings, issue numbers, bylines, or dates.
 
 Ornament is sparse. Rules, scale and alignment create structure; complete story borders and nested feed scrollbars are avoided. Keep controls sans-serif, body prose around 55–65ch, focus visible, mobile targets large, content warnings/provenance intact, and movement disabled under reduced-motion preferences. Light, dim and dark paper use separate readable colors; never invert to black. Dark/phone screenshots must be reviewed on the real rendered application, not inferred from these tokens.

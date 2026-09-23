@@ -4,6 +4,7 @@ import {
   type FrontPageSection,
   resolveFrontPagePackages,
   selectFrontPageSegment,
+  splitIntoPages,
   validateFrontPagePreferences,
 } from './model'
 
@@ -102,6 +103,15 @@ it('splits one ordered source into lead, briefs, and secondary packages', () => 
   expect(
     selectFrontPageSegment(items, 'section').map(value => value.item),
   ).toEqual(items)
+})
+
+it('splits a continuing stream into stable pages without losing source order', () => {
+  expect(splitIntoPages(['a', 'b', 'c', 'd', 'e'], 2)).toEqual([
+    ['a', 'b'],
+    ['c', 'd'],
+    ['e'],
+  ])
+  expect(splitIntoPages(['a', 'b'], 0)).toEqual([['a'], ['b']])
 })
 
 it('uses the reader-selected lead section and marks its prominence truthfully', () => {
