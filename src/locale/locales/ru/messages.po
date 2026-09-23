@@ -1378,7 +1378,7 @@ msgstr "Добавить реакцию"
 msgid "Add recommended feeds"
 msgstr "Добавить рекомендуемые ленты"
 
-#: src/plumblines/sections/index.tsx:293
+#: src/plumblines/sections/index.tsx:292
 msgid "Add section"
 msgstr ""
 
@@ -2443,7 +2443,7 @@ msgstr ""
 msgid "Bring up to 50 friends together in one chat."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:178
+#: src/plumblines/sections/index.tsx:177
 msgid "Broadsheet"
 msgstr ""
 
@@ -3208,7 +3208,7 @@ msgstr "Правила сообщества"
 msgid "Community Guidelines: Harassment"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:179
+#: src/plumblines/sections/index.tsx:178
 msgid "Compact"
 msgstr ""
 
@@ -3834,7 +3834,7 @@ msgstr ""
 msgid "Custom"
 msgstr "Пользовательский"
 
-#: src/plumblines/sections/index.tsx:271
+#: src/plumblines/sections/index.tsx:270
 msgid "Custom feed"
 msgstr ""
 
@@ -4443,7 +4443,7 @@ msgstr "например, Авторы, которые ничего не про�
 msgid "e.g. Users that repeatedly reply with ads."
 msgstr "например, Пользователи, неоднократно отвечавшие рекламой."
 
-#: src/plumblines/sections/index.tsx:225
+#: src/plumblines/sections/index.tsx:224
 msgid "Earlier"
 msgstr ""
 
@@ -4483,7 +4483,7 @@ msgstr ""
 msgid "Edit Feeds"
 msgstr "Редактировать ленты"
 
-#: src/plumblines/sections/index.tsx:148
+#: src/plumblines/sections/index.tsx:147
 msgid "Edit front page"
 msgstr ""
 
@@ -5391,7 +5391,7 @@ msgstr ""
 msgid "Feed menu"
 msgstr "Меню ленты"
 
-#: src/plumblines/sections/index.tsx:280
+#: src/plumblines/sections/index.tsx:279
 msgid "Feed or list link / AT URI"
 msgstr ""
 
@@ -5730,7 +5730,7 @@ msgstr "Подписчики, которых вы знаете"
 #: src/components/ProfileHoverCard/index.web.tsx:502
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/plumblines/records/PostInformationDialog.tsx:93
-#: src/plumblines/sections/index.tsx:270
+#: src/plumblines/sections/index.tsx:269
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/screens/VideoFeed/index.tsx:992
@@ -7061,7 +7061,7 @@ msgstr ""
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr "Сейчас здесь только вы! Добавьте больше людей в свой стартовый набор, воспользовавшись поиском выше."
 
-#: src/plumblines/sections/index.tsx:190
+#: src/plumblines/sections/index.tsx:189
 msgid "j / k move between stories; o opens the focused story; 1–8 select configured sections."
 msgstr ""
 
@@ -7110,7 +7110,7 @@ msgstr ""
 msgid "Keep me posted"
 msgstr "Держите меня в курсе"
 
-#: src/plumblines/sections/index.tsx:187
+#: src/plumblines/sections/index.tsx:186
 msgid "Keyboard shortcuts"
 msgstr ""
 
@@ -7190,7 +7190,7 @@ msgstr "Последнее инициирование {timeAgo} назад"
 msgid "Last initiated just now"
 msgstr "Последнее инициирование только что"
 
-#: src/plumblines/sections/index.tsx:231
+#: src/plumblines/sections/index.tsx:230
 msgid "Later"
 msgstr ""
 
@@ -7213,7 +7213,7 @@ msgstr ""
 msgid "Lead follows your section order."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:152
+#: src/plumblines/sections/index.tsx:151
 msgid "Lead section"
 msgstr ""
 
@@ -7479,7 +7479,7 @@ msgid "Link copied to clipboard"
 msgstr ""
 
 #: src/Navigation.tsx:277
-#: src/plumblines/sections/index.tsx:272
+#: src/plumblines/sections/index.tsx:271
 msgid "List"
 msgstr "Список"
 
@@ -7612,7 +7612,7 @@ msgstr ""
 msgid "Live feature is in beta"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:305
+#: src/plumblines/sections/index.tsx:304
 msgid "Live front page"
 msgstr ""
 
@@ -7798,7 +7798,7 @@ msgid "Manage saved feeds"
 msgstr "Управление сохранёнными лентами"
 
 #: src/plumblines/sections/index.tsx:120
-#: src/plumblines/sections/index.tsx:197
+#: src/plumblines/sections/index.tsx:196
 msgid "Manage sections"
 msgstr ""
 
@@ -8145,12 +8145,12 @@ msgid "More people. Brighter ideas."
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:223
+#: src/plumblines/sections/index.tsx:222
 msgid "Move {0} earlier"
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:229
+#: src/plumblines/sections/index.tsx:228
 msgid "Move {0} later"
 msgstr ""
 
@@ -8479,7 +8479,7 @@ msgstr ""
 msgid "New posts from {firstAuthorName} and {additionalAuthorsCount, plural, one {{formattedAuthorsCount} other} other {{formattedAuthorsCount} others}}"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:255
+#: src/plumblines/sections/index.tsx:254
 msgid "New section name"
 msgstr ""
 
@@ -9551,7 +9551,7 @@ msgstr ""
 
 #. placeholder {0}: composition.sheets.length + 1
 #. placeholder {0}: sheet.pageNumber
-#: src/plumblines/sections/index.tsx:307
+#: src/plumblines/sections/index.tsx:306
 #: src/plumblines/sections/index.tsx:435
 msgid "Page {0}"
 msgstr ""
@@ -9564,7 +9564,7 @@ msgstr ""
 msgid "Page {0} of {1}"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:169
+#: src/plumblines/sections/index.tsx:168
 msgid "Page composition"
 msgstr ""
 
@@ -10512,8 +10512,8 @@ msgid "Reader mode"
 msgstr ""
 
 #: src/plumblines/reading/standard/index.web.tsx:404
-#: src/plumblines/sections/index.tsx:143
-#: src/plumblines/sections/index.tsx:180
+#: src/plumblines/sections/index.tsx:142
+#: src/plumblines/sections/index.tsx:179
 msgid "Reading"
 msgstr ""
 
@@ -10598,7 +10598,7 @@ msgstr "Перезагрузить беседы"
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:110
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:117
-#: src/plumblines/sections/index.tsx:249
+#: src/plumblines/sections/index.tsx:248
 #: src/screens/Bookmarks.tsx:256
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
 #: src/screens/Messages/ConversationSettings/prompts.tsx:178
@@ -10609,7 +10609,7 @@ msgid "Remove"
 msgstr "Удалить"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:235
+#: src/plumblines/sections/index.tsx:234
 msgid "Remove {0}"
 msgstr ""
 
@@ -10809,7 +10809,7 @@ msgid "Removed verification"
 msgstr "Удаление верификации"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:209
+#: src/plumblines/sections/index.tsx:208
 msgid "Rename {0}"
 msgstr ""
 
@@ -11433,7 +11433,7 @@ msgstr "Сохранённые ленты"
 msgid "Saved Posts"
 msgstr "Сохранённые посты"
 
-#: src/plumblines/sections/index.tsx:273
+#: src/plumblines/sections/index.tsx:272
 msgid "Saved search"
 msgstr ""
 
@@ -11587,7 +11587,7 @@ msgstr "Поиск постов"
 msgid "Search profiles"
 msgstr "Поиск профилей"
 
-#: src/plumblines/sections/index.tsx:279
+#: src/plumblines/sections/index.tsx:278
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:248
 msgid "Search query"
 msgstr ""
@@ -11606,11 +11606,11 @@ msgstr "Поиск..."
 msgid "Searches for profiles"
 msgstr "Ищет профили"
 
-#: src/plumblines/sections/index.tsx:207
+#: src/plumblines/sections/index.tsx:206
 msgid "Section name"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:199
+#: src/plumblines/sections/index.tsx:198
 msgid "Sections and their filters are saved on this device for this account."
 msgstr ""
 
@@ -12658,7 +12658,7 @@ msgid "Sort replies to the same post by:"
 msgstr "Выберите, как сортировать ответы к постам:"
 
 #: src/plumblines/components/FeedContext.tsx:99
-#: src/plumblines/sections/index.tsx:264
+#: src/plumblines/sections/index.tsx:263
 msgid "Source"
 msgstr ""
 

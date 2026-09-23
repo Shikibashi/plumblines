@@ -1378,7 +1378,7 @@ msgstr "반응 추가"
 msgid "Add recommended feeds"
 msgstr "추천 피드 추가"
 
-#: src/plumblines/sections/index.tsx:293
+#: src/plumblines/sections/index.tsx:292
 msgid "Add section"
 msgstr ""
 
@@ -2443,7 +2443,7 @@ msgstr "사이트 규칙 위반"
 msgid "Bring up to 50 friends together in one chat."
 msgstr "최대 50명의 친구를 하나의 대화방에 초대하세요."
 
-#: src/plumblines/sections/index.tsx:178
+#: src/plumblines/sections/index.tsx:177
 msgid "Broadsheet"
 msgstr ""
 
@@ -3208,7 +3208,7 @@ msgstr "커뮤니티 가이드라인"
 msgid "Community Guidelines: Harassment"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:179
+#: src/plumblines/sections/index.tsx:178
 msgid "Compact"
 msgstr ""
 
@@ -3834,7 +3834,7 @@ msgstr ""
 msgid "Custom"
 msgstr "사용자 지정"
 
-#: src/plumblines/sections/index.tsx:271
+#: src/plumblines/sections/index.tsx:270
 msgid "Custom feed"
 msgstr ""
 
@@ -4443,7 +4443,7 @@ msgstr "예: 놓칠 수 없는 게시자들."
 msgid "e.g. Users that repeatedly reply with ads."
 msgstr "예: 반복적으로 광고 답글을 다는 계정."
 
-#: src/plumblines/sections/index.tsx:225
+#: src/plumblines/sections/index.tsx:224
 msgid "Earlier"
 msgstr ""
 
@@ -4483,7 +4483,7 @@ msgstr ""
 msgid "Edit Feeds"
 msgstr "피드 편집하기"
 
-#: src/plumblines/sections/index.tsx:148
+#: src/plumblines/sections/index.tsx:147
 msgid "Edit front page"
 msgstr ""
 
@@ -5391,7 +5391,7 @@ msgstr "피드 ID"
 msgid "Feed menu"
 msgstr "피드 메뉴"
 
-#: src/plumblines/sections/index.tsx:280
+#: src/plumblines/sections/index.tsx:279
 msgid "Feed or list link / AT URI"
 msgstr ""
 
@@ -5730,7 +5730,7 @@ msgstr "내가 아는 팔로워"
 #: src/components/ProfileHoverCard/index.web.tsx:502
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/plumblines/records/PostInformationDialog.tsx:93
-#: src/plumblines/sections/index.tsx:270
+#: src/plumblines/sections/index.tsx:269
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/screens/VideoFeed/index.tsx:992
@@ -7061,7 +7061,7 @@ msgstr ""
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr "아직은 나밖에 없습니다! 위에서 검색하여 스타터 팩에 더 많은 사용자를 추가해 보세요."
 
-#: src/plumblines/sections/index.tsx:190
+#: src/plumblines/sections/index.tsx:189
 msgid "j / k move between stories; o opens the focused story; 1–8 select configured sections."
 msgstr ""
 
@@ -7110,7 +7110,7 @@ msgstr "계속 작성하기"
 msgid "Keep me posted"
 msgstr "최신 소식 받기"
 
-#: src/plumblines/sections/index.tsx:187
+#: src/plumblines/sections/index.tsx:186
 msgid "Keyboard shortcuts"
 msgstr ""
 
@@ -7190,7 +7190,7 @@ msgstr "{timeAgo} 전 시작함"
 msgid "Last initiated just now"
 msgstr "방금 시작함"
 
-#: src/plumblines/sections/index.tsx:231
+#: src/plumblines/sections/index.tsx:230
 msgid "Later"
 msgstr ""
 
@@ -7213,7 +7213,7 @@ msgstr ""
 msgid "Lead follows your section order."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:152
+#: src/plumblines/sections/index.tsx:151
 msgid "Lead section"
 msgstr ""
 
@@ -7479,7 +7479,7 @@ msgid "Link copied to clipboard"
 msgstr "링크를 클립보드에 복사했습니다"
 
 #: src/Navigation.tsx:277
-#: src/plumblines/sections/index.tsx:272
+#: src/plumblines/sections/index.tsx:271
 msgid "List"
 msgstr "리스트"
 
@@ -7612,7 +7612,7 @@ msgstr "라이브 이벤트를 숨김 해제했습니다"
 msgid "Live feature is in beta"
 msgstr "라이브 기능은 베타 테스트 중입니다"
 
-#: src/plumblines/sections/index.tsx:305
+#: src/plumblines/sections/index.tsx:304
 msgid "Live front page"
 msgstr ""
 
@@ -7798,7 +7798,7 @@ msgid "Manage saved feeds"
 msgstr "저장된 피드 관리"
 
 #: src/plumblines/sections/index.tsx:120
-#: src/plumblines/sections/index.tsx:197
+#: src/plumblines/sections/index.tsx:196
 msgid "Manage sections"
 msgstr ""
 
@@ -8145,12 +8145,12 @@ msgid "More people. Brighter ideas."
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:223
+#: src/plumblines/sections/index.tsx:222
 msgid "Move {0} earlier"
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:229
+#: src/plumblines/sections/index.tsx:228
 msgid "Move {0} later"
 msgstr ""
 
@@ -8479,7 +8479,7 @@ msgstr "{firstAuthorLink} 님 <0>외 {additionalAuthorsCount, plural, other {{fo
 msgid "New posts from {firstAuthorName} and {additionalAuthorsCount, plural, one {{formattedAuthorsCount} other} other {{formattedAuthorsCount} others}}"
 msgstr "{firstAuthorName} 님 외 {additionalAuthorsCount, plural, other {{formattedAuthorsCount}명}}의 새 게시물"
 
-#: src/plumblines/sections/index.tsx:255
+#: src/plumblines/sections/index.tsx:254
 msgid "New section name"
 msgstr ""
 
@@ -9551,7 +9551,7 @@ msgstr "소유자는 나가기 전에 그룹을 잠가야 합니다."
 
 #. placeholder {0}: composition.sheets.length + 1
 #. placeholder {0}: sheet.pageNumber
-#: src/plumblines/sections/index.tsx:307
+#: src/plumblines/sections/index.tsx:306
 #: src/plumblines/sections/index.tsx:435
 msgid "Page {0}"
 msgstr ""
@@ -9564,7 +9564,7 @@ msgstr ""
 msgid "Page {0} of {1}"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:169
+#: src/plumblines/sections/index.tsx:168
 msgid "Page composition"
 msgstr ""
 
@@ -10512,8 +10512,8 @@ msgid "Reader mode"
 msgstr ""
 
 #: src/plumblines/reading/standard/index.web.tsx:404
-#: src/plumblines/sections/index.tsx:143
-#: src/plumblines/sections/index.tsx:180
+#: src/plumblines/sections/index.tsx:142
+#: src/plumblines/sections/index.tsx:179
 msgid "Reading"
 msgstr ""
 
@@ -10598,7 +10598,7 @@ msgstr "대화 다시 불러오기"
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:110
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:117
-#: src/plumblines/sections/index.tsx:249
+#: src/plumblines/sections/index.tsx:248
 #: src/screens/Bookmarks.tsx:256
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
 #: src/screens/Messages/ConversationSettings/prompts.tsx:178
@@ -10609,7 +10609,7 @@ msgid "Remove"
 msgstr "제거"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:235
+#: src/plumblines/sections/index.tsx:234
 msgid "Remove {0}"
 msgstr ""
 
@@ -10809,7 +10809,7 @@ msgid "Removed verification"
 msgstr "인증을 취소했습니다"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:209
+#: src/plumblines/sections/index.tsx:208
 msgid "Rename {0}"
 msgstr ""
 
@@ -11433,7 +11433,7 @@ msgstr "저장된 피드"
 msgid "Saved Posts"
 msgstr "저장된 게시물"
 
-#: src/plumblines/sections/index.tsx:273
+#: src/plumblines/sections/index.tsx:272
 msgid "Saved search"
 msgstr ""
 
@@ -11587,7 +11587,7 @@ msgstr "게시물 검색"
 msgid "Search profiles"
 msgstr "프로필 검색"
 
-#: src/plumblines/sections/index.tsx:279
+#: src/plumblines/sections/index.tsx:278
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:248
 msgid "Search query"
 msgstr "검색어"
@@ -11606,11 +11606,11 @@ msgstr "검색…"
 msgid "Searches for profiles"
 msgstr "프로필을 검색합니다"
 
-#: src/plumblines/sections/index.tsx:207
+#: src/plumblines/sections/index.tsx:206
 msgid "Section name"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:199
+#: src/plumblines/sections/index.tsx:198
 msgid "Sections and their filters are saved on this device for this account."
 msgstr ""
 
@@ -12658,7 +12658,7 @@ msgid "Sort replies to the same post by:"
 msgstr "동일한 게시물에 대한 답글을 정렬하는 기준입니다."
 
 #: src/plumblines/components/FeedContext.tsx:99
-#: src/plumblines/sections/index.tsx:264
+#: src/plumblines/sections/index.tsx:263
 msgid "Source"
 msgstr ""
 

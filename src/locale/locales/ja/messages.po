@@ -1378,7 +1378,7 @@ msgstr "リアクションを追加"
 msgid "Add recommended feeds"
 msgstr "おすすめのフィードを追加"
 
-#: src/plumblines/sections/index.tsx:293
+#: src/plumblines/sections/index.tsx:292
 msgid "Add section"
 msgstr ""
 
@@ -2443,7 +2443,7 @@ msgstr "サイト規約違反"
 msgid "Bring up to 50 friends together in one chat."
 msgstr "最大50人の友達を一つのチャットに集めましょう。"
 
-#: src/plumblines/sections/index.tsx:178
+#: src/plumblines/sections/index.tsx:177
 msgid "Broadsheet"
 msgstr ""
 
@@ -3208,7 +3208,7 @@ msgstr "コミュニティガイドライン"
 msgid "Community Guidelines: Harassment"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:179
+#: src/plumblines/sections/index.tsx:178
 msgid "Compact"
 msgstr ""
 
@@ -3834,7 +3834,7 @@ msgstr ""
 msgid "Custom"
 msgstr "カスタム"
 
-#: src/plumblines/sections/index.tsx:271
+#: src/plumblines/sections/index.tsx:270
 msgid "Custom feed"
 msgstr ""
 
@@ -4443,7 +4443,7 @@ msgstr "例: 絶対に投稿を見逃してはならないユーザー。"
 msgid "e.g. Users that repeatedly reply with ads."
 msgstr "例: 繰り返し広告付きで返信するユーザー。"
 
-#: src/plumblines/sections/index.tsx:225
+#: src/plumblines/sections/index.tsx:224
 msgid "Earlier"
 msgstr ""
 
@@ -4483,7 +4483,7 @@ msgstr ""
 msgid "Edit Feeds"
 msgstr "フィードを編集"
 
-#: src/plumblines/sections/index.tsx:148
+#: src/plumblines/sections/index.tsx:147
 msgid "Edit front page"
 msgstr ""
 
@@ -5391,7 +5391,7 @@ msgstr "フィードの識別子"
 msgid "Feed menu"
 msgstr "フィードメニュー"
 
-#: src/plumblines/sections/index.tsx:280
+#: src/plumblines/sections/index.tsx:279
 msgid "Feed or list link / AT URI"
 msgstr ""
 
@@ -5730,7 +5730,7 @@ msgstr "あなたが知っているフォロワー"
 #: src/components/ProfileHoverCard/index.web.tsx:502
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/plumblines/records/PostInformationDialog.tsx:93
-#: src/plumblines/sections/index.tsx:270
+#: src/plumblines/sections/index.tsx:269
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/screens/VideoFeed/index.tsx:992
@@ -7061,7 +7061,7 @@ msgstr ""
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr "今はあなただけ！上で検索してスターターパックにより多くのユーザーを追加してください。"
 
-#: src/plumblines/sections/index.tsx:190
+#: src/plumblines/sections/index.tsx:189
 msgid "j / k move between stories; o opens the focused story; 1–8 select configured sections."
 msgstr ""
 
@@ -7110,7 +7110,7 @@ msgstr "編集を続ける"
 msgid "Keep me posted"
 msgstr "投稿を逃さない"
 
-#: src/plumblines/sections/index.tsx:187
+#: src/plumblines/sections/index.tsx:186
 msgid "Keyboard shortcuts"
 msgstr ""
 
@@ -7190,7 +7190,7 @@ msgstr "最後の開始： {timeAgo} 前"
 msgid "Last initiated just now"
 msgstr "最後の開始：たった今"
 
-#: src/plumblines/sections/index.tsx:231
+#: src/plumblines/sections/index.tsx:230
 msgid "Later"
 msgstr ""
 
@@ -7213,7 +7213,7 @@ msgstr ""
 msgid "Lead follows your section order."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:152
+#: src/plumblines/sections/index.tsx:151
 msgid "Lead section"
 msgstr ""
 
@@ -7479,7 +7479,7 @@ msgid "Link copied to clipboard"
 msgstr "リンクをクリップボードにコピーしました"
 
 #: src/Navigation.tsx:277
-#: src/plumblines/sections/index.tsx:272
+#: src/plumblines/sections/index.tsx:271
 msgid "List"
 msgstr "リスト"
 
@@ -7612,7 +7612,7 @@ msgstr "ライブイベントの非表示を解除"
 msgid "Live feature is in beta"
 msgstr "ライブ機能はベータ版です"
 
-#: src/plumblines/sections/index.tsx:305
+#: src/plumblines/sections/index.tsx:304
 msgid "Live front page"
 msgstr ""
 
@@ -7798,7 +7798,7 @@ msgid "Manage saved feeds"
 msgstr "保存されたフィードを管理"
 
 #: src/plumblines/sections/index.tsx:120
-#: src/plumblines/sections/index.tsx:197
+#: src/plumblines/sections/index.tsx:196
 msgid "Manage sections"
 msgstr ""
 
@@ -8145,12 +8145,12 @@ msgid "More people. Brighter ideas."
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:223
+#: src/plumblines/sections/index.tsx:222
 msgid "Move {0} earlier"
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:229
+#: src/plumblines/sections/index.tsx:228
 msgid "Move {0} later"
 msgstr ""
 
@@ -8479,7 +8479,7 @@ msgstr "{firstAuthorLink}および<0>{additionalAuthorsCount, plural, other {他
 msgid "New posts from {firstAuthorName} and {additionalAuthorsCount, plural, one {{formattedAuthorsCount} other} other {{formattedAuthorsCount} others}}"
 msgstr "{firstAuthorName}および{additionalAuthorsCount, plural, other {他{formattedAuthorsCount}人}}からの新しい投稿"
 
-#: src/plumblines/sections/index.tsx:255
+#: src/plumblines/sections/index.tsx:254
 msgid "New section name"
 msgstr ""
 
@@ -9551,7 +9551,7 @@ msgstr "オーナーは退出する前にグループをロックしなければ
 
 #. placeholder {0}: composition.sheets.length + 1
 #. placeholder {0}: sheet.pageNumber
-#: src/plumblines/sections/index.tsx:307
+#: src/plumblines/sections/index.tsx:306
 #: src/plumblines/sections/index.tsx:435
 msgid "Page {0}"
 msgstr ""
@@ -9564,7 +9564,7 @@ msgstr ""
 msgid "Page {0} of {1}"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:169
+#: src/plumblines/sections/index.tsx:168
 msgid "Page composition"
 msgstr ""
 
@@ -10512,8 +10512,8 @@ msgid "Reader mode"
 msgstr ""
 
 #: src/plumblines/reading/standard/index.web.tsx:404
-#: src/plumblines/sections/index.tsx:143
-#: src/plumblines/sections/index.tsx:180
+#: src/plumblines/sections/index.tsx:142
+#: src/plumblines/sections/index.tsx:179
 msgid "Reading"
 msgstr ""
 
@@ -10598,7 +10598,7 @@ msgstr "会話を再読み込み"
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:110
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:117
-#: src/plumblines/sections/index.tsx:249
+#: src/plumblines/sections/index.tsx:248
 #: src/screens/Bookmarks.tsx:256
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
 #: src/screens/Messages/ConversationSettings/prompts.tsx:178
@@ -10609,7 +10609,7 @@ msgid "Remove"
 msgstr "削除"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:235
+#: src/plumblines/sections/index.tsx:234
 msgid "Remove {0}"
 msgstr ""
 
@@ -10809,7 +10809,7 @@ msgid "Removed verification"
 msgstr "認証を削除しました"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:209
+#: src/plumblines/sections/index.tsx:208
 msgid "Rename {0}"
 msgstr ""
 
@@ -11433,7 +11433,7 @@ msgstr "保存されたフィード"
 msgid "Saved Posts"
 msgstr "保存済投稿"
 
-#: src/plumblines/sections/index.tsx:273
+#: src/plumblines/sections/index.tsx:272
 msgid "Saved search"
 msgstr ""
 
@@ -11587,7 +11587,7 @@ msgstr "投稿を検索"
 msgid "Search profiles"
 msgstr "プロフィールを検索"
 
-#: src/plumblines/sections/index.tsx:279
+#: src/plumblines/sections/index.tsx:278
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:248
 msgid "Search query"
 msgstr "検索条件"
@@ -11606,11 +11606,11 @@ msgstr "検索…"
 msgid "Searches for profiles"
 msgstr "プロフィールを検索"
 
-#: src/plumblines/sections/index.tsx:207
+#: src/plumblines/sections/index.tsx:206
 msgid "Section name"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:199
+#: src/plumblines/sections/index.tsx:198
 msgid "Sections and their filters are saved on this device for this account."
 msgstr ""
 
@@ -12658,7 +12658,7 @@ msgid "Sort replies to the same post by:"
 msgstr "次の方法で同じ投稿への返信を並び替えます。"
 
 #: src/plumblines/components/FeedContext.tsx:99
-#: src/plumblines/sections/index.tsx:264
+#: src/plumblines/sections/index.tsx:263
 msgid "Source"
 msgstr ""
 

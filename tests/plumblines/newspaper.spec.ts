@@ -146,6 +146,47 @@ test('QA14: each section describes its actual source without a Discover fallback
 test('EFP: composed sheets use the document scroll and expose Reading as a distinct section', async ({
   page,
 }) => {
+  const metadataOnly = {
+    uri: 'at://did:plc:abc123/site.standard.document/metadata-only',
+    did: 'did:plc:abc123',
+    title: 'Metadata-only reading fixture',
+    canonicalUrl: 'https://publication.example/metadata-only',
+    hasRenderableBody: false,
+  }
+  const renderable = {
+    uri: 'at://did:plc:abc123/site.standard.document/readable',
+    did: 'did:plc:abc123',
+    title: 'Readable article fixture',
+    canonicalUrl: 'https://publication.example/readable',
+    hasRenderableBody: true,
+  }
+  await page.route('**/xrpc/app.standard-reader.getLatestFeed**', route =>
+    route.fulfill({json: {items: [metadataOnly, renderable]}}),
+  )
+  await page.route('**/xrpc/app.standard-reader.getDocument**', route =>
+    route.fulfill({
+      json: {
+        ...renderable,
+        content: {
+          $type: 'pub.leaflet.content',
+          pages: [
+            {
+              $type: 'pub.leaflet.pages.linearDocument',
+              blocks: [
+                {
+                  $type: 'pub.leaflet.pages.linearDocument#block',
+                  block: {
+                    $type: 'pub.leaflet.blocks.text',
+                    plaintext: 'A readable article body from the document.',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+    }),
+  )
   await page.goto('/')
   await expect(page.locator('.newspaper-sheet').first()).toBeVisible()
   const nestedScrollers = await page.locator('.newspaper-stories').evaluateAll(
@@ -181,19 +222,10 @@ test('EFP: composed sheets use the document scroll and expose Reading as a disti
     page.getByText('The index has no readable body for this document.'),
   ).toBeVisible()
 
-  const renderableArticle = page
-    .locator('.pl-standard-entry[data-renderable="true"]')
-    .first()
-  for (let pageNumber = 0; pageNumber < 3; pageNumber++) {
-    if ((await renderableArticle.count()) > 0) break
-    await page.getByRole('button', {name: 'More articles'}).click()
-    await expect(page.getByRole('button', {name: 'More articles'})).toBeEnabled(
-      {
-        timeout: 15_000,
-      },
-    )
-  }
-  await expect(renderableArticle).toBeVisible({timeout: 30_000})
+  const renderableArticle = page.getByRole('button', {
+    name: 'Read article: Readable article fixture',
+  })
+  await expect(renderableArticle).toBeVisible()
   const renderableTitle = await renderableArticle
     .locator('.pl-standard-entry-title')
     .innerText()
