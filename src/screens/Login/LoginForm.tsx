@@ -112,6 +112,10 @@ export const LoginForm = ({
    */
   const showUnresolvedError =
     hostingProvider.state.status === 'unresolved' && !identifierFocused
+  const normalizedIdentifier = identifier.trim().toLowerCase().replace(/^@/, '')
+  const canContinueWithoutServiceDescription =
+    normalizedIdentifier.startsWith('did:') ||
+    (normalizedIdentifier.includes('.') && !normalizedIdentifier.includes('@'))
 
   /**
    * Performs the actual login attempt against a resolved service. Reads the
@@ -527,11 +531,13 @@ export const LoginForm = ({
             </View>
           </>
         )}
-        {!serviceDescription && error ? (
+        {!serviceDescription &&
+        error &&
+        !canContinueWithoutServiceDescription ? (
           <Button
             testID="loginRetryButton"
             label={l`Retry`}
-            accessibilityHint={l`Retries signing in`}
+            accessibilityHint={l`Retries loading service information`}
             color="primary_subtle"
             size="large"
             onPress={onPressRetryConnect}>
@@ -539,7 +545,7 @@ export const LoginForm = ({
               <Trans>Retry</Trans>
             </ButtonText>
           </Button>
-        ) : !serviceDescription ? (
+        ) : !serviceDescription && !canContinueWithoutServiceDescription ? (
           <Button
             label={l`Connecting to service…`}
             size="large"

@@ -129,6 +129,24 @@ test('QA13: sign in reaches the existing account form', async ({page}) => {
   })
 })
 
+test('full handle sign-in stays available when service description fails', async ({
+  page,
+}) => {
+  await page.route('**/xrpc/com.atproto.server.describeServer', route =>
+    route.abort(),
+  )
+  await page.goto('/')
+  await page.getByTestId('plumblines-sign-in').click()
+  await expect(page.getByTestId('loginRetryButton')).toBeVisible()
+  await page
+    .getByRole('textbox', {name: 'Username or email address'})
+    .fill('reader.example')
+  await expect(
+    page.getByRole('button', {name: 'Sign in', exact: true}),
+  ).toBeVisible()
+  await expect(page.getByTestId('loginRetryButton')).toBeHidden()
+})
+
 test('QA14: each section describes its actual source without a Discover fallback claim', async ({
   page,
 }) => {
