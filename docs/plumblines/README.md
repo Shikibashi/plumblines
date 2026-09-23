@@ -36,7 +36,7 @@ curl http://127.0.0.1:8139/healthz
 
 The build script creates the Expo export on the host, then packages it in a digest-pinned, non-root nginx image. It is intentionally an artifact container, not a claim that the application was compiled in Docker. The runtime has a read-only filesystem, a temporary `/tmp`, no Linux capabilities and no new privileges. `PLUMBLINES_PORT` changes the local port. There is no new database or server API. The upstream Go server and its Dockerfile remain available separately; this static preview does not provide its server-rendered link previews.
 
-Deployment to `plumblines.uk`, TLS, native signing/push credentials and authenticated account acceptance are separate release work. A domain in the product configuration is not evidence that the domain serves this build.
+The newspaper client is deployed at https://plumblines.uk on the existing Cloudflare Pages project. See the [deployment receipt](../zeus/cloudflare-deployment-2026-09-23.md) for the exact version, hosted verification, PDS discovery and rollback. Native signing/push credentials and authenticated account acceptance remain separate release work.
 
 ## Product contracts
 

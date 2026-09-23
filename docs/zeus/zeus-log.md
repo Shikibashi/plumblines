@@ -47,3 +47,10 @@
 - Local Docker preview remains available at http://127.0.0.1:8139; redundant task-owned dev/preview processes are stopped after verification.
 
 - Final visual inspection caught inline butterfly vectors in React startup components (separate from HTML splash). Replaced web/native vectors with PLUMBLINE_PATH and rebuilt. Responsive screenshots now wait for actual feed content.
+
+## Cloudflare replacement authorized and completed
+- Inspected the existing `plumbline` Pages project and live production deployment, Docker PDS and tunnel routes. Preserved existing service configuration. Read Cloudflare and Wrangler skill instructions.
+- Packaged the tested export with `/static/` assets, source-map exclusions, security headers and preserved legacy OAuth metadata. Preview 15/15 browser and 3/3 guest-route checks passed.
+- Uploaded identical files to production branch `main`; deployment `31462629-65f9-4903-9065-b2bf6e3a60d6` now serves https://plumblines.uk. Live 15/15 browser and 3/3 route checks passed.
+- Verified JS/CSS/metadata hashes and public PDS discovery from the live browser origin. HTML differs only by existing zone analytics injection, blocked by CSP. Wrangler cannot access zone RUM configuration (403); no zone settings changed.
+- Retained prior production deployment for rollback. Full details and remaining authentication/search/dependency limits are in cloudflare-deployment-2026-09-23.md.

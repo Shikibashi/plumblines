@@ -11,7 +11,7 @@ The fork now has the supplied newspaper direction: a large serif masthead, origi
 | 0 parsing | complete | User brief and image translated into six capabilities; existing React Native/Expo/AT Protocol stack retained |
 | 1 Zephermine | qualified | Three implementation sections and persisted spec/API/QA/flows; external model review and diagram rendering not run |
 | 2 agent-team | complete locally | Branding and policy workers, planning/review worker, main newspaper integration |
-| 3 Argos | CONDITIONAL | Eight requirements traced; 12 of 18 QA IDs PASS, 4 PARTIAL, 2 NOT RUN; details in verification report |
+| 3 Argos | CONDITIONAL | Eight requirements traced; 13 of 18 QA IDs PASS, 4 PARTIAL, 1 NOT RUN; details in verification report |
 | 4 Docker | PASS | Digest-pinned non-root artifact image, healthy read-only runtime, loopback 8139 |
 | 5 Minos | PASS within tested scope | 15/15 browser cases plus 3/3 coded guest-route exploration checks; 891 Jest tests / 82 suites, 28 upstream todo; 21 snapshots |
 | 6 report | complete | This report and requirement/QA verification matrix |
@@ -36,7 +36,7 @@ The fork now has the supplied newspaper direction: a large serif masthead, origi
 - Public Discover reads work. Public `searchPostsV2`, geolocation, app-config and live-events services rejected local browser-origin requests. Search navigation/submission is verified; successful live search results are not. Resolve supported service access before release.
 - Production dependency audit reports 1 critical, 54 high, 22 moderate and 5 low advisories. The unchanged upstream baseline reports identical counts. Reachability/remediation remains open.
 - Authenticated login completion, posting, real mute/unblock operations and authenticated menu rendering were not exercised. No account credentials or real mutations were used.
-- Native device builds/signing/push, `plumblines.uk` deployment/TLS, full accessibility audit, full secret/history scan, externally reviewed translations and owner acceptance are not verified.
+- Native device builds/signing/push, full accessibility audit, full secret/history scan, externally reviewed translations and owner acceptance are not verified.
 - The static container does not implement the upstream Go server's social-preview metadata routes. Existing protocol endpoints, native ABI names and third-party references intentionally remain where required for compatibility.
 
 ## Decision ledger
@@ -54,7 +54,7 @@ The fork now has the supplied newspaper direction: a large serif masthead, origi
 
 Source: `https://github.com/Shikibashi/plumblines`, branch `codex/plumblines-v1`. The untouched baseline is tagged `plumblines-baseline`. The first fork commit is the branding/licensing/configuration foundation; the second contains the newspaper UI, attention policy and verification setup.
 
-See [local commands and upstream-sync guidance](../plumblines/README.md), [verification matrix](../plan/plumblines-v1/verify-report.md), [branding inventory](../plumblines/branding.md) and [execution log](zeus-log.md). Raw command output, JSON diagnostics and screenshots remain local under `docs/zeus/evidence/`; reusable tests are committed. The preview is `http://127.0.0.1:8139`.
+See [local commands and upstream-sync guidance](../plumblines/README.md), [verification matrix](../plan/plumblines-v1/verify-report.md), [branding inventory](../plumblines/branding.md) and [execution log](zeus-log.md). Raw command output, JSON diagnostics and screenshots remain local under `docs/zeus/evidence/`; reusable tests are committed. The local preview is `http://127.0.0.1:8139`. Production is https://plumblines.uk; the [Cloudflare deployment receipt](cloudflare-deployment-2026-09-23.md) records 15/15 live browser checks, 3/3 guest routes, exact assets and rollback.
 
 ## Evidence grades
 
@@ -64,6 +64,6 @@ See [local commands and upstream-sync guidance](../plumblines/README.md), [verif
 | Implementation | proved | Three sections implemented in the actual fork |
 | Verification | weak | Local checks pass; wider acceptance and advisory remediation remain open |
 | Docker | proved | Built and healthy artifact container |
-| Testing | proved | Selected guest/mocked test scope passes; not authenticated or production acceptance |
+| Testing | proved | Selected guest/mocked test scope passes; not authenticated acceptance |
 
 Review used Codex and native workers from the same available model family; no cross-family consensus is claimed.
