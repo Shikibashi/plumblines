@@ -15,7 +15,7 @@ Use Wrangler 4.136.3 with the existing authenticated account. Run the CLI from o
 
 The public `client-metadata.json` from the previous deployment is retained verbatim as `legacy-client-metadata.json` to preserve the existing OAuth client identity. This does not add an OAuth flow to the new fork or prove that an old application's in-flight callback will work in it. Existing accounts/PDS data are not migrated by this client deployment.
 
-Before replacement, the production deployment was `d22501c6-81da-4745-a4db-66731b6414e2`, at `https://d22501c6.plumbline-f50.pages.dev`. Cloudflare Pages rollback can restore this production deployment if necessary. Its metadata was recorded from the live API on 2026-09-23, not inferred from historical notes.
+The 2026-09-23 newspaper-composition deployment is `08bd8ccc-1600-4c98-acaf-588ed144fc43`, at `https://08bd8ccc.plumbline-f50.pages.dev`. The previous production deployment, available as the rollback target, is `be8464c3-b168-4edd-a76a-fb7feda34fdb`, at `https://be8464c3.plumbline-f50.pages.dev`. Both IDs were recorded from Wrangler's live Pages deployment list after promotion. See the [deployment receipt](../../docs/zeus/editorial-frontpage-follow-up-deployment-2026-09-23.md) for artifact hashes and hosted browser verification.
 
 The deployment receipt under `docs/zeus/` records uploaded versions, hash comparisons and actual hosted tests. Local/browser checks do not constitute credentialed account acceptance.
 

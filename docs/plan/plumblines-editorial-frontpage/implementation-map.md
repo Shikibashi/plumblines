@@ -37,7 +37,7 @@ The diff is intentionally concentrated in Plumblines-owned components. The share
 ## Invariants retained
 
 - `main`/`develop` remain the upstream baseline; all work is on `codex/plumblines-v1`.
-- No PDS, AppView, Relay, DNS, tunnel or upstream baseline changes were made. The earlier deployment receipt records a prior artifact only; this user-directed visual revision is not deployed yet.
+- No PDS, AppView, Relay, DNS, tunnel or upstream baseline changes were made. This revision is deployed to the existing Pages project and custom domain; see the [follow-up deployment receipt](../../zeus/editorial-frontpage-follow-up-deployment-2026-09-23.md).
 - No social post headline/dateline, engagement score, proprietary lexicon or article body is synthesized.
 - Block state is read/respected and existing blocks can be deleted. Block/listblock creation stays unavailable and is rejected before network I/O.
 - Following/search/custom-source query behavior, moderation, labels, authored source data and feed order are preserved.
