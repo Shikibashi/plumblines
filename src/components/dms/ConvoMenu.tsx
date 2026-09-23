@@ -43,6 +43,7 @@ import * as Menu from '#/components/Menu'
 import {ReportDialog} from '#/components/moderation/ReportDialog'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 import type * as bsky from '#/types/bsky'
 
 let ConvoMenu = ({
@@ -278,7 +279,7 @@ function MenuContent({
       </Menu.Group>
       <Menu.Divider />
       <Menu.Group>
-        {isGroupConvo ? null : (
+        {isGroupConvo || (!CAN_CREATE_BLOCKS && !isBlocking) ? null : (
           <Menu.Item
             destructive
             label={isBlocking ? l`Unblock account` : l`Block account`}

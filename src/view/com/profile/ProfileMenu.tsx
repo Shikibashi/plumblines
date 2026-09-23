@@ -62,6 +62,7 @@ import {EditLiveDialog} from '#/features/liveNow/components/EditLiveDialog'
 import {GoLiveDialog} from '#/features/liveNow/components/GoLiveDialog'
 import {GoLiveDisabledDialog} from '#/features/liveNow/components/GoLiveDisabledDialog'
 import {type app} from '#/lexicons'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
 let ProfileMenu = ({
@@ -486,31 +487,32 @@ let ProfileMenu = ({
                           </Menu.Item>
                         </>
                       )}
-                    {!profile.viewer?.blockingByList && (
-                      <Menu.Item
-                        testID="profileHeaderDropdownBlockBtn"
-                        label={
-                          profile.viewer?.blocking
-                            ? l`Unblock account`
-                            : l`Block account`
-                        }
-                        onPress={() => blockPromptControl.open()}>
-                        <Menu.ItemText>
-                          {profile.viewer?.blocking ? (
-                            <Trans>Unblock account</Trans>
-                          ) : (
-                            <Trans>Block account</Trans>
-                          )}
-                        </Menu.ItemText>
-                        <Menu.ItemIcon
-                          icon={
+                    {!profile.viewer?.blockingByList &&
+                      (CAN_CREATE_BLOCKS || !!profile.viewer?.blocking) && (
+                        <Menu.Item
+                          testID="profileHeaderDropdownBlockBtn"
+                          label={
                             profile.viewer?.blocking
-                              ? PersonCheckIcon
-                              : PersonXIcon
+                              ? l`Unblock account`
+                              : l`Block account`
                           }
-                        />
-                      </Menu.Item>
-                    )}
+                          onPress={() => blockPromptControl.open()}>
+                          <Menu.ItemText>
+                            {profile.viewer?.blocking ? (
+                              <Trans>Unblock account</Trans>
+                            ) : (
+                              <Trans>Block account</Trans>
+                            )}
+                          </Menu.ItemText>
+                          <Menu.ItemIcon
+                            icon={
+                              profile.viewer?.blocking
+                                ? PersonCheckIcon
+                                : PersonXIcon
+                            }
+                          />
+                        </Menu.Item>
+                      )}
                     <Menu.Item
                       testID="profileHeaderDropdownReportBtn"
                       label={l`Report account`}

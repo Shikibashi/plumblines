@@ -58,6 +58,7 @@ export const Screen = memo(function Screen({
     <>
       {IS_WEB && !isWithinSplitView && <WebCenterBorders />}
       <View
+        nativeID="plumblines-content"
         style={[
           a.util_screen_outer,
           {paddingTop: noInsetTop ? 0 : top},
@@ -196,7 +197,7 @@ const WebCenterBorders = memo(function LayoutWebCenterBorders() {
         a.border_r,
         t.atoms.border_contrast_low,
         web({
-          width: 602,
+          width: CENTER_COLUMN_WIDTH + 2,
           left: '50%',
           transform: [
             {translateX: '-50%'},

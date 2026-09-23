@@ -1,0 +1,6 @@
+**
+!dist/
+!dist/**
+!docker-images/
+!docker-images/nginx.conf
+!docker-images/Dockerfile

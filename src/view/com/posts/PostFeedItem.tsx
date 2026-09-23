@@ -33,7 +33,7 @@ import {
   ThreadItemPostNumber,
   useHasThreadItemPostNumber,
 } from '#/screens/PostThread/components/ThreadItemPostNumber'
-import {atoms as a, select, useTheme} from '#/alf'
+import {atoms as a, select, useTheme, web} from '#/alf'
 import {
   GalleryBleed,
   maybeApplyGalleryOffsetStyles,
@@ -53,6 +53,7 @@ import {DiscoverDebug} from '#/components/PostControls/DiscoverDebug'
 import {RichText} from '#/components/RichText'
 import {SubtleHover} from '#/components/SubtleHover'
 import {Features, useAnalytics} from '#/analytics'
+import {IS_WEB} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {app} from '#/lexicons'
 import * as bsky from '#/types/bsky'
@@ -387,7 +388,7 @@ let FeedItemInner = ({
         <View style={styles.layout}>
           <View style={styles.layoutAvi}>
             <PreviewableUserAvatar
-              size={42}
+              size={IS_WEB ? 64 : 42}
               profile={post.author}
               moderation={moderation.ui('avatar')}
               type={post.author.associated?.labeler ? 'labeler' : 'user'}
@@ -527,7 +528,7 @@ let PostContent = ({
             testID="postText"
             value={richText}
             numberOfLines={limitLines ? MAX_POST_LINES : undefined}
-            style={[a.flex_1, a.text_md]}
+            style={[a.flex_1, a.text_md, web({fontSize: 18, lineHeight: 25})]}
             authorHandle={postAuthor.handle}
             shouldProxyLinks={true}
             suffixOffset={POST_NUMBER_INLINE_OFFSET}

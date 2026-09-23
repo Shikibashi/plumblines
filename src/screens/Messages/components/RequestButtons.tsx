@@ -41,6 +41,7 @@ import * as Menu from '#/components/Menu'
 import {ReportDialog} from '#/components/moderation/ReportDialog'
 import * as Toast from '#/components/Toast'
 import {type chat} from '#/lexicons'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 
 export function RejectMenu({
   convo,
@@ -100,6 +101,7 @@ export function RejectMenu({
   }, [leaveConvo, l])
 
   const onPressBlock = useCallback(() => {
+    if (!CAN_CREATE_BLOCKS) return
     Toast.show(
       l({
         context: 'toast',
@@ -151,12 +153,14 @@ export function RejectMenu({
                 <Menu.ItemIcon icon={CircleX_Stroke2_Corner0_Rounded} />
               </Menu.Item>
             )}
-            <Menu.Item label={l`Block account`} onPress={onPressBlock}>
-              <Menu.ItemText>
-                <Trans>Block account</Trans>
-              </Menu.ItemText>
-              <Menu.ItemIcon icon={PersonXIcon} />
-            </Menu.Item>
+            {CAN_CREATE_BLOCKS && (
+              <Menu.Item label={l`Block account`} onPress={onPressBlock}>
+                <Menu.ItemText>
+                  <Trans>Block account</Trans>
+                </Menu.ItemText>
+                <Menu.ItemIcon icon={PersonXIcon} />
+              </Menu.Item>
+            )}
             <Menu.Item
               label={l`Report conversation`}
               onPress={reportControl.open}>

@@ -86,15 +86,16 @@ import {useAnalytics} from '#/analytics'
 import {type Events} from '#/analytics/metrics/types'
 import {useActorStatus} from '#/features/liveNow'
 import {type app} from '#/lexicons'
+import {NewspaperDirectory} from '#/plumblines/components/NewspaperDirectory'
 import {router} from '#/routes'
 import {PlatformInfo} from '../../../../modules/expo-bluesky-swiss-army'
 
 const LARGE_ELEMENT_SIZE = 48
 const NAV_ICON_WIDTH = 28
 
-export const LEFT_NAV_STANDARD_WIDTH = 240
+export const LEFT_NAV_STANDARD_WIDTH = 280
 export const LEFT_NAV_MINIMAL_WIDTH = 80
-const LEFT_NAV_PWI_WIDTH = 245
+const LEFT_NAV_PWI_WIDTH = 280
 
 function ProfileCard({minimal}: {minimal: boolean}) {
   const {currentAccount, accounts} = useSession()
@@ -626,6 +627,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
   return (
     <View
       role="navigation"
+      testID="plumblines-left-nav"
       style={[
         a.fixed,
         a.top_0,
@@ -653,6 +655,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
           ],
         },
       ]}>
+      {!leftNavMinimal && <NewspaperDirectory />}
       {hasSession ? (
         <ProfileCard minimal={leftNavMinimal} />
       ) : !leftNavMinimal ? (
@@ -660,6 +663,34 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
           <NavSignupCard />
         </View>
       ) : null}
+      {!hasSession && (
+        <>
+          <NavItem
+            label={l`Home`}
+            href="/"
+            navItem="home"
+            minimal={leftNavMinimal}
+            icons={{inactive: HomeIcon, active: HomeFilledIcon}}
+          />
+          <NavItem
+            label={l`Explore`}
+            href="/search"
+            navItem="search"
+            minimal={leftNavMinimal}
+            icons={{
+              inactive: MagnifyingGlassIcon,
+              active: MagnifyingGlassFilledIcon,
+            }}
+          />
+          <NavItem
+            label={l`Feeds`}
+            href="/feeds"
+            navItem="feeds"
+            minimal={leftNavMinimal}
+            icons={{inactive: HashtagIcon, active: HashtagFilledIcon}}
+          />
+        </>
+      )}
       {hasSession && (
         <>
           <NavItem
@@ -694,7 +725,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             }}
           />
           <NavItem
-            label={l`Chat`}
+            label={l`Messages`}
             href="/messages"
             navItem="chat"
             minimal={leftNavMinimal}
@@ -729,7 +760,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
           />
           <NavItem
             label={l({
-              message: 'Saved',
+              message: 'Bookmarks',
               context: 'link to bookmarks screen',
             })}
             href="/saved"

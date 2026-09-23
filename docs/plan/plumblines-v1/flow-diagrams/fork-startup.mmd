@@ -1,0 +1,9 @@
+flowchart TD
+  start([App starts]) --> config[Read fork identity and telemetry defaults]
+  config --> sink{Fork collector configured?}
+  sink -->|No| disabled[Keep collectors disabled]
+  sink -->|Yes| own[Use verified fork-owned collector only]
+  disabled --> app[Original session and navigator]
+  own --> app
+  app --> route([Guest or member route])
+  %% config.ts, analytics entrypoint, logger sentry setup

@@ -13,6 +13,7 @@ import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {type app} from '#/lexicons'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 
 export function SubscribeMenu({list}: {list: app.bsky.graph.defs.ListView}) {
   const {_} = useLingui()
@@ -87,14 +88,16 @@ export function SubscribeMenu({list}: {list: app.bsky.graph.defs.ListView}) {
               </Menu.ItemText>
               <Menu.ItemIcon position="right" icon={MuteIcon} />
             </Menu.Item>
-            <Menu.Item
-              label={_(msg`Block accounts`)}
-              onPress={subscribeBlockPromptControl.open}>
-              <Menu.ItemText>
-                <Trans>Block accounts</Trans>
-              </Menu.ItemText>
-              <Menu.ItemIcon position="right" icon={PersonXIcon} />
-            </Menu.Item>
+            {CAN_CREATE_BLOCKS && (
+              <Menu.Item
+                label={_(msg`Block accounts`)}
+                onPress={subscribeBlockPromptControl.open}>
+                <Menu.ItemText>
+                  <Trans>Block accounts</Trans>
+                </Menu.ItemText>
+                <Menu.ItemIcon position="right" icon={PersonXIcon} />
+              </Menu.Item>
+            )}
           </Menu.Group>
         </Menu.Outer>
       </Menu.Root>
@@ -109,16 +112,18 @@ export function SubscribeMenu({list}: {list: app.bsky.graph.defs.ListView}) {
         confirmButtonCta={_(msg`Mute list`)}
       />
 
-      <Prompt.Basic
-        control={subscribeBlockPromptControl}
-        title={_(msg`Block these accounts?`)}
-        description={_(
-          msg`Blocking is public. Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you.`,
-        )}
-        onConfirm={onSubscribeBlock}
-        confirmButtonCta={_(msg`Block list`)}
-        confirmButtonColor="negative"
-      />
+      {CAN_CREATE_BLOCKS && (
+        <Prompt.Basic
+          control={subscribeBlockPromptControl}
+          title={_(msg`Block these accounts?`)}
+          description={_(
+            msg`Blocking is public. Blocked accounts cannot reply in your threads, mention you, or otherwise interact with you.`,
+          )}
+          onConfirm={onSubscribeBlock}
+          confirmButtonCta={_(msg`Block list`)}
+          confirmButtonColor="negative"
+        />
+      )}
     </>
   )
 }

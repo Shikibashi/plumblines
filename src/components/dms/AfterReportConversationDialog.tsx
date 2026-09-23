@@ -19,6 +19,7 @@ import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {IS_NATIVE} from '#/env'
 import {type app} from '#/lexicons'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 
 type ReportDialogParams = {
   convoId: string
@@ -120,7 +121,7 @@ function DoneStep({
   const control = Dialog.useDialogContext()
   const {gtMobile} = useBreakpoints()
   const t = useTheme()
-  const [actions, setActions] = useState<string[]>(['block', 'leave'])
+  const [actions, setActions] = useState<string[]>([])
   const shadow = useProfileShadow(profile)
   const [queueBlock] = useProfileBlockMutationQueue(shadow)
 
@@ -189,7 +190,7 @@ function DoneStep({
 
   const onPressPrimaryAction = () => {
     control.close(() => {
-      if (actions.includes('block')) {
+      if (CAN_CREATE_BLOCKS && actions.includes('block')) {
         void queueBlock()
       }
       if (actions.includes('leave')) {
@@ -214,16 +215,18 @@ function DoneStep({
         </Text>
       </View>
       <Toggle.Group
-        label={l`Block user and/or leave this conversation`}
+        label={l`Leave this conversation`}
         values={actions}
         onChange={handleActionsChange}>
         <View style={[a.gap_md]}>
-          <Toggle.Item name="block" label={l`Block user`}>
-            <Toggle.Checkbox />
-            <Toggle.LabelText style={[a.text_md]}>
-              <Trans>Block user</Trans>
-            </Toggle.LabelText>
-          </Toggle.Item>
+          {CAN_CREATE_BLOCKS && (
+            <Toggle.Item name="block" label={l`Block user`}>
+              <Toggle.Checkbox />
+              <Toggle.LabelText style={[a.text_md]}>
+                <Trans>Block user</Trans>
+              </Toggle.LabelText>
+            </Toggle.Item>
+          )}
           <Toggle.Item
             name="leave"
             label={l`Leave conversation`}

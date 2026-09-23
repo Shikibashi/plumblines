@@ -66,3 +66,5 @@ Focused metrics tests: 8 passed, including the disabled-endpoint behavior.
 Identity/browser title tests: 2 passed. Deep-link tests cover both the new scheme
 and upstream parsing compatibility. Main integration owns the full typecheck,
 web export and browser acceptance; native acceptance remains NOT RUN.
+
+The React startup splash components on web and native also use `PLUMBLINE_PATH`; replacing HTML templates alone does not replace the transient React splash.

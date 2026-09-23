@@ -24,6 +24,7 @@ import {Loader} from '#/components/Loader'
 import * as Toast from '#/components/Toast'
 import {Text} from '#/components/Typography'
 import {chat} from '#/lexicons'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 import {type AnyProfileView} from '#/types/bsky/profile'
 
 type Item = chat.bsky.convo.defs.ConvoView
@@ -41,6 +42,7 @@ export function BlockDialog({
   onBlock,
   currentConvoId,
 }: BlockDialogProps) {
+  if (!CAN_CREATE_BLOCKS && !profile.viewer?.blocking) return null
   return (
     <Dialog.Outer control={control}>
       <View style={[a.relative]}>

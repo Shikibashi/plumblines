@@ -15,6 +15,7 @@ import {type ImageMeta} from '#/state/gallery'
 import {STALE} from '#/state/queries'
 import {useAppviewClient, usePdsClient, useSession} from '#/state/session'
 import {app, com} from '#/lexicons'
+import {assertBlockCreationAllowed} from '#/plumblines/policy'
 import {FEED_INFO_RQKEY_ROOT} from './feed'
 import {invalidate as invalidateMyLists} from './my-lists'
 import {RQKEY as PROFILE_LISTS_RQKEY} from './profile-lists'
@@ -385,6 +386,7 @@ export function useListBlockMutation() {
   return useMutation<void, Error, {uri: string; block: boolean}>({
     mutationFn: async ({uri, block}) => {
       if (block) {
+        assertBlockCreationAllowed()
         await pdsClient.call(blockActorList, {list: uri as AtUriString})
       } else {
         await pdsClient.call(unblockActorList, {list: uri as AtUriString})

@@ -140,3 +140,10 @@ docs/superpowers/
 
 # pnpm
 .pnpm-store/
+
+# Plumblines local verification output
+.codex/
+docs/zeus/evidence/
+docs/zeus/user-brief.txt
+test-results/
+playwright-report/

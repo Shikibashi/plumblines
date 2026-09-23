@@ -26,6 +26,7 @@ import {BlockDialog} from '#/components/moderation/BlockDialog'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 import type * as bsky from '#/types/bsky'
 import {RemoveMemberPrompt} from './prompts'
 import {StatusBadge} from './StatusBadge'
@@ -133,7 +134,9 @@ export function MemberMenu({
   }
 
   const canMessageMember = canBeMessaged(profile)
-  const canBlockMember = type === 'owner' || type === 'standard'
+  const canBlockMember =
+    (type === 'owner' || type === 'standard') &&
+    (CAN_CREATE_BLOCKS || !!profile.viewer?.blocking)
   const canRemoveMember = isOwner
 
   return (

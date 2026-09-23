@@ -93,6 +93,7 @@ import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
 import {IS_INTERNAL} from '#/env'
 import {type app} from '#/lexicons'
+import {CAN_CREATE_BLOCKS} from '#/plumblines/policy'
 
 let PostMenuItems = ({
   post,
@@ -759,7 +760,7 @@ let PostMenuItems = ({
                     />
                   </Menu.Item>
 
-                  {!postAuthor.viewer?.blocking && (
+                  {CAN_CREATE_BLOCKS && !postAuthor.viewer?.blocking && (
                     <Menu.Item
                       testID="postDropdownBlockBtn"
                       label={l`Block account`}

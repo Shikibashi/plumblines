@@ -42,6 +42,7 @@ import * as userActionHistory from '#/state/userActionHistory'
 import {useAnalytics} from '#/analytics'
 import {type Metrics, toClout} from '#/analytics/metrics'
 import {app} from '#/lexicons'
+import {assertBlockCreationAllowed} from '#/plumblines/policy'
 import type * as bsky from '#/types/bsky'
 import {
   ProgressGuideAction,
@@ -617,7 +618,8 @@ export function useProfileBlockMutationQueue(
     },
   })
 
-  const queueBlock = useCallback(() => {
+  const queueBlock = useCallback(async () => {
+    assertBlockCreationAllowed()
     // optimistically update
     updateProfileShadow(queryClient, did, {
       blockingUri: 'pending',
@@ -645,6 +647,7 @@ function useProfileBlockMutation() {
       if (!currentAccount) {
         throw new Error('Not signed in')
       }
+      assertBlockCreationAllowed()
       return await pdsClient.create(app.bsky.graph.block, {
         // the mutation takes the did as a plain string
         subject: did as DidString,

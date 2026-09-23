@@ -153,9 +153,8 @@ function Empty() {
         ]}>
         <Text style={[a.text_sm, a.text_center, t.atoms.text_contrast_high]}>
           <Trans>
-            You have not blocked any accounts yet. To block an account, go to
-            their profile and select "Block account" from the menu on their
-            account.
+            You have no existing account blocks. Plumblines does not create
+            blocks. You can mute accounts to choose what you see.
           </Trans>
         </Text>
       </View>
@@ -179,9 +178,9 @@ function Info({style}: {style?: StyleProp<ViewStyle>}) {
       ]}>
       <Text style={[a.text_center, a.text_sm, t.atoms.text_contrast_high]}>
         <Trans>
-          Blocked accounts cannot reply in your threads, mention you, or
-          otherwise interact with you. You will not see their content and they
-          will be prevented from seeing yours.
+          Plumblines does not create blocks. Existing AT Protocol blocks may
+          still be enforced by network services. You can review and remove
+          existing blocks here.
         </Trans>
       </Text>
     </View>

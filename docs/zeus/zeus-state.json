@@ -1,0 +1,77 @@
+{
+  "version": 2,
+  "description": "Plumblines AT Protocol-compatible Bluesky fork; newspaper reference; no block creation; real upstream client",
+  "startedAt": "2026-09-23T04:23:40.005558+00:00",
+  "currentPhase": "reported",
+  "phases": {
+    "parsing": {
+      "status": "completed"
+    },
+    "planning": {
+      "status": "completed",
+      "evidence": "docs/plan/plumblines-v1/plan.md",
+      "grade": "weak"
+    },
+    "implementation": {
+      "status": "completed",
+      "path": "agent-team-codex native workers",
+      "grade": "proved"
+    },
+    "verification": {
+      "status": "completed",
+      "grade": "weak",
+      "reason": "Local checks pass; upstream origin restrictions and unchanged dependency advisories remain."
+    },
+    "docker": {
+      "status": "completed",
+      "grade": "proved",
+      "compose": "docker-images/docker-compose.yml",
+      "url": "http://127.0.0.1:8139",
+      "mode": "host-built artifact in non-root container"
+    },
+    "testing": {
+      "status": "completed",
+      "grade": "proved",
+      "browserPassed": 15,
+      "browserFailed": 0,
+      "explorationPassed": 3,
+      "unitPassed": 891,
+      "unitTodo": 28,
+      "scope": "guest browser and mocked mutation tests; external search results not verified"
+    },
+    "report": {
+      "status": "completed",
+      "grade": "proved",
+      "path": "docs/zeus/zeus-report.md"
+    }
+  },
+  "parsed": {
+    "industry": "social",
+    "techStack": {
+      "frontend": "React Native Web / Expo 57 / TypeScript",
+      "backend": "existing AT Protocol services",
+      "db": null
+    },
+    "features": [
+      "newspaper UI",
+      "fork branding",
+      "no block creation",
+      "attention controls",
+      "honest feed provenance",
+      "responsive web"
+    ],
+    "projectName": "plumblines"
+  },
+  "artifacts": {
+    "plan": "docs/plan/plumblines-v1/plan.md",
+    "sections": "docs/plan/plumblines-v1/sections/",
+    "report": "docs/zeus/zeus-report.md"
+  },
+  "errors": [
+    "Origin-restricted upstream workers and public searchPostsV2 reject local browser requests",
+    "Inherited dependency audit: 1 critical, 54 high, 22 moderate, 5 low",
+    "Authenticated, native device and public deployment acceptance not run"
+  ],
+  "result": "PARTIAL",
+  "completedAt": "2026-09-23T05:04:04.149892+00:00"
+}
