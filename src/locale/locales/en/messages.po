@@ -13,6 +13,11 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#. js-lingui-explicit-id
+#: src/plumblines/reading/standard/index.web.tsx:139
+msgid "Labels"
+msgstr "Labels"
+
 #. Accessibility label for a category (e.g. Art, Video Games, Sports, etc.) that shows suggested accounts for the user to follow. The tab is currently selected.
 #: src/components/InterestTabs.tsx:333
 msgid "\"{interestsDisplayName}\" category (active)"
@@ -767,6 +772,11 @@ msgstr "{memberCount}/{memberLimit}"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr ""
 
+#. js-lingui-explicit-id
+#: src/plumblines/reading/standard/index.web.tsx:128
+msgid "plumblines.standard.readingTime"
+msgstr "{minutes} min read"
+
 #. placeholder {0}: reaction.value
 #: src/components/dms/getReactionInfo.ts:70
 msgid "{name} reacted {0} to {target}"
@@ -1363,7 +1373,7 @@ msgstr ""
 msgid "Add recommended feeds"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:240
+#: src/plumblines/sections/index.tsx:293
 msgid "Add section"
 msgstr "Add section"
 
@@ -2058,6 +2068,10 @@ msgstr ""
 msgid "Art"
 msgstr ""
 
+#: src/plumblines/reading/standard/index.web.tsx:308
+msgid "ARTICLE"
+msgstr "ARTICLE"
+
 #: src/plumblines/reading/preferences.tsx:47
 #: src/plumblines/reading/preferences.tsx:56
 msgid "Article mode"
@@ -2423,6 +2437,10 @@ msgstr ""
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:200
 msgid "Bring up to 50 friends together in one chat."
 msgstr "Bring up to 50 friends together in one chat."
+
+#: src/plumblines/sections/index.tsx:178
+msgid "Broadsheet"
+msgstr "Broadsheet"
 
 #: src/view/com/feeds/ProfileFeedgens.tsx:167
 #: src/view/com/feeds/ProfileFeedgens.tsx:168
@@ -2832,7 +2850,7 @@ msgstr "Check back later!"
 msgid "Check my status"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:82
+#: src/plumblines/sections/index.tsx:106
 msgid "Check the name and source. Use a matching feed/list AT URI or Bluesky link, or a non-empty search. Up to eight sections are supported."
 msgstr "Check the name and source. Use a matching feed/list AT URI or Bluesky link, or a non-empty search. Up to eight sections are supported."
 
@@ -3184,6 +3202,10 @@ msgstr ""
 #: src/screens/ModerationInbox/Subject.tsx:65
 msgid "Community Guidelines: Harassment"
 msgstr "Community Guidelines: Harassment"
+
+#: src/plumblines/sections/index.tsx:179
+msgid "Compact"
+msgstr "Compact"
 
 #: src/screens/Onboarding/StepFinished/index.tsx:335
 msgid "Complete onboarding and start using your account"
@@ -3609,7 +3631,7 @@ msgstr "Could not load public quotes. Please try again."
 msgid "Could not mute chat"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:363
+#: src/plumblines/sections/index.tsx:545
 msgid "Could not resolve this source."
 msgstr "Could not resolve this source."
 
@@ -3694,6 +3716,8 @@ msgstr "Create a Starter Pack for me"
 
 #: src/components/WelcomeModal.tsx:144
 #: src/components/WelcomeModal.tsx:152
+#: src/plumblines/NewspaperHome.tsx:59
+#: src/plumblines/NewspaperHome.tsx:66
 #: src/screens/Messages/JoinRequest.tsx:318
 #: src/screens/Signup/index.tsx:139
 #: src/view/com/auth/SplashScreen.tsx:108
@@ -3805,7 +3829,7 @@ msgstr "Current page"
 msgid "Custom"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:218
+#: src/plumblines/sections/index.tsx:271
 msgid "Custom feed"
 msgstr "Custom feed"
 
@@ -4212,6 +4236,11 @@ msgstr ""
 msgid "Dismisses the QR scanner"
 msgstr "Dismisses the QR scanner"
 
+#: src/plumblines/sections/index.tsx:616
+#: src/plumblines/sections/index.tsx:737
+msgid "Dispatch"
+msgstr "Dispatch"
+
 #: src/screens/Settings/AccessibilitySettings.tsx:70
 #: src/screens/Settings/AccessibilitySettings.tsx:75
 msgid "Display larger alt text badges"
@@ -4409,7 +4438,7 @@ msgstr ""
 msgid "e.g. Users that repeatedly reply with ads."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:172
+#: src/plumblines/sections/index.tsx:225
 msgid "Earlier"
 msgstr "Earlier"
 
@@ -4448,6 +4477,10 @@ msgstr "Edit feed settings →"
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:113
 msgid "Edit Feeds"
 msgstr ""
+
+#: src/plumblines/sections/index.tsx:148
+msgid "Edit front page"
+msgstr "Edit front page"
 
 #: src/screens/Messages/ConversationSettings/prompts.tsx:43
 #: src/screens/Messages/ConversationSettings/prompts.tsx:49
@@ -5353,7 +5386,7 @@ msgstr ""
 msgid "Feed menu"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:227
+#: src/plumblines/sections/index.tsx:280
 msgid "Feed or list link / AT URI"
 msgstr "Feed or list link / AT URI"
 
@@ -5692,7 +5725,7 @@ msgstr ""
 #: src/components/ProfileHoverCard/index.web.tsx:502
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/plumblines/records/PostInformationDialog.tsx:93
-#: src/plumblines/sections/index.tsx:217
+#: src/plumblines/sections/index.tsx:270
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/screens/VideoFeed/index.tsx:992
@@ -5743,7 +5776,7 @@ msgstr ""
 msgid "Following timeline"
 msgstr "Following timeline"
 
-#: src/plumblines/sections/index.tsx:288
+#: src/plumblines/sections/index.tsx:378
 msgid "Following timeline · AppView order · no recommended-feed fallback"
 msgstr "Following timeline · AppView order · no recommended-feed fallback"
 
@@ -6010,7 +6043,7 @@ msgstr ""
 msgid "GIF uploaded"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:61
+#: src/plumblines/sections/index.tsx:85
 msgid "Give the section a name."
 msgstr "Give the section a name."
 
@@ -7023,6 +7056,10 @@ msgstr "It's just <0>{0} </0>right now! Add more people to your Starter Pack by 
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr ""
 
+#: src/plumblines/sections/index.tsx:190
+msgid "j / k move between stories; o opens the focused story; 1–8 select configured sections."
+msgstr "j / k move between stories; o opens the focused story; 1–8 select configured sections."
+
 #. placeholder {0}: videoState.jobId
 #: src/view/com/composer/Composer.tsx:2643
 msgid "Job ID: {0}"
@@ -7068,9 +7105,9 @@ msgstr ""
 msgid "Keep me posted"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:138
-msgid "Keyboard: j / k move between stories, o opens the focused story, 1–8 select sections."
-msgstr "Keyboard: j / k move between stories, o opens the focused story, 1–8 select sections."
+#: src/plumblines/sections/index.tsx:187
+msgid "Keyboard shortcuts"
+msgstr "Keyboard shortcuts"
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:209
 msgid "KWS website"
@@ -7148,7 +7185,7 @@ msgstr ""
 msgid "Last initiated just now"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:178
+#: src/plumblines/sections/index.tsx:231
 msgid "Later"
 msgstr "Later"
 
@@ -7157,6 +7194,23 @@ msgstr "Later"
 #: src/screens/Topic.tsx:66
 msgid "Latest"
 msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:437
+msgid "Latest public articles"
+msgstr "Latest public articles"
+
+#: src/plumblines/sections/index.tsx:338
+msgid "Lead"
+msgstr "Lead"
+
+#. placeholder {0}: layoutSection.title
+#: src/plumblines/sections/index.tsx:403
+msgid "Lead position set by you: {0}"
+msgstr "Lead position set by you: {0}"
+
+#: src/plumblines/sections/index.tsx:152
+msgid "Lead section"
+msgstr "Lead section"
 
 #: src/components/verification/VerificationsDialog.tsx:169
 #: src/components/verification/VerifierDialog.tsx:137
@@ -7420,7 +7474,7 @@ msgid "Link copied to clipboard"
 msgstr "Link copied to clipboard"
 
 #: src/Navigation.tsx:277
-#: src/plumblines/sections/index.tsx:219
+#: src/plumblines/sections/index.tsx:272
 msgid "List"
 msgstr ""
 
@@ -7553,6 +7607,10 @@ msgstr ""
 msgid "Live feature is in beta"
 msgstr ""
 
+#: src/plumblines/sections/index.tsx:305
+msgid "Live front page"
+msgstr "Live front page"
+
 #: src/features/liveNow/components/EditLiveDialog.tsx:144
 #: src/features/liveNow/components/EditLiveDialog.tsx:148
 #: src/features/liveNow/components/GoLiveDialog.tsx:141
@@ -7566,7 +7624,7 @@ msgstr ""
 msgid "Load more"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:549
+#: src/plumblines/sections/index.tsx:792
 msgid "Load more posts"
 msgstr "Load more posts"
 
@@ -7600,13 +7658,21 @@ msgstr "Loading chat…"
 msgid "Loading lists..."
 msgstr ""
 
+#: src/plumblines/reading/standard/index.web.tsx:455
+msgid "Loading more…"
+msgstr "Loading more…"
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:275
 msgid "Loading post interaction settings..."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:530
+#: src/plumblines/sections/index.tsx:773
 msgid "Loading posts…"
 msgstr "Loading posts…"
+
+#: src/plumblines/reading/standard/index.web.tsx:420
+msgid "Loading public articles…"
+msgstr "Loading public articles…"
 
 #: src/plumblines/components/PublicPostReader.tsx:144
 msgid "Loading public post…"
@@ -7624,7 +7690,7 @@ msgstr "Loading public profile…"
 msgid "Loading public quotes…"
 msgstr "Loading public quotes…"
 
-#: src/plumblines/sections/index.tsx:365
+#: src/plumblines/sections/index.tsx:547
 msgid "Loading source…"
 msgstr "Loading source…"
 
@@ -7634,8 +7700,8 @@ msgstr ""
 
 #: src/plumblines/local-attention.tsx:160
 #: src/plumblines/local-attention.tsx:162
-#: src/plumblines/NewspaperHome.tsx:35
-#: src/plumblines/NewspaperHome.tsx:40
+#: src/plumblines/NewspaperHome.tsx:72
+#: src/plumblines/NewspaperHome.tsx:77
 msgid "Local attention"
 msgstr "Local attention"
 
@@ -7675,6 +7741,14 @@ msgstr ""
 #: src/components/RichTextTag.tsx:55
 msgid "Long press to open tag menu for {0}"
 msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:407
+msgid "LONG-FORM"
+msgstr "LONG-FORM"
+
+#: src/plumblines/sections/index.tsx:435
+msgid "Long-form index"
+msgstr "Long-form index"
 
 #: src/plumblines/records/PostInformationDialog.tsx:122
 msgid "Looking up public identity…"
@@ -7718,8 +7792,8 @@ msgstr ""
 msgid "Manage saved feeds"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:122
-#: src/plumblines/sections/index.tsx:144
+#: src/plumblines/sections/index.tsx:120
+#: src/plumblines/sections/index.tsx:197
 msgid "Manage sections"
 msgstr "Manage sections"
 
@@ -8036,6 +8110,14 @@ msgstr ""
 msgid "Moderator has chosen to set a general warning on the content."
 msgstr ""
 
+#: src/plumblines/reading/standard/index.web.tsx:457
+msgid "More articles"
+msgstr "More articles"
+
+#: src/plumblines/reading/standard/index.web.tsx:463
+msgid "More articles could not be loaded. Select “More articles” to retry."
+msgstr "More articles could not be loaded. Select “More articles” to retry."
+
 #: src/view/shell/desktop/Feeds.tsx:105
 #: src/view/shell/desktop/Feeds.tsx:152
 msgid "More feeds"
@@ -8058,12 +8140,12 @@ msgid "More people. Brighter ideas."
 msgstr "More people. Brighter ideas."
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:170
+#: src/plumblines/sections/index.tsx:223
 msgid "Move {0} earlier"
 msgstr "Move {0} earlier"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:176
+#: src/plumblines/sections/index.tsx:229
 msgid "Move {0} later"
 msgstr "Move {0} later"
 
@@ -8392,7 +8474,7 @@ msgstr "New posts from {firstAuthorLink} and <0>{additionalAuthorsCount, plural,
 msgid "New posts from {firstAuthorName} and {additionalAuthorsCount, plural, one {{formattedAuthorsCount} other} other {{formattedAuthorsCount} others}}"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:202
+#: src/plumblines/sections/index.tsx:255
 msgid "New section name"
 msgstr "New section name"
 
@@ -8421,7 +8503,7 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:127
+#: src/plumblines/sections/index.tsx:125
 msgid "Newspaper sections"
 msgstr "Newspaper sections"
 
@@ -8448,6 +8530,10 @@ msgstr ""
 #: src/components/Lightbox/Lightbox.web.tsx:219
 msgid "Next image"
 msgstr ""
+
+#: src/plumblines/sections/index.tsx:427
+msgid "Next page"
+msgstr "Next page"
 
 #: src/features/inviteFriends/components/ThemePicker.tsx:33
 msgid "Night"
@@ -8623,7 +8709,7 @@ msgstr "No post filter"
 msgid "No posts here"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:538
+#: src/plumblines/sections/index.tsx:781
 msgid "No posts match this section."
 msgstr "No posts match this section."
 
@@ -9086,6 +9172,10 @@ msgstr ""
 msgid "Open drawer menu"
 msgstr ""
 
+#: src/plumblines/reading/standard/index.web.tsx:80
+msgid "Open embedded media at its source"
+msgstr "Open embedded media at its source"
+
 #: src/screens/Messages/components/MessageComposer.tsx:216
 #: src/view/com/composer/Composer.tsx:2273
 msgid "Open emoji picker"
@@ -9189,6 +9279,10 @@ msgstr ""
 #: src/components/intents/GroupChatJoinDialog.tsx:452
 msgid "Open this group chat"
 msgstr "Open this group chat"
+
+#: src/plumblines/reading/standard/index.web.tsx:232
+msgid "Opening article…"
+msgstr "Opening article…"
 
 #: src/view/shell/desktop/Feeds.tsx:185
 msgid "Opens {displayName} feed"
@@ -9367,9 +9461,13 @@ msgstr ""
 msgid "Ordering"
 msgstr "Ordering"
 
-#: src/plumblines/sections/index.tsx:291
+#: src/plumblines/sections/index.tsx:381
 msgid "Ordering is determined by the source service."
 msgstr "Ordering is determined by the source service."
+
+#: src/plumblines/reading/standard/index.web.tsx:268
+msgid "Original record"
+msgstr "Original record"
 
 #: src/screens/Settings/components/OTAInfo.tsx:60
 msgid "OTA status: ..."
@@ -9445,6 +9543,25 @@ msgstr "Owner"
 #: src/components/dms/LeaveConvoPrompt.tsx:46
 msgid "Owner must lock the group before leaving."
 msgstr "Owner must lock the group before leaving."
+
+#. placeholder {0}: composition.sheets.length + 1
+#. placeholder {0}: sheet.pageNumber
+#: src/plumblines/sections/index.tsx:307
+#: src/plumblines/sections/index.tsx:437
+msgid "Page {0}"
+msgstr "Page {0}"
+
+#. placeholder {0}: composition.sheets.length + 1
+#. placeholder {0}: sheet.pageNumber
+#. placeholder {1}: composition.sheets.length + 1
+#: src/plumblines/sections/index.tsx:420
+#: src/plumblines/sections/index.tsx:445
+msgid "Page {0} of {1}"
+msgstr "Page {0} of {1}"
+
+#: src/plumblines/sections/index.tsx:169
+msgid "Page composition"
+msgstr "Page composition"
 
 #: src/components/Lists.tsx:204
 #: src/components/Lists.tsx:219
@@ -10069,6 +10186,11 @@ msgstr ""
 msgid "Previous image"
 msgstr ""
 
+#: src/plumblines/sections/index.tsx:415
+#: src/plumblines/sections/index.tsx:443
+msgid "Previous page"
+msgstr "Previous page"
+
 #: src/screens/Settings/LanguageSettings.tsx:141
 #: src/screens/Settings/LanguageSettings.tsx:157
 msgid "Primary language"
@@ -10275,7 +10397,7 @@ msgstr ""
 
 #: src/lib/hooks/useNotificationHandler.ts:186
 #: src/plumblines/records/PostInformationDialog.tsx:144
-#: src/plumblines/sections/index.tsx:282
+#: src/plumblines/sections/index.tsx:371
 #: src/screens/Post/PostQuotes.tsx:31
 #: src/screens/Settings/NotificationSettings/index.tsx:203
 #: src/screens/Settings/NotificationSettings/index.tsx:346
@@ -10330,6 +10452,16 @@ msgctxt "english-only-resource"
 msgid "Read about how to use advanced search filters"
 msgstr "Read about how to use advanced search filters"
 
+#. js-lingui-explicit-id
+#: src/plumblines/reading/standard/index.web.tsx:301
+msgid "plumblines.standard.readArticle"
+msgstr "Read article: {title}"
+
+#: src/plumblines/reading/standard/index.web.tsx:221
+#: src/plumblines/reading/standard/index.web.tsx:275
+msgid "Read at the publication"
+msgstr "Read at the publication"
+
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:163
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:174
 msgid "Read blog post"
@@ -10365,10 +10497,24 @@ msgstr ""
 msgid "Read the Bluesky Terms of Service"
 msgstr ""
 
+#: src/plumblines/NewspaperHome.tsx:39
+msgid "Reader display controls and local attention settings"
+msgstr "Reader display controls and local attention settings"
+
 #: src/plumblines/reading/preferences.tsx:32
 #: src/plumblines/reading/preferences.tsx:41
 msgid "Reader mode"
 msgstr "Reader mode"
+
+#: src/plumblines/reading/standard/index.web.tsx:404
+#: src/plumblines/sections/index.tsx:143
+#: src/plumblines/sections/index.tsx:180
+msgid "Reading"
+msgstr "Reading"
+
+#: src/plumblines/NewspaperHome.tsx:38
+msgid "Reading tools"
+msgstr "Reading tools"
 
 #: src/screens/Takendown.tsx:156
 #: src/screens/Takendown.tsx:164
@@ -10409,7 +10555,7 @@ msgstr ""
 msgid "Record URI"
 msgstr "Record URI"
 
-#: src/plumblines/sections/index.tsx:526
+#: src/plumblines/sections/index.tsx:769
 msgid "Refresh section"
 msgstr "Refresh section"
 
@@ -10447,7 +10593,7 @@ msgstr ""
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:110
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:117
-#: src/plumblines/sections/index.tsx:196
+#: src/plumblines/sections/index.tsx:249
 #: src/screens/Bookmarks.tsx:256
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
 #: src/screens/Messages/ConversationSettings/prompts.tsx:178
@@ -10458,7 +10604,7 @@ msgid "Remove"
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:182
+#: src/plumblines/sections/index.tsx:235
 msgid "Remove {0}"
 msgstr "Remove {0}"
 
@@ -10658,7 +10804,7 @@ msgid "Removed verification"
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:156
+#: src/plumblines/sections/index.tsx:209
 msgid "Rename {0}"
 msgstr "Rename {0}"
 
@@ -10715,7 +10861,7 @@ msgstr "Replied-to message, tap to scroll to it"
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:283
 #: src/lib/hooks/useNotificationHandler.ts:172
 #: src/plumblines/records/PostInformationDialog.tsx:142
-#: src/plumblines/sections/index.tsx:279
+#: src/plumblines/sections/index.tsx:368
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:218
 #: src/screens/Settings/NotificationSettings/index.tsx:181
 #: src/screens/Settings/NotificationSettings/index.tsx:330
@@ -10921,7 +11067,7 @@ msgid "Reposted by you"
 msgstr ""
 
 #: src/lib/hooks/useNotificationHandler.ts:165
-#: src/plumblines/sections/index.tsx:281
+#: src/plumblines/sections/index.tsx:370
 #: src/screens/Settings/NotificationSettings/index.tsx:214
 #: src/screens/Settings/NotificationSettings/index.tsx:355
 msgid "Reposts"
@@ -11105,7 +11251,9 @@ msgstr ""
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoFallback.tsx:56
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoFallback.tsx:59
 #: src/components/StarterPack/ProfileStarterPacks.tsx:371
-#: src/plumblines/sections/index.tsx:370
+#: src/plumblines/reading/standard/index.web.tsx:243
+#: src/plumblines/reading/standard/index.web.tsx:428
+#: src/plumblines/sections/index.tsx:552
 #: src/screens/Login/LoginForm.tsx:533
 #: src/screens/Login/LoginForm.tsx:539
 #: src/screens/Messages/ChatList.tsx:429
@@ -11280,7 +11428,7 @@ msgstr ""
 msgid "Saved Posts"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:220
+#: src/plumblines/sections/index.tsx:273
 msgid "Saved search"
 msgstr "Saved search"
 
@@ -11434,12 +11582,12 @@ msgstr ""
 msgid "Search profiles"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:226
+#: src/plumblines/sections/index.tsx:279
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:248
 msgid "Search query"
 msgstr "Search query"
 
-#: src/plumblines/sections/index.tsx:290
+#: src/plumblines/sections/index.tsx:380
 msgid "Search results · latest · repost attribution is not supplied"
 msgstr "Search results · latest · repost attribution is not supplied"
 
@@ -11453,11 +11601,11 @@ msgstr ""
 msgid "Searches for profiles"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:154
+#: src/plumblines/sections/index.tsx:207
 msgid "Section name"
 msgstr "Section name"
 
-#: src/plumblines/sections/index.tsx:146
+#: src/plumblines/sections/index.tsx:199
 msgid "Sections and their filters are saved on this device for this account."
 msgstr "Sections and their filters are saved on this device for this account."
 
@@ -11558,6 +11706,10 @@ msgstr ""
 #: src/components/AppLanguageDropdown.tsx:63
 msgid "Select an app language"
 msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:475
+msgid "Select an article to open its full text from the public index."
+msgstr "Select an article to open its full text from the public index."
 
 #: src/screens/Onboarding/StepProfile/AvatarCircle.tsx:65
 msgid "Select an avatar"
@@ -11840,6 +11992,11 @@ msgstr ""
 #: src/view/shell/Drawer.tsx:671
 msgid "Settings"
 msgstr ""
+
+#. placeholder {0}: section.title
+#: src/plumblines/sections/index.tsx:343
+msgid "Settings for {0}"
+msgstr "Settings for {0}"
 
 #: src/screens/Settings/NotificationSettings/index.tsx:220
 msgid "Settings for activity from others"
@@ -12182,7 +12339,9 @@ msgstr ""
 #: src/components/dialogs/Signin.tsx:100
 #: src/components/WelcomeModal.tsx:187
 #: src/components/WelcomeModal.tsx:198
-#: src/plumblines/sections/index.tsx:330
+#: src/plumblines/NewspaperHome.tsx:47
+#: src/plumblines/NewspaperHome.tsx:54
+#: src/plumblines/sections/index.tsx:487
 #: src/screens/Hashtag.tsx:233
 #: src/screens/Login/index.tsx:143
 #: src/screens/Login/index.tsx:165
@@ -12235,7 +12394,7 @@ msgstr ""
 msgid "Sign in to Bluesky or create a new account"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:323
+#: src/plumblines/sections/index.tsx:480
 msgid "Sign in to read this section. You can add a publicly available custom feed or list while signed out."
 msgstr "Sign in to read this section. You can add a publicly available custom feed or list while signed out."
 
@@ -12494,7 +12653,7 @@ msgid "Sort replies to the same post by:"
 msgstr ""
 
 #: src/plumblines/components/FeedContext.tsx:99
-#: src/plumblines/sections/index.tsx:211
+#: src/plumblines/sections/index.tsx:264
 msgid "Source"
 msgstr "Source"
 
@@ -12506,7 +12665,7 @@ msgstr "Source code"
 msgid "Source DID"
 msgstr "Source DID"
 
-#: src/plumblines/sections/index.tsx:297
+#: src/plumblines/sections/index.tsx:387
 msgid "Source information"
 msgstr "Source information"
 
@@ -12514,6 +12673,10 @@ msgstr "Source information"
 #: src/components/moderation/ModerationDetailsDialog.tsx:272
 msgid "Source: <0>{sourceName}</0>"
 msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:411
+msgid "Source: Standard Reader public index · Latest documents · Newest first"
+msgstr "Source: Standard Reader public index · Latest documents · Newest first"
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:40
 #: src/screens/ModerationInbox/Report.tsx:69
@@ -12533,6 +12696,10 @@ msgstr ""
 #: src/analytics/features/index.ts:94
 msgid "Spot posts your friends and follows have liked."
 msgstr "Spot posts your friends and follows have liked."
+
+#: src/plumblines/reading/standard/index.web.tsx:255
+msgid "Standard.site article"
+msgstr "Standard.site article"
 
 #: src/components/PostControls/ShareMenu/RecentChats.tsx:231
 msgid "Start a conversation, and it will appear here."
@@ -13021,6 +13188,10 @@ msgstr ""
 msgid "The app will be restarted"
 msgstr ""
 
+#: src/plumblines/reading/standard/index.web.tsx:240
+msgid "The article could not be loaded."
+msgstr "The article could not be loaded."
+
 #: src/components/moderation/ModerationDetailsDialog.tsx:139
 #: src/lib/moderation/useModerationCauseDescription.ts:126
 msgid "The author of this thread has hidden this reply."
@@ -13086,10 +13257,14 @@ msgstr ""
 msgid "The following settings will be used as your defaults when creating new posts. You can edit these for a specific post from the composer."
 msgstr ""
 
-#: src/plumblines/NewspaperHome.tsx:19
-#: src/plumblines/sections/index.tsx:119
+#: src/plumblines/NewspaperHome.tsx:23
+#: src/plumblines/sections/index.tsx:117
 msgid "The front page"
 msgstr "The front page"
+
+#: src/plumblines/reading/standard/index.web.tsx:213
+msgid "The index has no readable body for this document."
+msgstr "The index has no readable body for this document."
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:23
 msgid "The laws in your region require you to verify you're an adult to access certain features. Tap to learn more."
@@ -13123,6 +13298,14 @@ msgstr ""
 #: src/view/com/composer/state/video.ts:488
 msgid "The processed video is too large. Please try again with a smaller file."
 msgstr "The processed video is too large. Please try again with a smaller file."
+
+#: src/plumblines/reading/standard/index.web.tsx:433
+msgid "The public index has no readable documents right now."
+msgstr "The public index has no readable documents right now."
+
+#: src/plumblines/reading/standard/index.web.tsx:425
+msgid "The public Reading index could not be loaded."
+msgstr "The public Reading index could not be loaded."
 
 #: src/plumblines/components/PublicPostReader.tsx:126
 msgid "The public service did not return this post. It may be unavailable or restricted."
@@ -13165,6 +13348,10 @@ msgstr ""
 #: src/view/com/post-thread/PostQuotes.tsx:240
 msgid "The service returned no visible quotes. Try the public view to check for posts omitted from your account view."
 msgstr "The service returned no visible quotes. Try the public view to check for posts omitted from your account view."
+
+#: src/plumblines/reading/standard/index.web.tsx:156
+msgid "The source has not made a readable article body available."
+msgstr "The source has not made a readable article body available."
 
 #: src/plumblines/records/PostInformationDialog.tsx:137
 msgid "The source returned this post. Its internal ranking and complete filtering history are not available here."
@@ -13461,6 +13648,14 @@ msgstr "This conversation is locked."
 msgid "This conversation is with a deleted or a deactivated account. Press for options"
 msgstr ""
 
+#: src/plumblines/reading/standard/index.web.tsx:185
+msgid "This document format is not supported by the reader yet."
+msgstr "This document format is not supported by the reader yet."
+
+#: src/plumblines/reading/standard/index.web.tsx:179
+msgid "This document format is not supported by the reader yet. Showing the source text."
+msgstr "This document format is not supported by the reader yet. Showing the source text."
+
 #: src/view/com/composer/drafts/DraftItem.tsx:241
 msgid "This draft will be permanently deleted."
 msgstr ""
@@ -13672,7 +13867,7 @@ msgstr ""
 msgid "This should only take a few minutes."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:534
+#: src/plumblines/sections/index.tsx:777
 msgid "This source could not be loaded. Refresh to retry."
 msgstr "This source could not be loaded. Refresh to retry."
 
@@ -14341,7 +14536,7 @@ msgstr "Until {0}"
 msgid "Up to 50 people"
 msgstr "Up to 50 people"
 
-#: src/plumblines/sections/index.tsx:60
+#: src/plumblines/sections/index.tsx:84
 msgid "Up to eight sections can be open at once."
 msgstr "Up to eight sections can be open at once."
 

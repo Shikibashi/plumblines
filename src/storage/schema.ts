@@ -85,6 +85,8 @@ export type Account = {
   plumblinesSections?: unknown
   plumblinesAttention?: unknown
   plumblinesReading?: unknown
+  /** Plumblines front-page layout is local presentation state, not a repo record. */
+  plumblinesFrontPage?: unknown
   searchTermHistory?: string[]
   searchAccountHistory?: string[]
 

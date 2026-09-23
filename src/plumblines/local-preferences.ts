@@ -4,7 +4,11 @@ import {useSession} from '#/state/session'
 import {IS_WEB} from '#/env'
 import {account} from '#/storage'
 
-type Key = 'plumblinesSections' | 'plumblinesAttention' | 'plumblinesReading'
+type Key =
+  | 'plumblinesSections'
+  | 'plumblinesAttention'
+  | 'plumblinesReading'
+  | 'plumblinesFrontPage'
 
 /** Local-only account-scoped preferences, with stable snapshots and cross-tab updates. */
 export function usePlumblinesStorage<T>(

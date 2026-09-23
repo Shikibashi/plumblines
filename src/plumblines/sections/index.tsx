@@ -17,9 +17,15 @@ import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {Post} from '#/view/com/post/Post'
 import {PostFeedItem} from '#/view/com/posts/PostFeedItem'
 import {ViewFullThread} from '#/view/com/posts/ViewFullThread'
-import {useTheme} from '#/alf'
 import {useLocalAttention} from '#/plumblines/local-attention'
 import {usePlumblinesStorage} from '#/plumblines/local-preferences'
+import {StandardReading} from '#/plumblines/reading/standard'
+import {
+  composeFrontPage,
+  DEFAULT_FRONT_PAGE_PREFERENCES,
+  type StoryTreatment,
+  validateFrontPagePreferences,
+} from '../frontpage/model'
 import {useSectionKeyboard} from './keyboard'
 import {
   DEFAULT_FILTERS,
@@ -35,11 +41,29 @@ import {
 
 export function NewspaperSections() {
   const {t: l} = useLingui()
-  const t = useTheme()
   const [config, save] = usePlumblinesStorage(
     'plumblinesSections',
     validateSections,
     DEFAULT_SECTIONS,
+  )
+  const [frontPage, saveFrontPage] = usePlumblinesStorage(
+    'plumblinesFrontPage',
+    value =>
+      validateFrontPagePreferences(
+        value,
+        config.sections.map(section => section.id),
+      ),
+    DEFAULT_FRONT_PAGE_PREFERENCES,
+  )
+  const composition = composeFrontPage(
+    config.sections.map(section => ({
+      id: section.id,
+      title: section.title,
+      source: section.source,
+      // Slots are layout-only; live feed items remain owned by their query.
+      items: Array.from({length: 30}, () => ({hasImage: false})),
+    })),
+    frontPage,
   )
   const root = useRef<HTMLDivElement>(null)
   useSectionKeyboard(root, config, save)
@@ -87,33 +111,7 @@ export function NewspaperSections() {
     <div
       ref={root}
       className="newspaper-sections"
-      data-testid="newspaper-sections"
-      style={{
-        color: t.atoms.text.color,
-        background: t.atoms.bg.backgroundColor,
-      }}>
-      <style>{`
-      .newspaper-sections{font-family:Georgia,'Times New Roman',serif;min-width:0;width:100%;padding:16px;box-sizing:border-box}
-      .newspaper-sections *{box-sizing:border-box}
-      .newspaper-sections button,.newspaper-sections input,.newspaper-sections select{font:inherit;color:inherit;background:transparent;border:1px solid #a49a87;padding:8px;max-width:100%}
-      .newspaper-sections button{cursor:pointer}.newspaper-sections button:disabled{opacity:.5;cursor:default}
-      .newspaper-sections button:focus-visible,.newspaper-sections input:focus-visible,.newspaper-sections select:focus-visible{outline:2px solid #8d2924;outline-offset:2px}
-      .newspaper-heading,.newspaper-section-toolbar,.newspaper-section-tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-      .newspaper-heading{justify-content:space-between;border-bottom:3px double #a49a87;margin-bottom:12px}.newspaper-heading h1{font-size:28px;text-transform:uppercase;margin:0 0 10px}
-      .newspaper-section-tabs{margin-bottom:16px}.newspaper-section-tabs [aria-pressed=true]{border-bottom:3px solid #8d2924}
-      .newspaper-columns{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
-      .newspaper-column{min-width:0;border:1px solid #a49a87;overflow:hidden}.newspaper-column>header{padding:12px;border-bottom:3px double #a49a87}
-      .newspaper-column h2{font-size:23px;margin:0 0 8px;overflow-wrap:anywhere}.newspaper-column p{line-height:1.45;overflow-wrap:anywhere}
-      .newspaper-stories{max-height:75vh;overflow:auto;overscroll-behavior:contain}.newspaper-stories>p,.newspaper-stories>button{margin:12px}
-      .newspaper-section-toolbar label{display:flex;align-items:center;gap:4px;font-size:14px}.newspaper-section-toolbar input{margin:0}
-      .newspaper-manager{padding:12px;border:1px solid #a49a87;margin-bottom:16px}.newspaper-manager form{display:grid;gap:10px}.newspaper-manager label{display:grid;gap:4px}.newspaper-manager input{width:100%}
-      .newspaper-manager-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:10px}.newspaper-manager-row label{flex:1;min-width:120px}
-      .newspaper-columns[data-count="1"]{grid-template-columns:minmax(0,1fr)}
-      [data-section-story]:focus-visible{outline:2px solid #8d2924;outline-offset:-2px}
-      @media(min-width:1500px){.newspaper-columns:not([data-count="1"]){grid-template-columns:repeat(2,minmax(0,1fr))}}
-      @media(max-width:1499px){.newspaper-columns{grid-template-columns:minmax(0,1fr)}.newspaper-column[data-active=false]{display:none}.newspaper-stories{max-height:none;overflow:visible}}
-      @media(max-width:500px){.newspaper-sections{padding:8px}.newspaper-heading h1{font-size:24px}}
-    `}</style>
+      data-testid="newspaper-sections">
       <div className="newspaper-heading">
         <h1>
           <Trans>The front page</Trans>
@@ -125,21 +123,76 @@ export function NewspaperSections() {
       <nav
         className="newspaper-section-tabs"
         aria-label={l`Newspaper sections`}>
-        {config.sections.map(section => (
-          <button
-            key={section.id}
-            aria-pressed={config.activeId === section.id}
-            onClick={() => save({...config, activeId: section.id})}>
-            {section.title}
-          </button>
-        ))}
+        {composition.sheets
+          .flatMap(sheet => sheet.sections)
+          .map(section => (
+            <button
+              key={section.id}
+              aria-current={
+                composition.leadSectionId === section.id
+                  ? 'location'
+                  : undefined
+              }
+              onClick={() =>
+                scrollToNewspaperLandmark(`newspaper-section-${section.id}`)
+              }>
+              {section.title}
+            </button>
+          ))}
+        <button onClick={() => scrollToNewspaperLandmark('newspaper-reading')}>
+          <Trans>Reading</Trans>
+        </button>
       </nav>
-      <p>
-        <Trans>
-          Keyboard: j / k move between stories, o opens the focused story, 1–8
-          select sections.
-        </Trans>
-      </p>
+      <details className="newspaper-layout-settings">
+        <summary>
+          <Trans>Edit front page</Trans>
+        </summary>
+        <div className="newspaper-layout-controls">
+          <label>
+            <Trans>Lead section</Trans>
+            <select
+              value={frontPage.leadSectionId ?? composition.leadSectionId ?? ''}
+              onChange={event =>
+                saveFrontPage({
+                  ...frontPage,
+                  leadSectionId: event.target.value || null,
+                })
+              }>
+              {config.sections.map(section => (
+                <option key={section.id} value={section.id}>
+                  {section.title}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            <Trans>Page composition</Trans>
+            <select
+              value={frontPage.template}
+              onChange={event =>
+                saveFrontPage({
+                  ...frontPage,
+                  template: event.target.value as typeof frontPage.template,
+                })
+              }>
+              <option value="broadsheet">{l`Broadsheet`}</option>
+              <option value="compact">{l`Compact`}</option>
+              <option value="reading">{l`Reading`}</option>
+            </select>
+          </label>
+        </div>
+      </details>
+      <details className="newspaper-keyboard-help">
+        <summary>
+          <Trans>Keyboard shortcuts</Trans>
+        </summary>
+        <p>
+          <Trans>
+            j / k move between stories; o opens the focused story; 1–8 select
+            configured sections.
+          </Trans>
+        </p>
+      </details>
       {managing && (
         <section className="newspaper-manager" aria-label={l`Manage sections`}>
           <p>
@@ -242,75 +295,179 @@ export function NewspaperSections() {
           </form>
         </section>
       )}
-      <div className="newspaper-columns" data-count={config.sections.length}>
-        {config.sections.map(section => (
-          <section
-            key={section.id}
-            className="newspaper-column"
-            data-testid="newspaper-section"
-            data-active={config.activeId === section.id}
-            aria-label={section.title}
-            onFocusCapture={() => {
-              if (config.activeId !== section.id)
-                save({...config, activeId: section.id})
-            }}>
-            <header>
-              <h2>{section.title}</h2>
-              <div className="newspaper-section-toolbar">
-                {(['replies', 'reposts', 'quotes'] as const).map(filter => (
-                  <label key={filter}>
-                    <input
-                      type="checkbox"
-                      checked={section.filters[filter]}
-                      disabled={
-                        filter === 'reposts' && section.source.kind === 'search'
-                      }
-                      onChange={e =>
-                        update({
-                          ...section,
-                          filters: {
-                            ...section.filters,
-                            [filter]: e.target.checked,
-                          },
-                        })
-                      }
-                    />
-                    {filter === 'replies'
-                      ? l`Replies`
-                      : filter === 'reposts'
-                        ? l`Reposts`
-                        : l`Quotes`}
-                  </label>
-                ))}
-              </div>
-              <p>
-                {section.source.kind === 'following'
-                  ? l`Following timeline · AppView order · no recommended-feed fallback`
-                  : section.source.kind === 'search'
-                    ? l`Search results · latest · repost attribution is not supplied`
-                    : l`Ordering is determined by the source service.`}
-              </p>
-              {section.source.kind === 'feedgen' ||
-              section.source.kind === 'list' ? (
-                <details>
-                  <summary>
-                    <Trans>Source information</Trans>
-                  </summary>
-                  <p>{section.source.uri}</p>
-                </details>
-              ) : section.source.kind === 'search' ? (
-                <p>{section.source.query}</p>
-              ) : null}
-            </header>
-            <SectionContent section={section} />
-          </section>
-        ))}
+      {composition.sheets.map(sheet => (
+        <div
+          className="newspaper-sheet"
+          id={`newspaper-page-${sheet.pageNumber}`}
+          key={sheet.pageNumber}>
+          <div className="newspaper-folio">
+            <span>
+              <Trans>Live front page</Trans>
+            </span>
+            <span>{l`Page ${sheet.pageNumber}`}</span>
+          </div>
+          <div
+            className="newspaper-columns"
+            data-template={composition.template}
+            data-count={sheet.sections.length}>
+            {sheet.sections.map(layoutSection => {
+              const section = config.sections.find(
+                candidate => candidate.id === layoutSection.id,
+              )
+              if (!section) return null
+              return (
+                <section
+                  key={section.id}
+                  id={`newspaper-section-${section.id}`}
+                  className="newspaper-column"
+                  data-testid="newspaper-section"
+                  data-lead={composition.leadSectionId === section.id}
+                  data-feature={
+                    layoutSection.stories[0]?.treatment === 'feature'
+                  }
+                  aria-label={section.title}
+                  onFocusCapture={() => {
+                    if (config.activeId !== section.id)
+                      save({...config, activeId: section.id})
+                  }}>
+                  <header>
+                    <h2>
+                      {section.title}
+                      {composition.leadSectionId === section.id && (
+                        <span className="newspaper-lead-label">
+                          <Trans>Lead</Trans>
+                        </span>
+                      )}
+                    </h2>
+                    <details className="newspaper-section-settings">
+                      <summary aria-label={l`Settings for ${section.title}`}>
+                        ···
+                      </summary>
+                      <div className="newspaper-section-toolbar">
+                        {(['replies', 'reposts', 'quotes'] as const).map(
+                          filter => (
+                            <label key={filter}>
+                              <input
+                                type="checkbox"
+                                checked={section.filters[filter]}
+                                disabled={
+                                  filter === 'reposts' &&
+                                  section.source.kind === 'search'
+                                }
+                                onChange={e =>
+                                  update({
+                                    ...section,
+                                    filters: {
+                                      ...section.filters,
+                                      [filter]: e.target.checked,
+                                    },
+                                  })
+                                }
+                              />
+                              {filter === 'replies'
+                                ? l`Replies`
+                                : filter === 'reposts'
+                                  ? l`Reposts`
+                                  : l`Quotes`}
+                            </label>
+                          ),
+                        )}
+                      </div>
+                      <p className="newspaper-source-note">
+                        {section.source.kind === 'following'
+                          ? l`Following timeline · AppView order · no recommended-feed fallback`
+                          : section.source.kind === 'search'
+                            ? l`Search results · latest · repost attribution is not supplied`
+                            : l`Ordering is determined by the source service.`}
+                      </p>
+                      {section.source.kind === 'feedgen' ||
+                      section.source.kind === 'list' ? (
+                        <details>
+                          <summary>
+                            <Trans>Source information</Trans>
+                          </summary>
+                          <p>{section.source.uri}</p>
+                        </details>
+                      ) : section.source.kind === 'search' ? (
+                        <p>{section.source.query}</p>
+                      ) : null}
+                    </details>
+                  </header>
+                  <SectionContent
+                    section={section}
+                    treatments={layoutSection.stories.map(
+                      story => story.treatment,
+                    )}
+                    leadAttribution={
+                      layoutSection.stories[0]?.isConfiguredLead
+                        ? l`Lead position set by you: ${layoutSection.title}`
+                        : undefined
+                    }
+                  />
+                </section>
+              )
+            })}
+          </div>
+          <footer className="newspaper-page-colophon">
+            <span>PLUMBLINES</span>
+            {sheet.pageNumber > 1 ? (
+              <a href={`#newspaper-page-${sheet.pageNumber - 1}`}>
+                <Trans>Previous page</Trans>
+              </a>
+            ) : (
+              <span />
+            )}
+            <span>{l`Page ${sheet.pageNumber} of ${composition.sheets.length + 1}`}</span>
+            <a
+              href={
+                sheet.pageNumber < composition.sheets.length
+                  ? `#newspaper-page-${sheet.pageNumber + 1}`
+                  : '#newspaper-reading'
+              }>
+              <Trans>Next page</Trans>
+            </a>
+          </footer>
+        </div>
+      ))}
+      <div className="newspaper-sheet" id="newspaper-reading">
+        <div className="newspaper-folio">
+          <span>
+            <Trans>Long-form index</Trans>
+          </span>
+          <span>{l`Page ${composition.sheets.length + 1}`}</span>
+        </div>
+        <StandardReading />
+        <footer className="newspaper-page-colophon">
+          <span>PLUMBLINES</span>
+          <a href={`#newspaper-page-${composition.sheets.length}`}>
+            <Trans>Previous page</Trans>
+          </a>
+          <span>{l`Page ${composition.sheets.length + 1} of ${composition.sheets.length + 1}`}</span>
+          <span />
+        </footer>
       </div>
     </div>
   )
 }
 
-function SectionContent({section}: {section: NewspaperSection}) {
+function scrollToNewspaperLandmark(id: string) {
+  document.getElementById(id)?.scrollIntoView({
+    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ? 'auto'
+      : 'smooth',
+    block: 'start',
+  })
+}
+
+function SectionContent({
+  section,
+  treatments,
+  leadAttribution,
+}: {
+  section: NewspaperSection
+  treatments: StoryTreatment[]
+  leadAttribution?: string
+}) {
   const {hasSession} = useSession()
   const {requestSwitchToAccount} = useLoggedOutViewControls()
   if (
@@ -332,14 +489,30 @@ function SectionContent({section}: {section: NewspaperSection}) {
       </div>
     )
   if (section.source.kind === 'search')
-    return <SearchColumn section={section} query={section.source.query} />
+    return (
+      <SearchColumn
+        section={section}
+        query={section.source.query}
+        treatments={treatments}
+        leadAttribution={leadAttribution}
+      />
+    )
   if (section.source.kind === 'following')
-    return <FeedColumn section={section} descriptor="following" />
+    return (
+      <FeedColumn
+        section={section}
+        descriptor="following"
+        treatments={treatments}
+        leadAttribution={leadAttribution}
+      />
+    )
   return (
     <ResolvedFeedColumn
       section={section}
       uri={section.source.uri}
       kind={section.source.kind}
+      treatments={treatments}
+      leadAttribution={leadAttribution}
     />
   )
 }
@@ -348,14 +521,23 @@ function ResolvedFeedColumn({
   section,
   uri,
   kind,
+  treatments,
+  leadAttribution,
 }: {
   section: NewspaperSection
   uri: string
   kind: 'feedgen' | 'list'
+  treatments: StoryTreatment[]
+  leadAttribution?: string
 }) {
   const result = useResolveUriQuery(uri)
   return result.data ? (
-    <FeedColumn section={section} descriptor={`${kind}|${result.data.uri}`} />
+    <FeedColumn
+      section={section}
+      descriptor={`${kind}|${result.data.uri}`}
+      treatments={treatments}
+      leadAttribution={leadAttribution}
+    />
   ) : (
     <div className="newspaper-stories">
       <p>
@@ -377,9 +559,13 @@ function ResolvedFeedColumn({
 function FeedColumn({
   section,
   descriptor,
+  treatments,
+  leadAttribution,
 }: {
   section: NewspaperSection
   descriptor: FeedDescriptor
+  treatments: StoryTreatment[]
+  leadAttribution?: string
 }) {
   const params = useMemo(
     () => ({strictFollowing: true, sectionFilters: section.filters}),
@@ -396,6 +582,7 @@ function FeedColumn({
     [descriptor],
   )
   const result = usePostFeedQuery(descriptor, params)
+  const {t: l} = useLingui()
   const hiddenAuthors = usePostAuthorShadowFilter(result.data?.pages)
   const hiddenPosts = useHiddenPosts()
   const slices =
@@ -408,12 +595,26 @@ function FeedColumn({
             !hiddenPosts?.includes(item.uri),
         ),
       ) ?? []
+  const sliceOffsets = slices.map((_, index) =>
+    slices
+      .slice(0, index)
+      .reduce((offset, slice) => offset + slice.items.length, 0),
+  )
   return (
     <FeedFeedbackProvider value={feedback}>
       <div className="newspaper-stories" tabIndex={0}>
         <QueryControls result={result} empty={slices.length === 0} />
-        {slices.map(slice => (
-          <SectionFeedSlice key={slice._reactKey} slice={slice} />
+        {leadAttribution && (
+          <p className="newspaper-lead-credit">{leadAttribution}</p>
+        )}
+        {slices.map((slice, index) => (
+          <SectionFeedSlice
+            key={slice._reactKey}
+            slice={slice}
+            offset={sliceOffsets[index]}
+            treatments={treatments}
+            dispatchLabel={l`Dispatch`}
+          />
         ))}
         <MoreButton result={result} />
       </div>
@@ -422,13 +623,23 @@ function FeedColumn({
 }
 
 /** Preserve the upstream root / missing replies / parent / selected-story presentation. */
-export function SectionFeedSlice({slice}: {slice: FeedPostSlice}) {
+export function SectionFeedSlice({
+  slice,
+  offset = 0,
+  treatments = [],
+  dispatchLabel = 'Dispatch',
+}: {
+  slice: FeedPostSlice
+  offset?: number
+  treatments?: StoryTreatment[]
+  dispatchLabel?: string
+}) {
   const incomplete = slice.isIncompleteThread && slice.items.length >= 3
   const indices = incomplete
     ? [0, slice.items.length - 2, slice.items.length - 1]
     : slice.items.map((_, index) => index)
   return (
-    <div>
+    <div className="newspaper-feed-slice">
       {indices.map((index, position) => {
         const item = slice.items[index]
         const showReplyTo = incomplete
@@ -439,7 +650,16 @@ export function SectionFeedSlice({slice}: {slice: FeedPostSlice}) {
             {incomplete && position === 1 && (
               <ViewFullThread uri={slice.items[0].uri} />
             )}
-            <div data-section-story="" data-story-uri={item.uri} tabIndex={0}>
+            <div
+              data-section-story=""
+              data-story-uri={item.uri}
+              data-treatment={
+                hasImageEmbed(item.post.embed)
+                  ? 'visual'
+                  : (treatments[offset + index] ?? 'standard')
+              }
+              tabIndex={0}>
+              <span className="newspaper-dispatch-label">{dispatchLabel}</span>
               <PostFeedItem
                 post={item.post}
                 record={item.record}
@@ -470,10 +690,15 @@ export function SectionFeedSlice({slice}: {slice: FeedPostSlice}) {
 function SearchColumn({
   section,
   query,
+  treatments,
+  leadAttribution,
 }: {
   section: NewspaperSection
   query: string
+  treatments: StoryTreatment[]
+  leadAttribution?: string
 }) {
+  const {t: l} = useLingui()
   const result = useSearchPostsV2Query({query, sort: 'latest'})
   const {isPostHidden} = useLocalAttention()
   const hiddenPosts = useHiddenPosts()
@@ -495,18 +720,36 @@ function SearchColumn({
   return (
     <div className="newspaper-stories" tabIndex={0}>
       <QueryControls result={result} empty={posts.length === 0} />
-      {posts.map(post => (
+      {leadAttribution && (
+        <p className="newspaper-lead-credit">{leadAttribution}</p>
+      )}
+      {posts.map((post, index) => (
         <div
           key={post.uri}
           data-section-story=""
           data-story-uri={post.uri}
+          data-treatment={
+            hasImageEmbed(post.embed)
+              ? 'visual'
+              : (treatments[index] ?? 'standard')
+          }
           tabIndex={0}>
+          <span className="newspaper-dispatch-label">{l`Dispatch`}</span>
           <Post post={post} />
         </div>
       ))}
       <MoreButton result={result} />
     </div>
   )
+}
+
+function hasImageEmbed(embed: unknown): boolean {
+  if (!embed || typeof embed !== 'object') return false
+  const value = embed as {$type?: string; media?: unknown}
+  if (value.$type?.endsWith('#images')) return true
+  if (value.$type?.endsWith('#recordWithMedia'))
+    return hasImageEmbed(value.media)
+  return false
 }
 
 type QueryStatus = {

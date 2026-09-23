@@ -1,19 +1,37 @@
-# Reading your newspaper
+# Reading Plumblines as a newspaper
 
-The web front page contains sections. Use **Manage sections** to add Following, a custom feed, a list, or a saved search, then rename, reorder or remove them. Feed/list sources accept a matching AT URI or a Bluesky/Plumblines link. Up to eight sections are saved on this device for the current account; signed-out settings have a separate guest scope. Layout synchronization is not included.
+The Home screen is a composed newspaper page: one masthead, an editorial section rail, ruled story fronts, folio marks and sequential sheets inside one normal document scroll. It is a digital newspaper layout over live AT Protocol sources, not a paper simulator. Social posts remain the author’s exact dispatch text; the UI never invents a headline or dateline.
 
-At wide desktop sizes, sections appear in two columns. On smaller screens, select a section tab. Each section has its own replies, reposts and quotes filters, refresh button and cursor pagination. Search returns latest results and does not provide repost attribution. Following uses the account timeline directly, without merged feeds or automatic Discover fallback. Signed-out Following and searches ask for sign-in; public feeds and lists can be added explicitly.
+## Front page
 
-Keyboard shortcuts while reading: **j/k** move story focus, **o** opens the focused thread, **1–8** selects a section. Shortcuts pause in text fields, menus and dialogs. Existing global navigation and composer shortcuts remain.
+The web masthead is large on the front page and compacts to a short nameplate on interior routes. The section rail follows the configured layout order. **Edit front page** sets the lead section and one of three local templates: **Broadsheet**, **Compact**, or **Reading**. These preferences stay on the device in the current account/guest scope; no new AT Protocol records are written.
 
-**Local attention** manages temporary account and literal word/phrase snoozes. Account snoozes are also available from profile and post menus for 24 hours or seven days. Topic snoozes last seven days. Expired rules stop filtering automatically (within 30 seconds for an already-open view). Snoozes affect local feed presentation; they do not publish blocks or modify network preferences. Deliberately opening a profile keeps its posts available. Existing network mute, word/tag filters, repost mute, hide, reporting, bookmarks and removal of existing blocks remain available.
+The lead section is placed first because the reader selected it, and its first item gets the lead treatment. Other stories retain source order. The first item from the first secondary section receives feature treatment; the next three items in the lead section use compact briefs. An actual image can change the visual treatment to **Visual** without changing item order or source data. The page does not score or silently infer importance. Each sheet groups up to four configured sections; page numbers and previous/next anchors mark sheet boundaries. The Reading index follows as the last sheet.
 
-**Reader mode** reduces avatar decoration and numeric engagement counts while retaining actions and warnings. A thread also has **Article mode**, a linear presentation of the same loaded thread and replies. Sorting, pagination and moderation still belong to the original thread components. Translation on web uses the existing Google Translate link.
+Section settings hold reply/repost/quote filters and source details. Feed queries, moderation, hidden-post filtering, incomplete-thread context, refresh and cursor pagination continue through the existing social-app query components. Following uses actual timeline semantics without a Discover merge. Custom feed/list source order is attributed to its provider; saved searches use the supported latest-results query and disclose its limits.
 
-A post's menu offers **Post information**: supplied record URI/CID, author DID, timestamps, source context where available, label sources, and supplied reply/quote rules. PDS information is a declaration from the matching public DID document, not an independent audit. Unknown metadata stays unknown. **Inspect record** shows literal supplied JSON. Unknown custom record embeds use the generic inspector; this feature neither crawls repositories nor publishes custom records.
+The main page has no nested section scrollbars. On phones the sheets flatten to one column, with section labels, editorial rules and at least 44px section controls retained. A slim desktop utility rail preserves the established app navigation.
 
-**Share as image** creates a preview and downloadable PNG of post text with attribution, date, canonical URL and Plumblines credit. It is explicitly a text-only card; embedded media is not reproduced. Long text spans multiple images. Content warnings must be revealed before image generation, and non-overridable warnings remain enforced.
+## Reading long-form work
 
-The web manifest supplies app identity, standalone launch scope and branded icons for browsers that support installing web apps. There is no offline post cache or offline Editions feature in v1.
+The **Reading** sheet reads the public Standard Reader latest-document index in newest-first order. Article bodies are fetched only after selection. Article title, deck, author/publication, published date, labels, cover and reading time appear only when supplied. Supported Standard.site and compatible document formats are rendered with the open `@standard-reader/renderer-react` component package; unsupported formats and missing bodies receive explicit fallbacks. External destinations are URL-validated and opened with safe link attributes. The source/index order is shown as such; it is not personalized or ranked by Plumblines.
 
-Implementation: `src/plumblines/{sections,reading,records}` with shared account-local storage/attention modules. Existing social-app authentication and protocol clients remain the integration boundary. Tests distinguish mocked protocol fixtures from real public access; authenticated account operations and OS installation prompts require separate acceptance.
+This first public Reading surface is a latest-document index. Publication search, reader follows/bookmarks/read state, discovery ranking, offline article caching and article publishing remain future work. The normal Bluesky `StandardSiteEmbed` continues to handle document links inside posts. The social Thread/Article reader continues to use loaded posts and existing moderation/interactions.
+
+## Sections and attention
+
+Use **Manage sections** to add Following, a custom feed, a list or a saved search, then rename, reorder or remove them. Up to eight are supported. These section source settings and the front-page template are local to the device/account. Keyboard shortcuts: **j/k** move between stories, **o** opens the focused story, **1–8** select configured sections; shortcuts pause in editable controls, menus and dialogs.
+
+**Local attention** provides temporary account/topic/item snoozing without publishing a social-graph relationship. Network account/list mutes, hide, report, labels and removal of existing blocks remain separate capabilities. Plumblines never creates account or list blocks; the authenticated PDS write guard and moderation details are documented in [moderation-capabilities.md](moderation-capabilities.md).
+
+Reader mode reduces avatar decoration and numeric engagement counts while retaining actions, provenance and moderation warnings. Article mode presents the loaded social thread as a linear discussion; it does not rewrite a conversation as a single author’s prose. Post information and record inspection show supplied identifiers and provenance without inventing unavailable facts.
+
+## Implementation and verification
+
+- Compositor and local preferences: `src/plumblines/frontpage/model.ts` and `src/plumblines/local-preferences.ts`.
+- Front-page and source/query integration: `src/plumblines/sections/` and `src/plumblines/NewspaperHome.tsx`.
+- Standard Reader index, fetch validation and rendering: `src/plumblines/reading/standard/`.
+- Shared shell and responsive/editorial type: `src/style.css` and the owned masthead component; the only unavoidable shared shell additions are data-driven offsets, visual tokens and the new local storage key in `src/storage/schema.ts`.
+- Design decisions, audit and QA cases: [editorial front-page plan](../plan/plumblines-editorial-frontpage/).
+
+Verify web and native typechecks, focused tests, lint, web export, and browser screenshots at wide, laptop/tablet and phone widths in light, dim and dark themes. Browser/API requests are read-only; a local export or screenshot does not establish production deployment or authenticated-account acceptance. The main reference direction is the *Liberty* newspaper grammar; its history is not imitated as tiny print or fabricated issue data.

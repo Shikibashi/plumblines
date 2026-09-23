@@ -111,7 +111,7 @@ test('QA11: keyboard skip link and reduced motion', async ({page}) => {
 
 test('QA13: sign in reaches the existing account form', async ({page}) => {
   await page.goto('/')
-  await page.getByRole('button', {name: 'Sign in', exact: true}).first().click()
+  await page.getByTestId('plumblines-sign-in').click()
   await expect(page.getByRole('textbox').first()).toBeVisible()
   await expect(
     page.getByRole('textbox', {name: 'Username or email address'}),
@@ -143,6 +143,88 @@ test('QA14: each section describes its actual source without a Discover fallback
   await expect(page.getByTestId('plumblines-feed-context')).toBeHidden()
 })
 
+test('EFP: composed sheets use the document scroll and expose Reading as a distinct section', async ({
+  page,
+}) => {
+  await page.goto('/')
+  await expect(page.locator('.newspaper-sheet').first()).toBeVisible()
+  const nestedScrollers = await page.locator('.newspaper-stories').evaluateAll(
+    elements =>
+      elements.filter(element => {
+        const style = getComputedStyle(element)
+        return (
+          /(auto|scroll)/.test(style.overflowY) ||
+          /(auto|scroll)/.test(style.overflow)
+        )
+      }).length,
+  )
+  expect(nestedScrollers).toBe(0)
+  await expect(
+    page.getByRole('button', {name: 'Reading', exact: true}),
+  ).toBeVisible()
+  await page.getByRole('button', {name: 'Reading', exact: true}).click()
+  await expect(page.locator('#newspaper-reading')).toBeInViewport()
+  await expect(page.getByRole('heading', {name: 'Reading'})).toBeVisible()
+  await expect(page.getByText(/Standard Reader public index/)).toBeVisible({
+    timeout: 30_000,
+  })
+  const firstArticle = page.locator('.pl-standard-entry').first()
+  await expect(firstArticle).toBeVisible({timeout: 45_000})
+  const actualTitle = await firstArticle
+    .locator('.pl-standard-entry-title')
+    .innerText()
+  await firstArticle.click()
+  await expect(
+    page.getByRole('heading', {name: actualTitle, exact: true}),
+  ).toBeVisible()
+  await expect(
+    page.getByText('The index has no readable body for this document.'),
+  ).toBeVisible()
+
+  const renderableArticle = page
+    .locator('.pl-standard-entry[data-renderable="true"]')
+    .first()
+  for (let pageNumber = 0; pageNumber < 3; pageNumber++) {
+    if ((await renderableArticle.count()) > 0) break
+    await page.getByRole('button', {name: 'More articles'}).click()
+    await expect(page.getByRole('button', {name: 'More articles'})).toBeEnabled(
+      {
+        timeout: 15_000,
+      },
+    )
+  }
+  await expect(renderableArticle).toBeVisible({timeout: 30_000})
+  const renderableTitle = await renderableArticle
+    .locator('.pl-standard-entry-title')
+    .innerText()
+  await renderableArticle.click()
+  await expect(
+    page.getByRole('heading', {name: renderableTitle, exact: true}),
+  ).toBeVisible()
+  await expect(page.locator('.pl-standard-prose')).toContainText(/\S/u)
+  await page.locator('.pl-standard-article').scrollIntoViewIfNeeded()
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'docs/zeus/evidence/standard-reader-article.png',
+  })
+})
+
+test('EFP: reader-selected lead and template controls update the composed sheet', async ({
+  page,
+}) => {
+  await page.goto('/')
+  const editor = page.locator('.newspaper-layout-settings')
+  await editor.locator('summary').click()
+  await editor.getByLabel('Page composition').selectOption('compact')
+  await expect(page.locator('.newspaper-columns').first()).toHaveAttribute(
+    'data-template',
+    'compact',
+  )
+  await expect(page.locator('.newspaper-column[data-lead="true"]')).toHaveCount(
+    1,
+  )
+})
+
 test('QA13: search navigation remains usable', async ({page}) => {
   await page.goto('/')
   await page
@@ -161,10 +243,7 @@ for (const edition of ['dim', 'dark'] as const) {
     page,
   }) => {
     await page.goto('/')
-    await page
-      .getByRole('button', {name: 'Sign in', exact: true})
-      .first()
-      .click()
+    await page.getByTestId('plumblines-sign-in').click()
     await expect(
       page.getByRole('textbox', {name: 'Username or email address'}),
     ).toBeVisible()
@@ -232,10 +311,11 @@ test('QA10: mobile search header stays below the masthead after scrolling', asyn
   await page.goto('/search')
   const header = page.getByTestId('plumblines-search-header').first()
   await expect(header).toBeVisible()
+  const masthead = await page.getByTestId('plumblines-masthead').boundingBox()
   await page.mouse.wheel(0, 800)
   await expect
     .poll(async () => (await header.boundingBox())!.y)
-    .toBeGreaterThanOrEqual(87)
+    .toBeGreaterThanOrEqual(masthead!.height - 1)
 })
 
 for (const width of [390, 1040, 1586]) {

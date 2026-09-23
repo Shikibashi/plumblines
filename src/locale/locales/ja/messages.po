@@ -18,6 +18,11 @@ msgstr ""
 "X-Crowdin-File: /main/src/locale/locales/en/messages.po\n"
 "X-Crowdin-File-ID: 11\n"
 
+#. js-lingui-explicit-id
+#: src/plumblines/reading/standard/index.web.tsx:139
+msgid "Labels"
+msgstr ""
+
 #. Accessibility label for a category (e.g. Art, Video Games, Sports, etc.) that shows suggested accounts for the user to follow. The tab is currently selected.
 #: src/components/InterestTabs.tsx:333
 msgid "\"{interestsDisplayName}\" category (active)"
@@ -772,6 +777,11 @@ msgstr "{memberCount}/{memberLimit}"
 msgid "{minutes, plural, one {# minute} other {# minutes}}"
 msgstr "{minutes, plural, other {#分}}"
 
+#. js-lingui-explicit-id
+#: src/plumblines/reading/standard/index.web.tsx:128
+msgid "plumblines.standard.readingTime"
+msgstr ""
+
 #. placeholder {0}: reaction.value
 #: src/components/dms/getReactionInfo.ts:70
 msgid "{name} reacted {0} to {target}"
@@ -1368,7 +1378,7 @@ msgstr "リアクションを追加"
 msgid "Add recommended feeds"
 msgstr "おすすめのフィードを追加"
 
-#: src/plumblines/sections/index.tsx:240
+#: src/plumblines/sections/index.tsx:293
 msgid "Add section"
 msgstr ""
 
@@ -2063,6 +2073,10 @@ msgstr "<0>{suggestedLanguageName}</0>で書かれた投稿ですか？"
 msgid "Art"
 msgstr "アート"
 
+#: src/plumblines/reading/standard/index.web.tsx:308
+msgid "ARTICLE"
+msgstr ""
+
 #: src/plumblines/reading/preferences.tsx:47
 #: src/plumblines/reading/preferences.tsx:56
 msgid "Article mode"
@@ -2428,6 +2442,10 @@ msgstr "サイト規約違反"
 #: src/components/dialogs/nuxs/GroupChatsAnnouncement.tsx:200
 msgid "Bring up to 50 friends together in one chat."
 msgstr "最大50人の友達を一つのチャットに集めましょう。"
+
+#: src/plumblines/sections/index.tsx:178
+msgid "Broadsheet"
+msgstr ""
 
 #: src/view/com/feeds/ProfileFeedgens.tsx:167
 #: src/view/com/feeds/ProfileFeedgens.tsx:168
@@ -2837,7 +2855,7 @@ msgstr "後で確認してください！"
 msgid "Check my status"
 msgstr "ステータスを確認"
 
-#: src/plumblines/sections/index.tsx:82
+#: src/plumblines/sections/index.tsx:106
 msgid "Check the name and source. Use a matching feed/list AT URI or Bluesky link, or a non-empty search. Up to eight sections are supported."
 msgstr ""
 
@@ -3188,6 +3206,10 @@ msgstr "コミュニティガイドライン"
 
 #: src/screens/ModerationInbox/Subject.tsx:65
 msgid "Community Guidelines: Harassment"
+msgstr ""
+
+#: src/plumblines/sections/index.tsx:179
+msgid "Compact"
 msgstr ""
 
 #: src/screens/Onboarding/StepFinished/index.tsx:335
@@ -3614,7 +3636,7 @@ msgstr ""
 msgid "Could not mute chat"
 msgstr "チャットのミュートに失敗しました"
 
-#: src/plumblines/sections/index.tsx:363
+#: src/plumblines/sections/index.tsx:545
 msgid "Could not resolve this source."
 msgstr ""
 
@@ -3699,6 +3721,8 @@ msgstr ""
 
 #: src/components/WelcomeModal.tsx:144
 #: src/components/WelcomeModal.tsx:152
+#: src/plumblines/NewspaperHome.tsx:59
+#: src/plumblines/NewspaperHome.tsx:66
 #: src/screens/Messages/JoinRequest.tsx:318
 #: src/screens/Signup/index.tsx:139
 #: src/view/com/auth/SplashScreen.tsx:108
@@ -3810,7 +3834,7 @@ msgstr ""
 msgid "Custom"
 msgstr "カスタム"
 
-#: src/plumblines/sections/index.tsx:218
+#: src/plumblines/sections/index.tsx:271
 msgid "Custom feed"
 msgstr ""
 
@@ -4217,6 +4241,11 @@ msgstr "提案を消す"
 msgid "Dismisses the QR scanner"
 msgstr "QRスキャナーを閉じます"
 
+#: src/plumblines/sections/index.tsx:616
+#: src/plumblines/sections/index.tsx:737
+msgid "Dispatch"
+msgstr ""
+
 #: src/screens/Settings/AccessibilitySettings.tsx:70
 #: src/screens/Settings/AccessibilitySettings.tsx:75
 msgid "Display larger alt text badges"
@@ -4414,7 +4443,7 @@ msgstr "例: 絶対に投稿を見逃してはならないユーザー。"
 msgid "e.g. Users that repeatedly reply with ads."
 msgstr "例: 繰り返し広告付きで返信するユーザー。"
 
-#: src/plumblines/sections/index.tsx:172
+#: src/plumblines/sections/index.tsx:225
 msgid "Earlier"
 msgstr ""
 
@@ -4453,6 +4482,10 @@ msgstr ""
 #: src/components/StarterPack/Wizard/WizardEditListDialog.tsx:113
 msgid "Edit Feeds"
 msgstr "フィードを編集"
+
+#: src/plumblines/sections/index.tsx:148
+msgid "Edit front page"
+msgstr ""
 
 #: src/screens/Messages/ConversationSettings/prompts.tsx:43
 #: src/screens/Messages/ConversationSettings/prompts.tsx:49
@@ -5358,7 +5391,7 @@ msgstr "フィードの識別子"
 msgid "Feed menu"
 msgstr "フィードメニュー"
 
-#: src/plumblines/sections/index.tsx:227
+#: src/plumblines/sections/index.tsx:280
 msgid "Feed or list link / AT URI"
 msgstr ""
 
@@ -5697,7 +5730,7 @@ msgstr "あなたが知っているフォロワー"
 #: src/components/ProfileHoverCard/index.web.tsx:502
 #: src/components/ProfileHoverCard/index.web.tsx:513
 #: src/plumblines/records/PostInformationDialog.tsx:93
-#: src/plumblines/sections/index.tsx:217
+#: src/plumblines/sections/index.tsx:270
 #: src/screens/PostThread/components/ThreadItemAnchorFollowButton.tsx:160
 #: src/screens/Profile/Header/ProfileHeaderStandard.tsx:409
 #: src/screens/VideoFeed/index.tsx:992
@@ -5748,7 +5781,7 @@ msgstr "Followingフィードの設定"
 msgid "Following timeline"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:288
+#: src/plumblines/sections/index.tsx:378
 msgid "Following timeline · AppView order · no recommended-feed fallback"
 msgstr ""
 
@@ -6015,7 +6048,7 @@ msgstr "GIF"
 msgid "GIF uploaded"
 msgstr "GIFをアップロードしました"
 
-#: src/plumblines/sections/index.tsx:61
+#: src/plumblines/sections/index.tsx:85
 msgid "Give the section a name."
 msgstr ""
 
@@ -7028,6 +7061,10 @@ msgstr ""
 msgid "It's just you right now! Add more people to your starter pack by searching above."
 msgstr "今はあなただけ！上で検索してスターターパックにより多くのユーザーを追加してください。"
 
+#: src/plumblines/sections/index.tsx:190
+msgid "j / k move between stories; o opens the focused story; 1–8 select configured sections."
+msgstr ""
+
 #. placeholder {0}: videoState.jobId
 #: src/view/com/composer/Composer.tsx:2643
 msgid "Job ID: {0}"
@@ -7073,8 +7110,8 @@ msgstr "編集を続ける"
 msgid "Keep me posted"
 msgstr "投稿を逃さない"
 
-#: src/plumblines/sections/index.tsx:138
-msgid "Keyboard: j / k move between stories, o opens the focused story, 1–8 select sections."
+#: src/plumblines/sections/index.tsx:187
+msgid "Keyboard shortcuts"
 msgstr ""
 
 #: src/components/ageAssurance/AgeAssuranceInitDialog.tsx:209
@@ -7153,7 +7190,7 @@ msgstr "最後の開始： {timeAgo} 前"
 msgid "Last initiated just now"
 msgstr "最後の開始：たった今"
 
-#: src/plumblines/sections/index.tsx:178
+#: src/plumblines/sections/index.tsx:231
 msgid "Later"
 msgstr ""
 
@@ -7162,6 +7199,23 @@ msgstr ""
 #: src/screens/Topic.tsx:66
 msgid "Latest"
 msgstr "最新"
+
+#: src/plumblines/reading/standard/index.web.tsx:437
+msgid "Latest public articles"
+msgstr ""
+
+#: src/plumblines/sections/index.tsx:338
+msgid "Lead"
+msgstr ""
+
+#. placeholder {0}: layoutSection.title
+#: src/plumblines/sections/index.tsx:403
+msgid "Lead position set by you: {0}"
+msgstr ""
+
+#: src/plumblines/sections/index.tsx:152
+msgid "Lead section"
+msgstr ""
 
 #: src/components/verification/VerificationsDialog.tsx:169
 #: src/components/verification/VerifierDialog.tsx:137
@@ -7425,7 +7479,7 @@ msgid "Link copied to clipboard"
 msgstr "リンクをクリップボードにコピーしました"
 
 #: src/Navigation.tsx:277
-#: src/plumblines/sections/index.tsx:219
+#: src/plumblines/sections/index.tsx:272
 msgid "List"
 msgstr "リスト"
 
@@ -7558,6 +7612,10 @@ msgstr "ライブイベントの非表示を解除"
 msgid "Live feature is in beta"
 msgstr "ライブ機能はベータ版です"
 
+#: src/plumblines/sections/index.tsx:305
+msgid "Live front page"
+msgstr ""
+
 #: src/features/liveNow/components/EditLiveDialog.tsx:144
 #: src/features/liveNow/components/EditLiveDialog.tsx:148
 #: src/features/liveNow/components/GoLiveDialog.tsx:141
@@ -7571,7 +7629,7 @@ msgstr "ライブのリンク"
 msgid "Load more"
 msgstr "さらに読み込む"
 
-#: src/plumblines/sections/index.tsx:549
+#: src/plumblines/sections/index.tsx:792
 msgid "Load more posts"
 msgstr ""
 
@@ -7605,12 +7663,20 @@ msgstr "チャットを読み込み中…"
 msgid "Loading lists..."
 msgstr "リストを読み込み中…"
 
+#: src/plumblines/reading/standard/index.web.tsx:455
+msgid "Loading more…"
+msgstr ""
+
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:275
 msgid "Loading post interaction settings..."
 msgstr "投稿への反応の設定を読み込み中…"
 
-#: src/plumblines/sections/index.tsx:530
+#: src/plumblines/sections/index.tsx:773
 msgid "Loading posts…"
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:420
+msgid "Loading public articles…"
 msgstr ""
 
 #: src/plumblines/components/PublicPostReader.tsx:144
@@ -7629,7 +7695,7 @@ msgstr ""
 msgid "Loading public quotes…"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:365
+#: src/plumblines/sections/index.tsx:547
 msgid "Loading source…"
 msgstr ""
 
@@ -7639,8 +7705,8 @@ msgstr "読み込み中…"
 
 #: src/plumblines/local-attention.tsx:160
 #: src/plumblines/local-attention.tsx:162
-#: src/plumblines/NewspaperHome.tsx:35
-#: src/plumblines/NewspaperHome.tsx:40
+#: src/plumblines/NewspaperHome.tsx:72
+#: src/plumblines/NewspaperHome.tsx:77
 msgid "Local attention"
 msgstr ""
 
@@ -7680,6 +7746,14 @@ msgstr "<0>@sawaratsuki.bsky.social</0>によるロゴ"
 #: src/components/RichTextTag.tsx:55
 msgid "Long press to open tag menu for {0}"
 msgstr "長押しで {0} のタグメニューを開く"
+
+#: src/plumblines/reading/standard/index.web.tsx:407
+msgid "LONG-FORM"
+msgstr ""
+
+#: src/plumblines/sections/index.tsx:435
+msgid "Long-form index"
+msgstr ""
 
 #: src/plumblines/records/PostInformationDialog.tsx:122
 msgid "Looking up public identity…"
@@ -7723,8 +7797,8 @@ msgstr "意図した場所であることを確認してください！"
 msgid "Manage saved feeds"
 msgstr "保存されたフィードを管理"
 
-#: src/plumblines/sections/index.tsx:122
-#: src/plumblines/sections/index.tsx:144
+#: src/plumblines/sections/index.tsx:120
+#: src/plumblines/sections/index.tsx:197
 msgid "Manage sections"
 msgstr ""
 
@@ -8041,6 +8115,14 @@ msgstr "モデレーションのツール"
 msgid "Moderator has chosen to set a general warning on the content."
 msgstr "モデレーターによりコンテンツに一般的な警告が設定されました。"
 
+#: src/plumblines/reading/standard/index.web.tsx:457
+msgid "More articles"
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:463
+msgid "More articles could not be loaded. Select “More articles” to retry."
+msgstr ""
+
 #: src/view/shell/desktop/Feeds.tsx:105
 #: src/view/shell/desktop/Feeds.tsx:152
 msgid "More feeds"
@@ -8063,12 +8145,12 @@ msgid "More people. Brighter ideas."
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:170
+#: src/plumblines/sections/index.tsx:223
 msgid "Move {0} earlier"
 msgstr ""
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:176
+#: src/plumblines/sections/index.tsx:229
 msgid "Move {0} later"
 msgstr ""
 
@@ -8397,7 +8479,7 @@ msgstr "{firstAuthorLink}および<0>{additionalAuthorsCount, plural, other {他
 msgid "New posts from {firstAuthorName} and {additionalAuthorsCount, plural, one {{formattedAuthorsCount} other} other {{formattedAuthorsCount} others}}"
 msgstr "{firstAuthorName}および{additionalAuthorsCount, plural, other {他{formattedAuthorsCount}人}}からの新しい投稿"
 
-#: src/plumblines/sections/index.tsx:202
+#: src/plumblines/sections/index.tsx:255
 msgid "New section name"
 msgstr ""
 
@@ -8426,7 +8508,7 @@ msgstr "新しい順に返信を表示"
 msgid "News"
 msgstr "ニュース"
 
-#: src/plumblines/sections/index.tsx:127
+#: src/plumblines/sections/index.tsx:125
 msgid "Newspaper sections"
 msgstr ""
 
@@ -8453,6 +8535,10 @@ msgstr "次へ"
 #: src/components/Lightbox/Lightbox.web.tsx:219
 msgid "Next image"
 msgstr "次の画像"
+
+#: src/plumblines/sections/index.tsx:427
+msgid "Next page"
+msgstr ""
 
 #: src/features/inviteFriends/components/ThemePicker.tsx:33
 msgid "Night"
@@ -8628,7 +8714,7 @@ msgstr "投稿フィルターなし"
 msgid "No posts here"
 msgstr "ここに投稿はありません"
 
-#: src/plumblines/sections/index.tsx:538
+#: src/plumblines/sections/index.tsx:781
 msgid "No posts match this section."
 msgstr ""
 
@@ -9091,6 +9177,10 @@ msgstr "下書きを開く"
 msgid "Open drawer menu"
 msgstr "引き出しメニューを開く"
 
+#: src/plumblines/reading/standard/index.web.tsx:80
+msgid "Open embedded media at its source"
+msgstr ""
+
 #: src/screens/Messages/components/MessageComposer.tsx:216
 #: src/view/com/composer/Composer.tsx:2273
 msgid "Open emoji picker"
@@ -9194,6 +9284,10 @@ msgstr "システムのログを開く"
 #: src/components/intents/GroupChatJoinDialog.tsx:452
 msgid "Open this group chat"
 msgstr "このグループチャットを開く"
+
+#: src/plumblines/reading/standard/index.web.tsx:232
+msgid "Opening article…"
+msgstr ""
 
 #: src/view/shell/desktop/Feeds.tsx:185
 msgid "Opens {displayName} feed"
@@ -9372,8 +9466,12 @@ msgstr "または、他のアカウントにサインインします。"
 msgid "Ordering"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:291
+#: src/plumblines/sections/index.tsx:381
 msgid "Ordering is determined by the source service."
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:268
+msgid "Original record"
 msgstr ""
 
 #: src/screens/Settings/components/OTAInfo.tsx:60
@@ -9450,6 +9548,25 @@ msgstr "オーナー"
 #: src/components/dms/LeaveConvoPrompt.tsx:46
 msgid "Owner must lock the group before leaving."
 msgstr "オーナーは退出する前にグループをロックしなければなりません。"
+
+#. placeholder {0}: composition.sheets.length + 1
+#. placeholder {0}: sheet.pageNumber
+#: src/plumblines/sections/index.tsx:307
+#: src/plumblines/sections/index.tsx:437
+msgid "Page {0}"
+msgstr ""
+
+#. placeholder {0}: composition.sheets.length + 1
+#. placeholder {0}: sheet.pageNumber
+#. placeholder {1}: composition.sheets.length + 1
+#: src/plumblines/sections/index.tsx:420
+#: src/plumblines/sections/index.tsx:445
+msgid "Page {0} of {1}"
+msgstr ""
+
+#: src/plumblines/sections/index.tsx:169
+msgid "Page composition"
+msgstr ""
 
 #: src/components/Lists.tsx:204
 #: src/components/Lists.tsx:219
@@ -10074,6 +10191,11 @@ msgstr "プレビュー"
 msgid "Previous image"
 msgstr "前の画像"
 
+#: src/plumblines/sections/index.tsx:415
+#: src/plumblines/sections/index.tsx:443
+msgid "Previous page"
+msgstr ""
+
 #: src/screens/Settings/LanguageSettings.tsx:141
 #: src/screens/Settings/LanguageSettings.tsx:157
 msgid "Primary language"
@@ -10280,7 +10402,7 @@ msgstr "引用投稿は無効です"
 
 #: src/lib/hooks/useNotificationHandler.ts:186
 #: src/plumblines/records/PostInformationDialog.tsx:144
-#: src/plumblines/sections/index.tsx:282
+#: src/plumblines/sections/index.tsx:371
 #: src/screens/Post/PostQuotes.tsx:31
 #: src/screens/Settings/NotificationSettings/index.tsx:203
 #: src/screens/Settings/NotificationSettings/index.tsx:346
@@ -10335,6 +10457,16 @@ msgctxt "english-only-resource"
 msgid "Read about how to use advanced search filters"
 msgstr "高度な検索フィルターの使い方を読む"
 
+#. js-lingui-explicit-id
+#: src/plumblines/reading/standard/index.web.tsx:301
+msgid "plumblines.standard.readArticle"
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:221
+#: src/plumblines/reading/standard/index.web.tsx:275
+msgid "Read at the publication"
+msgstr ""
+
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:163
 #: src/components/dialogs/nuxs/InitialVerificationAnnouncement.tsx:174
 msgid "Read blog post"
@@ -10370,9 +10502,23 @@ msgstr "Blueskyのプライバシーポリシーを読む"
 msgid "Read the Bluesky Terms of Service"
 msgstr "Blueskyの利用規約を読む"
 
+#: src/plumblines/NewspaperHome.tsx:39
+msgid "Reader display controls and local attention settings"
+msgstr ""
+
 #: src/plumblines/reading/preferences.tsx:32
 #: src/plumblines/reading/preferences.tsx:41
 msgid "Reader mode"
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:404
+#: src/plumblines/sections/index.tsx:143
+#: src/plumblines/sections/index.tsx:180
+msgid "Reading"
+msgstr ""
+
+#: src/plumblines/NewspaperHome.tsx:38
+msgid "Reading tools"
 msgstr ""
 
 #: src/screens/Takendown.tsx:156
@@ -10414,7 +10560,7 @@ msgstr "再接続"
 msgid "Record URI"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:526
+#: src/plumblines/sections/index.tsx:769
 msgid "Refresh section"
 msgstr ""
 
@@ -10452,7 +10598,7 @@ msgstr "会話を再読み込み"
 #: src/components/StarterPack/Main/ProfilesList.tsx:207
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:110
 #: src/components/StarterPack/Wizard/WizardListCard.tsx:117
-#: src/plumblines/sections/index.tsx:196
+#: src/plumblines/sections/index.tsx:249
 #: src/screens/Bookmarks.tsx:256
 #: src/screens/Messages/ConversationSettings/Member.tsx:162
 #: src/screens/Messages/ConversationSettings/prompts.tsx:178
@@ -10463,7 +10609,7 @@ msgid "Remove"
 msgstr "削除"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:182
+#: src/plumblines/sections/index.tsx:235
 msgid "Remove {0}"
 msgstr ""
 
@@ -10663,7 +10809,7 @@ msgid "Removed verification"
 msgstr "認証を削除しました"
 
 #. placeholder {0}: section.title
-#: src/plumblines/sections/index.tsx:156
+#: src/plumblines/sections/index.tsx:209
 msgid "Rename {0}"
 msgstr ""
 
@@ -10720,7 +10866,7 @@ msgstr "返信先のメッセージ、タップしてスクロール"
 #: src/components/activity-notifications/SubscribeProfileDialog.tsx:283
 #: src/lib/hooks/useNotificationHandler.ts:172
 #: src/plumblines/records/PostInformationDialog.tsx:142
-#: src/plumblines/sections/index.tsx:279
+#: src/plumblines/sections/index.tsx:368
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:218
 #: src/screens/Settings/NotificationSettings/index.tsx:181
 #: src/screens/Settings/NotificationSettings/index.tsx:330
@@ -10926,7 +11072,7 @@ msgid "Reposted by you"
 msgstr "あなたのリポスト"
 
 #: src/lib/hooks/useNotificationHandler.ts:165
-#: src/plumblines/sections/index.tsx:281
+#: src/plumblines/sections/index.tsx:370
 #: src/screens/Settings/NotificationSettings/index.tsx:214
 #: src/screens/Settings/NotificationSettings/index.tsx:355
 msgid "Reposts"
@@ -11110,7 +11256,9 @@ msgstr "エラーになった最後のアクションをやり直す"
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoFallback.tsx:56
 #: src/components/Post/Embed/VideoEmbed/VideoEmbedInner/VideoFallback.tsx:59
 #: src/components/StarterPack/ProfileStarterPacks.tsx:371
-#: src/plumblines/sections/index.tsx:370
+#: src/plumblines/reading/standard/index.web.tsx:243
+#: src/plumblines/reading/standard/index.web.tsx:428
+#: src/plumblines/sections/index.tsx:552
 #: src/screens/Login/LoginForm.tsx:533
 #: src/screens/Login/LoginForm.tsx:539
 #: src/screens/Messages/ChatList.tsx:429
@@ -11285,7 +11433,7 @@ msgstr "保存されたフィード"
 msgid "Saved Posts"
 msgstr "保存済投稿"
 
-#: src/plumblines/sections/index.tsx:220
+#: src/plumblines/sections/index.tsx:273
 msgid "Saved search"
 msgstr ""
 
@@ -11439,12 +11587,12 @@ msgstr "投稿を検索"
 msgid "Search profiles"
 msgstr "プロフィールを検索"
 
-#: src/plumblines/sections/index.tsx:226
+#: src/plumblines/sections/index.tsx:279
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:248
 msgid "Search query"
 msgstr "検索条件"
 
-#: src/plumblines/sections/index.tsx:290
+#: src/plumblines/sections/index.tsx:380
 msgid "Search results · latest · repost attribution is not supplied"
 msgstr ""
 
@@ -11458,11 +11606,11 @@ msgstr "検索…"
 msgid "Searches for profiles"
 msgstr "プロフィールを検索"
 
-#: src/plumblines/sections/index.tsx:154
+#: src/plumblines/sections/index.tsx:207
 msgid "Section name"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:146
+#: src/plumblines/sections/index.tsx:199
 msgid "Sections and their filters are saved on this device for this account."
 msgstr ""
 
@@ -11563,6 +11711,10 @@ msgstr "アカウントを選択"
 #: src/components/AppLanguageDropdown.tsx:63
 msgid "Select an app language"
 msgstr "アプリの言語を選択"
+
+#: src/plumblines/reading/standard/index.web.tsx:475
+msgid "Select an article to open its full text from the public index."
+msgstr ""
 
 #: src/screens/Onboarding/StepProfile/AvatarCircle.tsx:65
 msgid "Select an avatar"
@@ -11845,6 +11997,11 @@ msgstr "パスワードをリセットするためのメールアドレスを入
 #: src/view/shell/Drawer.tsx:671
 msgid "Settings"
 msgstr "設定"
+
+#. placeholder {0}: section.title
+#: src/plumblines/sections/index.tsx:343
+msgid "Settings for {0}"
+msgstr ""
 
 #: src/screens/Settings/NotificationSettings/index.tsx:220
 msgid "Settings for activity from others"
@@ -12187,7 +12344,9 @@ msgstr "コンテンツを表示"
 #: src/components/dialogs/Signin.tsx:100
 #: src/components/WelcomeModal.tsx:187
 #: src/components/WelcomeModal.tsx:198
-#: src/plumblines/sections/index.tsx:330
+#: src/plumblines/NewspaperHome.tsx:47
+#: src/plumblines/NewspaperHome.tsx:54
+#: src/plumblines/sections/index.tsx:487
 #: src/screens/Hashtag.tsx:233
 #: src/screens/Login/index.tsx:143
 #: src/screens/Login/index.tsx:165
@@ -12240,7 +12399,7 @@ msgstr "リストにないアカウントにサインイン"
 msgid "Sign in to Bluesky or create a new account"
 msgstr "Blueskyにサインイン または 新規アカウントの登録"
 
-#: src/plumblines/sections/index.tsx:323
+#: src/plumblines/sections/index.tsx:480
 msgid "Sign in to read this section. You can add a publicly available custom feed or list while signed out."
 msgstr ""
 
@@ -12499,7 +12658,7 @@ msgid "Sort replies to the same post by:"
 msgstr "次の方法で同じ投稿への返信を並び替えます。"
 
 #: src/plumblines/components/FeedContext.tsx:99
-#: src/plumblines/sections/index.tsx:211
+#: src/plumblines/sections/index.tsx:264
 msgid "Source"
 msgstr ""
 
@@ -12511,7 +12670,7 @@ msgstr ""
 msgid "Source DID"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:297
+#: src/plumblines/sections/index.tsx:387
 msgid "Source information"
 msgstr ""
 
@@ -12519,6 +12678,10 @@ msgstr ""
 #: src/components/moderation/ModerationDetailsDialog.tsx:272
 msgid "Source: <0>{sourceName}</0>"
 msgstr "ソース：<0>{sourceName}</0>"
+
+#: src/plumblines/reading/standard/index.web.tsx:411
+msgid "Source: Standard Reader public index · Latest documents · Newest first"
+msgstr ""
 
 #: src/components/moderation/ReportDialog/utils/useReportOptions.ts:40
 #: src/screens/ModerationInbox/Report.tsx:69
@@ -12538,6 +12701,10 @@ msgstr "スポーツ"
 #: src/analytics/features/index.ts:94
 msgid "Spot posts your friends and follows have liked."
 msgstr "あなたの友達やフォローしている人がいいねした投稿を見つける。"
+
+#: src/plumblines/reading/standard/index.web.tsx:255
+msgid "Standard.site article"
+msgstr ""
 
 #: src/components/PostControls/ShareMenu/RecentChats.tsx:231
 msgid "Start a conversation, and it will appear here."
@@ -13026,6 +13193,10 @@ msgstr "このアカウントは、ブロック解除後にあなたとやり取
 msgid "The app will be restarted"
 msgstr "アプリを再起動します"
 
+#: src/plumblines/reading/standard/index.web.tsx:240
+msgid "The article could not be loaded."
+msgstr ""
+
 #: src/components/moderation/ModerationDetailsDialog.tsx:139
 #: src/lib/moderation/useModerationCauseDescription.ts:126
 msgid "The author of this thread has hidden this reply."
@@ -13091,9 +13262,13 @@ msgstr "以下のサービスがあなたのアカウントで有効になって
 msgid "The following settings will be used as your defaults when creating new posts. You can edit these for a specific post from the composer."
 msgstr "新しい投稿を作成する場合、以下の設定がデフォルトとして使用されます。個々の投稿に対する設定は編集画面から変更できます。"
 
-#: src/plumblines/NewspaperHome.tsx:19
-#: src/plumblines/sections/index.tsx:119
+#: src/plumblines/NewspaperHome.tsx:23
+#: src/plumblines/sections/index.tsx:117
 msgid "The front page"
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:213
+msgid "The index has no readable body for this document."
 msgstr ""
 
 #: src/components/ageAssurance/useAgeAssuranceCopy.ts:23
@@ -13128,6 +13303,14 @@ msgstr "プライバシーポリシーは<0/>に移動しました"
 #: src/view/com/composer/state/video.ts:488
 msgid "The processed video is too large. Please try again with a smaller file."
 msgstr "処理されたビデオが大きすぎます。小さいファイルでもう一度やり直してください。"
+
+#: src/plumblines/reading/standard/index.web.tsx:433
+msgid "The public index has no readable documents right now."
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:425
+msgid "The public Reading index could not be loaded."
+msgstr ""
 
 #: src/plumblines/components/PublicPostReader.tsx:126
 msgid "The public service did not return this post. It may be unavailable or restricted."
@@ -13169,6 +13352,10 @@ msgstr "サーバーで問題が発生しているようです。少し間をお
 
 #: src/view/com/post-thread/PostQuotes.tsx:240
 msgid "The service returned no visible quotes. Try the public view to check for posts omitted from your account view."
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:156
+msgid "The source has not made a readable article body available."
 msgstr ""
 
 #: src/plumblines/records/PostInformationDialog.tsx:137
@@ -13466,6 +13653,14 @@ msgstr "この会話はロックされています。"
 msgid "This conversation is with a deleted or a deactivated account. Press for options"
 msgstr "削除あるいは無効化されたアカウントとの会話です。押すと選択肢が表示されます"
 
+#: src/plumblines/reading/standard/index.web.tsx:185
+msgid "This document format is not supported by the reader yet."
+msgstr ""
+
+#: src/plumblines/reading/standard/index.web.tsx:179
+msgid "This document format is not supported by the reader yet. Showing the source text."
+msgstr ""
+
 #: src/view/com/composer/drafts/DraftItem.tsx:241
 msgid "This draft will be permanently deleted."
 msgstr "この下書きは完全に削除されます。"
@@ -13677,7 +13872,7 @@ msgstr "これにより以下にドメインレコードが作成されるはず
 msgid "This should only take a few minutes."
 msgstr "これには数分かかるはずです。"
 
-#: src/plumblines/sections/index.tsx:534
+#: src/plumblines/sections/index.tsx:777
 msgid "This source could not be loaded. Refresh to retry."
 msgstr ""
 
@@ -14346,7 +14541,7 @@ msgstr ""
 msgid "Up to 50 people"
 msgstr "最大50人"
 
-#: src/plumblines/sections/index.tsx:60
+#: src/plumblines/sections/index.tsx:84
 msgid "Up to eight sections can be open at once."
 msgstr ""
 
