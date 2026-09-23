@@ -60,3 +60,10 @@
 - Fixed the masthead to the viewport with shell padding and full-width opaque background; applied newspaper variables to document/body/root. Kept native and protocol flows unchanged.
 - New deep-scroll regression fails on the old site. Lint/web types/export and all 18 local browser cases pass. Five preview and five live production checks pass, plus a dark deep-scroll inspection.
 - Deployed identical preview artifact to `3d164850-39b9-4484-89a3-f9d3d1b974f5`; entry assets match local hashes. See updated deployment receipt.
+
+## Public reading through block placeholders
+- Added explicit public post/profile/quotes views using the existing credential-free AppView client, isolated query keys and read-only cards. No block records, private collections, interaction permissions or PDS settings are changed. Known profile mutes and public visibility labels remain effective.
+- The screenshot's real blocked quote renders via its known URI. The separate quote-count mismatch remains a service limitation: public getQuotes returns zero entries, and the UI now explains that accurately.
+- Lint, all three platform types, build, focused 7/7 unit tests, and local 28/28 browser cases pass. The first browser attempt overlapped export rebuilding and is INCONCLUSIVE; the final run passed after export completion. A test response type was fixed after pre-commit lint; hooks then passed.
+- Preview 1694803e and production 691324f3-e1ad-4a16-8d47-8b404f59c84d each pass all 10 new cases. The blocked-post read uses real public data; six blocked-profile cases use fixtures, not authenticated account acceptance. All five entry JS/CSS hashes match the artifact on plumblines.uk.
+- Source 33abbf24832ce908e55c2c370e73eafcd34e80d8; immediate rollback 3d164850-39b9-4484-89a3-f9d3d1b974f5. Details: public-reader-deployment-2026-09-23.md. Broader release limitations remain recorded separately.

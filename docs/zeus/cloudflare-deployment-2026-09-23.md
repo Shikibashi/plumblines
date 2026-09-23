@@ -2,9 +2,13 @@
 
 **DEPLOYED:** https://plumblines.uk now serves the Plumblines newspaper client, replacing the previous Rust client. The user explicitly authorized this replacement. No DNS, PDS, tunnel, database or account records were changed.
 
+## Public blocked-content reader (05:58 UTC)
+
+The current deployment is `691324f3-e1ad-4a16-8d47-8b404f59c84d`, source `33abbf24832ce908e55c2c370e73eafcd34e80d8`. It adds opt-in public reading for blocked posts/profiles and truthful quote-list availability. See the [public-reader deployment receipt](public-reader-deployment-2026-09-23.md) for exact behavior, verification, service limits, and rollback.
+
 ## Deep-scroll correction (05:28 UTC)
 
-The current deployment is `3d164850-39b9-4484-89a3-f9d3d1b974f5`, at https://3d164850.plumbline-f50.pages.dev, source commit `75b71547ae6dfc2f3322d891ff21dddf02777ef3`. It replaces the initial deployment described below. The immediate rollback target is `31462629-65f9-4903-9065-b2bf6e3a60d6`.
+This earlier deployment is `3d164850-39b9-4484-89a3-f9d3d1b974f5`, at https://3d164850.plumbline-f50.pages.dev, source commit `75b71547ae6dfc2f3322d891ff21dddf02777ef3`. It replaces the initial deployment described below. The immediate rollback target is `31462629-65f9-4903-9065-b2bf6e3a60d6`.
 
 A user screenshot exposed a deep-scroll defect missed by the initial viewport tests. The masthead was sticky inside a viewport-height navigation shell, so it scrolled away beyond the first screen while feed tabs retained their masthead offset. More-specific static HTML theme styles also painted the root white outside that shell.
 

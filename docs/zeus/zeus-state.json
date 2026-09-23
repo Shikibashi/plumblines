@@ -32,12 +32,13 @@
     "testing": {
       "status": "completed",
       "grade": "proved",
-      "browserPassed": 18,
+      "browserPassed": 28,
       "browserFailed": 0,
       "explorationPassed": 3,
       "unitPassed": 891,
       "unitTodo": 28,
-      "scope": "guest browser and mocked mutation tests; external search results not verified"
+      "scope": "28 local guest/fixture browser cases; new public-reader checks include real blocked-post recovery and deterministic blocked-profile cases",
+      "latestFocusedUnitPassed": 7
     },
     "report": {
       "status": "completed",
@@ -49,13 +50,13 @@
       "grade": "proved",
       "provider": "Cloudflare Pages",
       "url": "https://plumblines.uk",
-      "deploymentId": "3d164850-39b9-4484-89a3-f9d3d1b974f5",
+      "deploymentId": "691324f3-e1ad-4a16-8d47-8b404f59c84d",
       "browserPassed": 15,
       "guestRoutesPassed": 3,
       "scope": "public site, artifact hashes, guest browser and PDS discovery; not authenticated acceptance",
-      "receipt": "docs/zeus/cloudflare-deployment-2026-09-23.md",
-      "latestRegressionChecksPassed": 5,
-      "latestRegressionScope": "deep scrolling at phone/narrow desktop/wide desktop, light/dark theme; original broader hosted suite recorded separately"
+      "receipt": "docs/zeus/public-reader-deployment-2026-09-23.md",
+      "latestRegressionChecksPassed": 10,
+      "latestRegressionScope": "10 public-reader preview and production cases; live public blocked post and quotes response, fixture profile states; not authenticated acceptance"
     }
   },
   "parsed": {
@@ -71,7 +72,8 @@
       "no block creation",
       "attention controls",
       "honest feed provenance",
-      "responsive web"
+      "responsive web",
+      "read-only public blocked-content views"
     ],
     "projectName": "plumblines"
   },
@@ -88,5 +90,5 @@
   ],
   "result": "PARTIAL",
   "completedAt": "2026-09-23T05:04:04.149892+00:00",
-  "updatedAt": "2026-09-23T05:21:49.910828+00:00"
+  "updatedAt": "2026-09-23T06:00:41.904809+00:00"
 }
