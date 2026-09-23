@@ -37,6 +37,7 @@ export * as Header from '#/components/Layout/Header'
 export type ScreenProps = React.ComponentProps<typeof View> & {
   style?: StyleProp<ViewStyle>
   noInsetTop?: boolean
+  fullWidth?: boolean
   minimalShell?: boolean
 }
 
@@ -47,6 +48,7 @@ export const Screen = memo(function Screen({
   style,
   noInsetTop,
   minimalShell = false,
+  fullWidth = false,
   ...props
 }: ScreenProps) {
   const {top} = useSafeAreaInsets()
@@ -56,7 +58,7 @@ export const Screen = memo(function Screen({
 
   return (
     <>
-      {IS_WEB && !isWithinSplitView && <WebCenterBorders />}
+      {IS_WEB && !isWithinSplitView && !fullWidth && <WebCenterBorders />}
       <View
         nativeID="plumblines-content"
         style={[

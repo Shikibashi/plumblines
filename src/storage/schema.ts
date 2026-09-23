@@ -81,6 +81,10 @@ export type Device = {
 }
 
 export type Account = {
+  /** Device-local Plumblines data; each feature validates its version and shape. */
+  plumblinesSections?: unknown
+  plumblinesAttention?: unknown
+  plumblinesReading?: unknown
   searchTermHistory?: string[]
   searchAccountHistory?: string[]
 

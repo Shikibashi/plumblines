@@ -1,17 +1,32 @@
 import {useMemo} from 'react'
 
 import {FeedTuner} from '#/lib/api/feed-manip'
+import {sectionFeedFilter} from '#/plumblines/sections/filters'
+import {type SectionFilters} from '#/plumblines/sections/model'
 import {type FeedDescriptor} from '../queries/post-feed'
 import {usePreferencesQuery} from '../queries/preferences'
 import {useSession} from '../session'
 import {useLanguagePrefs} from './languages'
 
-export function useFeedTuners(feedDesc: FeedDescriptor) {
+export function useFeedTuners(
+  feedDesc: FeedDescriptor,
+  sectionFilters?: SectionFilters,
+) {
   const langPrefs = useLanguagePrefs()
   const {data: preferences} = usePreferencesQuery()
   const {currentAccount} = useSession()
 
   return useMemo(() => {
+    // plumblines: section filters replace global feed-shape preferences, never moderation.
+    if (sectionFilters) {
+      return [
+        sectionFeedFilter(sectionFilters),
+        ...(feedDesc.startsWith('feedgen')
+          ? [FeedTuner.preferredLangOnly(langPrefs.contentLanguages)]
+          : []),
+        FeedTuner.removeMutedThreads,
+      ]
+    }
     if (feedDesc.startsWith('author')) {
       if (feedDesc.endsWith('|posts_with_replies')) {
         // TODO: Do this on the server instead.
@@ -48,5 +63,5 @@ export function useFeedTuners(feedDesc: FeedDescriptor) {
       return feedTuners
     }
     return []
-  }, [feedDesc, currentAccount, preferences, langPrefs])
+  }, [feedDesc, currentAccount, preferences, langPrefs, sectionFilters])
 }

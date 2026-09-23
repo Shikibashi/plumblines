@@ -56,7 +56,13 @@ import {atoms as a, native, platform, useBreakpoints, web} from '#/alf'
 import * as Layout from '#/components/Layout'
 import {ListFooter} from '#/components/Lists'
 import {useAnalytics} from '#/analytics'
-import {IS_NATIVE} from '#/env'
+import {IS_NATIVE, IS_WEB} from '#/env'
+import {articleThreadItem} from '#/plumblines/reading/model'
+import {
+  ReaderControls,
+  useReadingPreferences,
+} from '#/plumblines/reading/preferences'
+import {ReadingSurface} from '#/plumblines/reading/ReadingSurface'
 
 const PARENT_CHUNK_SIZE = IS_NATIVE ? 5 : 20
 const CHILDREN_CHUNK_SIZE = 50
@@ -66,6 +72,8 @@ const analyticsOnlySendInteraction: FeedFeedbackStateContext['sendInteraction'] 
 
 export function PostThread({uri}: {uri: string}) {
   const ax = useAnalytics()
+  const [reading] = useReadingPreferences()
+  const articleMode = IS_WEB && reading.article
   const {gtMobile} = useBreakpoints()
   const {hasSession} = useSession()
   const initialNumToRender = useInitialNumToRender()
@@ -430,6 +438,7 @@ export function PostThread({uri}: {uri: string}) {
 
   const renderItem = useCallback(
     ({item, index}: {item: ThreadItem; index: number}) => {
+      if (articleMode) item = articleThreadItem(item)
       if (item.type === 'threadPost') {
         if (item.depth < 0) {
           return (
@@ -473,7 +482,7 @@ export function PostThread({uri}: {uri: string}) {
             </View>
           )
         } else {
-          if (thread.state.view === 'tree') {
+          if (!articleMode && thread.state.view === 'tree') {
             return (
               <ThreadItemTreePost
                 item={item}
@@ -547,6 +556,7 @@ export function PostThread({uri}: {uri: string}) {
       onReplyToAnchor,
       gtMobile,
       anchorPostSource,
+      articleMode,
     ],
   )
 
@@ -571,79 +581,85 @@ export function PostThread({uri}: {uri: string}) {
         </Layout.Header.Slot>
       </Layout.Header.Outer>
 
-      {thread.state.error ? (
-        <ThreadError
-          error={thread.state.error}
-          onRetry={thread.actions.refetch}
-        />
-      ) : (
-        <AnalyticsOnlyFeedFeedbackProvider
-          feedDescriptor={feedFeedback.feedDescriptor}>
-          <List
-            ref={listRef}
-            data={deferredSlices}
-            renderItem={renderItem}
-            keyExtractor={keyExtractor}
-            onContentSizeChange={platform({
-              web: onContentSizeChangeWebOnly,
-              default: onContentSizeChangeNativeOnly,
-            })}
-            onStartReached={onStartReached}
-            onEndReached={onEndReached}
-            onEndReachedThreshold={4}
-            onStartReachedThreshold={1}
-            onItemSeen={item => {
-              // Track post:view for parent posts and replies (non-anchor posts)
-              if (item.type === 'threadPost' && item.depth !== 0) {
-                trackThreadItemView(item.value.post)
-              }
-            }}
-            /**
-             * NATIVE ONLY
-             * {@link https://reactnative.dev/docs/scrollview#maintainvisiblecontentposition}
-             */
-            maintainVisibleContentPosition={{minIndexForVisible: 0}}
-            desktopFixedHeight
-            sideBorders={false}
-            ListFooterComponent={
-              <ListFooter
-                /*
-                 * On native, if `deferParents` is true, we need some extra buffer to
-                 * account for the `on*ReachedThreshold` values.
-                 *
-                 * Otherwise, and on web, this value needs to be the height of
-                 * the viewport _minus_ a sensible min-post height e.g. 200, so
-                 * that there's enough scroll remaining to get the anchor post
-                 * back to the top of the screen when handling scroll.
-                 */
-                height={platform({
-                  web: defaultListFooterHeight,
-                  default: deferParents
-                    ? windowHeight * 2
-                    : defaultListFooterHeight,
-                })}
-                style={isTombstoneView ? {borderTopWidth: 0} : undefined}
-              />
-            }
-            initialNumToRender={initialNumToRender}
-            /**
-             * Default: 21
-             *
-             * Smaller for placeholder data so we don't waste time rendering skeletons
-             */
-            windowSize={thread.state.isPlaceholderData ? 1 : 7}
-            /**
-             * Default: 10
-             */
-            maxToRenderPerBatch={5}
-            /**
-             * Default: 50
-             */
-            updateCellsBatchingPeriod={100}
-          />
-        </AnalyticsOnlyFeedFeedbackProvider>
+      {IS_WEB && (
+        <Layout.Center style={[a.p_md, a.gap_sm]}>
+          <ReaderControls includeArticle />
+        </Layout.Center>
       )}
-
+      <ReadingSurface enabled={articleMode}>
+        {thread.state.error ? (
+          <ThreadError
+            error={thread.state.error}
+            onRetry={thread.actions.refetch}
+          />
+        ) : (
+          <AnalyticsOnlyFeedFeedbackProvider
+            feedDescriptor={feedFeedback.feedDescriptor}>
+            <List
+              ref={listRef}
+              data={deferredSlices}
+              renderItem={renderItem}
+              keyExtractor={keyExtractor}
+              onContentSizeChange={platform({
+                web: onContentSizeChangeWebOnly,
+                default: onContentSizeChangeNativeOnly,
+              })}
+              onStartReached={onStartReached}
+              onEndReached={onEndReached}
+              onEndReachedThreshold={4}
+              onStartReachedThreshold={1}
+              onItemSeen={item => {
+                // Track post:view for parent posts and replies (non-anchor posts)
+                if (item.type === 'threadPost' && item.depth !== 0) {
+                  trackThreadItemView(item.value.post)
+                }
+              }}
+              /**
+               * NATIVE ONLY
+               * {@link https://reactnative.dev/docs/scrollview#maintainvisiblecontentposition}
+               */
+              maintainVisibleContentPosition={{minIndexForVisible: 0}}
+              desktopFixedHeight
+              sideBorders={false}
+              ListFooterComponent={
+                <ListFooter
+                  /*
+                   * On native, if `deferParents` is true, we need some extra buffer to
+                   * account for the `on*ReachedThreshold` values.
+                   *
+                   * Otherwise, and on web, this value needs to be the height of
+                   * the viewport _minus_ a sensible min-post height e.g. 200, so
+                   * that there's enough scroll remaining to get the anchor post
+                   * back to the top of the screen when handling scroll.
+                   */
+                  height={platform({
+                    web: defaultListFooterHeight,
+                    default: deferParents
+                      ? windowHeight * 2
+                      : defaultListFooterHeight,
+                  })}
+                  style={isTombstoneView ? {borderTopWidth: 0} : undefined}
+                />
+              }
+              initialNumToRender={initialNumToRender}
+              /**
+               * Default: 21
+               *
+               * Smaller for placeholder data so we don't waste time rendering skeletons
+               */
+              windowSize={thread.state.isPlaceholderData ? 1 : 7}
+              /**
+               * Default: 10
+               */
+              maxToRenderPerBatch={5}
+              /**
+               * Default: 50
+               */
+              updateCellsBatchingPeriod={100}
+            />
+          </AnalyticsOnlyFeedFeedbackProvider>
+        )}
+      </ReadingSurface>
       {!gtMobile && canReply && hasSession && (
         <MobileComposePrompt onPressReply={onReplyToAnchor} />
       )}

@@ -27,6 +27,7 @@ import {Embed as StarterPackCard} from '#/components/StarterPack/StarterPackCard
 import {SubtleHover} from '#/components/SubtleHover'
 import {app} from '#/lexicons'
 import {PublicPostReader} from '#/plumblines/components/PublicPostReader'
+import {GenericRecordEmbed} from '#/plumblines/records/GenericRecordEmbed'
 import * as bsky from '#/types/bsky'
 import {
   type Embed as TEmbed,
@@ -74,6 +75,14 @@ export function Embed({embed: rawEmbed, ...rest}: EmbedProps) {
           <MediaEmbed embed={embed.media} {...rest} />
           <RecordEmbed embed={embed.view} {...rest} />
         </View>
+      )
+    }
+    case 'unknown': {
+      return (
+        <GenericRecordEmbed
+          supplied={embed.view}
+          moderation={rest.moderation}
+        />
       )
     }
     default: {
@@ -150,6 +159,14 @@ function MediaEmbed({
         </ContentHider>
       )
     }
+    case 'unknown': {
+      return (
+        <GenericRecordEmbed
+          supplied={embed.view}
+          moderation={rest.moderation}
+        />
+      )
+    }
     default: {
       return null
     }
@@ -215,6 +232,14 @@ function RecordEmbed({
     }
     case 'post_detached': {
       return <PostDetachedEmbed embed={embed} />
+    }
+    case 'unknown': {
+      return (
+        <GenericRecordEmbed
+          supplied={embed.view}
+          moderation={rest.moderation}
+        />
+      )
     }
     default: {
       return null

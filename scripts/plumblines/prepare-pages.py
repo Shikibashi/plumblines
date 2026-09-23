@@ -44,6 +44,10 @@ def main():
     shutil.copytree(SOURCE, output / 'static', ignore=shutil.ignore_patterns('*.map', 'index.html'))
     (output / 'index.html').write_text(html)
     shutil.copyfile(SOURCE / 'favicon.ico', output / 'favicon.ico')
+    # Install metadata must remain at the root rather than below /static.
+    # Copy from the verified export, preserving the exact deployed icon bytes.
+    shutil.copyfile(SOURCE / 'manifest.webmanifest', output / 'manifest.webmanifest')
+    shutil.copytree(SOURCE / 'pwa', output / 'pwa')
     # Preserve the previously published OAuth client identity for existing grants.
     # This client uses the upstream account login; this file adds no OAuth flow.
     shutil.copyfile(ROOT / 'deployment/cloudflare/legacy-client-metadata.json', output / 'client-metadata.json')
@@ -60,6 +64,7 @@ def main():
         '  X-Frame-Options: DENY\n  Content-Security-Policy: ' + csp + '\n'
         '/\n  Cache-Control: no-cache\n/index.html\n  Cache-Control: no-cache\n'
         '/client-metadata.json\n  Cache-Control: no-cache\n  Access-Control-Allow-Origin: *\n'
+        '/manifest.webmanifest\n  Content-Type: application/manifest+json\n  Cache-Control: no-cache\n'
     )
     manifest = {str(p.relative_to(output)): hashlib.sha256(p.read_bytes()).hexdigest()
                 for p in sorted(output.rglob('*')) if p.is_file()}

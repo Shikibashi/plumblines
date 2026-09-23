@@ -403,6 +403,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
               />
               {richText?.text ? (
                 <RichText
+                  testID="postText"
                   enableTags
                   selectable
                   value={richText}
@@ -463,6 +464,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                       style={[a.text_md, t.atoms.text_contrast_medium]}>
                       <Trans comment="Repost count display, the <0> tags enclose the number of reposts in bold (will never be 0)">
                         <Text
+                          dataSet={{plumblinesEngagement: 'true'}}
                           style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
                           {formatPostStatCount(post.repostCount)}
                         </Text>{' '}
@@ -484,6 +486,7 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                       style={[a.text_md, t.atoms.text_contrast_medium]}>
                       <Trans comment="Quote count display, the <0> tags enclose the number of quotes in bold (will never be 0)">
                         <Text
+                          dataSet={{plumblinesEngagement: 'true'}}
                           style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
                           {formatPostStatCount(post.quoteCount)}
                         </Text>{' '}
@@ -502,7 +505,9 @@ const ThreadItemAnchorInner = memo(function ThreadItemAnchorInner({
                     testID="bookmarkCount-expanded"
                     style={[a.text_md, t.atoms.text_contrast_medium]}>
                     <Trans comment="Save count display, the <0> tags enclose the number of saves in bold (will never be 0)">
-                      <Text style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
+                      <Text
+                        dataSet={{plumblinesEngagement: 'true'}}
+                        style={[a.text_md, a.font_semi_bold, t.atoms.text]}>
                         {formatPostStatCount(post.bookmarkCount)}
                       </Text>{' '}
                       <Plural

@@ -19,3 +19,7 @@ Use actual account/feed data. Do not copy fictional posts, counts or imagery fro
 
 ## Accessibility and verification
 Readable body ~16–18px with comfortable line height. Keep accessible action labels, visible keyboard focus, suitable touch targets and theme-specific contrast. Reduced motion must work. Verify desktop, tablet and phone actual render, font fallback/glyphs, dark/dim and form states. Reference screenshot is aesthetic direction, not functional or protocol evidence.
+
+## Configurable front page
+
+The web Home screen uses its own section grid: a 280px navigation rail from 1500px, an 88px icon rail from 980px, and no desktop rail below that. Its right-hand provenance panel is replaced by per-section source information and per-post Information dialogs. Two columns appear above 1500px; one section fills the available width, and narrower views show the active section. Other routes retain the original 840px reading column and context rail. Keep the paper/ink palette, restrained rules, serif headings and visible focus treatment. Reader/article options preserve warning controls and actions.

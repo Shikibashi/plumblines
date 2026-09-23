@@ -85,13 +85,16 @@ import {
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
-import {IS_INTERNAL} from '#/env'
+import {IS_INTERNAL, IS_WEB} from '#/env'
 import {type app} from '#/lexicons'
 import {useAccountActions} from '#/plumblines/account-actions'
 import {
   UnblockAccountDialog,
   useUnblockAccountMenuItem,
 } from '#/plumblines/components/UnblockAccountMenuItem'
+import {useSnoozeAccountMenuItems} from '#/plumblines/local-attention'
+import {SharePostImageDialog} from '#/plumblines/reading/SharePostImageDialog'
+import {PostInformationDialog} from '#/plumblines/records/PostInformationDialog'
 
 let PostMenuItems = ({
   post,
@@ -137,6 +140,9 @@ let PostMenuItems = ({
   })
   const navigation = useNavigation<NavigationProp>()
   const {mutedWordsDialogControl} = useGlobalDialogsControlContext()
+  const informationControl = useDialogControl()
+  const imageControl = useDialogControl()
+  const snoozeItems = useSnoozeAccountMenuItems(post.author)
   const unblockPromptControl = useDialogControl()
   const reportDialogControl = useReportDialogControl()
   const deletePromptControl = useDialogControl()
@@ -489,6 +495,24 @@ let PostMenuItems = ({
   return (
     <>
       <Menu.Outer>
+        <Menu.Group>
+          <Menu.Item
+            label={l`Post information`}
+            onPress={informationControl.open}
+            testID="postInformationBtn">
+            <Menu.ItemText>{l`Post information`}</Menu.ItemText>
+          </Menu.Item>
+          {IS_WEB && (!hideInPWI || hasSession) && (
+            <Menu.Item
+              label={l`Share as image`}
+              onPress={imageControl.open}
+              testID="sharePostImageBtn">
+              <Menu.ItemText>{l`Share as image`}</Menu.ItemText>
+            </Menu.Item>
+          )}
+          {!isAuthor && snoozeItems}
+        </Menu.Group>
+        <Menu.Divider />
         {isAuthor && (
           <>
             <Menu.Group>
@@ -788,6 +812,20 @@ let PostMenuItems = ({
           </>
         )}
       </Menu.Outer>
+      <PostInformationDialog
+        control={informationControl}
+        post={post}
+        record={record}
+        threadgateRecord={threadgateRecord}
+        feedDescriptor={feedFeedback.feedDescriptor}
+      />
+      {IS_WEB && (
+        <SharePostImageDialog
+          control={imageControl}
+          post={post}
+          record={record}
+        />
+      )}
       <Prompt.Basic
         control={deletePromptControl}
         title={l`Delete this post?`}

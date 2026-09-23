@@ -325,6 +325,7 @@ const ThreadItemPostInner = memo(function ThreadItemPostInner({
               {richText?.text ? (
                 <View style={[a.mb_2xs]}>
                   <RichText
+                    testID="postText"
                     enableTags
                     value={richText}
                     style={[a.flex_1, a.text_md]}

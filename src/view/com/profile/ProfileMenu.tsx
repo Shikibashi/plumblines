@@ -59,6 +59,7 @@ import {
   UnblockAccountDialog,
   useUnblockAccountMenuItem,
 } from '#/plumblines/components/UnblockAccountMenuItem'
+import {useSnoozeAccountMenuItems} from '#/plumblines/local-attention'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
 let ProfileMenu = ({
@@ -243,6 +244,7 @@ let ProfileMenu = ({
       return v.issuer === currentAccount?.did
     }) ?? []
 
+  const snoozeItems = useSnoozeAccountMenuItems(profile)
   const unblockMenuItem = useUnblockAccountMenuItem({
     profile: profile,
     onPress: unblockPromptControl.open,
@@ -274,6 +276,9 @@ let ProfileMenu = ({
         </Menu.Trigger>
 
         <Menu.Outer style={{minWidth: 170}}>
+          {profile.did !== currentAccount?.did && (
+            <Menu.Group>{snoozeItems}</Menu.Group>
+          )}
           <Menu.Group>
             <Menu.Item
               testID="profileHeaderDropdownShareBtn"

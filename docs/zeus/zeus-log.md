@@ -76,3 +76,17 @@
 - Native codex review --uncommitted found no actionable regressions in the core refactor, independently running 29 focused and 117 session tests plus all platform types. Main full Jest run passed 84 suites / 914 tests / 21 snapshots (28 inherited todo); final request-mute addition verified separately below.
 - Lint initially caught one obsolete suppression from removed SubscribeMenu code. Tool-driven pruning only lowered that existing count from two to one; no new suppressions added. Lint and iOS/Android/web typechecks pass.
 - Graysky account-actions source checked live: separate block/unblock/mute operations confirmed; Plumblines omits its creation capability. Other pasted client comparisons remain unverified and are not used as implementation evidence.
+
+## 2026-09-23 — expanded newspaper v1 implementation
+
+- Resumed Zeus for the user's latest attached final V1/V2 hierarchy. Plan: `docs/plan/plumblines-newspaper-v1/plan.md`. No new dependency, backend or protocol introduced.
+- Phase 1: scope/ownership/QA/data flow persisted. User brief supplies requirements; automated decisions are recorded as such, not a human stakeholder interview.
+- Phase 2: agent-team-codex native workers split sections/query tuning, reading/thread presentation, and records/PWA; main integrates storage, attention, menus and shell. Implementation checklist N1–N10 implemented; runtime acceptance pending.
+- Phase 3: initial integrated lint PASS, iOS/Android/web types PASS, Jest 92 suites / 948 passed / 28 TODO / 21 snapshots PASS. Independent review found invalid snooze timestamps and a share-image moderation bypass; both corrected with regression coverage. Native CLI review running, single-model evidence only.
+- [ZEUS-AUTO:taste] No service worker caching: v1 installs metadata, v2 owns offline Editions. Existing icon assets reused without editing.
+- Phase 4/5 pending completed export, Docker refresh and browser checks. Production still bc9995ac until preview acceptance.
+- In-app browser inspection NOT VERIFIED: selecting the existing plumblines.uk tab was denied because the admin-enforced browser policy service was unavailable. Do not bypass that browser control. The established local/preview software test harness can validate the application artifact; do not report a successful new in-app or custom-domain browser inspection.
+- Browser healer: original 28 regressions passed on the initial Docker export. PWA test exposed nginx's octet-stream manifest MIME (fixed with explicit application/manifest+json). New fixture source selector corrected to combobox role; explicit English language added so inherited language filtering does not silently omit short test posts.
+- Browser tests exposed masthead z-index 25 above existing dialog layer 10, intercepting close buttons. Lowered masthead to 5 and rebuilding; tests retain real clicks rather than forcing through overlays. Thread reader controls now use Layout.Center so the desktop rail cannot cover them.
+- Subsequent full static/unit validation: 95 suites / 957 tests PASS, 28 TODO, 21 snapshots; lint PASS. Test fixture userDid and incomplete-thread marker review findings resolved. Source freeze pending final rendered checks.
+- Dialog stack retest contradicted the initial z-index-only fix: the portal Pressable itself creates a stacking context. Promoted that outer web dialog root above the masthead (z-index 30), restored the existing masthead level, and rebuilt. This is the final candidate; no forced-click workaround is accepted as proof.

@@ -2,7 +2,7 @@
   "version": 2,
   "description": "Plumblines AT Protocol-compatible Bluesky fork; newspaper reference; no block creation; real upstream client",
   "startedAt": "2026-09-23T04:23:40.005558+00:00",
-  "currentPhase": "planning",
+  "currentPhase": "testing",
   "phases": {
     "parsing": {
       "status": "completed"
@@ -90,6 +90,16 @@
   ],
   "result": "PARTIAL",
   "completedAt": "2026-09-23T05:04:04.149892+00:00",
-  "updatedAt": "2026-09-23T06:00:41.904809+00:00",
-  "activeExpansion": "Newspaper v1 sections, local attention, reading, record information, PWA metadata"
+  "updatedAt": "2026-09-23T07:00:18.514593+00:00",
+  "activeExpansion": "Newspaper v1 sections, local attention, reading, record information, PWA metadata",
+  "activeExpansionPlan": "docs/plan/plumblines-newspaper-v1/plan.md",
+  "expansionEvidence": {
+    "plan": "docs/plan/plumblines-newspaper-v1/plan.md",
+    "unitPassed": 957,
+    "unitSuites": 95,
+    "types": "PASS iOS Android web",
+    "lint": "PASS",
+    "browser": "Final candidate pending full rerun",
+    "deployment": "Previous production remains until preview acceptance"
+  }
 }

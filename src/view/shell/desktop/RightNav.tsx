@@ -7,7 +7,13 @@ import {DesktopSearch} from './Search'
 
 export function DesktopRightNav({routeName}: {routeName: string}) {
   const {rightNavVisible, centerColumnOffset} = useLayoutBreakpoints()
-  if (!rightNavVisible || routeName.startsWith('Messages')) return null
+  if (
+    !rightNavVisible ||
+    routeName.startsWith('Messages') ||
+    routeName === 'Home' ||
+    routeName === 'Start'
+  )
+    return null
   return (
     <View
       testID="plumblines-right-nav"

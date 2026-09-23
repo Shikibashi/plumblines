@@ -736,3 +736,27 @@ textarea:focus-visible {
 [data-testid='plumblines-search-header'] {
   top: var(--press-height) !important;
 }
+
+/* The front page owns its columns; other routes retain the reading rail. */
+[data-testid='plumblines-front-page'] {
+  padding-bottom: 100px;
+  min-width: 0;
+}
+@media (min-width: 980px) {
+  [data-testid='plumblines-front-page'] {
+    margin-left: 88px;
+  }
+  body[data-plumblines-front-page='true'] [data-testid='plumblines-left-nav'] {
+    left: 0 !important;
+    transform: none !important;
+    width: 88px !important;
+  }
+}
+@media (min-width: 1500px) {
+  [data-testid='plumblines-front-page'] {
+    margin-left: 280px;
+  }
+  body[data-plumblines-front-page='true'] [data-testid='plumblines-left-nav'] {
+    width: 280px !important;
+  }
+}

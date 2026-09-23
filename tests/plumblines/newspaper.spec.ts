@@ -2,7 +2,7 @@ import {expect, test} from '@playwright/test'
 
 const collectors = /events\.bsky\.app|api\.growthbook\.io|sentry\.io|bitdrift/i
 
-test('QA09, QA15: real public feed, newspaper shell, no upstream telemetry', async ({
+test('QA09, QA15: Following-first newspaper shell, no upstream telemetry', async ({
   page,
 }) => {
   const errors: string[] = []
@@ -13,15 +13,20 @@ test('QA09, QA15: real public feed, newspaper shell, no upstream telemetry', asy
   })
   await page.goto('/')
   await expect(page.getByTestId('plumblines-masthead')).toBeVisible()
+  await expect(page.getByTestId('newspaper-sections')).toBeVisible()
   await expect(
-    page.locator('[data-testid^="feedItem-by-"]').first(),
-  ).toBeVisible({timeout: 45_000})
+    page.getByText(/Sign in to read this section/).first(),
+  ).toBeVisible()
   await expect(page.getByTestId('plumblines-left-nav')).toBeVisible()
-  await expect(page.getByTestId('plumblines-right-nav')).toBeVisible()
+  await expect(page.getByTestId('plumblines-right-nav')).toBeHidden()
   await expect(page).toHaveTitle(/Plumblines/)
   expect(errors).toEqual([])
   expect(telemetry).toEqual([])
-  await page.screenshot({path: 'docs/zeus/evidence/desktop-final.png'})
+  await expect(page.locator('#splash')).toBeHidden()
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'docs/zeus/evidence/desktop-final.png',
+  })
 })
 
 for (const width of [390, 768, 1024, 1280, 1586]) {
@@ -37,18 +42,22 @@ for (const width of [390, 768, 1024, 1280, 1586]) {
     if (width < 980)
       await expect(page.getByTestId('plumblines-right-nav')).toBeHidden()
     const masthead = await page.getByTestId('plumblines-masthead').boundingBox()
-    const header = page.getByTestId(
-      width < 980 ? 'plumblines-mobile-feed-header' : 'plumblines-feed-header',
-    )
+    const header = page
+      .getByTestId('newspaper-sections')
+      .getByRole('heading', {name: 'The front page', exact: true})
     await expect(header).toBeVisible()
     const headerBox = await header.boundingBox()
     expect(headerBox!.y).toBeGreaterThanOrEqual(
       masthead!.y + masthead!.height - 1,
     )
     await expect(
-      page.locator('[data-testid^="feedItem-by-"]').first(),
-    ).toBeVisible({timeout: 45000})
-    await page.screenshot({path: `docs/zeus/evidence/responsive-${width}.png`})
+      page.getByText(/Sign in to read this section/).first(),
+    ).toBeVisible()
+    await expect(page.locator('#splash')).toBeHidden()
+    await page.screenshot({
+      animations: 'disabled',
+      path: `docs/zeus/evidence/responsive-${width}.png`,
+    })
   })
 }
 
@@ -78,7 +87,11 @@ for (const scheme of ['light', 'dark'] as const) {
       return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)
     })
     expect(contrast).toBeGreaterThan(7)
-    await page.screenshot({path: `docs/zeus/evidence/edition-${scheme}.png`})
+    await expect(page.locator('#splash')).toBeHidden()
+    await page.screenshot({
+      animations: 'disabled',
+      path: `docs/zeus/evidence/edition-${scheme}.png`,
+    })
   })
 }
 
@@ -109,19 +122,25 @@ test('QA13: sign in reaches the existing account form', async ({page}) => {
   await expect(
     page.getByRole('button', {name: 'Sign in', exact: true}),
   ).toBeVisible()
-  await page.screenshot({path: 'docs/zeus/evidence/sign-in.png'})
+  await expect(page.locator('#splash')).toBeHidden()
+  await page.screenshot({
+    animations: 'disabled',
+    path: 'docs/zeus/evidence/sign-in.png',
+  })
 })
 
-test('QA14: feed provenance expands and avoids invented ranking claims', async ({
+test('QA14: each section describes its actual source without a Discover fallback claim', async ({
   page,
 }) => {
   await page.goto('/')
-  const context = page.getByTestId('plumblines-feed-context')
-  await expect(context).toBeVisible()
-  await expect(context).not.toContainText('Newest first')
-  await context.locator('summary').click()
-  await expect(context.locator('details')).toHaveAttribute('open', '')
-  await expect(context).toContainText('not verified')
+  const following = page.getByRole('region', {name: 'Following', exact: true})
+  await expect(following).toBeVisible()
+  await expect(following).toContainText('Following timeline')
+  await expect(following).toContainText('AppView order')
+  await expect(following).toContainText('no recommended-feed fallback')
+  await expect(following).toContainText('Sign in to read this section')
+  await expect(following).not.toContainText('Discover')
+  await expect(page.getByTestId('plumblines-feed-context')).toBeHidden()
 })
 
 test('QA13: search navigation remains usable', async ({page}) => {
@@ -198,7 +217,11 @@ for (const edition of ['dim', 'dark'] as const) {
       return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05)
     })
     expect(ratio).toBeGreaterThanOrEqual(4.5)
-    await page.screenshot({path: `docs/zeus/evidence/buttons-${edition}.png`})
+    await expect(page.locator('#splash')).toBeHidden()
+    await page.screenshot({
+      animations: 'disabled',
+      path: `docs/zeus/evidence/buttons-${edition}.png`,
+    })
   })
 }
 
@@ -220,7 +243,7 @@ for (const width of [390, 1040, 1586]) {
     page,
   }) => {
     await page.setViewportSize({width, height: 900})
-    await page.goto('/')
+    await page.goto('/profile/edriffles.us')
     const masthead = page.getByTestId('plumblines-masthead')
     await expect(masthead).toBeVisible()
     await expect(
@@ -244,17 +267,18 @@ for (const width of [390, 1040, 1586]) {
       ].map(el => getComputedStyle(el).backgroundColor),
     )
     expect(backgrounds).toEqual([paper, paper, paper])
-    if (width >= 980) {
-      const tabs = page.getByTestId('plumblines-feed-header')
-      const mastheadBox = (await masthead.boundingBox())!
-      expect((await tabs.boundingBox())!.y).toBeCloseTo(mastheadBox.height, 0)
-    }
-    await page.screenshot({path: `docs/zeus/evidence/scroll-deep-${width}.png`})
+    await expect(page.locator('#splash')).toBeHidden()
+    await page.screenshot({
+      animations: 'disabled',
+      path: `docs/zeus/evidence/scroll-deep-${width}.png`,
+    })
     // Scrolling back must retain the brand and leave the first post below the tabs.
     await page.evaluate(() => window.scrollTo(0, 0))
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
     await expect(masthead).toBeVisible()
+    await expect(page.locator('#splash')).toBeHidden()
     await page.screenshot({
+      animations: 'disabled',
       path: `docs/zeus/evidence/scroll-fixed-${width}.png`,
     })
   })

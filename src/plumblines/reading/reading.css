@@ -1,0 +1,26 @@
+/* Hide decoration and numeric metrics, keeping names, actions and warnings. */
+.plumblines-reader
+  :is([data-testid^='feedItem-by-'], [data-testid^='postThreadItem-by-'])
+  :is([data-testid='userAvatarImage'], [data-testid='userAvatarFallback']),
+[data-plumblines-article='true']
+  :is([data-testid='userAvatarImage'], [data-testid='userAvatarFallback']) {
+  visibility: hidden;
+}
+.plumblines-reader [data-plumblines-engagement='true'],
+.plumblines-reader [data-testid='likeCount-expanded'] > span {
+  display: none !important;
+}
+[data-plumblines-article='true'] [data-testid^='postThreadItem-by-'] {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+[data-plumblines-article='true'] [data-testid='postText'] {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 19px;
+  line-height: 1.65;
+}
+@media (max-width: 600px) {
+  [data-plumblines-article='true'] [data-testid='postText'] {
+    font-size: 17px;
+  }
+}

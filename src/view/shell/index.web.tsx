@@ -1,3 +1,5 @@
+import '#/plumblines/reading/reading.css'
+
 import {useCallback, useEffect, useLayoutEffect, useState} from 'react'
 import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
 import {msg} from '@lingui/core/macro'
@@ -150,12 +152,15 @@ function DrawerLayout({children}: {children: React.ReactNode}) {
   )
 }
 
+import {ReaderPreferencesEffect} from '#/plumblines/reading/preferences'
+
 export function Shell() {
   const t = useTheme()
   const aa = useAgeAssurance()
   const {currentAccount} = useSession()
   return (
     <View style={[a.util_screen_outer, t.atoms.bg]} testID="plumblines-shell">
+      <ReaderPreferencesEffect />
       <NewspaperMasthead />
       {currentAccount?.status === 'takendown' ? (
         <Takendown />
