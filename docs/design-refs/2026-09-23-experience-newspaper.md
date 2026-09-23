@@ -21,7 +21,7 @@
 
 - User result: Browse a composed newspaper front, continue through source items using one browser scrollbar, and intentionally switch to long-form Reading when desired.
 - Product result: Present AT Protocol sources as a navigable newspaper object while keeping source semantics, provider order, moderation, and accessibility truthful.
-- Observable success: stable Page 1/Page 2+ boundaries, deterministic ordering, a return-to-front-page anchor, a separate Reading destination, and no persistent mute manager in the reading flow.
+- Observable success: stable Page 1/Page 2+ boundaries, deterministic ordering, a page navigator linking loaded sheets and tracking the visible one, a return-to-front-page anchor, a separate Reading destination, and no persistent mute manager in the reading flow.
 
 ## Audience and Tasks
 
@@ -58,7 +58,7 @@
 1. Masthead and folio: identify Plumblines and current edition context.
 2. Section rail: select Front Page, configured sources, or Reading.
 3. Page 1: lead, briefs, secondary fronts, and a clear Reading entry point.
-4. Page 2+: chronological/provider-ordered continuation with folio and return anchor.
+4. Page 2+: chronological/provider-ordered continuation with folio, page navigation, and return anchor.
 5. Reading destination: Standard Reader index and article detail, outside social continuation.
 
 ## CTA Strategy
@@ -126,7 +126,7 @@
 ## Accessibility Contract
 
 - Preserve logical document order and existing page/region headings; each continuation sheet has a visible folio and stable anchor ID.
-- Return link and load-more control remain keyboard-accessible; keep existing visible focus indicators and labels.
+- Page links, return link and load-more control remain keyboard-accessible; keep existing visible focus indicators and labels.
 - Do not communicate page/section state by color or paper texture alone.
 - Maintain current moderation labels, warnings, alt text, source semantics, and touch targets.
 - No new motion; existing reduced-motion behavior remains in effect.

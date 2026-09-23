@@ -18,6 +18,7 @@ import {Post} from '#/view/com/post/Post'
 import {PostFeedItem} from '#/view/com/posts/PostFeedItem'
 import {ViewFullThread} from '#/view/com/posts/ViewFullThread'
 import {DispatchStory} from '#/plumblines/frontpage/DispatchStory'
+import {PageNavigator} from '#/plumblines/frontpage/PageNavigator'
 import {useLocalAttention} from '#/plumblines/local-attention'
 import {usePlumblinesStorage} from '#/plumblines/local-preferences'
 import {StandardReading} from '#/plumblines/reading/standard'
@@ -715,6 +716,9 @@ function FeedColumn({
             <Trans>Placed here by the front-page layout.</Trans>
           </p>
         )}
+        {segment === 'continuation' && pageGroups.length > 0 && (
+          <PageNavigator pageCount={pageGroups.length + 1} />
+        )}
         {pageGroups.map((page, pageIndex) => (
           <div
             className={
@@ -895,6 +899,9 @@ function SearchColumn({
         <p className="newspaper-lead-credit">
           <Trans>Placed here by the front-page layout.</Trans>
         </p>
+      )}
+      {segment === 'continuation' && pageGroups.length > 0 && (
+        <PageNavigator pageCount={pageGroups.length + 1} />
       )}
       {pageGroups.map((page, pageIndex) => (
         <div

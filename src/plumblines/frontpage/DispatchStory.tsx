@@ -15,6 +15,7 @@ export function DispatchStory({
   return (
     <article
       className="plumblines-dispatch"
+      data-story-kind="dispatch"
       data-section-story=""
       data-story-uri={uri}
       data-treatment={treatment}

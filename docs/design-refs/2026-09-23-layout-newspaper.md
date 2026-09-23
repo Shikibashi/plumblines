@@ -8,7 +8,7 @@
 4. Page 1 compositor: lead source, briefs from that same source, configured secondary fronts. Asymmetric 12-column composition. Source configuration selects layout; it does not rank content.
 5. Reading entry: concise link to its separate edition.
 6. Page 2+ continuation: lead source items after the Page 1 packages, grouped in ordered slices. One global document scroll; no internal overflow viewport.
-7. Each continuation sheet: folio, items, colophon/page number and Return to Page 1 anchor. More/retry controls stay outside story content and preserve previous sheets.
+7. Each continuation sheet: folio, items, colophon/page number and Return to Page 1 anchor. A compact Pages navigator points to loaded folios and marks the one in view. More/retry controls stay outside story content and preserve previous sheets.
 
 ## Section Front
 
@@ -34,6 +34,6 @@ At 1440×900, show masthead, section rail, and the first composed packages. The 
 
 ## UI anatomy
 
-`reading surface → paper sheet → masthead/folio → section rail → editorial package → source identity → original content → actions → page colophon`.
+`reading surface → paper sheet → masthead/folio → section rail → editorial package → source identity → original content → restrained actions → page colophon/navigator`.
 
 The front page sheet has a hairline edge and slight lift. Rules, margins, scale, and position carry structure; story packages do not each receive complete borders. Page boundaries are visible but do not constrain content to a print-sized rectangle.

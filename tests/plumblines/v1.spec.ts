@@ -447,6 +447,11 @@ test('v1 composed front page continues the lead source after its opening package
   await expect(
     continuation.getByText('Front-page continuation fixture.', {exact: true}),
   ).toBeVisible({timeout: 20_000})
+  await page.getByRole('link', {name: 'Page 2', exact: true}).click()
+  await expect(page).toHaveURL(/#newspaper-page-2$/)
+  await expect(
+    page.locator('.newspaper-page-navigator [aria-current="location"]'),
+  ).toHaveAccessibleName('Page 2')
 })
 
 test('v1 image preview keeps muted content behind its reveal control', async ({
