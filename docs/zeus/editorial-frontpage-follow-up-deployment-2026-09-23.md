@@ -22,3 +22,15 @@ Date: 2026-09-23. Repository: `/var/home/tcs/Code/plumblines`. Source branch: `c
 Before this deployment, the latest production deployment was `be8464c3-b168-4edd-a76a-fb7feda34fdb` (`https://be8464c3.plumbline-f50.pages.dev`). It remains available as the Cloudflare Pages rollback target.
 
 The UI acceptance run is guest-context automation. It does not certify every authenticated account mutation, native iOS/Android layout, screen-reader support, or PWA installation. A fresh signed-in browser load after deploy displayed the live Following lead, Dispatches rail, and current Standard Reader articles.
+
+## Reading-flow follow-up
+
+Source commit: `013ebd2c33e7466d7d812d0039ff60826ed6b656` (`fix(plumblines): continue newspaper reading flow`). This follow-up keeps the configured front-page composition as its opening package, then exposes a “More dispatches” continuation from the lead source. Cursor pagination also triggers as the reader approaches the end of front-page continuation, section fronts, and the Reading edition; a manual load-more control remains available. Reading is a separate edition view in the same shell, while Local attention is now reached from Settings instead of the front-page utility bar.
+
+- Packaged directory: `.cloudflare/pages-bx818m7d` (376 assets).
+- Packaged `index.html` SHA-256: `4717be9bc24e9dc5dc93309b3482464bc1a762d3e8f3ac55ba87506ea2a6cb3d`.
+- Preview: [`newspaper-preview.plumbline-f50.pages.dev`](https://newspaper-preview.plumbline-f50.pages.dev), deployment ID `7c3c9127-f350-44e3-a681-9864d289ac3e`; full hosted Playwright suite passed 43/43.
+- Production: [`93d682e7.plumbline-f50.pages.dev`](https://93d682e7.plumbline-f50.pages.dev), deployment ID `93d682e7-24b5-4c08-a7c6-67c99885b59d`; `https://plumblines.uk` returned HTTP 200 and served the same root HTML digest; full production Playwright suite passed 43/43.
+- Previous production rollback target: deployment ID `08bd8ccc-1600-4c98-acaf-588ed144fc43` (`https://08bd8ccc.plumbline-f50.pages.dev`).
+
+The tests verify the guest-visible front page has no Local attention control, and exercise infinite cursor loading and the Reading edition in browser automation. Settings requires an authenticated account, so the authenticated Settings route and account-specific mute state were not separately exercised in this guest run. The manual “Load more posts” fallback remains available if automatic intersection loading is unavailable.
