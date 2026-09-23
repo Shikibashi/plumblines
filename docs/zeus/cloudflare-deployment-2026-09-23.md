@@ -2,9 +2,13 @@
 
 **DEPLOYED:** https://plumblines.uk now serves the Plumblines newspaper client, replacing the previous Rust client. The user explicitly authorized this replacement. No DNS, PDS, tunnel, database or account records were changed.
 
+## Expanded newspaper v1 (07:09 UTC)
+
+Current deployment: `a1ec660d-f432-44dc-aaf4-9919babb15d3`. Configurable sections, local attention, reading tools, record information and PWA metadata are deployed. Local and preview browser suites each pass 38/38; new production browser inspection is NOT VERIFIED. See [the newspaper v1 receipt](newspaper-v1-deployment-2026-09-23.md) for exact evidence and rollback.
+
 ## Removal-only moderation (06:27 UTC)
 
-Current deployment: `bc9995ac-5efc-4616-a021-7815bb6677a3`. See [the moderation capability receipt](capabilities-deployment-2026-09-23.md).
+Earlier deployment: `bc9995ac-5efc-4616-a021-7815bb6677a3`. See [the moderation capability receipt](capabilities-deployment-2026-09-23.md).
 
 ## Public blocked-content reader (05:58 UTC)
 

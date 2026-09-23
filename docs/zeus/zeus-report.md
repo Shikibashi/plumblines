@@ -1,5 +1,15 @@
 # Zeus report: Plumblines
 
+## Current newspaper v1 result — 07:09 UTC
+
+**Scoped v1 implementation and deployment: PASS. Full product acceptance: PARTIAL.** Configurable account-local feed/list/search sections, strict Following, two-column reading, per-section filters, local snoozes, reader/article modes, moderated PNG sharing, post/DID/PDS and custom-record inspection, keyboard controls and PWA metadata are live on https://plumblines.uk. Existing public blocked-content readers and removal-only moderation remain available.
+
+Final validation: 957 unit tests / 95 suites / 21 snapshots (28 inherited TODO), lint, formatting, all three platform typechecks, optimized export and Docker packaging pass. Local and Cloudflare preview browser suites each pass **38/38**. Cloudflare canonical production metadata confirms deployment `a1ec660d-f432-44dc-aaf4-9919babb15d3` and source `a832af79b19b29433d751bc36d45bd1fc78d864d`. See the [verification record](newspaper-v1-verification.md) and [deployment receipt](newspaper-v1-deployment-2026-09-23.md).
+
+New in-app/custom-domain browser inspection is NOT VERIFIED because the browser policy service was unavailable. Authenticated account mutations, native device runs and OS-level PWA installation were not exercised. Existing dependency advisories and upstream service-origin/search restrictions remain open. V2 Editions, layout sync, folders/annotations, alternate AppViews and custom publishing remain deferred. The existing Docker PDS is unchanged.
+
+## Original run history — superseded counts below
+
 Date: 2026-09-23. **Result: PARTIAL** for the full product/release brief; the local newspaper client implementation is complete and its selected checks pass. This was the first run, with no prior artifact archive.
 
 The fork now has the supplied newspaper direction: a large serif masthead, original botanical ornaments, paper/ink/oxblood theme, ruled navigation and context columns, and responsive reading layout. It displays real AT Protocol content. Fork identity/assets are separated from upstream, upstream analytics collectors are disabled by default, new account/list blocks are rejected locally, and feed explanations distinguish known state from unverified ordering/inputs.

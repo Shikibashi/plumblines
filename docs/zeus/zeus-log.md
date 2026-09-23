@@ -94,3 +94,6 @@
 - Final artifact `pages-afar0d9i`, source `a832af79b19b29433d751bc36d45bd1fc78d864d`, has 389 files matching the SHA-256 manifest. Docker is healthy and 12 selected served JS/CSS/PWA assets match.
 - Final local browser suite 38/38 PASS (1.3m). Muted-image assertion corrected to distinguish warning SVG icons from the actual post preview; reveal then produces the preview through the ordinary button.
 - Expansion preview uploaded to `b653ba13.plumbline-f50.pages.dev`; Python asset hash request received Cloudflare 403/1010. No security settings or client identity were changed. Normal isolated preview browser suite runs separately.
+- Cloudflare preview `b653ba13` passes the final full browser suite 38/38 (1.6m). Desktop/mobile screenshots inspected. Production promotion uses the same unchanged 389-file artifact; no new custom-domain browser inspection attempted.
+- Production promotion completed at 07:09 UTC: `a1ec660d-f432-44dc-aaf4-9919babb15d3`. Cloudflare API confirms canonical deployment success, exact implementation SHA, main branch and plumblines.uk association. Immediate rollback is bc9995ac. No PDS/DNS/tunnel change.
+- Phase 6 receipt/report/state updated. Scoped v1 PASS; full acceptance PARTIAL for documented authenticated/native/service/advisory gaps. Production browser verification remains separate and NOT VERIFIED.

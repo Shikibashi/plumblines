@@ -27,5 +27,11 @@ Protocol tests use controlled fixtures where stated. Prior public blocked-profil
 - A failed intermediate test counted warning/close SVG icons as post images. The final assertion targets the named post-card preview and the actual `Account Muted` reveal button; no forced clicks, content bypass or application weakening was used.
 - The final dialog portal sits above the fixed masthead; real close/reveal/download interactions pass. Earlier masthead-only z-index correction was insufficient and superseded.
 - `pnpm lint`, `pnpm prettier`, `pnpm typecheck`, `pnpm test --runInBand`, optimized web export and Docker packaging pass; exact invoked scripts and output remain in `evidence/newspaper-v1-*.log`.
-- Packaged artifact has 389 files matching its manifest; 12 selected JS/CSS/PWA resources served by Docker match the artifact. Cloudflare preview and production evidence follow in the deployment receipt.
+- Packaged artifact has 389 files matching its manifest; 12 selected JS/CSS/PWA resources served by Docker match the artifact. Cloudflare preview passes all 38 checks (1.6 minutes). Production identifiers and evidence boundaries are recorded in the [deployment receipt](newspaper-v1-deployment-2026-09-23.md).
 
+
+## Preview acceptance
+
+`https://b653ba13.plumbline-f50.pages.dev` passes **38/38** browser checks against the same packaged artifact. Evidence: `evidence/newspaper-v1-browser-preview.{log,json}`. Desktop/mobile screenshots were inspected; the two-column and active-section layouts fit their respective viewports. The suite includes real public blocked-post recovery plus deterministic public-profile, section, moderation and information fixtures. It does not constitute authenticated account acceptance.
+
+A separate Python asset-integrity request returned Cloudflare HTTP 403 / error 1010. Preview browser loading and checks passed without changing security settings; remote byte-for-byte hash verification remains NOT VERIFIED.

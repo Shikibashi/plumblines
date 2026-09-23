@@ -2,7 +2,7 @@
   "version": 2,
   "description": "Plumblines AT Protocol-compatible Bluesky fork; newspaper reference; no block creation; real upstream client",
   "startedAt": "2026-09-23T04:23:40.005558+00:00",
-  "currentPhase": "testing",
+  "currentPhase": "completed",
   "phases": {
     "parsing": {
       "status": "completed"
@@ -32,13 +32,14 @@
     "testing": {
       "status": "completed",
       "grade": "proved",
-      "browserPassed": 28,
+      "browserPassed": 38,
       "browserFailed": 0,
       "explorationPassed": 3,
-      "unitPassed": 891,
+      "unitPassed": 957,
       "unitTodo": 28,
-      "scope": "28 local guest/fixture browser cases; new public-reader checks include real blocked-post recovery and deterministic blocked-profile cases",
-      "latestFocusedUnitPassed": 7
+      "scope": "Final v1 guest/fixture browser suite: 38 local and 38 preview; no authenticated mutations",
+      "latestFocusedUnitPassed": 7,
+      "unitSuites": 95
     },
     "report": {
       "status": "completed",
@@ -50,13 +51,13 @@
       "grade": "proved",
       "provider": "Cloudflare Pages",
       "url": "https://plumblines.uk",
-      "deploymentId": "bc9995ac-5efc-4616-a021-7815bb6677a3",
-      "browserPassed": 15,
+      "deploymentId": "a1ec660d-f432-44dc-aaf4-9919babb15d3",
+      "browserPassed": null,
       "guestRoutesPassed": 3,
-      "scope": "public site, artifact hashes, guest browser and PDS discovery; not authenticated acceptance",
-      "receipt": "docs/zeus/capabilities-deployment-2026-09-23.md",
-      "latestRegressionChecksPassed": 28,
-      "latestRegressionScope": "28 preview and 28 production guest/fixture browser cases after removal-only refactor"
+      "scope": "Canonical production metadata confirms tested artifact; no new production browser acceptance",
+      "receipt": "docs/zeus/newspaper-v1-deployment-2026-09-23.md",
+      "latestRegressionChecksPassed": 38,
+      "latestRegressionScope": "38 local and 38 preview guest/fixture checks; new custom-domain browser NOT VERIFIED"
     }
   },
   "parsed": {
@@ -90,8 +91,8 @@
   ],
   "result": "PARTIAL",
   "completedAt": "2026-09-23T05:04:04.149892+00:00",
-  "updatedAt": "2026-09-23T07:00:18.514593+00:00",
-  "activeExpansion": "Newspaper v1 sections, local attention, reading, record information, PWA metadata",
+  "updatedAt": "2026-09-23T07:11:29.758678+00:00",
+  "activeExpansion": null,
   "activeExpansionPlan": "docs/plan/plumblines-newspaper-v1/plan.md",
   "expansionEvidence": {
     "plan": "docs/plan/plumblines-newspaper-v1/plan.md",
@@ -99,7 +100,13 @@
     "unitSuites": 95,
     "types": "PASS iOS Android web",
     "lint": "PASS",
-    "browser": "Final candidate pending full rerun",
-    "deployment": "Previous production remains until preview acceptance"
-  }
+    "browser": "PASS 38 local and 38 Cloudflare preview",
+    "deployment": "PASS canonical Cloudflare production metadata; custom-domain browser NOT VERIFIED",
+    "sourceCommit": "a832af79b19b29433d751bc36d45bd1fc78d864d",
+    "deploymentId": "a1ec660d-f432-44dc-aaf4-9919babb15d3",
+    "receipt": "docs/zeus/newspaper-v1-deployment-2026-09-23.md",
+    "scopedResult": "PASS",
+    "fullAcceptance": "PARTIAL"
+  },
+  "completedExpansion": "Newspaper v1 sections, local attention, reading, record information, PWA metadata"
 }
