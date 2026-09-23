@@ -129,13 +129,12 @@ export function NewspaperSections() {
             <button
               key={section.id}
               aria-current={
-                composition.leadSectionId === section.id
-                  ? 'location'
-                  : undefined
+                config.activeId === section.id ? 'location' : undefined
               }
-              onClick={() =>
+              onClick={() => {
+                save({...config, activeId: section.id})
                 scrollToNewspaperLandmark(`newspaper-section-${section.id}`)
-              }>
+              }}>
               {section.title}
             </button>
           ))}
@@ -321,6 +320,7 @@ export function NewspaperSections() {
                   id={`newspaper-section-${section.id}`}
                   className="newspaper-column"
                   data-testid="newspaper-section"
+                  data-active={config.activeId === section.id}
                   data-lead={composition.leadSectionId === section.id}
                   data-feature={
                     layoutSection.stories[0]?.treatment === 'feature'

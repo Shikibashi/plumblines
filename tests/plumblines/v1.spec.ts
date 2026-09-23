@@ -272,6 +272,7 @@ test('v1 saved search persists as a section without pretending guest access exis
   const section = page.getByRole('region', {name: 'Town desk', exact: true})
   await expect(section).toContainText('from:reading-fixture.test orchard')
   await expect(section).toContainText('Sign in to read this section')
+  await section.getByLabel('Settings for Town desk').click()
   await expect(
     section.getByRole('checkbox', {name: 'Reposts', exact: true}),
   ).toBeDisabled()
@@ -444,11 +445,11 @@ test('v1 keyboard moves between stories and sections while respecting inputs and
   await page.keyboard.press('1')
   await expect(
     tabs.getByRole('button', {name: 'Following', exact: true}),
-  ).toHaveAttribute('aria-pressed', 'true')
+  ).toHaveAttribute('aria-current', 'location')
   await page.keyboard.press('2')
   await expect(
     tabs.getByRole('button', {name: 'Fixture wire', exact: true}),
-  ).toHaveAttribute('aria-pressed', 'true')
+  ).toHaveAttribute('aria-current', 'location')
   const stories = section.locator('[data-section-story]')
   await page.keyboard.press('j')
   await expect(stories.nth(0)).toBeFocused()
@@ -475,7 +476,7 @@ test('v1 keyboard moves between stories and sections while respecting inputs and
   await page.keyboard.press('j')
   await expect(close).toBeFocused()
   await expect(
-    page.locator('.newspaper-section-tabs [aria-pressed="true"]'),
+    page.locator('.newspaper-section-tabs [aria-current="location"]'),
   ).toHaveText('Fixture wire')
   await close.click()
   await title.click()
