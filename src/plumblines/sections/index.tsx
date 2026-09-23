@@ -398,10 +398,8 @@ export function NewspaperSections() {
                     treatments={layoutSection.stories.map(
                       story => story.treatment,
                     )}
-                    leadAttribution={
-                      layoutSection.stories[0]?.isConfiguredLead
-                        ? l`Lead position set by you: ${layoutSection.title}`
-                        : undefined
+                    isConfiguredLead={
+                      !!layoutSection.stories[0]?.isConfiguredLead
                     }
                   />
                 </section>
@@ -462,11 +460,11 @@ function scrollToNewspaperLandmark(id: string) {
 function SectionContent({
   section,
   treatments,
-  leadAttribution,
+  isConfiguredLead,
 }: {
   section: NewspaperSection
   treatments: StoryTreatment[]
-  leadAttribution?: string
+  isConfiguredLead: boolean
 }) {
   const {hasSession} = useSession()
   const {requestSwitchToAccount} = useLoggedOutViewControls()
@@ -494,7 +492,7 @@ function SectionContent({
         section={section}
         query={section.source.query}
         treatments={treatments}
-        leadAttribution={leadAttribution}
+        isConfiguredLead={isConfiguredLead}
       />
     )
   if (section.source.kind === 'following')
@@ -503,7 +501,7 @@ function SectionContent({
         section={section}
         descriptor="following"
         treatments={treatments}
-        leadAttribution={leadAttribution}
+        isConfiguredLead={isConfiguredLead}
       />
     )
   return (
@@ -512,7 +510,7 @@ function SectionContent({
       uri={section.source.uri}
       kind={section.source.kind}
       treatments={treatments}
-      leadAttribution={leadAttribution}
+      isConfiguredLead={isConfiguredLead}
     />
   )
 }
@@ -522,13 +520,13 @@ function ResolvedFeedColumn({
   uri,
   kind,
   treatments,
-  leadAttribution,
+  isConfiguredLead,
 }: {
   section: NewspaperSection
   uri: string
   kind: 'feedgen' | 'list'
   treatments: StoryTreatment[]
-  leadAttribution?: string
+  isConfiguredLead: boolean
 }) {
   const result = useResolveUriQuery(uri)
   return result.data ? (
@@ -536,7 +534,7 @@ function ResolvedFeedColumn({
       section={section}
       descriptor={`${kind}|${result.data.uri}`}
       treatments={treatments}
-      leadAttribution={leadAttribution}
+      isConfiguredLead={isConfiguredLead}
     />
   ) : (
     <div className="newspaper-stories">
@@ -560,12 +558,12 @@ function FeedColumn({
   section,
   descriptor,
   treatments,
-  leadAttribution,
+  isConfiguredLead,
 }: {
   section: NewspaperSection
   descriptor: FeedDescriptor
   treatments: StoryTreatment[]
-  leadAttribution?: string
+  isConfiguredLead: boolean
 }) {
   const params = useMemo(
     () => ({strictFollowing: true, sectionFilters: section.filters}),
@@ -604,8 +602,10 @@ function FeedColumn({
     <FeedFeedbackProvider value={feedback}>
       <div className="newspaper-stories" tabIndex={0}>
         <QueryControls result={result} empty={slices.length === 0} />
-        {leadAttribution && (
-          <p className="newspaper-lead-credit">{leadAttribution}</p>
+        {isConfiguredLead && (
+          <p className="newspaper-lead-credit">
+            <Trans>Lead follows your section order.</Trans>
+          </p>
         )}
         {slices.map((slice, index) => (
           <SectionFeedSlice
@@ -691,12 +691,12 @@ function SearchColumn({
   section,
   query,
   treatments,
-  leadAttribution,
+  isConfiguredLead,
 }: {
   section: NewspaperSection
   query: string
   treatments: StoryTreatment[]
-  leadAttribution?: string
+  isConfiguredLead: boolean
 }) {
   const {t: l} = useLingui()
   const result = useSearchPostsV2Query({query, sort: 'latest'})
@@ -720,8 +720,10 @@ function SearchColumn({
   return (
     <div className="newspaper-stories" tabIndex={0}>
       <QueryControls result={result} empty={posts.length === 0} />
-      {leadAttribution && (
-        <p className="newspaper-lead-credit">{leadAttribution}</p>
+      {isConfiguredLead && (
+        <p className="newspaper-lead-credit">
+          <Trans>Lead follows your section order.</Trans>
+        </p>
       )}
       {posts.map((post, index) => (
         <div

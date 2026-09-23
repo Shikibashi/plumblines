@@ -3636,7 +3636,7 @@ msgstr ""
 msgid "Could not mute chat"
 msgstr "無法靜音對話"
 
-#: src/plumblines/sections/index.tsx:545
+#: src/plumblines/sections/index.tsx:543
 msgid "Could not resolve this source."
 msgstr ""
 
@@ -4242,7 +4242,7 @@ msgid "Dismisses the QR scanner"
 msgstr "關閉 QR Code 掃描器"
 
 #: src/plumblines/sections/index.tsx:616
-#: src/plumblines/sections/index.tsx:737
+#: src/plumblines/sections/index.tsx:739
 msgid "Dispatch"
 msgstr ""
 
@@ -7208,9 +7208,9 @@ msgstr ""
 msgid "Lead"
 msgstr ""
 
-#. placeholder {0}: layoutSection.title
-#: src/plumblines/sections/index.tsx:403
-msgid "Lead position set by you: {0}"
+#: src/plumblines/sections/index.tsx:607
+#: src/plumblines/sections/index.tsx:725
+msgid "Lead follows your section order."
 msgstr ""
 
 #: src/plumblines/sections/index.tsx:152
@@ -7629,7 +7629,7 @@ msgstr "直播連結"
 msgid "Load more"
 msgstr "載入更多"
 
-#: src/plumblines/sections/index.tsx:792
+#: src/plumblines/sections/index.tsx:794
 msgid "Load more posts"
 msgstr ""
 
@@ -7671,7 +7671,7 @@ msgstr ""
 msgid "Loading post interaction settings..."
 msgstr "正在載入貼文互動設定……"
 
-#: src/plumblines/sections/index.tsx:773
+#: src/plumblines/sections/index.tsx:775
 msgid "Loading posts…"
 msgstr ""
 
@@ -7695,7 +7695,7 @@ msgstr ""
 msgid "Loading public quotes…"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:547
+#: src/plumblines/sections/index.tsx:545
 msgid "Loading source…"
 msgstr ""
 
@@ -7751,7 +7751,7 @@ msgstr "長按以開啟 {0} 的標籤選單"
 msgid "LONG-FORM"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:435
+#: src/plumblines/sections/index.tsx:433
 msgid "Long-form index"
 msgstr ""
 
@@ -8536,7 +8536,7 @@ msgstr "下一步"
 msgid "Next image"
 msgstr "下一張圖片"
 
-#: src/plumblines/sections/index.tsx:427
+#: src/plumblines/sections/index.tsx:425
 msgid "Next page"
 msgstr ""
 
@@ -8714,7 +8714,7 @@ msgstr "無篩選貼文"
 msgid "No posts here"
 msgstr "這裡目前還沒有任何貼文"
 
-#: src/plumblines/sections/index.tsx:781
+#: src/plumblines/sections/index.tsx:783
 msgid "No posts match this section."
 msgstr ""
 
@@ -9552,15 +9552,15 @@ msgstr "擁有者必須在離開前鎖定群組。"
 #. placeholder {0}: composition.sheets.length + 1
 #. placeholder {0}: sheet.pageNumber
 #: src/plumblines/sections/index.tsx:307
-#: src/plumblines/sections/index.tsx:437
+#: src/plumblines/sections/index.tsx:435
 msgid "Page {0}"
 msgstr ""
 
 #. placeholder {0}: composition.sheets.length + 1
 #. placeholder {0}: sheet.pageNumber
 #. placeholder {1}: composition.sheets.length + 1
-#: src/plumblines/sections/index.tsx:420
-#: src/plumblines/sections/index.tsx:445
+#: src/plumblines/sections/index.tsx:418
+#: src/plumblines/sections/index.tsx:443
 msgid "Page {0} of {1}"
 msgstr ""
 
@@ -10191,8 +10191,8 @@ msgstr "預覽"
 msgid "Previous image"
 msgstr "上一張圖片"
 
-#: src/plumblines/sections/index.tsx:415
-#: src/plumblines/sections/index.tsx:443
+#: src/plumblines/sections/index.tsx:413
+#: src/plumblines/sections/index.tsx:441
 msgid "Previous page"
 msgstr ""
 
@@ -10560,7 +10560,7 @@ msgstr "重新連線"
 msgid "Record URI"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:769
+#: src/plumblines/sections/index.tsx:771
 msgid "Refresh section"
 msgstr ""
 
@@ -11258,7 +11258,7 @@ msgstr "重新執行上一個出現錯誤的動作"
 #: src/components/StarterPack/ProfileStarterPacks.tsx:371
 #: src/plumblines/reading/standard/index.web.tsx:243
 #: src/plumblines/reading/standard/index.web.tsx:428
-#: src/plumblines/sections/index.tsx:552
+#: src/plumblines/sections/index.tsx:550
 #: src/screens/Login/LoginForm.tsx:533
 #: src/screens/Login/LoginForm.tsx:539
 #: src/screens/Messages/ChatList.tsx:429
@@ -12346,7 +12346,7 @@ msgstr "顯示內容"
 #: src/components/WelcomeModal.tsx:198
 #: src/plumblines/NewspaperHome.tsx:47
 #: src/plumblines/NewspaperHome.tsx:54
-#: src/plumblines/sections/index.tsx:487
+#: src/plumblines/sections/index.tsx:485
 #: src/screens/Hashtag.tsx:233
 #: src/screens/Login/index.tsx:143
 #: src/screens/Login/index.tsx:165
@@ -12399,7 +12399,7 @@ msgstr "登入未列出的帳號"
 msgid "Sign in to Bluesky or create a new account"
 msgstr "登入 Bluesky 或建立新的帳號"
 
-#: src/plumblines/sections/index.tsx:480
+#: src/plumblines/sections/index.tsx:478
 msgid "Sign in to read this section. You can add a publicly available custom feed or list while signed out."
 msgstr ""
 
@@ -13872,7 +13872,7 @@ msgstr "這應該會在下列位置建立一個網域名稱記錄："
 msgid "This should only take a few minutes."
 msgstr "這應該只需要幾分鐘。"
 
-#: src/plumblines/sections/index.tsx:777
+#: src/plumblines/sections/index.tsx:779
 msgid "This source could not be loaded. Refresh to retry."
 msgstr ""
 

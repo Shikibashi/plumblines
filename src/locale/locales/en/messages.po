@@ -3631,7 +3631,7 @@ msgstr "Could not load public quotes. Please try again."
 msgid "Could not mute chat"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:545
+#: src/plumblines/sections/index.tsx:543
 msgid "Could not resolve this source."
 msgstr "Could not resolve this source."
 
@@ -4237,7 +4237,7 @@ msgid "Dismisses the QR scanner"
 msgstr "Dismisses the QR scanner"
 
 #: src/plumblines/sections/index.tsx:616
-#: src/plumblines/sections/index.tsx:737
+#: src/plumblines/sections/index.tsx:739
 msgid "Dispatch"
 msgstr "Dispatch"
 
@@ -7203,10 +7203,10 @@ msgstr "Latest public articles"
 msgid "Lead"
 msgstr "Lead"
 
-#. placeholder {0}: layoutSection.title
-#: src/plumblines/sections/index.tsx:403
-msgid "Lead position set by you: {0}"
-msgstr "Lead position set by you: {0}"
+#: src/plumblines/sections/index.tsx:607
+#: src/plumblines/sections/index.tsx:725
+msgid "Lead follows your section order."
+msgstr "Lead follows your section order."
 
 #: src/plumblines/sections/index.tsx:152
 msgid "Lead section"
@@ -7624,7 +7624,7 @@ msgstr ""
 msgid "Load more"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:792
+#: src/plumblines/sections/index.tsx:794
 msgid "Load more posts"
 msgstr "Load more posts"
 
@@ -7666,7 +7666,7 @@ msgstr "Loading more…"
 msgid "Loading post interaction settings..."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:773
+#: src/plumblines/sections/index.tsx:775
 msgid "Loading posts…"
 msgstr "Loading posts…"
 
@@ -7690,7 +7690,7 @@ msgstr "Loading public profile…"
 msgid "Loading public quotes…"
 msgstr "Loading public quotes…"
 
-#: src/plumblines/sections/index.tsx:547
+#: src/plumblines/sections/index.tsx:545
 msgid "Loading source…"
 msgstr "Loading source…"
 
@@ -7746,7 +7746,7 @@ msgstr ""
 msgid "LONG-FORM"
 msgstr "LONG-FORM"
 
-#: src/plumblines/sections/index.tsx:435
+#: src/plumblines/sections/index.tsx:433
 msgid "Long-form index"
 msgstr "Long-form index"
 
@@ -8531,7 +8531,7 @@ msgstr ""
 msgid "Next image"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:427
+#: src/plumblines/sections/index.tsx:425
 msgid "Next page"
 msgstr "Next page"
 
@@ -8709,7 +8709,7 @@ msgstr "No post filter"
 msgid "No posts here"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:781
+#: src/plumblines/sections/index.tsx:783
 msgid "No posts match this section."
 msgstr "No posts match this section."
 
@@ -9547,15 +9547,15 @@ msgstr "Owner must lock the group before leaving."
 #. placeholder {0}: composition.sheets.length + 1
 #. placeholder {0}: sheet.pageNumber
 #: src/plumblines/sections/index.tsx:307
-#: src/plumblines/sections/index.tsx:437
+#: src/plumblines/sections/index.tsx:435
 msgid "Page {0}"
 msgstr "Page {0}"
 
 #. placeholder {0}: composition.sheets.length + 1
 #. placeholder {0}: sheet.pageNumber
 #. placeholder {1}: composition.sheets.length + 1
-#: src/plumblines/sections/index.tsx:420
-#: src/plumblines/sections/index.tsx:445
+#: src/plumblines/sections/index.tsx:418
+#: src/plumblines/sections/index.tsx:443
 msgid "Page {0} of {1}"
 msgstr "Page {0} of {1}"
 
@@ -10186,8 +10186,8 @@ msgstr ""
 msgid "Previous image"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:415
-#: src/plumblines/sections/index.tsx:443
+#: src/plumblines/sections/index.tsx:413
+#: src/plumblines/sections/index.tsx:441
 msgid "Previous page"
 msgstr "Previous page"
 
@@ -10555,7 +10555,7 @@ msgstr ""
 msgid "Record URI"
 msgstr "Record URI"
 
-#: src/plumblines/sections/index.tsx:769
+#: src/plumblines/sections/index.tsx:771
 msgid "Refresh section"
 msgstr "Refresh section"
 
@@ -11253,7 +11253,7 @@ msgstr ""
 #: src/components/StarterPack/ProfileStarterPacks.tsx:371
 #: src/plumblines/reading/standard/index.web.tsx:243
 #: src/plumblines/reading/standard/index.web.tsx:428
-#: src/plumblines/sections/index.tsx:552
+#: src/plumblines/sections/index.tsx:550
 #: src/screens/Login/LoginForm.tsx:533
 #: src/screens/Login/LoginForm.tsx:539
 #: src/screens/Messages/ChatList.tsx:429
@@ -12341,7 +12341,7 @@ msgstr ""
 #: src/components/WelcomeModal.tsx:198
 #: src/plumblines/NewspaperHome.tsx:47
 #: src/plumblines/NewspaperHome.tsx:54
-#: src/plumblines/sections/index.tsx:487
+#: src/plumblines/sections/index.tsx:485
 #: src/screens/Hashtag.tsx:233
 #: src/screens/Login/index.tsx:143
 #: src/screens/Login/index.tsx:165
@@ -12394,7 +12394,7 @@ msgstr ""
 msgid "Sign in to Bluesky or create a new account"
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:480
+#: src/plumblines/sections/index.tsx:478
 msgid "Sign in to read this section. You can add a publicly available custom feed or list while signed out."
 msgstr "Sign in to read this section. You can add a publicly available custom feed or list while signed out."
 
@@ -13867,7 +13867,7 @@ msgstr ""
 msgid "This should only take a few minutes."
 msgstr ""
 
-#: src/plumblines/sections/index.tsx:777
+#: src/plumblines/sections/index.tsx:779
 msgid "This source could not be loaded. Refresh to retry."
 msgstr "This source could not be loaded. Refresh to retry."
 

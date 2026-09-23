@@ -196,6 +196,7 @@ for (const width of [390, 1040, 1586]) {
     await expect(
       section.getByText('Quoted dispatch fixture.', {exact: true}),
     ).toBeVisible()
+    await section.getByLabel('Settings for Fixture wire').click()
     await section
       .getByRole('checkbox', {name: 'Reposts', exact: true})
       .uncheck()
@@ -216,6 +217,7 @@ for (const width of [390, 1040, 1586]) {
         .first(),
     ).toHaveText('Fixture wire')
     await page.reload()
+    await section.getByLabel('Settings for Fixture wire').click()
     await expect(
       section.getByRole('checkbox', {name: 'Reposts', exact: true}),
     ).not.toBeChecked()
@@ -233,13 +235,7 @@ for (const width of [390, 1040, 1586]) {
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true)
-    if (width > 1500) {
-      const wire = await section.boundingBox()
-      const following = await page
-        .getByRole('region', {name: 'Following', exact: true})
-        .boundingBox()
-      expect(wire!.x).toBeLessThan(following!.x)
-    }
+    await expect(section).toHaveAttribute('data-lead', 'true')
     await expect(page.locator('#splash')).toBeHidden()
     await page.screenshot({
       animations: 'disabled',
