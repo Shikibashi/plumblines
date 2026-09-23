@@ -988,6 +988,10 @@ msgstr "30 dias"
 msgid "7 days"
 msgstr "7 dias"
 
+#: src/view/screens/Profile.tsx:165
+msgid "A block affects this account view. You can read this account’s public profile without changing the block."
+msgstr ""
+
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:27
 msgid "A collection of popular feeds you can find on Bluesky, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
 msgstr "Uma coleção de feeds populares que pode encontrar no Bluesky, incluindo News, Booksky, Game Dev, Blacksky, e Fountain Pens"
@@ -2170,6 +2174,13 @@ msgstr ""
 msgid "Back"
 msgstr "Voltar"
 
+#: src/plumblines/components/PublicProfileReader.tsx:92
+#: src/plumblines/components/PublicProfileReader.tsx:97
+#: src/view/com/post-thread/PostQuotes.tsx:66
+#: src/view/com/post-thread/PostQuotes.tsx:74
+msgid "Back to account view"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:231
 msgid "Back to Chats"
 msgstr "Voltar às Conversas"
@@ -2214,7 +2225,7 @@ msgstr "Antes de criar uma publicação ou responder, deve verificar o seu e-mai
 #: src/components/dialogs/StarterPackDialog.tsx:67
 #: src/components/StarterPack/ProfileStarterPacks.tsx:263
 #: src/components/StarterPack/ProfileStarterPacks.tsx:273
-#: src/view/screens/Profile.tsx:351
+#: src/view/screens/Profile.tsx:393
 msgid "Before creating a Starter Pack, you must first verify your email."
 msgstr ""
 
@@ -2351,10 +2362,6 @@ msgstr "Bloquear utilizador"
 msgctxt "button"
 msgid "Block user"
 msgstr "Bloquear utilizador"
-
-#: src/components/Post/Embed/index.tsx:215
-msgid "Blocked"
-msgstr "Bloqueado"
 
 #: src/Navigation.tsx:218
 #: src/view/screens/ModerationBlockedAccounts.tsx:95
@@ -3660,6 +3667,10 @@ msgstr "Não foi possível carregar a lista"
 msgid "Could not load profile"
 msgstr "Não foi possível carregar o perfil"
 
+#: src/view/com/post-thread/PostQuotes.tsx:121
+msgid "Could not load public quotes. Please try again."
+msgstr ""
+
 #: src/components/dms/ConvoMenu.tsx:213
 msgid "Could not mute chat"
 msgstr "Não foi possível silenciar a conversa"
@@ -3729,8 +3740,8 @@ msgstr ""
 #: src/components/StarterPack/ProfileStarterPacks.tsx:206
 #: src/components/StarterPack/ProfileStarterPacks.tsx:315
 #: src/Navigation.tsx:584
-#: src/view/screens/Profile.tsx:575
-#: src/view/screens/Profile.tsx:576
+#: src/view/screens/Profile.tsx:617
+#: src/view/screens/Profile.tsx:618
 msgid "Create a Starter Pack"
 msgstr "Criar um Pacote de Iniciante"
 
@@ -4023,7 +4034,7 @@ msgstr "Eliminar esta lista?"
 msgid "Delete this post?"
 msgstr "Eliminar esta publicação?"
 
-#: src/components/Post/Embed/index.tsx:208
+#: src/components/Post/Embed/index.tsx:209
 msgid "Deleted"
 msgstr "Eliminado"
 
@@ -5394,7 +5405,7 @@ msgstr "Feedback enviado ao operador do feed"
 #: src/screens/StarterPack/StarterPackScreen.tsx:193
 #: src/view/com/home/HomeHeader.tsx:37
 #: src/view/screens/Feeds.tsx:505
-#: src/view/screens/Profile.tsx:240
+#: src/view/screens/Profile.tsx:282
 #: src/view/shell/desktop/LeftNav.tsx:686
 #: src/view/shell/desktop/LeftNav.tsx:742
 #: src/view/shell/Drawer.tsx:592
@@ -7062,7 +7073,7 @@ msgid "Labeled by the author."
 msgstr "Rotulado pelo autor."
 
 #: src/view/com/composer/labels/LabelsBtn.tsx:70
-#: src/view/screens/Profile.tsx:233
+#: src/view/screens/Profile.tsx:275
 msgid "Labels"
 msgstr "Rótulos"
 
@@ -7365,7 +7376,7 @@ msgstr "Gostado por {likeCount, plural, one {# utilizador} other {# utilizadores
 #: src/lib/hooks/useNotificationHandler.ts:158
 #: src/screens/Settings/NotificationSettings/index.tsx:159
 #: src/screens/Settings/NotificationSettings/index.tsx:314
-#: src/view/screens/Profile.tsx:239
+#: src/view/screens/Profile.tsx:281
 msgid "Likes"
 msgstr "Gostos"
 
@@ -7481,8 +7492,8 @@ msgstr "Silenciamento da lista removido "
 
 #: src/Navigation.tsx:178
 #: src/view/screens/Lists.tsx:60
-#: src/view/screens/Profile.tsx:234
-#: src/view/screens/Profile.tsx:242
+#: src/view/screens/Profile.tsx:276
+#: src/view/screens/Profile.tsx:284
 #: src/view/shell/desktop/LeftNav.tsx:752
 #: src/view/shell/Drawer.tsx:607
 msgid "Lists"
@@ -7529,8 +7540,15 @@ msgid "Live link"
 msgstr "Link de transmissão em direto"
 
 #: src/screens/Search/Explore.tsx:84
+#: src/view/com/post-thread/PostQuotes.tsx:155
+#: src/view/com/post-thread/PostQuotes.tsx:163
 msgid "Load more"
 msgstr "Carregar mais"
+
+#: src/plumblines/components/PublicProfileReader.tsx:177
+#: src/plumblines/components/PublicProfileReader.tsx:183
+msgid "Load more public posts"
+msgstr ""
 
 #: src/screens/Search/Explore.tsx:516
 #: src/screens/Search/Explore.tsx:607
@@ -7560,6 +7578,22 @@ msgstr "A carregar listas..."
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:275
 msgid "Loading post interaction settings..."
 msgstr "A carregar definições de interação da publicação..."
+
+#: src/plumblines/components/PublicPostReader.tsx:144
+msgid "Loading public post…"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:150
+msgid "Loading public posts…"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:103
+msgid "Loading public profile…"
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:116
+msgid "Loading public quotes…"
+msgstr ""
 
 #: src/view/com/composer/text-input/mobile/Autocomplete.tsx:60
 msgid "Loading..."
@@ -7711,7 +7745,7 @@ msgid "Me"
 msgstr "Eu"
 
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:375
-#: src/view/screens/Profile.tsx:237
+#: src/view/screens/Profile.tsx:279
 msgid "Media"
 msgstr "Multimédia"
 
@@ -8274,7 +8308,7 @@ msgstr "Nova palavra-passe"
 #: src/screens/ProfileList/index.tsx:277
 #: src/view/screens/Feeds.tsx:546
 #: src/view/screens/Notifications.tsx:165
-#: src/view/screens/Profile.tsx:606
+#: src/view/screens/Profile.tsx:648
 msgid "New post"
 msgstr "Nova publicação"
 
@@ -8431,7 +8465,7 @@ msgstr "Sem filtro de idioma"
 
 #: src/components/LikedByList.tsx:90
 #: src/view/com/post-thread/PostLikedBy.tsx:90
-#: src/view/screens/Profile.tsx:538
+#: src/view/screens/Profile.tsx:580
 msgid "No likes yet"
 msgstr "Sem gostos ainda"
 
@@ -8453,7 +8487,7 @@ msgstr "Já não segue {0}"
 msgid "No media filter"
 msgstr "Sem filtro de conteúdo multimédia"
 
-#: src/view/screens/Profile.tsx:484
+#: src/view/screens/Profile.tsx:526
 msgid "No media yet"
 msgstr "Sem conteúdo multimédia ainda"
 
@@ -8508,20 +8542,28 @@ msgid "No posts here"
 msgstr "Sem publicações aqui"
 
 #: src/screens/Profile/Sections/Feed.tsx:84
-#: src/view/screens/Profile.tsx:442
+#: src/view/screens/Profile.tsx:484
 msgid "No posts yet"
 msgstr "Sem publicações ainda"
 
-#: src/view/com/post-thread/PostQuotes.tsx:107
-msgid "No quotes yet"
-msgstr "Ainda sem citações"
+#: src/plumblines/components/PublicProfileReader.tsx:171
+msgid "No public posts were returned on this page."
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:129
+msgid "No public quotes were returned. The service can omit blocked, deleted or restricted quotes even when the count is greater than zero."
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:238
+msgid "No quotes available"
+msgstr ""
 
 #. Empty-state message shown in the GIF picker’s Recents tab before the user has selected any GIFs.
 #: src/features/gifPicker/components/GifPickerPlaceholder.tsx:31
 msgid "No recent GIFs yet. Pick one to see it here."
 msgstr "Sem GIFs recentes ainda. Escolha um para vê-lo aqui."
 
-#: src/view/screens/Profile.tsx:469
+#: src/view/screens/Profile.tsx:511
 msgid "No replies yet"
 msgstr "Sem respostas ainda"
 
@@ -8571,7 +8613,7 @@ msgstr "Nenhum resultado encontrado para a sua pesquisa com os filtros de pesqui
 msgid "No results."
 msgstr "Sem resultados."
 
-#: src/view/screens/Profile.tsx:570
+#: src/view/screens/Profile.tsx:612
 msgid "No Starter Packs yet"
 msgstr "Nenhum Pacote de Iniciante ainda"
 
@@ -8584,7 +8626,7 @@ msgstr "Não, obrigado"
 msgid "No translation received from your device."
 msgstr "Nenhuma tradução recebida do seu dispositivo."
 
-#: src/view/screens/Profile.tsx:511
+#: src/view/screens/Profile.tsx:553
 msgid "No video posts yet"
 msgstr "Sem vídeos ainda"
 
@@ -8596,10 +8638,6 @@ msgstr "Ninguém"
 #: src/view/com/post-thread/PostLikedBy.tsx:92
 msgid "Nobody has liked this yet. Maybe you should be the first!"
 msgstr "Ainda ninguém gostou disto. Talvez deva ser o primeiro!"
-
-#: src/view/com/post-thread/PostQuotes.tsx:109
-msgid "Nobody has quoted this yet. Maybe you should be the first!"
-msgstr "Ainda ninguém citou isto. Talvez deva ser o primeiro!"
 
 #: src/view/com/post-thread/PostRepostedBy.tsx:92
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
@@ -8652,7 +8690,7 @@ msgid "Not followed by anyone you’re following"
 msgstr "Não é seguido por ninguém seguido por si"
 
 #: src/Navigation.tsx:173
-#: src/view/screens/Profile.tsx:132
+#: src/view/screens/Profile.tsx:136
 msgid "Not Found"
 msgstr "Não Encontrado"
 
@@ -8899,7 +8937,7 @@ msgstr "Ups, este perfil não existe. Tente ler outro."
 #: src/components/StarterPack/ProfileStarterPacks.tsx:368
 #: src/screens/Settings/AppPasswords.tsx:60
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:108
-#: src/view/screens/Profile.tsx:132
+#: src/view/screens/Profile.tsx:136
 msgid "Oops!"
 msgstr "Ups!"
 
@@ -9011,6 +9049,10 @@ msgstr "Abrir perfil"
 #: src/features/inviteFriends/components/ActionButtons.tsx:39
 msgid "Open QR code scanner"
 msgstr "Abrir leitor de códigos QR"
+
+#: src/plumblines/components/PublicPostReader.tsx:79
+msgid "Open quoted post"
+msgstr ""
 
 #: src/components/BotAccountAlert.tsx:62
 #: src/components/BotAccountAlert.tsx:71
@@ -9710,13 +9752,13 @@ msgctxt "post-number-in-thread"
 msgid "Post {index} of {count}"
 msgstr "Publicação {index} de {count}"
 
-#: src/view/screens/Profile.tsx:488
-#: src/view/screens/Profile.tsx:489
+#: src/view/screens/Profile.tsx:530
+#: src/view/screens/Profile.tsx:531
 msgid "Post a photo"
 msgstr "Publicar uma foto"
 
-#: src/view/screens/Profile.tsx:515
-#: src/view/screens/Profile.tsx:516
+#: src/view/screens/Profile.tsx:557
+#: src/view/screens/Profile.tsx:558
 msgid "Post a video"
 msgstr "Publicar um vídeo"
 
@@ -9729,7 +9771,7 @@ msgstr "Publicar tudo"
 msgid "Post anyway"
 msgstr "Publicar mesmo assim"
 
-#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:22
+#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:27
 msgid "Post blocked"
 msgstr "Publicação bloqueada"
 
@@ -9800,7 +9842,7 @@ msgid "Post link"
 msgstr "Publicar link"
 
 #: src/screens/PostThread/components/ThreadError.tsx:33
-#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:25
+#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:30
 msgid "Post not found"
 msgstr "Publicação não encontrada"
 
@@ -9838,7 +9880,7 @@ msgstr ""
 #: src/screens/ProfileList/index.tsx:164
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:216
 #: src/screens/StarterPack/StarterPackScreen.tsx:194
-#: src/view/screens/Profile.tsx:235
+#: src/view/screens/Profile.tsx:277
 msgid "Posts"
 msgstr "Publicações"
 
@@ -9985,6 +10027,27 @@ msgstr "Psst! Pode editar quem pode interagir com esta publicação."
 msgid "Public feed"
 msgstr ""
 
+#: src/plumblines/components/PublicProfileReader.tsx:156
+msgid "Public posts could not be loaded."
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:124
+msgid "public profile"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:77
+msgid "Public profile"
+msgstr ""
+
+#: src/plumblines/components/PublicPostReader.tsx:47
+#: src/view/com/post-thread/PostQuotes.tsx:112
+msgid "Public view · Read only"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:86
+msgid "Public view · Read-only. Your block relationships are unchanged. Only publicly available posts by this account are shown."
+msgstr ""
+
 #: src/view/com/lists/MyLists.tsx:80
 msgid "Public, sharable lists of users to mute or block in bulk."
 msgstr "Listas públicas e partilháveis de utilizadores para silenciar ou bloquear em massa."
@@ -10037,6 +10100,10 @@ msgstr "O código QR foi transferido!"
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:104
 msgid "QR code saved to your camera roll!"
 msgstr "O código QR foi guardado no rolo da sua câmara!"
+
+#: src/view/com/post-thread/PostQuotes.tsx:58
+msgid "Quote counts can include posts the service does not return in this view."
+msgstr ""
 
 #: src/components/PostControls/RepostButton.tsx:176
 #: src/components/PostControls/RepostButton.tsx:199
@@ -10387,11 +10454,11 @@ msgstr "Remover verificação"
 msgid "Remove your verification for this account?"
 msgstr "Remover a sua verificação para esta conta?"
 
-#: src/components/Post/Embed/index.tsx:243
+#: src/components/Post/Embed/index.tsx:240
 msgid "Removed by author"
 msgstr "Removido pelo autor"
 
-#: src/components/Post/Embed/index.tsx:241
+#: src/components/Post/Embed/index.tsx:238
 msgid "Removed by you"
 msgstr "Removido por si"
 
@@ -10483,7 +10550,7 @@ msgstr "Mensagem a que respondeu, toque para ir até ela"
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:218
 #: src/screens/Settings/NotificationSettings/index.tsx:181
 #: src/screens/Settings/NotificationSettings/index.tsx:330
-#: src/view/screens/Profile.tsx:236
+#: src/view/screens/Profile.tsx:278
 msgid "Replies"
 msgstr "Respostas"
 
@@ -10879,6 +10946,8 @@ msgstr "Repete a última ação, que resultou em erro"
 #: src/screens/PostThread/components/ThreadError.tsx:81
 #: src/screens/PostThread/components/ThreadError.tsx:87
 #: src/screens/Signup/BackNextButtons.tsx:54
+#: src/view/com/post-thread/PostQuotes.tsx:141
+#: src/view/com/post-thread/PostQuotes.tsx:149
 #: src/view/com/util/error/ErrorMessage.tsx:55
 #: src/view/com/util/error/ErrorScreen.tsx:91
 #: src/view/screens/Storybook/Admonitions.tsx:64
@@ -10889,6 +10958,16 @@ msgstr "Tentar novamente"
 #: src/view/screens/Storybook/Admonitions.tsx:61
 msgid "Retry loading report options"
 msgstr "Recarregar opções de denúncia"
+
+#: src/plumblines/components/PublicProfileReader.tsx:159
+#: src/plumblines/components/PublicProfileReader.tsx:164
+msgid "Retry public posts"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:112
+#: src/plumblines/components/PublicProfileReader.tsx:117
+msgid "Retry public profile"
+msgstr ""
 
 #: src/components/Error.tsx:116
 #: src/screens/List/ListHiddenScreen.tsx:222
@@ -12276,7 +12355,7 @@ msgstr ""
 
 #: src/screens/Search/Explore.tsx:662
 #: src/screens/Search/SearchResults.tsx:114
-#: src/view/screens/Profile.tsx:241
+#: src/view/screens/Profile.tsx:283
 msgid "Starter Packs"
 msgstr "Pacotes de Iniciante"
 
@@ -12285,7 +12364,7 @@ msgid "Starter Packs let you easily share your favorite feeds and people with yo
 msgstr ""
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:102
-#: src/view/screens/Profile.tsx:568
+#: src/view/screens/Profile.tsx:610
 msgid "Starter Packs let you share your favorite feeds and people with your friends."
 msgstr "Pacotes de Iniciante permitem-lhe partilhar os seus feeds e utilizadores preferidos com os seus amigos."
 
@@ -12673,7 +12752,7 @@ msgstr ""
 msgid "That username is already taken"
 msgstr "Este nome de utilizador já está em uso"
 
-#: src/view/com/post-thread/PostQuotes.tsx:135
+#: src/view/com/post-thread/PostQuotes.tsx:266
 msgid "That's all, folks!"
 msgstr "É tudo!"
 
@@ -12790,6 +12869,10 @@ msgstr "A Política de Privacidade foi movida para <0/>"
 msgid "The processed video is too large. Please try again with a smaller file."
 msgstr "O vídeo processado é demasiado grande. Por favor, tente novamente com um ficheiro menor."
 
+#: src/plumblines/components/PublicPostReader.tsx:126
+msgid "The public service did not return this post. It may be unavailable or restricted."
+msgstr ""
+
 #: src/plumblines/components/FeedContext.tsx:77
 msgid "The selected home feed is not evidence about this page. Feed provenance is shown when viewing a selected feed on Home."
 msgstr ""
@@ -12823,6 +12906,10 @@ msgstr "O vídeo selecionado usa um formato não suportado."
 #: src/lib/strings/errors.ts:53
 msgid "The server appears to be experiencing issues. Please try again in a few moments."
 msgstr "O servidor parece estar a passar por problemas. Por favor, tente novamente em alguns instantes."
+
+#: src/view/com/post-thread/PostQuotes.tsx:240
+msgid "The service returned no visible quotes. Try the public view to check for posts omitted from your account view."
+msgstr ""
 
 #: src/screens/StarterPack/StarterPackScreen.tsx:852
 msgid "The Starter Pack that you are trying to view is invalid. You may delete this Starter Pack instead."
@@ -13283,6 +13370,10 @@ msgstr "Este post afirma ter sido criado em <0>{0}</0>, mas foi primeiro visto p
 msgid "This post has an unknown type of threadgate on it. Your app may be out of date."
 msgstr "Esta publicação tem um tipo de \"threadgate\" desconhecido. É possível que a sua aplicação esteja desatualizada."
 
+#: src/plumblines/components/PublicPostReader.tsx:119
+msgid "This post is blocked in this conversation. You can check its public version."
+msgstr ""
+
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:155
 msgid "This post is only visible to logged-in users."
 msgstr "Esta publicação é apenas visível para utilizadores com sessão iniciada."
@@ -13298,6 +13389,10 @@ msgstr "Esta publicação será ocultada de feeds e fios. Isto não pode ser rev
 #: src/view/com/composer/Composer.tsx:1143
 msgid "This post's author has disabled quote posts."
 msgstr "O autor desta publicação desativou as citações."
+
+#: src/plumblines/components/PublicProfileReader.tsx:109
+msgid "This profile is not available in the public view."
+msgstr ""
 
 #: src/view/com/profile/ProfileMenu.tsx:582
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
@@ -14110,7 +14205,7 @@ msgstr "Use isto para iniciar sessão na outra aplicação em conjunto com o seu
 msgid "Use your account email address, or another real email address you control, in case KWS or Bluesky needs to contact you."
 msgstr "Use o seu endereço de e-mail ou outro endereço de e-mail real que controle, caso a KWS ou o Bluesky precisem de entrar em contacto consigo."
 
-#: src/view/screens/Profile.tsx:395
+#: src/view/screens/Profile.tsx:437
 msgid "user"
 msgstr "utilizador"
 
@@ -14369,7 +14464,7 @@ msgstr "Vídeo carregado"
 msgid "Video: {0}"
 msgstr "Vídeo: {0}"
 
-#: src/view/screens/Profile.tsx:238
+#: src/view/screens/Profile.tsx:280
 msgid "Videos"
 msgstr "Vídeos"
 
@@ -14488,6 +14583,21 @@ msgstr "Ver perfil"
 #: src/screens/Profile/Header/Shell.tsx:164
 msgid "View profile banner"
 msgstr "Ver banner do perfil"
+
+#: src/plumblines/components/PublicPostReader.tsx:133
+#: src/plumblines/components/PublicPostReader.tsx:146
+msgid "View public post"
+msgstr ""
+
+#: src/view/screens/Profile.tsx:172
+#: src/view/screens/Profile.tsx:177
+msgid "View public profile"
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:67
+#: src/view/com/post-thread/PostQuotes.tsx:76
+msgid "View public quotes"
+msgstr ""
 
 #: src/components/Post/Embed/StandardSiteEmbed/index.tsx:339
 #: src/components/Post/Embed/StandardSiteEmbed/index.tsx:447
@@ -14975,8 +15085,8 @@ msgstr "Gostaria de guardar isto como rascunho antes de ver os seus rascunhos?"
 msgid "Would you like to save this as a draft to edit later?"
 msgstr "Gostaria de guardar isto como rascunho para editar mais tarde?"
 
-#: src/view/screens/Profile.tsx:446
-#: src/view/screens/Profile.tsx:447
+#: src/view/screens/Profile.tsx:488
+#: src/view/screens/Profile.tsx:489
 msgid "Write a post"
 msgstr "Escrever uma publicação"
 

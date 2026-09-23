@@ -988,6 +988,10 @@ msgstr "30일"
 msgid "7 days"
 msgstr "7일"
 
+#: src/view/screens/Profile.tsx:165
+msgid "A block affects this account view. You can read this account’s public profile without changing the block."
+msgstr ""
+
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:27
 msgid "A collection of popular feeds you can find on Bluesky, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
 msgstr "News, Booksky, Game Dev, Blacksky, Fountain Pens 등 Bluesky에서 찾을 수 있는 인기 피드 모음"
@@ -2170,6 +2174,13 @@ msgstr "검토 대기 중"
 msgid "Back"
 msgstr "뒤로"
 
+#: src/plumblines/components/PublicProfileReader.tsx:92
+#: src/plumblines/components/PublicProfileReader.tsx:97
+#: src/view/com/post-thread/PostQuotes.tsx:66
+#: src/view/com/post-thread/PostQuotes.tsx:74
+msgid "Back to account view"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:231
 msgid "Back to Chats"
 msgstr "대화로 돌아가기"
@@ -2214,7 +2225,7 @@ msgstr "게시물을 작성하거나 답글을 달기 전에 먼저 이메일을
 #: src/components/dialogs/StarterPackDialog.tsx:67
 #: src/components/StarterPack/ProfileStarterPacks.tsx:263
 #: src/components/StarterPack/ProfileStarterPacks.tsx:273
-#: src/view/screens/Profile.tsx:351
+#: src/view/screens/Profile.tsx:393
 msgid "Before creating a Starter Pack, you must first verify your email."
 msgstr ""
 
@@ -2351,10 +2362,6 @@ msgstr "사용자 차단"
 msgctxt "button"
 msgid "Block user"
 msgstr "사용자 차단"
-
-#: src/components/Post/Embed/index.tsx:215
-msgid "Blocked"
-msgstr "차단됨"
 
 #: src/Navigation.tsx:218
 #: src/view/screens/ModerationBlockedAccounts.tsx:95
@@ -3660,6 +3667,10 @@ msgstr "리스트를 불러올 수 없습니다"
 msgid "Could not load profile"
 msgstr "프로필을 불러올 수 없습니다"
 
+#: src/view/com/post-thread/PostQuotes.tsx:121
+msgid "Could not load public quotes. Please try again."
+msgstr ""
+
 #: src/components/dms/ConvoMenu.tsx:213
 msgid "Could not mute chat"
 msgstr "대화를 뮤트할 수 없습니다"
@@ -3729,8 +3740,8 @@ msgstr ""
 #: src/components/StarterPack/ProfileStarterPacks.tsx:206
 #: src/components/StarterPack/ProfileStarterPacks.tsx:315
 #: src/Navigation.tsx:584
-#: src/view/screens/Profile.tsx:575
-#: src/view/screens/Profile.tsx:576
+#: src/view/screens/Profile.tsx:617
+#: src/view/screens/Profile.tsx:618
 msgid "Create a Starter Pack"
 msgstr "스타터 팩 만들기"
 
@@ -4023,7 +4034,7 @@ msgstr "이 리스트를 삭제하시겠습니까?"
 msgid "Delete this post?"
 msgstr "이 게시물을 삭제하시겠습니까?"
 
-#: src/components/Post/Embed/index.tsx:208
+#: src/components/Post/Embed/index.tsx:209
 msgid "Deleted"
 msgstr "삭제됨"
 
@@ -5394,7 +5405,7 @@ msgstr "피드 운영자에게 피드백을 전송했습니다"
 #: src/screens/StarterPack/StarterPackScreen.tsx:193
 #: src/view/com/home/HomeHeader.tsx:37
 #: src/view/screens/Feeds.tsx:505
-#: src/view/screens/Profile.tsx:240
+#: src/view/screens/Profile.tsx:282
 #: src/view/shell/desktop/LeftNav.tsx:686
 #: src/view/shell/desktop/LeftNav.tsx:742
 #: src/view/shell/Drawer.tsx:592
@@ -7062,7 +7073,7 @@ msgid "Labeled by the author."
 msgstr "작성자가 라벨 지정함."
 
 #: src/view/com/composer/labels/LabelsBtn.tsx:70
-#: src/view/screens/Profile.tsx:233
+#: src/view/screens/Profile.tsx:275
 msgid "Labels"
 msgstr "라벨"
 
@@ -7365,7 +7376,7 @@ msgstr "{likeCount, plural, other {#명}}의 사용자가 좋아요 표시함"
 #: src/lib/hooks/useNotificationHandler.ts:158
 #: src/screens/Settings/NotificationSettings/index.tsx:159
 #: src/screens/Settings/NotificationSettings/index.tsx:314
-#: src/view/screens/Profile.tsx:239
+#: src/view/screens/Profile.tsx:281
 msgid "Likes"
 msgstr "좋아요"
 
@@ -7481,8 +7492,8 @@ msgstr "리스트를 언뮤트했습니다"
 
 #: src/Navigation.tsx:178
 #: src/view/screens/Lists.tsx:60
-#: src/view/screens/Profile.tsx:234
-#: src/view/screens/Profile.tsx:242
+#: src/view/screens/Profile.tsx:276
+#: src/view/screens/Profile.tsx:284
 #: src/view/shell/desktop/LeftNav.tsx:752
 #: src/view/shell/Drawer.tsx:607
 msgid "Lists"
@@ -7529,8 +7540,15 @@ msgid "Live link"
 msgstr "라이브 링크"
 
 #: src/screens/Search/Explore.tsx:84
+#: src/view/com/post-thread/PostQuotes.tsx:155
+#: src/view/com/post-thread/PostQuotes.tsx:163
 msgid "Load more"
 msgstr "더 불러오기"
+
+#: src/plumblines/components/PublicProfileReader.tsx:177
+#: src/plumblines/components/PublicProfileReader.tsx:183
+msgid "Load more public posts"
+msgstr ""
 
 #: src/screens/Search/Explore.tsx:516
 #: src/screens/Search/Explore.tsx:607
@@ -7560,6 +7578,22 @@ msgstr "리스트 불러오는 중…"
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:275
 msgid "Loading post interaction settings..."
 msgstr "게시물 상호작용 설정 불러오는 중…"
+
+#: src/plumblines/components/PublicPostReader.tsx:144
+msgid "Loading public post…"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:150
+msgid "Loading public posts…"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:103
+msgid "Loading public profile…"
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:116
+msgid "Loading public quotes…"
+msgstr ""
 
 #: src/view/com/composer/text-input/mobile/Autocomplete.tsx:60
 msgid "Loading..."
@@ -7711,7 +7745,7 @@ msgid "Me"
 msgstr "나"
 
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:375
-#: src/view/screens/Profile.tsx:237
+#: src/view/screens/Profile.tsx:279
 msgid "Media"
 msgstr "미디어"
 
@@ -8274,7 +8308,7 @@ msgstr "새 비밀번호"
 #: src/screens/ProfileList/index.tsx:277
 #: src/view/screens/Feeds.tsx:546
 #: src/view/screens/Notifications.tsx:165
-#: src/view/screens/Profile.tsx:606
+#: src/view/screens/Profile.tsx:648
 msgid "New post"
 msgstr "새 게시물"
 
@@ -8431,7 +8465,7 @@ msgstr "언어 필터 없음"
 
 #: src/components/LikedByList.tsx:90
 #: src/view/com/post-thread/PostLikedBy.tsx:90
-#: src/view/screens/Profile.tsx:538
+#: src/view/screens/Profile.tsx:580
 msgid "No likes yet"
 msgstr "아직 좋아요 없음"
 
@@ -8453,7 +8487,7 @@ msgstr "{0} 님을 언팔로우했습니다"
 msgid "No media filter"
 msgstr "미디어 필터 없음"
 
-#: src/view/screens/Profile.tsx:484
+#: src/view/screens/Profile.tsx:526
 msgid "No media yet"
 msgstr "아직 미디어가 없습니다"
 
@@ -8508,20 +8542,28 @@ msgid "No posts here"
 msgstr "게시물이 없습니다"
 
 #: src/screens/Profile/Sections/Feed.tsx:84
-#: src/view/screens/Profile.tsx:442
+#: src/view/screens/Profile.tsx:484
 msgid "No posts yet"
 msgstr "아직 게시물이 없습니다"
 
-#: src/view/com/post-thread/PostQuotes.tsx:107
-msgid "No quotes yet"
-msgstr "아직 인용 없음"
+#: src/plumblines/components/PublicProfileReader.tsx:171
+msgid "No public posts were returned on this page."
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:129
+msgid "No public quotes were returned. The service can omit blocked, deleted or restricted quotes even when the count is greater than zero."
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:238
+msgid "No quotes available"
+msgstr ""
 
 #. Empty-state message shown in the GIF picker’s Recents tab before the user has selected any GIFs.
 #: src/features/gifPicker/components/GifPickerPlaceholder.tsx:31
 msgid "No recent GIFs yet. Pick one to see it here."
 msgstr "최근에 사용한 GIF가 없습니다. GIF를 선택하면 여기에 표시됩니다."
 
-#: src/view/screens/Profile.tsx:469
+#: src/view/screens/Profile.tsx:511
 msgid "No replies yet"
 msgstr "아직 답글이 없습니다"
 
@@ -8571,7 +8613,7 @@ msgstr "고급 검색 필터가 적용된 검색어에 대한 결과를 찾을 �
 msgid "No results."
 msgstr "결과가 없습니다."
 
-#: src/view/screens/Profile.tsx:570
+#: src/view/screens/Profile.tsx:612
 msgid "No Starter Packs yet"
 msgstr "아직 스타터 팩이 없습니다"
 
@@ -8584,7 +8626,7 @@ msgstr "사용하지 않음"
 msgid "No translation received from your device."
 msgstr "기기에서 번역된 내용이 없습니다."
 
-#: src/view/screens/Profile.tsx:511
+#: src/view/screens/Profile.tsx:553
 msgid "No video posts yet"
 msgstr "아직 동영상 게시물이 없습니다"
 
@@ -8596,10 +8638,6 @@ msgstr "없음"
 #: src/view/com/post-thread/PostLikedBy.tsx:92
 msgid "Nobody has liked this yet. Maybe you should be the first!"
 msgstr "아직 아무도 좋아요를 누르지 않았습니다. 첫 번째가 되어 보세요!"
-
-#: src/view/com/post-thread/PostQuotes.tsx:109
-msgid "Nobody has quoted this yet. Maybe you should be the first!"
-msgstr "아직 아무도 인용하지 않았습니다. 첫 번째가 되어 보세요!"
 
 #: src/view/com/post-thread/PostRepostedBy.tsx:92
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
@@ -8652,7 +8690,7 @@ msgid "Not followed by anyone you’re following"
 msgstr "내가 팔로우하는 사용자가 팔로우하지 않음"
 
 #: src/Navigation.tsx:173
-#: src/view/screens/Profile.tsx:132
+#: src/view/screens/Profile.tsx:136
 msgid "Not Found"
 msgstr "찾을 수 없음"
 
@@ -8899,7 +8937,7 @@ msgstr "이런, 이 프로필은 존재하지 않습니다. 다른 프로필을 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:368
 #: src/screens/Settings/AppPasswords.tsx:60
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:108
-#: src/view/screens/Profile.tsx:132
+#: src/view/screens/Profile.tsx:136
 msgid "Oops!"
 msgstr "이런!"
 
@@ -9011,6 +9049,10 @@ msgstr "프로필 열기"
 #: src/features/inviteFriends/components/ActionButtons.tsx:39
 msgid "Open QR code scanner"
 msgstr "QR 코드 스캐너 열기"
+
+#: src/plumblines/components/PublicPostReader.tsx:79
+msgid "Open quoted post"
+msgstr ""
 
 #: src/components/BotAccountAlert.tsx:62
 #: src/components/BotAccountAlert.tsx:71
@@ -9710,13 +9752,13 @@ msgctxt "post-number-in-thread"
 msgid "Post {index} of {count}"
 msgstr "{count}개 중 {index}번째 게시물"
 
-#: src/view/screens/Profile.tsx:488
-#: src/view/screens/Profile.tsx:489
+#: src/view/screens/Profile.tsx:530
+#: src/view/screens/Profile.tsx:531
 msgid "Post a photo"
 msgstr "사진 게시하기"
 
-#: src/view/screens/Profile.tsx:515
-#: src/view/screens/Profile.tsx:516
+#: src/view/screens/Profile.tsx:557
+#: src/view/screens/Profile.tsx:558
 msgid "Post a video"
 msgstr "동영상 게시하기"
 
@@ -9729,7 +9771,7 @@ msgstr "모두 게시하기"
 msgid "Post anyway"
 msgstr "무시하고 게시"
 
-#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:22
+#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:27
 msgid "Post blocked"
 msgstr "게시물 차단됨"
 
@@ -9800,7 +9842,7 @@ msgid "Post link"
 msgstr "게시물 링크"
 
 #: src/screens/PostThread/components/ThreadError.tsx:33
-#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:25
+#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:30
 msgid "Post not found"
 msgstr "게시물을 찾을 수 없습니다"
 
@@ -9838,7 +9880,7 @@ msgstr ""
 #: src/screens/ProfileList/index.tsx:164
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:216
 #: src/screens/StarterPack/StarterPackScreen.tsx:194
-#: src/view/screens/Profile.tsx:235
+#: src/view/screens/Profile.tsx:277
 msgid "Posts"
 msgstr "게시물"
 
@@ -9985,6 +10027,27 @@ msgstr "쉿! 이 게시물과 상호작용할 수 있는 사용자를 편집할 
 msgid "Public feed"
 msgstr ""
 
+#: src/plumblines/components/PublicProfileReader.tsx:156
+msgid "Public posts could not be loaded."
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:124
+msgid "public profile"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:77
+msgid "Public profile"
+msgstr ""
+
+#: src/plumblines/components/PublicPostReader.tsx:47
+#: src/view/com/post-thread/PostQuotes.tsx:112
+msgid "Public view · Read only"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:86
+msgid "Public view · Read-only. Your block relationships are unchanged. Only publicly available posts by this account are shown."
+msgstr ""
+
 #: src/view/com/lists/MyLists.tsx:80
 msgid "Public, sharable lists of users to mute or block in bulk."
 msgstr "일괄 뮤트하거나 차단할 수 있는 공개적이고 공유 가능한 사용자 목록입니다."
@@ -10037,6 +10100,10 @@ msgstr "QR 코드를 다운로드했습니다."
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:104
 msgid "QR code saved to your camera roll!"
 msgstr "QR 코드를 사진 보관함에 저장했습니다."
+
+#: src/view/com/post-thread/PostQuotes.tsx:58
+msgid "Quote counts can include posts the service does not return in this view."
+msgstr ""
 
 #: src/components/PostControls/RepostButton.tsx:176
 #: src/components/PostControls/RepostButton.tsx:199
@@ -10387,11 +10454,11 @@ msgstr "인증 취소"
 msgid "Remove your verification for this account?"
 msgstr "이 계정을 인증 취소하시겠습니까?"
 
-#: src/components/Post/Embed/index.tsx:243
+#: src/components/Post/Embed/index.tsx:240
 msgid "Removed by author"
 msgstr "작성자가 제거함"
 
-#: src/components/Post/Embed/index.tsx:241
+#: src/components/Post/Embed/index.tsx:238
 msgid "Removed by you"
 msgstr "내가 제거함"
 
@@ -10483,7 +10550,7 @@ msgstr "답장한 메시지, 탭하여 스크롤하기"
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:218
 #: src/screens/Settings/NotificationSettings/index.tsx:181
 #: src/screens/Settings/NotificationSettings/index.tsx:330
-#: src/view/screens/Profile.tsx:236
+#: src/view/screens/Profile.tsx:278
 msgid "Replies"
 msgstr "답글"
 
@@ -10879,6 +10946,8 @@ msgstr "오류가 발생한 마지막 작업을 다시 시도합니다"
 #: src/screens/PostThread/components/ThreadError.tsx:81
 #: src/screens/PostThread/components/ThreadError.tsx:87
 #: src/screens/Signup/BackNextButtons.tsx:54
+#: src/view/com/post-thread/PostQuotes.tsx:141
+#: src/view/com/post-thread/PostQuotes.tsx:149
 #: src/view/com/util/error/ErrorMessage.tsx:55
 #: src/view/com/util/error/ErrorScreen.tsx:91
 #: src/view/screens/Storybook/Admonitions.tsx:64
@@ -10889,6 +10958,16 @@ msgstr "다시 시도"
 #: src/view/screens/Storybook/Admonitions.tsx:61
 msgid "Retry loading report options"
 msgstr "신고 옵션 불러오기 다시 시도"
+
+#: src/plumblines/components/PublicProfileReader.tsx:159
+#: src/plumblines/components/PublicProfileReader.tsx:164
+msgid "Retry public posts"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:112
+#: src/plumblines/components/PublicProfileReader.tsx:117
+msgid "Retry public profile"
+msgstr ""
 
 #: src/components/Error.tsx:116
 #: src/screens/List/ListHiddenScreen.tsx:222
@@ -12276,7 +12355,7 @@ msgstr ""
 
 #: src/screens/Search/Explore.tsx:662
 #: src/screens/Search/SearchResults.tsx:114
-#: src/view/screens/Profile.tsx:241
+#: src/view/screens/Profile.tsx:283
 msgid "Starter Packs"
 msgstr "스타터 팩"
 
@@ -12285,7 +12364,7 @@ msgid "Starter Packs let you easily share your favorite feeds and people with yo
 msgstr ""
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:102
-#: src/view/screens/Profile.tsx:568
+#: src/view/screens/Profile.tsx:610
 msgid "Starter Packs let you share your favorite feeds and people with your friends."
 msgstr "스타터 팩을 사용하면 좋아하는 피드와 사용자를 친구들과 공유할 수 있습니다."
 
@@ -12673,7 +12752,7 @@ msgstr ""
 msgid "That username is already taken"
 msgstr "이 사용자 이름은 이미 사용 중입니다"
 
-#: src/view/com/post-thread/PostQuotes.tsx:135
+#: src/view/com/post-thread/PostQuotes.tsx:266
 msgid "That's all, folks!"
 msgstr "이상입니다, 여러분!"
 
@@ -12790,6 +12869,10 @@ msgstr "개인정보 처리방침을 <0/>(으)로 이동했습니다"
 msgid "The processed video is too large. Please try again with a smaller file."
 msgstr "처리된 동영상이 너무 큽니다. 더 작은 파일로 다시 시도해 주세요."
 
+#: src/plumblines/components/PublicPostReader.tsx:126
+msgid "The public service did not return this post. It may be unavailable or restricted."
+msgstr ""
+
 #: src/plumblines/components/FeedContext.tsx:77
 msgid "The selected home feed is not evidence about this page. Feed provenance is shown when viewing a selected feed on Home."
 msgstr ""
@@ -12823,6 +12906,10 @@ msgstr "선택한 동영상이 지원되지 않는 형식을 사용합니다."
 #: src/lib/strings/errors.ts:53
 msgid "The server appears to be experiencing issues. Please try again in a few moments."
 msgstr "서버에 문제가 있는 것 같습니다. 잠시 후 다시 시도해 주세요."
+
+#: src/view/com/post-thread/PostQuotes.tsx:240
+msgid "The service returned no visible quotes. Try the public view to check for posts omitted from your account view."
+msgstr ""
 
 #: src/screens/StarterPack/StarterPackScreen.tsx:852
 msgid "The Starter Pack that you are trying to view is invalid. You may delete this Starter Pack instead."
@@ -13283,6 +13370,10 @@ msgstr "이 게시물은 <0>{0}</0>에 작성되었다고 주장하지만 Bluesk
 msgid "This post has an unknown type of threadgate on it. Your app may be out of date."
 msgstr "이 게시물에 알 수 없는 유형의 스레드게이트가 있습니다. 앱이 오래되었을 수 있습니다."
 
+#: src/plumblines/components/PublicPostReader.tsx:119
+msgid "This post is blocked in this conversation. You can check its public version."
+msgstr ""
+
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:155
 msgid "This post is only visible to logged-in users."
 msgstr "이 게시물은 로그인한 사용자만 볼 수 있습니다."
@@ -13298,6 +13389,10 @@ msgstr "이 게시물을 피드와 스레드에서 숨깁니다. 이 작업은 �
 #: src/view/com/composer/Composer.tsx:1143
 msgid "This post's author has disabled quote posts."
 msgstr "이 게시물의 작성자가 인용 게시물을 비활성화했습니다."
+
+#: src/plumblines/components/PublicProfileReader.tsx:109
+msgid "This profile is not available in the public view."
+msgstr ""
 
 #: src/view/com/profile/ProfileMenu.tsx:582
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
@@ -14110,7 +14205,7 @@ msgstr "이 비밀번호와 핸들을 사용하여 다른 앱에 로그인하세
 msgid "Use your account email address, or another real email address you control, in case KWS or Bluesky needs to contact you."
 msgstr "KWS나 Bluesky에서 연락해야 할 경우를 대비하여, 계정 이메일 주소 또는 직접 관리하는 다른 실제 이메일 주소를 사용하세요."
 
-#: src/view/screens/Profile.tsx:395
+#: src/view/screens/Profile.tsx:437
 msgid "user"
 msgstr "사용자"
 
@@ -14369,7 +14464,7 @@ msgstr "동영상을 업로드했습니다"
 msgid "Video: {0}"
 msgstr "동영상: {0}"
 
-#: src/view/screens/Profile.tsx:238
+#: src/view/screens/Profile.tsx:280
 msgid "Videos"
 msgstr "동영상"
 
@@ -14488,6 +14583,21 @@ msgstr "프로필 보기"
 #: src/screens/Profile/Header/Shell.tsx:164
 msgid "View profile banner"
 msgstr "프로필 배너 보기"
+
+#: src/plumblines/components/PublicPostReader.tsx:133
+#: src/plumblines/components/PublicPostReader.tsx:146
+msgid "View public post"
+msgstr ""
+
+#: src/view/screens/Profile.tsx:172
+#: src/view/screens/Profile.tsx:177
+msgid "View public profile"
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:67
+#: src/view/com/post-thread/PostQuotes.tsx:76
+msgid "View public quotes"
+msgstr ""
 
 #: src/components/Post/Embed/StandardSiteEmbed/index.tsx:339
 #: src/components/Post/Embed/StandardSiteEmbed/index.tsx:447
@@ -14975,8 +15085,8 @@ msgstr "임시 저장 목록으로 이동하기 전에 작성 중인 내용을 �
 msgid "Would you like to save this as a draft to edit later?"
 msgstr "나중에 다시 작성할 수 있도록 임시 저장하시겠습니까?"
 
-#: src/view/screens/Profile.tsx:446
-#: src/view/screens/Profile.tsx:447
+#: src/view/screens/Profile.tsx:488
+#: src/view/screens/Profile.tsx:489
 msgid "Write a post"
 msgstr "게시물 작성하기"
 

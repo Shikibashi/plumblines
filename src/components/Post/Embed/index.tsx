@@ -26,6 +26,7 @@ import {RichText} from '#/components/RichText'
 import {Embed as StarterPackCard} from '#/components/StarterPack/StarterPackCard'
 import {SubtleHover} from '#/components/SubtleHover'
 import {app} from '#/lexicons'
+import {PublicPostReader} from '#/plumblines/components/PublicPostReader'
 import * as bsky from '#/types/bsky'
 import {
   type Embed as TEmbed,
@@ -210,11 +211,7 @@ function RecordEmbed({
       )
     }
     case 'post_blocked': {
-      return (
-        <PostPlaceholderText>
-          <Trans>Blocked</Trans>
-        </PostPlaceholderText>
-      )
+      return <PublicPostReader key={embed.view.uri} uri={embed.view.uri} />
     }
     case 'post_detached': {
       return <PostDetachedEmbed embed={embed} />

@@ -41,6 +41,8 @@ The newspaper client is deployed at https://plumblines.uk on the existing Cloudf
 ## Product contracts
 
 - `src/plumblines/identity.json` centralizes identity. See [branding.md](branding.md) for asset provenance and telemetry configuration.
+- Blocked quote/thread placeholders now offer **View public post**. Profiles affected by account, list or incoming blocks offer **View public profile**, with paginated public posts and a return action. These explicitly requested views use the existing unauthenticated AppView client, separate public query caches and read-only cards. Known profile mutes and public-visibility/content labels are retained; account blocks and server interaction rules are unchanged.
+- Quotes offer a public view and explain that counts can include results the service omits. A zero-result response does not prove that no quotes exist. Recovery requires a known public post URI or an item returned by the public service; no private record lookup or broad account scan is performed.
 - `src/plumblines/policy.ts` disables new account/list blocks before optimistic state and network calls. Existing block deletion, mutes, reporting, labels and interaction controls remain. The client cannot override blocks enforced by network services.
 - `src/plumblines/feed-context.ts` derives provenance from the current Home selection and loaded preferences. Mixed feeds, potential Discover fallback and unknown provider inputs are disclosed; the panel does not invent chronological ordering.
 - `DESIGN.md` records the supplied newspaper direction. The interface displays real user content; it does not seed the fictional people/counts in the reference image.

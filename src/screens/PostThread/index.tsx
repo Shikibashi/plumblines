@@ -513,7 +513,7 @@ export function PostThread({uri}: {uri: string}) {
       } else if (item.type === 'readMoreUp') {
         return <ThreadItemReadMoreUp item={item} />
       } else if (item.type === 'threadPostBlocked') {
-        return <ThreadItemPostTombstone type="blocked" />
+        return <ThreadItemPostTombstone type="blocked" uri={item.uri} />
       } else if (item.type === 'threadPostNotFound') {
         return <ThreadItemPostTombstone type="not-found" />
       } else if (item.type === 'replyComposer') {

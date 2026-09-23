@@ -988,6 +988,10 @@ msgstr "30 天"
 msgid "7 days"
 msgstr "7 天"
 
+#: src/view/screens/Profile.tsx:165
+msgid "A block affects this account view. You can read this account’s public profile without changing the block."
+msgstr ""
+
 #: src/screens/Onboarding/StepFinished/ValuePropositionPager.shared.tsx:27
 msgid "A collection of popular feeds you can find on Bluesky, including News, Booksky, Game Dev, Blacksky, and Fountain Pens"
 msgstr "您可以在 Bluesky 上找到一系列熱門動態源，包括 News、Booksky、Game Dev、Blacksky，以及 ​​Fountain Pens"
@@ -2170,6 +2174,13 @@ msgstr ""
 msgid "Back"
 msgstr "返回"
 
+#: src/plumblines/components/PublicProfileReader.tsx:92
+#: src/plumblines/components/PublicProfileReader.tsx:97
+#: src/view/com/post-thread/PostQuotes.tsx:66
+#: src/view/com/post-thread/PostQuotes.tsx:74
+msgid "Back to account view"
+msgstr ""
+
 #: src/screens/Messages/Inbox.tsx:231
 msgid "Back to Chats"
 msgstr "返回對話"
@@ -2214,7 +2225,7 @@ msgstr "在撰寫貼文或回覆之前，您必須先驗證您的電子信箱。
 #: src/components/dialogs/StarterPackDialog.tsx:67
 #: src/components/StarterPack/ProfileStarterPacks.tsx:263
 #: src/components/StarterPack/ProfileStarterPacks.tsx:273
-#: src/view/screens/Profile.tsx:351
+#: src/view/screens/Profile.tsx:393
 msgid "Before creating a Starter Pack, you must first verify your email."
 msgstr ""
 
@@ -2351,10 +2362,6 @@ msgstr "封鎖使用者"
 msgctxt "button"
 msgid "Block user"
 msgstr "封鎖使用者"
-
-#: src/components/Post/Embed/index.tsx:215
-msgid "Blocked"
-msgstr "已被封鎖"
 
 #: src/Navigation.tsx:218
 #: src/view/screens/ModerationBlockedAccounts.tsx:95
@@ -3660,6 +3667,10 @@ msgstr "無法載入列表"
 msgid "Could not load profile"
 msgstr "無法載入個人檔案"
 
+#: src/view/com/post-thread/PostQuotes.tsx:121
+msgid "Could not load public quotes. Please try again."
+msgstr ""
+
 #: src/components/dms/ConvoMenu.tsx:213
 msgid "Could not mute chat"
 msgstr "無法靜音對話"
@@ -3729,8 +3740,8 @@ msgstr ""
 #: src/components/StarterPack/ProfileStarterPacks.tsx:206
 #: src/components/StarterPack/ProfileStarterPacks.tsx:315
 #: src/Navigation.tsx:584
-#: src/view/screens/Profile.tsx:575
-#: src/view/screens/Profile.tsx:576
+#: src/view/screens/Profile.tsx:617
+#: src/view/screens/Profile.tsx:618
 msgid "Create a Starter Pack"
 msgstr "建立新手包"
 
@@ -4023,7 +4034,7 @@ msgstr "要刪除這個列表嗎？"
 msgid "Delete this post?"
 msgstr "要刪除這則貼文嗎？"
 
-#: src/components/Post/Embed/index.tsx:208
+#: src/components/Post/Embed/index.tsx:209
 msgid "Deleted"
 msgstr "已刪除"
 
@@ -5394,7 +5405,7 @@ msgstr "意見已提交給動態源維護者"
 #: src/screens/StarterPack/StarterPackScreen.tsx:193
 #: src/view/com/home/HomeHeader.tsx:37
 #: src/view/screens/Feeds.tsx:505
-#: src/view/screens/Profile.tsx:240
+#: src/view/screens/Profile.tsx:282
 #: src/view/shell/desktop/LeftNav.tsx:686
 #: src/view/shell/desktop/LeftNav.tsx:742
 #: src/view/shell/Drawer.tsx:592
@@ -7062,7 +7073,7 @@ msgid "Labeled by the author."
 msgstr "由發布者標記。"
 
 #: src/view/com/composer/labels/LabelsBtn.tsx:70
-#: src/view/screens/Profile.tsx:233
+#: src/view/screens/Profile.tsx:275
 msgid "Labels"
 msgstr "標記"
 
@@ -7365,7 +7376,7 @@ msgstr "{likeCount, plural, one {# 個使用者} other {# 個使用者}}表示�
 #: src/lib/hooks/useNotificationHandler.ts:158
 #: src/screens/Settings/NotificationSettings/index.tsx:159
 #: src/screens/Settings/NotificationSettings/index.tsx:314
-#: src/view/screens/Profile.tsx:239
+#: src/view/screens/Profile.tsx:281
 msgid "Likes"
 msgstr "喜歡"
 
@@ -7481,8 +7492,8 @@ msgstr "成功取消靜音列表"
 
 #: src/Navigation.tsx:178
 #: src/view/screens/Lists.tsx:60
-#: src/view/screens/Profile.tsx:234
-#: src/view/screens/Profile.tsx:242
+#: src/view/screens/Profile.tsx:276
+#: src/view/screens/Profile.tsx:284
 #: src/view/shell/desktop/LeftNav.tsx:752
 #: src/view/shell/Drawer.tsx:607
 msgid "Lists"
@@ -7529,8 +7540,15 @@ msgid "Live link"
 msgstr "直播連結"
 
 #: src/screens/Search/Explore.tsx:84
+#: src/view/com/post-thread/PostQuotes.tsx:155
+#: src/view/com/post-thread/PostQuotes.tsx:163
 msgid "Load more"
 msgstr "載入更多"
+
+#: src/plumblines/components/PublicProfileReader.tsx:177
+#: src/plumblines/components/PublicProfileReader.tsx:183
+msgid "Load more public posts"
+msgstr ""
 
 #: src/screens/Search/Explore.tsx:516
 #: src/screens/Search/Explore.tsx:607
@@ -7560,6 +7578,22 @@ msgstr "正在載入列表……"
 #: src/components/dialogs/PostInteractionSettingsDialog.tsx:275
 msgid "Loading post interaction settings..."
 msgstr "正在載入貼文互動設定……"
+
+#: src/plumblines/components/PublicPostReader.tsx:144
+msgid "Loading public post…"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:150
+msgid "Loading public posts…"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:103
+msgid "Loading public profile…"
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:116
+msgid "Loading public quotes…"
+msgstr ""
 
 #: src/view/com/composer/text-input/mobile/Autocomplete.tsx:60
 msgid "Loading..."
@@ -7711,7 +7745,7 @@ msgid "Me"
 msgstr "我"
 
 #: src/screens/Search/components/AdvancedSearchDialog/index.tsx:375
-#: src/view/screens/Profile.tsx:237
+#: src/view/screens/Profile.tsx:279
 msgid "Media"
 msgstr "媒體"
 
@@ -8274,7 +8308,7 @@ msgstr "新密碼"
 #: src/screens/ProfileList/index.tsx:277
 #: src/view/screens/Feeds.tsx:546
 #: src/view/screens/Notifications.tsx:165
-#: src/view/screens/Profile.tsx:606
+#: src/view/screens/Profile.tsx:648
 msgid "New post"
 msgstr "新貼文"
 
@@ -8431,7 +8465,7 @@ msgstr "無篩選語言"
 
 #: src/components/LikedByList.tsx:90
 #: src/view/com/post-thread/PostLikedBy.tsx:90
-#: src/view/screens/Profile.tsx:538
+#: src/view/screens/Profile.tsx:580
 msgid "No likes yet"
 msgstr "目前還沒有喜歡"
 
@@ -8453,7 +8487,7 @@ msgstr "成功取消跟隨 {0}"
 msgid "No media filter"
 msgstr "無篩選媒體"
 
-#: src/view/screens/Profile.tsx:484
+#: src/view/screens/Profile.tsx:526
 msgid "No media yet"
 msgstr "目前還沒有任何媒體內容"
 
@@ -8508,20 +8542,28 @@ msgid "No posts here"
 msgstr "這裡目前還沒有任何貼文"
 
 #: src/screens/Profile/Sections/Feed.tsx:84
-#: src/view/screens/Profile.tsx:442
+#: src/view/screens/Profile.tsx:484
 msgid "No posts yet"
 msgstr "目前還沒有任何貼文"
 
-#: src/view/com/post-thread/PostQuotes.tsx:107
-msgid "No quotes yet"
-msgstr "目前還沒有引用"
+#: src/plumblines/components/PublicProfileReader.tsx:171
+msgid "No public posts were returned on this page."
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:129
+msgid "No public quotes were returned. The service can omit blocked, deleted or restricted quotes even when the count is greater than zero."
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:238
+msgid "No quotes available"
+msgstr ""
 
 #. Empty-state message shown in the GIF picker’s Recents tab before the user has selected any GIFs.
 #: src/features/gifPicker/components/GifPickerPlaceholder.tsx:31
 msgid "No recent GIFs yet. Pick one to see it here."
 msgstr "還沒有最近使用的 GIFs。試著在貼文加入 GIF 再回來看看吧。"
 
-#: src/view/screens/Profile.tsx:469
+#: src/view/screens/Profile.tsx:511
 msgid "No replies yet"
 msgstr "目前還沒有任何回覆"
 
@@ -8571,7 +8613,7 @@ msgstr "套用進階搜尋篩選條件後，找不到符合您查詢的結果。
 msgid "No results."
 msgstr "沒有結果。"
 
-#: src/view/screens/Profile.tsx:570
+#: src/view/screens/Profile.tsx:612
 msgid "No Starter Packs yet"
 msgstr "目前還沒有新手包"
 
@@ -8584,7 +8626,7 @@ msgstr "不用了，謝謝"
 msgid "No translation received from your device."
 msgstr "無法從您的裝置取得翻譯結果。"
 
-#: src/view/screens/Profile.tsx:511
+#: src/view/screens/Profile.tsx:553
 msgid "No video posts yet"
 msgstr "目前還沒有任何影片貼文"
 
@@ -8596,10 +8638,6 @@ msgstr "沒有人"
 #: src/view/com/post-thread/PostLikedBy.tsx:92
 msgid "Nobody has liked this yet. Maybe you should be the first!"
 msgstr "還沒有人對此表示喜歡，也許您可以成為第一個！"
-
-#: src/view/com/post-thread/PostQuotes.tsx:109
-msgid "Nobody has quoted this yet. Maybe you should be the first!"
-msgstr "還沒有人引用這則貼文，也許您可以成為第一個！"
 
 #: src/view/com/post-thread/PostRepostedBy.tsx:92
 msgid "Nobody has reposted this yet. Maybe you should be the first!"
@@ -8652,7 +8690,7 @@ msgid "Not followed by anyone you’re following"
 msgstr "沒有被任何您認識的人跟隨"
 
 #: src/Navigation.tsx:173
-#: src/view/screens/Profile.tsx:132
+#: src/view/screens/Profile.tsx:136
 msgid "Not Found"
 msgstr "找不到"
 
@@ -8899,7 +8937,7 @@ msgstr "抱歉，此個人檔案不存在。換一個 QR Code 試試。"
 #: src/components/StarterPack/ProfileStarterPacks.tsx:368
 #: src/screens/Settings/AppPasswords.tsx:60
 #: src/screens/Settings/components/ChangeHandleDialog.tsx:108
-#: src/view/screens/Profile.tsx:132
+#: src/view/screens/Profile.tsx:136
 msgid "Oops!"
 msgstr "糟糕！"
 
@@ -9011,6 +9049,10 @@ msgstr "開啟個人檔案"
 #: src/features/inviteFriends/components/ActionButtons.tsx:39
 msgid "Open QR code scanner"
 msgstr "開啟 QR Code 掃描器"
+
+#: src/plumblines/components/PublicPostReader.tsx:79
+msgid "Open quoted post"
+msgstr ""
 
 #: src/components/BotAccountAlert.tsx:62
 #: src/components/BotAccountAlert.tsx:71
@@ -9710,13 +9752,13 @@ msgctxt "post-number-in-thread"
 msgid "Post {index} of {count}"
 msgstr "第 {index} 則貼文（共 {count} 則）"
 
-#: src/view/screens/Profile.tsx:488
-#: src/view/screens/Profile.tsx:489
+#: src/view/screens/Profile.tsx:530
+#: src/view/screens/Profile.tsx:531
 msgid "Post a photo"
 msgstr "發布一張照片"
 
-#: src/view/screens/Profile.tsx:515
-#: src/view/screens/Profile.tsx:516
+#: src/view/screens/Profile.tsx:557
+#: src/view/screens/Profile.tsx:558
 msgid "Post a video"
 msgstr "發布一段影片"
 
@@ -9729,7 +9771,7 @@ msgstr "全部發布"
 msgid "Post anyway"
 msgstr "仍然發布"
 
-#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:22
+#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:27
 msgid "Post blocked"
 msgstr "貼文已被封鎖"
 
@@ -9800,7 +9842,7 @@ msgid "Post link"
 msgstr "貼文連結"
 
 #: src/screens/PostThread/components/ThreadError.tsx:33
-#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:25
+#: src/screens/PostThread/components/ThreadItemPostTombstone.tsx:30
 msgid "Post not found"
 msgstr "找不到貼文"
 
@@ -9838,7 +9880,7 @@ msgstr ""
 #: src/screens/ProfileList/index.tsx:164
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:216
 #: src/screens/StarterPack/StarterPackScreen.tsx:194
-#: src/view/screens/Profile.tsx:235
+#: src/view/screens/Profile.tsx:277
 msgid "Posts"
 msgstr "貼文"
 
@@ -9985,6 +10027,27 @@ msgstr "欸欸，你知道可以選擇哪些人能夠與這則貼文互動嗎？
 msgid "Public feed"
 msgstr ""
 
+#: src/plumblines/components/PublicProfileReader.tsx:156
+msgid "Public posts could not be loaded."
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:124
+msgid "public profile"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:77
+msgid "Public profile"
+msgstr ""
+
+#: src/plumblines/components/PublicPostReader.tsx:47
+#: src/view/com/post-thread/PostQuotes.tsx:112
+msgid "Public view · Read only"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:86
+msgid "Public view · Read-only. Your block relationships are unchanged. Only publicly available posts by this account are shown."
+msgstr ""
+
 #: src/view/com/lists/MyLists.tsx:80
 msgid "Public, sharable lists of users to mute or block in bulk."
 msgstr "公開、可分享的列表，可用來批次靜音或封鎖帳號。"
@@ -10037,6 +10100,10 @@ msgstr "成功下載 QR Code！"
 #: src/features/inviteFriends/InviteFriendsDialogInner.tsx:104
 msgid "QR code saved to your camera roll!"
 msgstr "QR Code 已儲存至您的裝置相簿！"
+
+#: src/view/com/post-thread/PostQuotes.tsx:58
+msgid "Quote counts can include posts the service does not return in this view."
+msgstr ""
 
 #: src/components/PostControls/RepostButton.tsx:176
 #: src/components/PostControls/RepostButton.tsx:199
@@ -10387,11 +10454,11 @@ msgstr "撤回驗證"
 msgid "Remove your verification for this account?"
 msgstr "要撤回您對這個帳號的驗證嗎？"
 
-#: src/components/Post/Embed/index.tsx:243
+#: src/components/Post/Embed/index.tsx:240
 msgid "Removed by author"
 msgstr "已被發布者刪除"
 
-#: src/components/Post/Embed/index.tsx:241
+#: src/components/Post/Embed/index.tsx:238
 msgid "Removed by you"
 msgstr "由您刪除"
 
@@ -10483,7 +10550,7 @@ msgstr "回覆的訊息，點選以捲動至該訊息"
 #: src/screens/Settings/NotificationSettings/ActivityNotificationSettings.tsx:218
 #: src/screens/Settings/NotificationSettings/index.tsx:181
 #: src/screens/Settings/NotificationSettings/index.tsx:330
-#: src/view/screens/Profile.tsx:236
+#: src/view/screens/Profile.tsx:278
 msgid "Replies"
 msgstr "回覆"
 
@@ -10879,6 +10946,8 @@ msgstr "重新執行上一個出現錯誤的動作"
 #: src/screens/PostThread/components/ThreadError.tsx:81
 #: src/screens/PostThread/components/ThreadError.tsx:87
 #: src/screens/Signup/BackNextButtons.tsx:54
+#: src/view/com/post-thread/PostQuotes.tsx:141
+#: src/view/com/post-thread/PostQuotes.tsx:149
 #: src/view/com/util/error/ErrorMessage.tsx:55
 #: src/view/com/util/error/ErrorScreen.tsx:91
 #: src/view/screens/Storybook/Admonitions.tsx:64
@@ -10889,6 +10958,16 @@ msgstr "重試"
 #: src/view/screens/Storybook/Admonitions.tsx:61
 msgid "Retry loading report options"
 msgstr "重新載入檢舉選項"
+
+#: src/plumblines/components/PublicProfileReader.tsx:159
+#: src/plumblines/components/PublicProfileReader.tsx:164
+msgid "Retry public posts"
+msgstr ""
+
+#: src/plumblines/components/PublicProfileReader.tsx:112
+#: src/plumblines/components/PublicProfileReader.tsx:117
+msgid "Retry public profile"
+msgstr ""
 
 #: src/components/Error.tsx:116
 #: src/screens/List/ListHiddenScreen.tsx:222
@@ -12276,7 +12355,7 @@ msgstr ""
 
 #: src/screens/Search/Explore.tsx:662
 #: src/screens/Search/SearchResults.tsx:114
-#: src/view/screens/Profile.tsx:241
+#: src/view/screens/Profile.tsx:283
 msgid "Starter Packs"
 msgstr "新手包"
 
@@ -12285,7 +12364,7 @@ msgid "Starter Packs let you easily share your favorite feeds and people with yo
 msgstr ""
 
 #: src/components/StarterPack/ProfileStarterPacks.tsx:102
-#: src/view/screens/Profile.tsx:568
+#: src/view/screens/Profile.tsx:610
 msgid "Starter Packs let you share your favorite feeds and people with your friends."
 msgstr "新手包可以助您與朋友分享喜愛的動態源與人物。"
 
@@ -12673,7 +12752,7 @@ msgstr ""
 msgid "That username is already taken"
 msgstr "這個使用者名稱已被佔用"
 
-#: src/view/com/post-thread/PostQuotes.tsx:135
+#: src/view/com/post-thread/PostQuotes.tsx:266
 msgid "That's all, folks!"
 msgstr "就這些，報告完畢！"
 
@@ -12790,6 +12869,10 @@ msgstr "隱私權政策已移動到 <0/>"
 msgid "The processed video is too large. Please try again with a smaller file."
 msgstr "處理後的影片太大，請使用較小的檔案再試一次。"
 
+#: src/plumblines/components/PublicPostReader.tsx:126
+msgid "The public service did not return this post. It may be unavailable or restricted."
+msgstr ""
+
 #: src/plumblines/components/FeedContext.tsx:77
 msgid "The selected home feed is not evidence about this page. Feed provenance is shown when viewing a selected feed on Home."
 msgstr ""
@@ -12823,6 +12906,10 @@ msgstr "所選影片使用不支援的格式。"
 #: src/lib/strings/errors.ts:53
 msgid "The server appears to be experiencing issues. Please try again in a few moments."
 msgstr "伺服器似乎遇到問題。請稍後再試。"
+
+#: src/view/com/post-thread/PostQuotes.tsx:240
+msgid "The service returned no visible quotes. Try the public view to check for posts omitted from your account view."
+msgstr ""
 
 #: src/screens/StarterPack/StarterPackScreen.tsx:852
 msgid "The Starter Pack that you are trying to view is invalid. You may delete this Starter Pack instead."
@@ -13283,6 +13370,10 @@ msgstr "這則貼文宣告的發布時間為 <0>{0}</0>，但首次出現在 Blu
 msgid "This post has an unknown type of threadgate on it. Your app may be out of date."
 msgstr "這則貼文套用了不支援的內容限制。您的應用程式版本可能已經過舊。"
 
+#: src/plumblines/components/PublicPostReader.tsx:119
+msgid "This post is blocked in this conversation. You can check its public version."
+msgstr ""
+
 #: src/components/PostControls/ShareMenu/ShareMenuItems.tsx:155
 msgid "This post is only visible to logged-in users."
 msgstr "這則貼文僅限已登入使用者可以檢視。"
@@ -13298,6 +13389,10 @@ msgstr "這則貼文將會從動態及討論串中隱藏，之後將無法取消
 #: src/view/com/composer/Composer.tsx:1143
 msgid "This post's author has disabled quote posts."
 msgstr "這則貼文的發布者拒絕引用貼文。"
+
+#: src/plumblines/components/PublicProfileReader.tsx:109
+msgid "This profile is not available in the public view."
+msgstr ""
 
 #: src/view/com/profile/ProfileMenu.tsx:582
 msgid "This profile is only visible to logged-in users. It won't be visible to people who aren't signed in."
@@ -14110,7 +14205,7 @@ msgstr "使用這個和您的帳號代碼一起登入其他應用程式。"
 msgid "Use your account email address, or another real email address you control, in case KWS or Bluesky needs to contact you."
 msgstr "使用您帳號的電子郵件地址，或另外一個您擁有的電子郵件地址，以防 KWS 或 Bluesky 需要與您聯絡。"
 
-#: src/view/screens/Profile.tsx:395
+#: src/view/screens/Profile.tsx:437
 msgid "user"
 msgstr "使用者"
 
@@ -14369,7 +14464,7 @@ msgstr "影片上傳成功"
 msgid "Video: {0}"
 msgstr "影片：{0}"
 
-#: src/view/screens/Profile.tsx:238
+#: src/view/screens/Profile.tsx:280
 msgid "Videos"
 msgstr "影片"
 
@@ -14488,6 +14583,21 @@ msgstr "檢視個人檔案"
 #: src/screens/Profile/Header/Shell.tsx:164
 msgid "View profile banner"
 msgstr "檢視個人檔案橫幅"
+
+#: src/plumblines/components/PublicPostReader.tsx:133
+#: src/plumblines/components/PublicPostReader.tsx:146
+msgid "View public post"
+msgstr ""
+
+#: src/view/screens/Profile.tsx:172
+#: src/view/screens/Profile.tsx:177
+msgid "View public profile"
+msgstr ""
+
+#: src/view/com/post-thread/PostQuotes.tsx:67
+#: src/view/com/post-thread/PostQuotes.tsx:76
+msgid "View public quotes"
+msgstr ""
 
 #: src/components/Post/Embed/StandardSiteEmbed/index.tsx:339
 #: src/components/Post/Embed/StandardSiteEmbed/index.tsx:447
@@ -14975,8 +15085,8 @@ msgstr "在檢視其他草稿前，需要先儲存現有內容嗎？"
 msgid "Would you like to save this as a draft to edit later?"
 msgstr "需要把現有內容儲存為草稿，以供日後編輯嗎？"
 
-#: src/view/screens/Profile.tsx:446
-#: src/view/screens/Profile.tsx:447
+#: src/view/screens/Profile.tsx:488
+#: src/view/screens/Profile.tsx:489
 msgid "Write a post"
 msgstr "撰寫一篇貼文"
 
