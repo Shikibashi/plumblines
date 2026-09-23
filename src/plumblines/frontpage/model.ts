@@ -90,6 +90,69 @@ export type FrontPageComposition<T, Source> = {
   sheets: FrontPageSheet<T, Source>[]
 }
 
+export type FrontPageSource<Source = unknown> = {
+  id: string
+  title: string
+  source: Source
+}
+
+/** Page regions refer to source sections; source data and item order stay intact. */
+export type FrontPagePackages<Source = unknown> = {
+  lead: FrontPageSource<Source> | null
+  briefs: FrontPageSource<Source> | null
+  secondaryLeft: FrontPageSource<Source> | null
+  secondaryRight: FrontPageSource<Source> | null
+  availableSections: FrontPageSource<Source>[]
+}
+
+export type FrontPageSegment = 'lead' | 'briefs' | 'secondary' | 'section'
+
+/** Split one source's stable sequence into page packages without reordering it. */
+export function selectFrontPageSegment<T>(
+  items: readonly T[],
+  segment: FrontPageSegment,
+) {
+  const range =
+    segment === 'lead'
+      ? [0, 1]
+      : segment === 'briefs'
+        ? [1, 4]
+        : segment === 'secondary'
+          ? [0, 4]
+          : [0, items.length]
+  return items.slice(range[0], range[1]).map((item, index) => ({
+    item,
+    index: index + range[0],
+  }))
+}
+
+/**
+ * Resolve the front page from configured section order and the reader's lead
+ * choice. Sections are sources; these fixed regions are presentation packages.
+ */
+export function resolveFrontPagePackages<Source>(
+  sections: readonly FrontPageSource<Source>[],
+  preferences: FrontPagePreferences = DEFAULT_FRONT_PAGE_PREFERENCES,
+): FrontPagePackages<Source> {
+  const leadId =
+    validateFrontPagePreferences(
+      preferences,
+      sections.map(section => section.id),
+    ).leadSectionId ?? sections[0]?.id
+  const ordered = [
+    ...sections.filter(section => section.id === leadId),
+    ...sections.filter(section => section.id !== leadId),
+  ]
+  const at = (index: number) => ordered[index] ?? null
+  return {
+    lead: at(0),
+    briefs: at(0),
+    secondaryLeft: at(1),
+    secondaryRight: at(2),
+    availableSections: ordered,
+  }
+}
+
 const SECTIONS_PER_SHEET = 4
 const BRIEFS_PER_LEAD_SECTION = 3
 

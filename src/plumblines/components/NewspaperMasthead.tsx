@@ -29,9 +29,6 @@ export function NewspaperMasthead() {
       <a className="press-skip" href="#plumblines-content">
         <Trans>Skip to content</Trans>
       </a>
-      <div className="press-side-note">
-        <Trans>A more associated world is possible.</Trans>
-      </div>
       <div className="press-nameplate">
         <div className="press-name">
           <Branch />
@@ -41,7 +38,7 @@ export function NewspaperMasthead() {
           <Branch mirror />
         </div>
         <div className="press-motto">
-          <Trans>Liberty — not authority — orders the page</Trans>
+          <Trans>A newspaper for the Atmosphere</Trans>
         </div>
         <div className="press-edition">
           plumblines.uk <span>·</span>{' '}
@@ -52,16 +49,6 @@ export function NewspaperMasthead() {
             year: 'numeric',
           })}
         </div>
-      </div>
-      <div className="press-side-note press-side-right">
-        <Trans>
-          Free people
-          <br />
-          Free thought
-          <br />
-          Free association
-          <br />A wider conversation
-        </Trans>
       </div>
     </header>
   )

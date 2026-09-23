@@ -14,11 +14,11 @@ Audit date: 2026-09-23. Repository: `/var/home/tcs/Code/plumblines`, branch `cod
 
 ## What is now wired
 
-- `src/plumblines/frontpage/model.ts` owns a pure, deterministic composition model; its tests assert source/item preservation, explicit reader-selected lead, stable slot order, templates and numbered sheets. The selected lead moves to the first page position; its source order remains unchanged.
-- `src/plumblines/sections/index.tsx` consumes the composition for all configured section fronts. It uses the existing query hooks and rendering components, moves per-section controls into settings, labels provenance disclosures, adds page anchors/folios and removes the nested scroller. The first dispatch, next three briefs and first secondary feature receive distinct type treatments. An actual image affects presentation without changing rank. The active reading section is marked on both its landmark and section rail, supporting `1–8` and `j/k/o` keyboard navigation.
+- `src/plumblines/frontpage/model.ts` owns a pure, deterministic source-to-region resolver and sequence slicer; tests assert stable assignments, explicit reader-selected lead, and no reorder or score. The chosen source leads; its first item is a lead dispatch and its following three items populate Dispatches. The next two configured sources fill the secondary regions.
+- `src/plumblines/sections/index.tsx` uses the existing query hooks and upstream story internals, but renders a single composed front page or one selected section front. It moves per-section controls/provenance into contained settings slips, adds page folios/anchors, and removes nested scrollers. A Plumblines-owned `DispatchStory` wrapper marks treatment and source URI while moderation, labels, embeds, thread context and actions stay in `PostFeedItem`/`Post`/`ViewFullThread`. The active section is marked on its page and section rail, supporting `1–8` and `j/k/o` keyboard navigation.
 - `src/plumblines/reading/standard/` owns strict public API parsing, latest-index pagination, click-to-fetch article reading, safe links/media and `@standard-reader/renderer-react` integration. The renderer normalizes supported document formats. Native receives an explicit empty stub; social `StandardSiteEmbed` remains intact.
 - `src/plumblines/NewspaperHome.tsx` adds a compact reading-tools toolbar and retains local attention/preferences. `src/storage/schema.ts` adds only the account-local preference key needed for front-page layout.
-- `src/style.css` gives interior routes a compact masthead and front page a responsive masthead, paper/surface, narrow utility rail, section rail, editorial grid, mobile single column, dark/dim paper and visible focus rules. `src/view/screens/Home.tsx` and the Standard.site embed internals were not changed.
+- `src/style.css` gives interior routes a compact masthead and front page a scrolling nameplate with a restrained product strapline, paper/surface, narrow utility rail, section rail, editorial grid, mobile single column, dark/dim paper, contained menus, wrapping for long identifiers and visible focus rules. `src/view/screens/Home.tsx` and Standard.site embed internals were not changed.
 - `tests/plumblines/newspaper.spec.ts` adds browser checks for one-document scrolling, Reading navigation and template changes. `tests/plumblines/v1.spec.ts` preserves section, Reader and keyboard coverage against the new interaction grammar. Policy tests assert block and list-block creates/puts/batch writes are rejected while deletion is allowed.
 
 ## Reused / upstream touch surface
@@ -37,7 +37,7 @@ The diff is intentionally concentrated in Plumblines-owned components. The share
 ## Invariants retained
 
 - `main`/`develop` remain the upstream baseline; all work is on `codex/plumblines-v1`.
-- No PDS, AppView, Relay, DNS, tunnel or upstream baseline changes were made. The static web artifact was promoted to the existing Cloudflare Pages project; see the [deployment receipt](../../zeus/editorial-frontpage-deployment-2026-09-23.md).
+- No PDS, AppView, Relay, DNS, tunnel or upstream baseline changes were made. The earlier deployment receipt records a prior artifact only; this user-directed visual revision is not deployed yet.
 - No social post headline/dateline, engagement score, proprietary lexicon or article body is synthesized.
 - Block state is read/respected and existing blocks can be deleted. Block/listblock creation stays unavailable and is rejected before network I/O.
 - Following/search/custom-source query behavior, moderation, labels, authored source data and feed order are preserved.

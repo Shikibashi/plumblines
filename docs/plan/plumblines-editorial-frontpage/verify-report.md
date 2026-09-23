@@ -1,6 +1,6 @@
 # Editorial front page verification
 
-Date: 2026-09-23. Repository: `/var/home/tcs/Code/plumblines`, branch `codex/plumblines-v1`. This report covers the current editorial-front-page work only. The earlier 957-test v1 run is historical context and is not counted as current-run evidence.
+Date: 2026-09-23. Repository: `/var/home/tcs/Code/plumblines`, branch `codex/plumblines-v1`. The deployment and 8.0 visual assessment below describe the preceding implementation only. The user rejected that visual assessment after reviewing the rendered page; the later revision status is recorded at the end and supersedes the older UI score and deployment claim for the current tree. The earlier 957-test v1 run is historical context and is not counted as current-run evidence.
 
 ## Scope and result
 
@@ -58,3 +58,9 @@ Weighted total: **8.0/10 (B)**. This is based on rendered screenshots and the ch
 ## Review and customization surface
 
 The fork-specific implementation lives in `src/plumblines/frontpage/` and `src/plumblines/reading/standard/`. The Home route and upstream post component internals were left intact. Shared upstream files changed only at `src/style.css` and `src/storage/schema.ts`; the build also regenerates locale catalogs. See `docs/plumblines/upstream-maintenance.md` and the [implementation map](implementation-map.md) for the merge-conflict surface.
+
+## User-directed newspaper composition follow-up
+
+The user identified that the preceding screen remained a multi-feed dashboard despite its typography and palette. This revision separates source sections from page regions, uses a selected source for a lead and Dispatches rail, limits secondary regions to two sources, opens one section front at a time, removes feed-local scrollers, compacts section controls into paper-slip settings, and changes the masthead strapline to publication metadata language. `PostFeedItem` remains the underlying renderer through a Plumblines `DispatchStory` wrapper. Standard.site reading remains a separate sheet.
+
+The prior 8.0/B visual score is withdrawn for the pre-follow-up implementation; the current render is not being assigned that score. Current tree: `pnpm typecheck`, `pnpm lint`, and optimized `pnpm build-web` passed. The local full browser suite passed 41/41, covering the responsive shell from 390 to 1586px, light/dark/dim contrast, keyboard section/story navigation, Standard.site reading, source attribution, no nested feed scrollers, public block states, and existing moderation/view behavior. The compositor and blockless-policy suites passed 18/18. Rendered local screenshots are under `docs/zeus/evidence/`; the intentionally synthetic social fixture includes literal script-like text for escaping coverage, so it is not a representative editorial sample. No deployment has been made for this follow-up yet. Earlier production and public Standard Reader observations above remain historical evidence for the previous artifact only.

@@ -9,6 +9,7 @@ export function useSectionKeyboard(
   root: RefObject<HTMLDivElement | null>,
   config: SectionsConfig,
   save: (value: SectionsConfig) => void,
+  onSectionSelect: () => void,
 ) {
   const navigation = useNavigation<NavigationProp>()
   useEffect(() => {
@@ -43,6 +44,7 @@ export function useSectionKeyboard(
         if (section) {
           event.preventDefault()
           save({...config, activeId: section.id})
+          onSectionSelect()
         }
         return
       }
@@ -82,5 +84,5 @@ export function useSectionKeyboard(
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [root, config, save, navigation])
+  }, [root, config, save, onSectionSelect, navigation])
 }

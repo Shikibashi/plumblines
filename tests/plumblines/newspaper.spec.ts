@@ -13,7 +13,15 @@ test('QA09, QA15: Following-first newspaper shell, no upstream telemetry', async
   })
   await page.goto('/')
   await expect(page.getByTestId('plumblines-masthead')).toBeVisible()
+  await expect(page.getByTestId('plumblines-masthead')).toContainText(
+    'A newspaper for the Atmosphere',
+  )
   await expect(page.getByTestId('newspaper-sections')).toBeVisible()
+  const frontPageHeading = await page
+    .locator('.newspaper-sections > h1')
+    .boundingBox()
+  expect(frontPageHeading!.width).toBeLessThanOrEqual(1)
+  expect(frontPageHeading!.height).toBeLessThanOrEqual(1)
   await expect(
     page.getByText(/Sign in to read this section/).first(),
   ).toBeVisible()
@@ -42,9 +50,7 @@ for (const width of [390, 768, 1024, 1280, 1586]) {
     if (width < 980)
       await expect(page.getByTestId('plumblines-right-nav')).toBeHidden()
     const masthead = await page.getByTestId('plumblines-masthead').boundingBox()
-    const header = page
-      .getByTestId('newspaper-sections')
-      .getByRole('heading', {name: 'The front page', exact: true})
+    const header = page.getByRole('navigation', {name: 'Newspaper sections'})
     await expect(header).toBeVisible()
     const headerBox = await header.boundingBox()
     expect(headerBox!.y).toBeGreaterThanOrEqual(
@@ -153,6 +159,10 @@ test('QA14: each section describes its actual source without a Discover fallback
   await page.goto('/')
   const following = page.getByRole('region', {name: 'Following', exact: true})
   await expect(following).toBeVisible()
+  await expect(
+    following.getByText(/Following timeline · AppView order/, {exact: false}),
+  ).toBeHidden()
+  await following.locator('.newspaper-section-settings summary').click()
   await expect(following).toContainText('Following timeline')
   await expect(following).toContainText('AppView order')
   await expect(following).toContainText('no recommended-feed fallback')
@@ -223,7 +233,9 @@ test('EFP: composed sheets use the document scroll and expose Reading as a disti
   ).toBeVisible()
   await page.getByRole('button', {name: 'Reading', exact: true}).click()
   await expect(page.locator('#newspaper-reading')).toBeInViewport()
-  await expect(page.getByRole('heading', {name: 'Reading'})).toBeVisible()
+  await expect(
+    page.locator('#newspaper-reading').getByRole('heading', {name: 'Reading'}),
+  ).toBeVisible()
   await expect(page.getByText(/Standard Reader public index/)).toBeVisible({
     timeout: 30_000,
   })
@@ -266,13 +278,24 @@ test('EFP: reader-selected lead and template controls update the composed sheet'
   const editor = page.locator('.newspaper-layout-settings')
   await editor.locator('summary').click()
   await editor.getByLabel('Page composition').selectOption('compact')
-  await expect(page.locator('.newspaper-columns').first()).toHaveAttribute(
+  await expect(page.locator('.newspaper-layout').first()).toHaveAttribute(
     'data-template',
     'compact',
   )
-  await expect(page.locator('.newspaper-column[data-lead="true"]')).toHaveCount(
+  await expect(page.locator('.newspaper-region[data-slot="lead"]')).toHaveCount(
     1,
   )
+  await page.getByRole('button', {name: 'Following', exact: true}).click()
+  await expect(
+    page.locator('.newspaper-region[data-slot="section-front"]'),
+  ).toBeVisible()
+  await page
+    .getByRole('button', {name: 'Front page', exact: true})
+    .last()
+    .click()
+  await expect(
+    page.locator('.newspaper-region[data-slot="section-front"]'),
+  ).toHaveCount(0)
 })
 
 test('QA13: search navigation remains usable', async ({page}) => {

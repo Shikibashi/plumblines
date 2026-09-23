@@ -214,7 +214,7 @@ for (const width of [390, 1040, 1586]) {
       page
         .getByRole('navigation', {name: 'Newspaper sections'})
         .getByRole('button')
-        .first(),
+        .nth(1),
     ).toHaveText('Fixture wire')
     await page.reload()
     await section.getByLabel('Settings for Fixture wire').click()
@@ -228,14 +228,14 @@ for (const width of [390, 1040, 1586]) {
       page
         .getByRole('navigation', {name: 'Newspaper sections'})
         .getByRole('button')
-        .first(),
+        .nth(1),
     ).toHaveText('Fixture wire')
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
       ),
     ).toBe(true)
-    await expect(section).toHaveAttribute('data-lead', 'true')
+    await expect(section.locator('[data-treatment="lead"]')).toHaveCount(1)
     await expect(page.locator('#splash')).toBeHidden()
     await page.screenshot({
       animations: 'disabled',
@@ -440,16 +440,14 @@ test('v1 keyboard moves between stories and sections while respecting inputs and
   await page.goto('/')
   const section = await addFeed(page)
   const tabs = page.getByRole('navigation', {name: 'Newspaper sections'})
-  const title = page.getByRole('heading', {name: 'The front page', exact: true})
-  await title.click()
   await page.keyboard.press('1')
   await expect(
     tabs.getByRole('button', {name: 'Following', exact: true}),
-  ).toHaveAttribute('aria-current', 'location')
+  ).toHaveAttribute('aria-current', 'page')
   await page.keyboard.press('2')
   await expect(
     tabs.getByRole('button', {name: 'Fixture wire', exact: true}),
-  ).toHaveAttribute('aria-current', 'location')
+  ).toHaveAttribute('aria-current', 'page')
   const stories = section.locator('[data-section-story]')
   await page.keyboard.press('j')
   await expect(stories.nth(0)).toBeFocused()
@@ -476,10 +474,10 @@ test('v1 keyboard moves between stories and sections while respecting inputs and
   await page.keyboard.press('j')
   await expect(close).toBeFocused()
   await expect(
-    page.locator('.newspaper-section-tabs [aria-current="location"]'),
+    page.locator('.newspaper-section-tabs [aria-current="page"]'),
   ).toHaveText('Fixture wire')
   await close.click()
-  await title.click()
+  await tabs.getByRole('button', {name: 'Fixture wire', exact: true}).focus()
   await page.keyboard.press('j')
   await expect(stories.nth(0)).toBeFocused()
   await page.keyboard.press('o')

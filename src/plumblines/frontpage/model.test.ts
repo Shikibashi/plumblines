@@ -2,6 +2,8 @@ import {
   composeFrontPage,
   DEFAULT_FRONT_PAGE_PREFERENCES,
   type FrontPageSection,
+  resolveFrontPagePackages,
+  selectFrontPageSegment,
   validateFrontPagePreferences,
 } from './model'
 
@@ -37,6 +39,65 @@ it('produces identical placements for identical section and item order', () => {
     {sectionId: 'section-2', itemIndex: 0, slotIndex: 2, treatment: 'feature'},
     {sectionId: 'section-2', itemIndex: 1, slotIndex: 3, treatment: 'standard'},
   ])
+})
+
+it('resolves source sections into one lead, a briefs source and two secondary fronts', () => {
+  const input = sections(5).map(({id, title, source}) => ({id, title, source}))
+  const packages = resolveFrontPagePackages(input)
+
+  expect(packages).toMatchObject({
+    lead: {id: 'section-1'},
+    briefs: {id: 'section-1'},
+    secondaryLeft: {id: 'section-2'},
+    secondaryRight: {id: 'section-3'},
+    availableSections: [
+      {id: 'section-1'},
+      {id: 'section-2'},
+      {id: 'section-3'},
+      {id: 'section-4'},
+      {id: 'section-5'},
+    ],
+  })
+})
+
+it('uses only reader configuration to move a section into the lead region', () => {
+  const input = sections(3).map(({id, title, source}) => ({id, title, source}))
+  const packages = resolveFrontPagePackages(input, {
+    version: 1,
+    template: 'broadsheet',
+    leadSectionId: 'section-3',
+  })
+
+  expect(packages.lead?.id).toBe('section-3')
+  expect(packages.secondaryLeft?.id).toBe('section-1')
+  expect(packages.secondaryRight?.id).toBe('section-2')
+  expect(packages.availableSections.map(section => section.id)).toEqual([
+    'section-3',
+    'section-1',
+    'section-2',
+  ])
+})
+
+it('splits one ordered source into lead, briefs, and secondary packages', () => {
+  const items = ['one', 'two', 'three', 'four', 'five']
+
+  expect(selectFrontPageSegment(items, 'lead')).toEqual([
+    {item: 'one', index: 0},
+  ])
+  expect(selectFrontPageSegment(items, 'briefs')).toEqual([
+    {item: 'two', index: 1},
+    {item: 'three', index: 2},
+    {item: 'four', index: 3},
+  ])
+  expect(selectFrontPageSegment(items, 'secondary')).toEqual([
+    {item: 'one', index: 0},
+    {item: 'two', index: 1},
+    {item: 'three', index: 2},
+    {item: 'four', index: 3},
+  ])
+  expect(
+    selectFrontPageSegment(items, 'section').map(value => value.item),
+  ).toEqual(items)
 })
 
 it('uses the reader-selected lead section and marks its prominence truthfully', () => {
