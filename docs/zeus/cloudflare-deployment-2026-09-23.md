@@ -2,7 +2,19 @@
 
 **DEPLOYED:** https://plumblines.uk now serves the Plumblines newspaper client, replacing the previous Rust client. The user explicitly authorized this replacement. No DNS, PDS, tunnel, database or account records were changed.
 
-## Version and destination
+## Deep-scroll correction (05:28 UTC)
+
+The current deployment is `3d164850-39b9-4484-89a3-f9d3d1b974f5`, at https://3d164850.plumbline-f50.pages.dev, source commit `75b71547ae6dfc2f3322d891ff21dddf02777ef3`. It replaces the initial deployment described below. The immediate rollback target is `31462629-65f9-4903-9065-b2bf6e3a60d6`.
+
+A user screenshot exposed a deep-scroll defect missed by the initial viewport tests. The masthead was sticky inside a viewport-height navigation shell, so it scrolled away beyond the first screen while feed tabs retained their masthead offset. More-specific static HTML theme styles also painted the root white outside that shell.
+
+The masthead is now fixed with reserved shell padding, and document/body/root backgrounds use the newspaper theme. No JavaScript bundle or protocol behavior changed. Main CSS SHA-256 is `784f14a54af8ebafdde2a7dbad40a8edc3fde10dc6f413e9d03f6419c10dd502`; all entry JS and CSS bytes were checked against the uploaded artifact.
+
+Verification: the new 1040px test failed against the prior production deployment. After the fix, lint, web types and export passed; the full local browser suite passed 18/18 (32.7s). Preview https://78a84cec.plumbline-f50.pages.dev passed five targeted scrolling/theme checks (12.1s), and https://plumblines.uk passed the same five (11.3s). Deep scrolling was checked at 390px, 1040px and 1586px; a separate dark-mode deep-scroll check passed. Rendered screenshots were inspected. The review was scoped to layout, theme and navigation regressions, not a new full nine-area UX audit. Existing release limits below remain.
+
+Raw evidence uses the `docs/zeus/evidence/scroll-*` prefix. Identical `.cloudflare/pages-cc4f8fmx` files were uploaded to preview and production. The prior production version remains available for rollback.
+
+## Initial version and destination
 
 | Item | Value |
 |---|---|

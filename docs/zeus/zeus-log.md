@@ -54,3 +54,9 @@
 - Uploaded identical files to production branch `main`; deployment `31462629-65f9-4903-9065-b2bf6e3a60d6` now serves https://plumblines.uk. Live 15/15 browser and 3/3 route checks passed.
 - Verified JS/CSS/metadata hashes and public PDS discovery from the live browser origin. HTML differs only by existing zone analytics injection, blocked by CSP. Wrangler cannot access zone RUM configuration (403); no zone settings changed.
 - Retained prior production deployment for rollback. Full details and remaining authentication/search/dependency limits are in cloudflare-deployment-2026-09-23.md.
+
+## User-reported deep scrolling regression
+- Reproduced the attached narrow-desktop screenshot on production: the sticky masthead leaves its viewport-height shell at scrollY 1800, while tabs remain at top 148px. Static HTML theme specificity exposes white document/root backgrounds.
+- Fixed the masthead to the viewport with shell padding and full-width opaque background; applied newspaper variables to document/body/root. Kept native and protocol flows unchanged.
+- New deep-scroll regression fails on the old site. Lint/web types/export and all 18 local browser cases pass. Five preview and five live production checks pass, plus a dark deep-scroll inspection.
+- Deployed identical preview artifact to `3d164850-39b9-4484-89a3-f9d3d1b974f5`; entry assets match local hashes. See updated deployment receipt.
