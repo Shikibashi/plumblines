@@ -147,3 +147,7 @@ docs/zeus/evidence/
 docs/zeus/user-brief.txt
 test-results/
 playwright-report/
+
+# Cloudflare deployment packages and Wrangler state
+.cloudflare/
+.wrangler/
