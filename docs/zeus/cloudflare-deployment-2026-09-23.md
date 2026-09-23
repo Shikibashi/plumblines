@@ -2,9 +2,13 @@
 
 **DEPLOYED:** https://plumblines.uk now serves the Plumblines newspaper client, replacing the previous Rust client. The user explicitly authorized this replacement. No DNS, PDS, tunnel, database or account records were changed.
 
+## Removal-only moderation (06:27 UTC)
+
+Current deployment: `bc9995ac-5efc-4616-a021-7815bb6677a3`. See [the moderation capability receipt](capabilities-deployment-2026-09-23.md).
+
 ## Public blocked-content reader (05:58 UTC)
 
-The current deployment is `691324f3-e1ad-4a16-8d47-8b404f59c84d`, source `33abbf24832ce908e55c2c370e73eafcd34e80d8`. It adds opt-in public reading for blocked posts/profiles and truthful quote-list availability. See the [public-reader deployment receipt](public-reader-deployment-2026-09-23.md) for exact behavior, verification, service limits, and rollback.
+This earlier deployment is `691324f3-e1ad-4a16-8d47-8b404f59c84d`, source `33abbf24832ce908e55c2c370e73eafcd34e80d8`. It adds opt-in public reading for blocked posts/profiles and truthful quote-list availability. See the [public-reader deployment receipt](public-reader-deployment-2026-09-23.md) for exact behavior, verification, service limits, and rollback.
 
 ## Deep-scroll correction (05:28 UTC)
 
