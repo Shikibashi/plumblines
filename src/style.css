@@ -376,20 +376,26 @@ html.theme--dim {
   --press-rule: #736957;
   --press-accent: #f0cec5;
 }
-html,
-body {
+/* Override the static HTML theme backgrounds beyond the navigation viewport. */
+html[class*='theme--'],
+html[class*='theme--'] body,
+html[class*='theme--'] #root {
+  --background: var(--press-paper);
+  --text: var(--press-ink);
   background-color: var(--press-paper);
   color: var(--press-ink);
 }
 .press-masthead {
   box-sizing: border-box;
   z-index: 25;
-  position: relative;
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
   display: grid;
   grid-template-columns: 210px minmax(0, 1fr) 210px;
   align-items: center;
   height: var(--press-height);
-  margin: 0 32px;
+  padding: 0 32px;
   border-bottom: 6px double var(--press-ink);
   font-family: Georgia, 'Times New Roman', 'Liberation Serif', serif;
   color: var(--press-ink);
@@ -598,7 +604,9 @@ body {
   padding-bottom: 12px;
   border-bottom-color: var(--press-rule);
 }
+/* The navigation stack is viewport-sized; sticky would stop at its bottom. */
 [data-testid='plumblines-shell'] {
+  padding-top: var(--press-height);
   isolation: isolate;
 }
 .ProseMirror .mention,
@@ -616,10 +624,6 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 @media (min-width: 980px) {
-  .press-masthead {
-    position: sticky;
-    top: 0;
-  }
   [data-testid='plumblines-feed-header'] {
     top: var(--press-height) !important;
   }
@@ -633,7 +637,7 @@ textarea:focus-visible {
   }
   .press-masthead {
     grid-template-columns: 130px minmax(0, 1fr) 130px;
-    margin: 0 20px;
+    padding: 0 20px;
   }
   .press-side-note {
     font-size: 11px;
@@ -660,7 +664,7 @@ textarea:focus-visible {
   .press-masthead {
     height: 88px;
     grid-template-columns: minmax(0, 1fr);
-    margin: 0 12px;
+    padding: 0 12px;
     border-bottom-width: 4px;
   }
   .press-side-note,
@@ -707,10 +711,6 @@ textarea:focus-visible {
   }
 }
 @media (max-width: 979px) {
-  .press-masthead {
-    position: sticky;
-    top: 0;
-  }
   [data-testid='plumblines-mobile-feed-header'] {
     top: var(--press-height) !important;
   }

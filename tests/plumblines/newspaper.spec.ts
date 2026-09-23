@@ -214,3 +214,48 @@ test('QA10: mobile search header stays below the masthead after scrolling', asyn
     .poll(async () => (await header.boundingBox())!.y)
     .toBeGreaterThanOrEqual(87)
 })
+
+for (const width of [390, 1040, 1586]) {
+  test(`QA10: newspaper shell survives deep scrolling at ${width}px`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({width, height: 900})
+    await page.goto('/')
+    const masthead = page.getByTestId('plumblines-masthead')
+    await expect(masthead).toBeVisible()
+    await expect(
+      page.locator('[data-testid^="feedItem-by-"]').first(),
+    ).toBeVisible({timeout: 45000})
+    await page.mouse.wheel(0, 2400)
+    await expect
+      .poll(() => page.evaluate(() => window.scrollY))
+      .toBeGreaterThan(1800)
+    await expect
+      .poll(async () => Math.round((await masthead.boundingBox())!.y))
+      .toBe(0)
+    const paper = await masthead.evaluate(
+      el => getComputedStyle(el).backgroundColor,
+    )
+    const backgrounds = await page.evaluate(() =>
+      [
+        document.documentElement,
+        document.body,
+        document.getElementById('root')!,
+      ].map(el => getComputedStyle(el).backgroundColor),
+    )
+    expect(backgrounds).toEqual([paper, paper, paper])
+    if (width >= 980) {
+      const tabs = page.getByTestId('plumblines-feed-header')
+      const mastheadBox = (await masthead.boundingBox())!
+      expect((await tabs.boundingBox())!.y).toBeCloseTo(mastheadBox.height, 0)
+    }
+    await page.screenshot({path: `docs/zeus/evidence/scroll-deep-${width}.png`})
+    // Scrolling back must retain the brand and leave the first post below the tabs.
+    await page.evaluate(() => window.scrollTo(0, 0))
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0)
+    await expect(masthead).toBeVisible()
+    await page.screenshot({
+      path: `docs/zeus/evidence/scroll-fixed-${width}.png`,
+    })
+  })
+}

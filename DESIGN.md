@@ -11,7 +11,7 @@ A working AT Protocol newspaper: reading and choosing a feed are the primary tas
 - Masthead large uppercase, tightly spaced on desktop, compact on phone. Optional line: “Liberty — not authority — orders the page.” Do not present invented historical quotes as authentic.
 
 ## Layout
-Desktop: full-width 184px masthead, 280px navigation, 840px feed and 320px context rail. Below 1500px, navigation becomes an icon rail and the masthead is 148px; the context rail appears from 1280px at 270px. Below 980px, use the upstream mobile navigation and a single feed column under an 88px masthead. Sticky headers and fixed sidebars share these offsets. Layout constants and ALF breakpoints change together. Native phone styling remains on the existing flow; native tablet rendering is not device-verified.
+Desktop: full-width 184px masthead, 280px navigation, 840px feed and 320px context rail. Below 1500px, navigation becomes an icon rail and the masthead is 148px; the context rail appears from 1280px at 270px. Below 980px, use the upstream mobile navigation and a single feed column under an 88px masthead. The masthead is fixed to the viewport; the shell reserves its height in padding. Sticky headers and fixed sidebars share these offsets. The navigation stack is viewport-sized, so a sticky masthead would disappear on deep scroll. The document, body and root keep the paper theme beyond the navigation viewport. Layout constants and ALF breakpoints change together. Native phone styling remains on the existing flow; native tablet rendering is not device-verified.
 Mobile: compact brand, single column, existing mobile navigation and composer. Collapse side ornaments/rails before shrinking readable content. No horizontal scrolling at 390px.
 
 ## Content and behavior
