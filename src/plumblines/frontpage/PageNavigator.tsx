@@ -16,6 +16,7 @@ export function PageNavigator({pageCount}: {pageCount: number}) {
 
     // Pages can be much taller than the viewport. Determine the folio from the
     // last sheet whose top has crossed a stable line near the top of the page.
+    let lastScrollY = window.scrollY
     const updateCurrentPage = () => {
       const landmark = window.innerHeight * 0.22
       let visiblePage = 1
@@ -25,11 +26,17 @@ export function PageNavigator({pageCount}: {pageCount: number}) {
       })
       setCurrentPage(visiblePage)
     }
+    const handleScroll = () => {
+      const nextScrollY = window.scrollY
+      if (nextScrollY === lastScrollY) return
+      lastScrollY = nextScrollY
+      updateCurrentPage()
+    }
     updateCurrentPage()
-    window.addEventListener('scroll', updateCurrentPage, {passive: true})
+    window.addEventListener('scroll', handleScroll, {passive: true})
     window.addEventListener('resize', updateCurrentPage)
     return () => {
-      window.removeEventListener('scroll', updateCurrentPage)
+      window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', updateCurrentPage)
     }
   }, [pageCount])
