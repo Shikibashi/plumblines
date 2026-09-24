@@ -1,11 +1,12 @@
 /* eslint-disable bsky-internal/avoid-unwrapped-text -- This component is web-only semantic navigation. */
-import {useEffect, useState} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 /** Page links give long editions stable landmarks without adding nested scrolling. */
 export function PageNavigator({pageCount}: {pageCount: number}) {
   const {t: l} = useLingui()
   const [currentPage, setCurrentPage] = useState(1)
+  const pendingNavigation = useRef<{page: number; scrollY: number} | null>(null)
 
   useEffect(() => {
     if (typeof document === 'undefined') return
@@ -28,6 +29,13 @@ export function PageNavigator({pageCount}: {pageCount: number}) {
     }
     const handleScroll = () => {
       const nextScrollY = window.scrollY
+      if (
+        pendingNavigation.current &&
+        nextScrollY === pendingNavigation.current.scrollY
+      ) {
+        return
+      }
+      pendingNavigation.current = null
       if (nextScrollY === lastScrollY) return
       lastScrollY = nextScrollY
       updateCurrentPage()
@@ -69,6 +77,7 @@ export function PageNavigator({pageCount}: {pageCount: number}) {
                     `newspaper-page-${page}`,
                   )
                   if (!target) return
+                  pendingNavigation.current = {page, scrollY: window.scrollY}
                   window.history.pushState({}, '', `#newspaper-page-${page}`)
                   target.scrollIntoView({block: 'start', behavior: 'auto'})
                   setCurrentPage(page)
