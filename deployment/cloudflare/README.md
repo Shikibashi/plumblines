@@ -15,7 +15,7 @@ Use Wrangler 4.136.3 with the existing authenticated account. Run the CLI from o
 
 The public `client-metadata.json` from the previous deployment is retained verbatim as `legacy-client-metadata.json` to preserve the existing OAuth client identity. This does not add an OAuth flow to the new fork or prove that an old application's in-flight callback will work in it. Existing accounts/PDS data are not migrated by this client deployment.
 
-The latest verified deployment (2026-09-23) is `674b2234-551a-4f9b-b95a-161f162e5df4`, at `https://674b2234.plumbline-f50.pages.dev`. The preceding production deployment, available as the rollback target, is `93d682e7-24b5-4c08-a7c6-67c99885b59d`, at `https://93d682e7.plumbline-f50.pages.dev`. Both IDs were recorded from Wrangler's live Pages deployment list after promotion. See the [paginated sheets deployment receipt](../../docs/zeus/newspaper-sheets-deployment-2026-09-23.md) for artifact hashes and hosted browser verification.
+The latest verified deployment (2026-09-23) is `e877ca2d-3a36-4952-a374-4c4721017a8a`, at `https://e877ca2d.plumbline-f50.pages.dev`, from source commit `1ee632e73`. The preceding production deployment, available as the rollback target, is `88c9ed10-53df-4820-a3f0-16b6c123a084`, at `https://88c9ed10.plumbline-f50.pages.dev`. Both IDs were recorded from Wrangler's live Pages deployment list after promotion. See the [dispatch and folio deployment receipt](../../docs/zeus/editorial-dispatch-folio-deployment-2026-09-23.md) for artifact hashes and hosted browser verification.
 
 The deployment receipt under `docs/zeus/` records uploaded versions, hash comparisons and actual hosted tests. Local/browser checks do not constitute credentialed account acceptance.
 
