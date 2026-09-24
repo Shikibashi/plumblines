@@ -1191,8 +1191,7 @@ textarea:focus-visible {
   display: block;
 }
 .newspaper-stories > button,
-.newspaper-stories > p,
-.newspaper-stories > .newspaper-lead-credit {
+.newspaper-stories > p {
   margin: 8px 0;
 }
 [data-section-story] {
@@ -1243,13 +1242,6 @@ textarea:focus-visible {
   [data-testid='feedItem-by-']
   > div {
   border-radius: 0;
-}
-.newspaper-lead-credit {
-  color: var(--press-accent);
-  font:
-    12px/1.35 system-ui,
-    sans-serif;
-  margin: 4px 0 0;
 }
 .newspaper-page-colophon {
   border-top: 1px solid var(--press-rule);

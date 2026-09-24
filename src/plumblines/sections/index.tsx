@@ -344,7 +344,6 @@ export function NewspaperSections() {
                   slot="lead"
                   segment="lead"
                   onUpdate={update}
-                  isConfiguredLead
                 />
               )}
               {briefsSection &&
@@ -357,7 +356,6 @@ export function NewspaperSections() {
                     slot="briefs"
                     segment="briefs"
                     onUpdate={update}
-                    isConfiguredLead
                   />
                 )}
               {secondaryLeftSection && (
@@ -454,7 +452,6 @@ function NewspaperRegion({
   slot,
   segment,
   onUpdate,
-  isConfiguredLead = false,
 }: {
   section: NewspaperSection
   slot:
@@ -466,7 +463,6 @@ function NewspaperRegion({
     | 'section-front'
   segment: FrontPageSegment
   onUpdate: (section: NewspaperSection) => void
-  isConfiguredLead?: boolean
 }) {
   const {t: l} = useLingui()
   return (
@@ -494,7 +490,7 @@ function NewspaperRegion({
           )}
           {slot === 'lead' && (
             <span className="newspaper-lead-label">
-              <Trans>Lead position</Trans>
+              <Trans>Lead</Trans>
             </span>
           )}
         </h2>
@@ -549,11 +545,7 @@ function NewspaperRegion({
           </div>
         </details>
       </header>
-      <SectionContent
-        section={section}
-        segment={segment}
-        isConfiguredLead={isConfiguredLead}
-      />
+      <SectionContent section={section} segment={segment} />
     </section>
   )
 }
@@ -561,11 +553,9 @@ function NewspaperRegion({
 function SectionContent({
   section,
   segment,
-  isConfiguredLead,
 }: {
   section: NewspaperSection
   segment: FrontPageSegment
-  isConfiguredLead: boolean
 }) {
   const {hasSession} = useSession()
   const {requestSwitchToAccount} = useLoggedOutViewControls()
@@ -593,17 +583,11 @@ function SectionContent({
         section={section}
         query={section.source.query}
         segment={segment}
-        isConfiguredLead={isConfiguredLead}
       />
     )
   if (section.source.kind === 'following')
     return (
-      <FeedColumn
-        section={section}
-        descriptor="following"
-        segment={segment}
-        isConfiguredLead={isConfiguredLead}
-      />
+      <FeedColumn section={section} descriptor="following" segment={segment} />
     )
   return (
     <ResolvedFeedColumn
@@ -611,7 +595,6 @@ function SectionContent({
       uri={section.source.uri}
       kind={section.source.kind}
       segment={segment}
-      isConfiguredLead={isConfiguredLead}
     />
   )
 }
@@ -621,13 +604,11 @@ function ResolvedFeedColumn({
   uri,
   kind,
   segment,
-  isConfiguredLead,
 }: {
   section: NewspaperSection
   uri: string
   kind: 'feedgen' | 'list'
   segment: FrontPageSegment
-  isConfiguredLead: boolean
 }) {
   const result = useResolveUriQuery(uri)
   return result.data ? (
@@ -635,7 +616,6 @@ function ResolvedFeedColumn({
       section={section}
       descriptor={`${kind}|${result.data.uri}`}
       segment={segment}
-      isConfiguredLead={isConfiguredLead}
     />
   ) : (
     <div className="newspaper-stories">
@@ -659,12 +639,10 @@ function FeedColumn({
   section,
   descriptor,
   segment,
-  isConfiguredLead,
 }: {
   section: NewspaperSection
   descriptor: FeedDescriptor
   segment: FrontPageSegment
-  isConfiguredLead: boolean
 }) {
   const params = useMemo(
     () => ({strictFollowing: true, sectionFilters: section.filters}),
@@ -710,11 +688,6 @@ function FeedColumn({
       <div className="newspaper-stories" tabIndex={0} data-segment={segment}>
         {(segment === 'lead' || segment === 'section') && (
           <QueryControls result={result} empty={slices.length === 0} />
-        )}
-        {isConfiguredLead && segment === 'lead' && (
-          <p className="newspaper-lead-credit">
-            <Trans>Placed here by the front-page layout.</Trans>
-          </p>
         )}
         {segment === 'continuation' && pageGroups.length > 0 && (
           <PageNavigator pageCount={pageGroups.length + 1} />
@@ -851,12 +824,10 @@ function SearchColumn({
   section,
   query,
   segment,
-  isConfiguredLead,
 }: {
   section: NewspaperSection
   query: string
   segment: FrontPageSegment
-  isConfiguredLead: boolean
 }) {
   const {t: l} = useLingui()
   const result = useSearchPostsV2Query({query, sort: 'latest'})
@@ -894,11 +865,6 @@ function SearchColumn({
     <div className="newspaper-stories" tabIndex={0} data-segment={segment}>
       {(segment === 'lead' || segment === 'section') && (
         <QueryControls result={result} empty={posts.length === 0} />
-      )}
-      {isConfiguredLead && segment === 'lead' && (
-        <p className="newspaper-lead-credit">
-          <Trans>Placed here by the front-page layout.</Trans>
-        </p>
       )}
       {segment === 'continuation' && pageGroups.length > 0 && (
         <PageNavigator pageCount={pageGroups.length + 1} />

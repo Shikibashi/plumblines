@@ -436,6 +436,12 @@ test('v1 composed front page continues the lead source after its opening package
     .first()
     .selectOption({label: 'Fixture wire'})
   await page.reload()
+  await expect(
+    page.locator('.newspaper-region[data-slot="lead"] .newspaper-lead-label'),
+  ).toHaveText('Lead')
+  await expect(
+    page.getByText('Placed here by the front-page layout.', {exact: true}),
+  ).toHaveCount(0)
   const continuation = page.getByRole('region', {
     name: 'More from Fixture wire',
     exact: true,
