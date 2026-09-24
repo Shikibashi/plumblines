@@ -1,3 +1,4 @@
+import * as env from '#/env'
 import {MetricsClient} from './client'
 
 let appStateCallback: (state: string) => void
@@ -241,5 +242,28 @@ describe('MetricsClient', () => {
     await jest.advanceTimersByTimeAsync(0)
 
     expect(fetchRequests).toHaveLength(1)
+  })
+})
+
+describe('fork telemetry defaults', () => {
+  it('does not start timers or send events without an explicit fork endpoint', async () => {
+    const originalHost = env.METRICS_API_HOST
+    const mutableEnv = env as {METRICS_API_HOST: string}
+    mutableEnv.METRICS_API_HOST = ''
+    jest.useFakeTimers()
+    const fetchMock = jest.fn()
+    global.fetch = fetchMock
+    try {
+      const client = new MetricsClient<TestEvents>()
+      client.start()
+      client.track('click', {button: 'private'})
+      client.flush()
+      await jest.advanceTimersByTimeAsync(20_000)
+      expect(fetchMock).not.toHaveBeenCalled()
+      expect(jest.getTimerCount()).toBe(0)
+    } finally {
+      mutableEnv.METRICS_API_HOST = originalHost
+      jest.useRealTimers()
+    }
   })
 })

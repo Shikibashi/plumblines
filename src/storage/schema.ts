@@ -81,6 +81,12 @@ export type Device = {
 }
 
 export type Account = {
+  /** Device-local Plumblines data; each feature validates its version and shape. */
+  plumblinesSections?: unknown
+  plumblinesAttention?: unknown
+  plumblinesReading?: unknown
+  /** Plumblines front-page layout is local presentation state, not a repo record. */
+  plumblinesFrontPage?: unknown
   searchTermHistory?: string[]
   searchAccountHistory?: string[]
 

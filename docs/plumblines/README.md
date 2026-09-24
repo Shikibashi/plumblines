@@ -1,0 +1,55 @@
+# Plumblines
+
+An independent AT Protocol client built from `bluesky-social/social-app`, with a newspaper web interface. This is a client fork: it uses the existing account, PDS, AppView, feed, moderation and chat protocols.
+
+Fork: https://github.com/Shikibashi/plumblines
+
+## Develop and verify
+
+Use the Node and pnpm versions declared by `package.json`. The initial local verification used Node 26.8.2 and pnpm 12.4.2; pnpm warns that the repository prefers 11.23.0.
+
+```sh
+pnpm install --frozen-lockfile
+pnpm web
+pnpm lint
+pnpm typecheck
+pnpm test --runInBand
+pnpm build-web
+pnpm preview:plumblines
+# In another terminal, with Chromium installed:
+pnpm exec playwright install chromium
+pnpm test:plumblines:e2e
+```
+
+`build-web` regenerates and compiles translation catalogs before exporting. Omitting extraction can render new messages as opaque IDs in production. Generated translation modules and exported bundles are ignored; catalog sources are versioned. New fork strings in other languages currently fall back to their English source and still require translation review.
+
+The preview binds to `127.0.0.1:8137`. It maps the export's `/static/` prefix and serves application routes with an SPA fallback. Public-feed browser tests perform actual read-only requests to AT Protocol services and require network access. Mutation tests use mocked agents and do not prove authenticated server behavior.
+
+## Container
+
+```sh
+./scripts/plumblines/build-container.sh
+docker compose -p plumblines -f docker-images/docker-compose.yml up -d
+# http://127.0.0.1:8139
+curl http://127.0.0.1:8139/healthz
+```
+
+The build script creates the Expo export on the host, then packages it in a digest-pinned, non-root nginx image. It is intentionally an artifact container, not a claim that the application was compiled in Docker. The runtime has a read-only filesystem, a temporary `/tmp`, no Linux capabilities and no new privileges. `PLUMBLINES_PORT` changes the local port. There is no new database or server API. The upstream Go server and its Dockerfile remain available separately; this static preview does not provide its server-rendered link previews.
+
+The newspaper client is deployed at https://plumblines.uk on the existing Cloudflare Pages project. The [editorial front-page receipt](../zeus/editorial-frontpage-deployment-2026-09-23.md) records the current exact artifact, live browser acceptance and immediate rollback. The [earlier v1 receipt](../zeus/cloudflare-deployment-2026-09-23.md) retains its version-specific PDS discovery and hosted verification. Native signing/push credentials and authenticated account acceptance remain separate release work.
+
+## Product contracts
+
+- `src/plumblines/identity.json` centralizes identity. See [branding.md](branding.md) for asset provenance and telemetry configuration.
+- Home now uses a deterministic multi-sheet newspaper compositor and a separate public Standard Reader long-form section. See the [newspaper guide](newspaper.md), [editorial design map](../plan/plumblines-editorial-frontpage/implementation-map.md), and [upstream maintenance rules](upstream-maintenance.md).
+- Blocked quote/thread placeholders now offer **View public post**. Profiles affected by account, list or incoming blocks offer **View public profile**, with paginated public posts and a return action. These explicitly requested views use the existing unauthenticated AppView client, separate public query caches and read-only cards. Known profile mutes and public-visibility/content labels are retained; account blocks and server interaction rules are unchanged.
+- Quotes offer a public view and explain that counts can include results the service omits. A zero-result response does not prove that no quotes exist. Recovery requires a known public post URI or an item returned by the public service; no private record lookup or broad account scan is performed.
+- Account moderation capabilities expose mute/unmute, repost muting, and removal of an existing direct block; there is no block-creation hook or menu capability. Lists retain muting and a URI-only unblock mutation. A shared authenticated-client write guard in `src/plumblines/policy.ts` rejects account/list block records in create, put and batch writes before session I/O. Existing deletion, reporting, labels and interaction controls remain. See [the capability contract](moderation-capabilities.md).
+- `src/plumblines/feed-context.ts` derives provenance from the current Home selection and loaded preferences. Mixed feeds, potential Discover fallback and unknown provider inputs are disclosed; the panel does not invent chronological ordering.
+- `DESIGN.md` records the supplied newspaper direction. The interface displays real user content; it does not seed the fictional people/counts in the reference image.
+
+## Upstream synchronization
+
+`upstream` points to `https://github.com/bluesky-social/social-app.git`. The original `develop` baseline is `16af73133eee1ef145b6146ad1ad07fefe88822e`, recorded by `plumblines-baseline`. Fork work is on `codex/plumblines-v1` for review. Fetch upstream into its remote-tracking branches and review changes on a separate integration branch before merging. Re-run block guards, telemetry/asset checks, translation generation and browser tests after each synchronization.
+
+See [the verification report](../plan/plumblines-v1/verify-report.md) and [Zeus report](../zeus/zeus-report.md) for measured results and release gaps.

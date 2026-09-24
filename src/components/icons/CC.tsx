@@ -1,9 +1,16 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const CC_Stroke2_Corner0_Rounded = createSinglePathSVG({
-  path: 'M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4Zm2 1v14h14V5H5Zm10.957 6.293a1 1 0 1 0 0 1.414 1 1 0 0 1 1.414 1.414 3 3 0 1 1 0-4.242 1 1 0 0 1-1.414 1.414Zm-6.331-.22a1 1 0 1 0 .331 1.634 1 1 0 0 1 1.414 1.414 3 3 0 1 1 0-4.242 1 1 0 0 1-1.414 1.414.994.994 0 0 0-.331-.22Z',
+  path: 'M5.0 5.0H19.0Q21.0 5.0 21.0 7.0V17.0Q21.0 19.0 19.0 19.0H5.0Q3.0 19.0 3.0 17.0V7.0Q3.0 5.0 5.0 5.0Z M7 15h4M15 15h2M7 11h2M13 11h4',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })
 
 export const CC_Filled_Corner0_Rounded = createSinglePathSVG({
-  path: 'M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4Zm11.543 7.293a1 1 0 0 1 1.414 0 1 1 0 0 0 1.414-1.414 3 3 0 1 0 0 4.242 1 1 0 0 0-1.414-1.414 1 1 0 0 1-1.414-1.414Zm-6 0a1 1 0 0 1 1.414 0 1 1 0 0 0 1.414-1.414 3 3 0 1 0 0 4.243 1 1 0 0 0-1.414-1.415 1 1 0 0 1-1.414-1.414Z',
+  path: 'M5.0 5.0H19.0Q21.0 5.0 21.0 7.0V17.0Q21.0 19.0 19.0 19.0H5.0Q3.0 19.0 3.0 17.0V7.0Q3.0 5.0 5.0 5.0Z M7 15h4M15 15h2M7 11h2M13 11h4',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })

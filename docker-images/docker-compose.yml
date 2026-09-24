@@ -1,0 +1,16 @@
+services:
+  web:
+    image: plumblines-web:local
+    build:
+      context: ..
+      dockerfile: docker-images/Dockerfile
+    ports:
+      - "127.0.0.1:${PLUMBLINES_PORT:-8139}:8080"
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped

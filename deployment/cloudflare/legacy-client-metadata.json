@@ -1,0 +1,12 @@
+{
+  "client_id": "https://plumblines.uk/client-metadata.json",
+  "client_name": "Plumbline",
+  "client_uri": "https://plumblines.uk",
+  "redirect_uris": ["https://plumblines.uk/"],
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "scope": "atproto repo:app.bsky.feed.post?action=create repo:app.bsky.feed.like?action=create&action=delete repo:app.bsky.feed.repost?action=create&action=delete repo:uk.plumblines.community?action=create space:app.bsky.personal?skey=close-friends&collection=app.bsky.feed.post&action=read&action=create&manage=create&manage=update space:app.bsky.personal?skey=followers&collection=app.bsky.feed.post&action=read&action=create&manage=create&manage=update space:app.bsky.personal?authority=*&skey=close-friends&action=read space:app.bsky.personal?authority=*&skey=followers&action=read space:app.bsky.personal?skey=close-friends&collection=app.bsky.feed.like&action=read&action=create&action=delete space:app.bsky.personal?skey=close-friends&collection=app.bsky.feed.repost&action=read&action=create&action=delete space:app.bsky.group?skey=*&action=read_self&manage=create&manage=update space:app.bsky.group?authority=*&skey=*&collection=app.bsky.feed.post&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=app.bsky.feed.like&action=read&action=create&action=delete space:app.bsky.group?authority=*&skey=*&collection=app.bsky.feed.repost&action=read&action=create&action=delete space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.request&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.requestdecision&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.requestcancel&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.invite&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.invitedecision&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.inviteresponse&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.leave&action=read&action=create space:app.bsky.group?authority=*&skey=*&collection=uk.plumblines.community.leavedecision&action=read&action=create rpc:*?aud=did:web:api.bsky.app#bsky_appview",
+  "token_endpoint_auth_method": "none",
+  "application_type": "web",
+  "dpop_bound_access_tokens": true
+}

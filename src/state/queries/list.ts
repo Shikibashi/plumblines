@@ -1,11 +1,6 @@
 import {type $Typed, type Client} from '@atproto/lex'
 import {AtUri, type AtUriString, toDatetimeString} from '@atproto/syntax'
-import {
-  blockActorList,
-  muteActorList,
-  unblockActorList,
-  unmuteActorList,
-} from '@bsky/sdk'
+import {muteActorList, unblockActorList, unmuteActorList} from '@bsky/sdk'
 import {useMutation, useQuery, useQueryClient} from '@tanstack/react-query'
 import chunk from 'lodash.chunk'
 
@@ -378,28 +373,17 @@ export function useListMuteMutation() {
   })
 }
 
-export function useListBlockMutation() {
+export function useListUnblockMutation() {
   const queryClient = useQueryClient()
   const appviewClient = useAppviewClient()
   const pdsClient = usePdsClient()
-  return useMutation<void, Error, {uri: string; block: boolean}>({
-    mutationFn: async ({uri, block}) => {
-      if (block) {
-        await pdsClient.call(blockActorList, {list: uri as AtUriString})
-      } else {
-        await pdsClient.call(unblockActorList, {list: uri as AtUriString})
-      }
-
-      await whenAppViewReady(appviewClient, uri, v => {
-        return block
-          ? typeof v?.list.viewer?.blocked === 'string'
-          : !v?.list.viewer?.blocked
-      })
+  return useMutation<void, Error, {uri: string}>({
+    mutationFn: async ({uri}) => {
+      await pdsClient.call(unblockActorList, {list: uri as AtUriString})
+      await whenAppViewReady(appviewClient, uri, v => !v?.list.viewer?.blocked)
     },
     onSuccess(data, variables) {
-      queryClient.invalidateQueries({
-        queryKey: RQKEY(variables.uri),
-      })
+      queryClient.invalidateQueries({queryKey: RQKEY(variables.uri)})
     },
   })
 }

@@ -40,6 +40,8 @@ import {useAppviewClient, useSession} from '#/state/session'
 import * as userActionHistory from '#/state/userActionHistory'
 import {KnownError} from '#/view/com/posts/PostFeedErrorMessage'
 import {app} from '#/lexicons'
+import {useLocalAttention} from '#/plumblines/local-attention'
+import {type SectionFilters} from '#/plumblines/sections/model'
 import * as bsky from '#/types/bsky'
 import {useFeedTuners} from '../preferences/feed-tuners'
 import {useModerationOpts} from '../preferences/moderation-opts'
@@ -71,6 +73,9 @@ export type FeedDescriptor =
   | `posts|${PostsUriList}`
   | 'demo'
 export interface FeedParams {
+  /** Plumblines: keep Following separate from recommendation and merged feeds. */
+  strictFollowing?: boolean
+  sectionFilters?: SectionFilters
   mergeFeedEnabled?: boolean
   mergeFeedSources?: string[]
   feedCacheKey?: 'discover' | 'explore' | undefined
@@ -138,7 +143,8 @@ export function usePostFeedQuery(
   params?: FeedParams,
   opts?: {enabled?: boolean; ignoreFilterFor?: string},
 ) {
-  const feedTuners = useFeedTuners(feedDesc)
+  const feedTuners = useFeedTuners(feedDesc, params?.sectionFilters)
+  const {isPostHidden} = useLocalAttention()
   const moderationOpts = useModerationOpts()
   const {data: preferences} = usePreferencesQuery()
   /**
@@ -175,11 +181,18 @@ export function usePostFeedQuery(
   const selectArgs = useMemo(
     () => ({
       feedTuners,
+      isPostHidden,
       moderationOpts,
       ignoreFilterFor: opts?.ignoreFilterFor,
       isDiscover,
     }),
-    [feedTuners, moderationOpts, opts?.ignoreFilterFor, isDiscover],
+    [
+      feedTuners,
+      isPostHidden,
+      moderationOpts,
+      opts?.ignoreFilterFor,
+      isDiscover,
+    ],
   )
 
   const query = useInfiniteQuery<
@@ -245,8 +258,13 @@ export function usePostFeedQuery(
       (data: InfiniteData<FeedPageUnselected, RQPageParam>) => {
         // If the selection depends on some data, that data should
         // be included in the selectArgs object and read here.
-        const {feedTuners, moderationOpts, ignoreFilterFor, isDiscover} =
-          selectArgs
+        const {
+          feedTuners,
+          isPostHidden,
+          moderationOpts,
+          ignoreFilterFor,
+          isDiscover,
+        } = selectArgs
 
         const tuner = new FeedTuner(feedTuners)
 
@@ -295,6 +313,14 @@ export function usePostFeedQuery(
               slices: tuner
                 .tune(page.feed)
                 .map(slice => {
+                  if (
+                    slice.items.some(
+                      item =>
+                        item.post.author.did !== ignoreFilterFor &&
+                        isPostHidden(item.post),
+                    )
+                  )
+                    return undefined
                   const moderations = slice.items.map(item =>
                     moderatePost(item.post, moderationOpts!),
                   )
@@ -420,6 +446,7 @@ function createApi({
   enableFollowingToDiscoverFallback: boolean
 }) {
   if (feedDesc === 'following') {
+    if (feedParams.strictFollowing) return new FollowingFeedAPI({client})
     if (feedParams.mergeFeedEnabled) {
       return new MergeFeedAPI({
         client,

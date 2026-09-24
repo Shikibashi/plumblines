@@ -1,11 +1,10 @@
-import {useCallback} from 'react'
+import {useCallback, useRef} from 'react'
 import {type Client, type Un$Typed} from '@atproto/lex'
 import {
   type AtIdentifierString,
   AtUri,
   type AtUriString,
   type DidString,
-  toDatetimeString,
 } from '@atproto/syntax'
 import {
   deleteFollow,
@@ -574,88 +573,45 @@ function useProfileUnmuteMutation() {
   })
 }
 
-export function useProfileBlockMutationQueue(
+/** Remove an existing block; no block-creation capability is exposed. */
+export function useProfileUnblockMutationQueue(
   profile: Shadow<bsky.profile.AnyProfileView>,
 ) {
   const ax = useAnalytics()
   const queryClient = useQueryClient()
   const did = profile.did
-  const initialBlockingUri = profile.viewer?.blocking
-  const blockMutation = useProfileBlockMutation()
+  const blockingUri = profile.viewer?.blocking
   const unblockMutation = useProfileUnblockMutation()
+  const pending = useRef<{uri: string; promise: Promise<void>} | undefined>(
+    undefined,
+  )
+  const removedUri = useRef<string | undefined>(undefined)
 
-  const queueToggle = useToggleMutationQueue({
-    initialState: initialBlockingUri,
-    runMutation: async (prevBlockUri, shouldFollow) => {
-      if (shouldFollow) {
-        const {uri} = await blockMutation.mutateAsync({
-          did,
-        })
-        ax.metric('profile:block', {})
-        return uri
-      } else {
-        if (prevBlockUri) {
-          await unblockMutation.mutateAsync({
-            did,
-            blockUri: prevBlockUri,
-          })
-          ax.metric('profile:unblock', {})
-        }
-        return undefined
+  return useCallback(async () => {
+    if (!blockingUri || removedUri.current === blockingUri) return
+    // Repeated clicks share the same result, including failures, rather than
+    // issuing duplicate deletes or leaving a queued promise unresolved.
+    if (pending.current?.uri === blockingUri) return pending.current.promise
+
+    updateProfileShadow(queryClient, did, {blockingUri: undefined})
+    const promise = (async () => {
+      try {
+        await unblockMutation.mutateAsync({did, blockUri: blockingUri})
+        removedUri.current = blockingUri
+        ax.metric('profile:unblock', {})
+        updateProfileShadow(queryClient, did, {blockingUri: undefined})
+        // Conversations also read raw profiles, outside the profile shadow.
+        void queryClient.invalidateQueries({queryKey: [RQKEY_LIST_CONVOS]})
+      } catch (error) {
+        updateProfileShadow(queryClient, did, {blockingUri})
+        throw error
+      } finally {
+        if (pending.current?.uri === blockingUri) pending.current = undefined
       }
-    },
-    onSuccess(finalBlockingUri) {
-      // finalize
-      updateProfileShadow(queryClient, did, {
-        blockingUri: finalBlockingUri,
-      })
-      // The shadow only reaches components that read profiles through shadow
-      // hooks. The convo list is also read raw (e.g. the unread badge's
-      // calculateCount, getMessageInfo), and blocks emit no chat log event,
-      // so without a refetch that data stays stale indefinitely.
-      void queryClient.invalidateQueries({queryKey: [RQKEY_LIST_CONVOS]})
-    },
-  })
-
-  const queueBlock = useCallback(() => {
-    // optimistically update
-    updateProfileShadow(queryClient, did, {
-      blockingUri: 'pending',
-    })
-    return queueToggle(true)
-  }, [queryClient, did, queueToggle])
-
-  const queueUnblock = useCallback(() => {
-    // optimistically update
-    updateProfileShadow(queryClient, did, {
-      blockingUri: undefined,
-    })
-    return queueToggle(false)
-  }, [queryClient, did, queueToggle])
-
-  return [queueBlock, queueUnblock] as const
-}
-
-function useProfileBlockMutation() {
-  const {currentAccount} = useSession()
-  const pdsClient = usePdsClient()
-  const queryClient = useQueryClient()
-  return useMutation<{uri: AtUriString; cid: string}, Error, {did: string}>({
-    mutationFn: async ({did}) => {
-      if (!currentAccount) {
-        throw new Error('Not signed in')
-      }
-      return await pdsClient.create(app.bsky.graph.block, {
-        // the mutation takes the did as a plain string
-        subject: did as DidString,
-        createdAt: toDatetimeString(new Date()),
-      })
-    },
-    onSuccess(_, {did}) {
-      void queryClient.invalidateQueries({queryKey: RQKEY_MY_BLOCKED()})
-      resetProfilePostsQueries(queryClient, did, 1000)
-    },
-  })
+    })()
+    pending.current = {uri: blockingUri, promise}
+    return promise
+  }, [ax, queryClient, did, blockingUri, unblockMutation])
 }
 
 function useProfileUnblockMutation() {
@@ -674,6 +630,7 @@ function useProfileUnblockMutation() {
       })
     },
     onSuccess(_, {did}) {
+      void queryClient.invalidateQueries({queryKey: RQKEY_MY_BLOCKED()})
       resetProfilePostsQueries(queryClient, did, 1000)
     },
   })

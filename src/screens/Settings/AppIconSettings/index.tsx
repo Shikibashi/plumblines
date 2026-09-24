@@ -16,6 +16,7 @@ import * as Toggle from '#/components/forms/Toggle'
 import * as Layout from '#/components/Layout'
 import {Text} from '#/components/Typography'
 import {IS_ANDROID, IS_INTERNAL} from '#/env'
+import {APP_CONFIG} from '#/plumblines/config'
 
 type Props = NativeStackScreenProps<CommonNavigatorParams, 'AppIconSettings'>
 export function AppIconSettingsScreen({}: Props) {
@@ -94,10 +95,10 @@ export function AppIconSettingsScreen({}: Props) {
                 a.font_semi_bold,
                 t.atoms.text_contrast_medium,
               ]}>
-              <Trans>Bluesky+</Trans>
+              <Trans>{APP_CONFIG.name} editions</Trans>
             </Text>
             <Group
-              label={_(msg`Bluesky+ icons`)}
+              label={_(msg`${APP_CONFIG.name} icons`)}
               value={currentAppIcon}
               onChange={onSetAppIcon}>
               {sets.core.map((icon, i) => (

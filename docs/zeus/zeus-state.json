@@ -1,0 +1,139 @@
+{
+  "version": 2,
+  "description": "Plumblines AT Protocol-compatible Bluesky fork; newspaper reference; no block creation; real upstream client",
+  "startedAt": "2026-09-23T04:23:40.005558+00:00",
+  "currentPhase": "completed",
+  "phases": {
+    "parsing": {
+      "status": "completed"
+    },
+    "planning": {
+      "status": "completed",
+      "evidence": "docs/plan/plumblines-v1/plan.md",
+      "grade": "weak"
+    },
+    "implementation": {
+      "status": "completed",
+      "path": "agent-team-codex native workers",
+      "grade": "proved"
+    },
+    "verification": {
+      "status": "completed",
+      "grade": "weak",
+      "reason": "Local checks pass; upstream origin restrictions and unchanged dependency advisories remain."
+    },
+    "docker": {
+      "status": "completed",
+      "grade": "proved",
+      "compose": "docker-images/docker-compose.yml",
+      "url": "http://127.0.0.1:8139",
+      "mode": "host-built artifact in non-root container"
+    },
+    "testing": {
+      "status": "completed",
+      "grade": "proved",
+      "browserPassed": 38,
+      "browserFailed": 0,
+      "explorationPassed": 3,
+      "unitPassed": 957,
+      "unitTodo": 28,
+      "scope": "Final v1 guest/fixture browser suite: 38 local and 38 preview; no authenticated mutations",
+      "latestFocusedUnitPassed": 7,
+      "unitSuites": 95
+    },
+    "report": {
+      "status": "completed",
+      "grade": "proved",
+      "path": "docs/zeus/zeus-report.md"
+    },
+    "deployment": {
+      "status": "completed",
+      "grade": "proved",
+      "provider": "Cloudflare Pages",
+      "url": "https://plumblines.uk",
+      "deploymentId": "a1ec660d-f432-44dc-aaf4-9919babb15d3",
+      "browserPassed": null,
+      "guestRoutesPassed": 3,
+      "scope": "Canonical production metadata confirms tested artifact; no new production browser acceptance",
+      "receipt": "docs/zeus/newspaper-v1-deployment-2026-09-23.md",
+      "latestRegressionChecksPassed": 38,
+      "latestRegressionScope": "38 local and 38 preview guest/fixture checks; new custom-domain browser NOT VERIFIED"
+    }
+  },
+  "parsed": {
+    "industry": "social",
+    "techStack": {
+      "frontend": "React Native Web / Expo 57 / TypeScript",
+      "backend": "existing AT Protocol services",
+      "db": null
+    },
+    "features": [
+      "newspaper UI",
+      "fork branding",
+      "no block creation",
+      "attention controls",
+      "honest feed provenance",
+      "responsive web",
+      "read-only public blocked-content views"
+    ],
+    "projectName": "plumblines"
+  },
+  "artifacts": {
+    "plan": "docs/plan/plumblines-v1/plan.md",
+    "sections": "docs/plan/plumblines-v1/sections/",
+    "report": "docs/zeus/zeus-report.md"
+  },
+  "errors": [
+    "Origin-restricted upstream workers and public searchPostsV2 reject browser requests",
+    "Inherited dependency audit: 1 critical, 54 high, 22 moderate, 5 low",
+    "Authenticated and native device acceptance not run",
+    "Existing zone analytics injection is blocked by CSP; zone RUM configuration access returns 403"
+  ],
+  "result": "PARTIAL",
+  "completedAt": "2026-09-23T10:18:36Z",
+  "updatedAt": "2026-09-23T10:18:36Z",
+  "activeExpansion": null,
+  "activeExpansionPlan": "docs/plan/plumblines-newspaper-v1/plan.md",
+  "expansionEvidence": {
+    "plan": "docs/plan/plumblines-newspaper-v1/plan.md",
+    "unitPassed": 957,
+    "unitSuites": 95,
+    "types": "PASS iOS Android web",
+    "lint": "PASS",
+    "browser": "PASS 38 local and 38 Cloudflare preview",
+    "deployment": "PASS canonical Cloudflare production metadata; custom-domain browser NOT VERIFIED",
+    "sourceCommit": "a832af79b19b29433d751bc36d45bd1fc78d864d",
+    "deploymentId": "a1ec660d-f432-44dc-aaf4-9919babb15d3",
+    "receipt": "docs/zeus/newspaper-v1-deployment-2026-09-23.md",
+    "scopedResult": "PASS",
+    "fullAcceptance": "PARTIAL"
+  },
+  "completedExpansion": "Newspaper v1 sections, local attention, reading, record information, PWA metadata",
+  "editorialFrontPageExpansion": {
+    "objective": "Redesign the existing Plumblines branch as an editorial newspaper and deploy the verified web artifact.",
+    "status": "completed",
+    "result": "PARTIAL",
+    "sourceBranch": "codex/plumblines-v1",
+    "sourceCommit": "e65ebee3b239229a2c6063bad602db703bc7fa9d",
+    "previewDeploymentId": "2dc89d59-275f-4ca3-bd8e-a2cd437ad505",
+    "productionDeploymentId": "1abaaf7f-e124-4fe3-aa1b-9c50ed955a63",
+    "productionUrl": "https://plumblines.uk",
+    "rollbackDeploymentId": "a1ec660d-f432-44dc-aaf4-9919babb15d3",
+    "artifactFiles": 389,
+    "artifactIndexSha256": "47a108e44a12b1d3b40c87cde9570332c3d9ff0a840322ae310bc429de53e9e6",
+    "verification": {
+      "lint": "PASS",
+      "typecheck": "PASS iOS Android web",
+      "focusedUnit": "PASS 19 tests in 3 suites",
+      "webExport": "PASS optimized",
+      "browserPreview": "PASS 40/40",
+      "browserProduction": "PASS 40/40",
+      "standardReaderLiveSmoke": "PASS 20 index items, 4 body-bearing; real document rendered in browser",
+      "docker": "PASS healthz ok, HTTP 200, non-root UID 101",
+      "fullInheritedJest": "NOT RUN in this expansion"
+    },
+    "scope": "Deployed web design/Reading scope passes. Authenticated mutations, native device acceptance, assistive technology certification, and OS-level PWA installation remain unverified.",
+    "receipt": "docs/zeus/editorial-frontpage-deployment-2026-09-23.md",
+    "verificationReport": "docs/plan/plumblines-editorial-frontpage/verify-report.md"
+  }
+}

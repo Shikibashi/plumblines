@@ -1,5 +1,6 @@
 // @ts-check
 const pkg = require('./package.json')
+const identity = require('./src/plumblines/identity.json')
 
 /**
  * @param {import('@expo/config-types').ExpoConfig} _config
@@ -24,41 +25,37 @@ module.exports = function (_config) {
   const IS_DEV = !IS_TESTFLIGHT && !IS_PRODUCTION
 
   const ASSOCIATED_DOMAINS = [
-    'applinks:bsky.app',
-    'applinks:staging.bsky.app',
-    'appclips:bsky.app',
-    'appclips:go.bsky.app', // Allows App Clip to work when scanning QR codes
+    `applinks:${identity.domain}`,
     // When testing local services, enter an ngrok (et al) domain here. It must use a standard HTTP/HTTPS port.
     ...(IS_DEV || IS_TESTFLIGHT ? [] : []),
   ]
 
-  const UPDATES_ENABLED = IS_TESTFLIGHT || IS_PRODUCTION
+  const UPDATES_ENABLED = Boolean(process.env.PLUMBLINES_UPDATES_URL)
 
-  const USE_SENTRY = Boolean(process.env.SENTRY_AUTH_TOKEN)
+  const USE_SENTRY = Boolean(
+    process.env.SENTRY_AUTH_TOKEN &&
+    process.env.PLUMBLINES_SENTRY_ORG &&
+    process.env.PLUMBLINES_SENTRY_PROJECT,
+  )
 
-  const IOS_ICON_FILE =
-    PLATFORM === 'web' // web build doesn't like .icon files
-      ? './assets/app-icons/ios_icon_default_next.png'
-      : IS_TESTFLIGHT
-        ? './assets/app-icons/ios_icon_testflight.icon'
-        : './assets/app-icons/ios_icon_default.icon'
+  const IOS_ICON_FILE = './assets/app-icons/ios_icon_default_next.png'
 
   return {
     expo: {
       version: VERSION,
-      name: 'Bluesky',
-      slug: 'bluesky',
-      scheme: 'bluesky',
-      owner: 'blueskysocial',
+      name: identity.name,
+      slug: identity.slug,
+      scheme: identity.scheme,
+      owner: process.env.PLUMBLINES_EXPO_OWNER,
       runtimeVersion: {
         policy: 'appVersion',
       },
       icon: './assets/app-icons/ios_icon_default_next.png',
       userInterfaceStyle: 'automatic',
-      primaryColor: '#006AFF',
+      primaryColor: '#812b24',
       ios: {
         supportsTablet: false,
-        bundleIdentifier: 'xyz.blueskyweb.app',
+        bundleIdentifier: identity.applicationId,
         appleTeamId: process.env.EXPO_APPLE_TEAM_ID,
         config: {
           usesNonExemptEncryption: false,
@@ -76,7 +73,7 @@ module.exports = function (_config) {
             'Used to save images to your library.',
           NSPhotoLibraryUsageDescription:
             'Used for profile pictures, posts, and other kinds of content',
-          CFBundleSpokenName: 'Blue Sky',
+          CFBundleSpokenName: identity.name,
           CFBundleLocalizations: [
             'en',
             'an',
@@ -125,7 +122,7 @@ module.exports = function (_config) {
         entitlements: {
           'com.apple.developer.kernel.increased-memory-limit': true,
           'com.apple.developer.kernel.extended-virtual-addressing': true,
-          'com.apple.security.application-groups': 'group.app.bsky',
+          'com.apple.security.application-groups': 'group.uk.plumblines.app',
           'com.apple.developer.usernotifications.communication': true,
           // 'com.apple.developer.device-information.user-assigned-device-name': true,
           'com.apple.developer.declared-age-range': true,
@@ -190,10 +187,10 @@ module.exports = function (_config) {
         adaptiveIcon: {
           foregroundImage: './assets/icon-android-foreground.png',
           monochromeImage: './assets/icon-android-monochrome.png',
-          backgroundColor: '#006AFF',
+          backgroundColor: '#812b24',
         },
-        googleServicesFile: './google-services.json',
-        package: 'xyz.blueskyweb.app',
+        googleServicesFile: process.env.PLUMBLINES_GOOGLE_SERVICES_FILE,
+        package: identity.applicationId,
         intentFilters: [
           {
             action: 'VIEW',
@@ -201,7 +198,7 @@ module.exports = function (_config) {
             data: [
               {
                 scheme: 'https',
-                host: 'bsky.app',
+                host: identity.domain,
               },
               ...(IS_DEV
                 ? [
@@ -221,11 +218,11 @@ module.exports = function (_config) {
         favicon: './assets/favicon.png',
       },
       updates: {
-        url: 'https://updates.bsky.app/manifest',
+        url: process.env.PLUMBLINES_UPDATES_URL,
         enabled: UPDATES_ENABLED,
         fallbackToCacheTimeout: 30000,
         codeSigningCertificate: UPDATES_ENABLED
-          ? './code-signing/certificate.pem'
+          ? process.env.PLUMBLINES_UPDATES_CERTIFICATE
           : undefined,
         codeSigningMetadata: UPDATES_ENABLED
           ? {
@@ -269,8 +266,8 @@ module.exports = function (_config) {
               /** @type {[string, any]} */ ([
                 '@sentry/react-native/expo',
                 {
-                  organization: 'blueskyweb',
-                  project: 'app',
+                  organization: process.env.PLUMBLINES_SENTRY_ORG,
+                  project: process.env.PLUMBLINES_SENTRY_PROJECT,
                   url: 'https://sentry.io',
                 },
               ]),
@@ -304,7 +301,7 @@ module.exports = function (_config) {
           'expo-notifications',
           {
             icon: './assets/icon-android-notification.png',
-            color: '#1185fe',
+            color: '#812b24',
             sounds: PLATFORM === 'ios' ? ['assets/dm.aiff'] : ['assets/dm.mp3'],
           },
         ],
@@ -346,22 +343,22 @@ module.exports = function (_config) {
           {
             ios: {
               enableFullScreenImage_legacy: true, // iOS only
-              backgroundColor: '#006AFF', // primary_500
+              backgroundColor: '#812b24', // primary_500
               image: './assets/splash/splash.png',
               resizeMode: 'cover',
               dark: {
                 enableFullScreenImage_legacy: true, // iOS only
-                backgroundColor: '#002861', // primary_900
+                backgroundColor: '#28221c', // primary_900
                 image: './assets/splash/splash-dark.png',
                 resizeMode: 'cover',
               },
             },
             android: {
-              backgroundColor: '#006AFF', // primary_500
+              backgroundColor: '#812b24', // primary_500
               image: './assets/splash/android-splash-logo-white.png',
               imageWidth: 102, // even division of 306px
               dark: {
-                backgroundColor: '#002861', // primary_900
+                backgroundColor: '#28221c', // primary_900
                 image: './assets/splash/android-splash-logo-white.png',
                 imageWidth: 102,
               },
@@ -453,31 +450,31 @@ module.exports = function (_config) {
                 appExtensions: [
                   {
                     targetName: 'Share-with-Bluesky',
-                    bundleIdentifier: 'xyz.blueskyweb.app.Share-with-Bluesky',
+                    bundleIdentifier: 'uk.plumblines.app.Share-with-Bluesky',
                     entitlements: {
                       'com.apple.security.application-groups': [
-                        'group.app.bsky',
+                        'group.uk.plumblines.app',
                       ],
                     },
                   },
                   {
                     targetName: 'BlueskyNSE',
-                    bundleIdentifier: 'xyz.blueskyweb.app.BlueskyNSE',
+                    bundleIdentifier: 'uk.plumblines.app.BlueskyNSE',
                     entitlements: {
                       'com.apple.security.application-groups': [
-                        'group.app.bsky',
+                        'group.uk.plumblines.app',
                       ],
                     },
                   },
                   {
                     targetName: 'BlueskyClip',
-                    bundleIdentifier: 'xyz.blueskyweb.app.AppClip',
+                    bundleIdentifier: 'uk.plumblines.app.AppClip',
                   },
                 ],
               },
             },
           },
-          projectId: '55bd077a-d905-4184-9c7f-94789ba0f302',
+          projectId: process.env.PLUMBLINES_EXPO_PROJECT_ID,
         },
       },
       experiments: {

@@ -15,8 +15,8 @@ import {sanitizeDisplayName} from '#/lib/strings/display-names'
 import {logger} from '#/logger'
 import {type Shadow, useProfileShadow} from '#/state/cache/profile-shadow'
 import {
-  useProfileBlockMutationQueue,
   useProfileFollowMutationQueue,
+  useProfileUnblockMutationQueue,
 } from '#/state/queries/profile'
 import {useRequireAuth, useSession} from '#/state/session'
 import {ProfileMenu} from '#/view/com/profile/ProfileMenu'
@@ -71,7 +71,7 @@ let ProfileHeaderStandard = ({
     () => moderateProfile(profile, moderationOpts),
     [profile, moderationOpts],
   )
-  const [, queueUnblock] = useProfileBlockMutationQueue(profile)
+  const queueUnblock = useProfileUnblockMutationQueue(profile)
   const unblockPromptControl = Prompt.usePromptControl()
   const [showSuggestedFollows, setShowSuggestedFollows] = useState(false)
   const [hasSeenAllSuggestedFollows, setHasSeenAllSuggestedFollows] =
@@ -186,9 +186,7 @@ let ProfileHeaderStandard = ({
           onConfirm={() => {
             void unblockAccount()
           }}
-          confirmButtonCta={
-            profile.viewer?.blocking ? _(msg`Unblock`) : _(msg`Block`)
-          }
+          confirmButtonCta={_(msg`Unblock`)}
           confirmButtonColor="negative"
         />
       </ProfileHeaderShell>
@@ -229,7 +227,7 @@ export function HeaderStandardButtons({
     profile,
     'ProfileHeader',
   )
-  const [, queueUnblock] = useProfileBlockMutationQueue(profile)
+  const queueUnblock = useProfileUnblockMutationQueue(profile)
   const editProfileControl = useDialogControl()
   const inviteFriendsControl = useDialogControl()
   const unblockPromptControl = Prompt.usePromptControl()

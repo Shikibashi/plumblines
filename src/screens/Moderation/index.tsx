@@ -381,12 +381,12 @@ export function ModerationScreenInner({
         </Link>
         <Divider />
         <Link
-          label={l`View your blocked accounts`}
+          label={l`Review existing account blocks`}
           testID="blockedAccountsBtn"
           to="/moderation/blocked-accounts">
           {state => (
             <SubItem
-              title={l`Blocked accounts`}
+              title={l`Existing Blocks`}
               icon={CircleBanSign}
               style={[
                 (state.hovered || state.pressed) && [t.atoms.bg_contrast_50],

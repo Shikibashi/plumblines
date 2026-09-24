@@ -10,8 +10,8 @@ import {sanitizeHandle} from '#/lib/strings/handles'
 import {logger} from '#/logger'
 import {
   RQKEY_ROOT as listQueryRoot,
-  useListBlockMutation,
   useListMuteMutation,
+  useListUnblockMutation,
 } from '#/state/queries/list'
 import {
   type UsePreferencesQueryResponse,
@@ -46,7 +46,7 @@ export function ListHiddenScreen({
   const isModList = list.purpose === app.bsky.graph.defs.modlist.value
 
   const [isProcessing, setIsProcessing] = useState(false)
-  const listBlockMutation = useListBlockMutation()
+  const listUnblockMutation = useListUnblockMutation()
   const listMuteMutation = useListMuteMutation()
   const {mutateAsync: removeSavedFeed} = useRemoveFeedMutation()
 
@@ -72,7 +72,7 @@ export function ListHiddenScreen({
     }
     if (list.viewer?.blocked) {
       try {
-        await listBlockMutation.mutateAsync({uri: list.uri, block: false})
+        await listUnblockMutation.mutateAsync({uri: list.uri})
       } catch (e) {
         setIsProcessing(false)
         logger.error('Failed to unblock list', {message: e})

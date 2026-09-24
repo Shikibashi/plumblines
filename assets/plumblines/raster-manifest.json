@@ -1,0 +1,500 @@
+[
+  {
+    "path": "assets/app-icons/android_icon_core_aurora.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_bonfire.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_classic.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_flat_black.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_flat_blue.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_flat_white.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_midnight.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_sunrise.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_core_sunset.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_default_next.png",
+    "width": 1025,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_legacy_dark.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/android_icon_legacy_light.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_aurora.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_bonfire.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_classic.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_flat_black.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_flat_blue.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_flat_white.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_midnight.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_sunrise.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_core_sunset.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_default.icon/Assets/iOS transparent.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_default_next.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_legacy_dark.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_legacy_light.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_testflight.icon/Assets/TestFlight notice.png",
+    "width": 1500,
+    "height": 500,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/app-icons/ios_icon_testflight.icon/Assets/iOS transparent.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/default-avatar.png",
+    "width": 512,
+    "height": 512,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/favicon.png",
+    "width": 64,
+    "height": 64,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/icon-android-foreground.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/icon-android-monochrome.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/icon-android-notification.png",
+    "width": 96,
+    "height": 96,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/illustrations/illustration-mobile-dark.png",
+    "width": 1414,
+    "height": 1704,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/illustrations/illustration-mobile.png",
+    "width": 1414,
+    "height": 1704,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/activity_notifications_announcement.webp",
+    "width": 786,
+    "height": 536,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/bookmarks_announcement_nux.webp",
+    "width": 668,
+    "height": 209,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/chat-desktop-bg-dark.webp",
+    "width": 1156,
+    "height": 1080,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/chat-desktop-bg-dim.webp",
+    "width": 1156,
+    "height": 1080,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/chat-desktop-bg-light.webp",
+    "width": 1156,
+    "height": 1080,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/chat-invite-friends.webp",
+    "width": 706,
+    "height": 418,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/chat-mobile-bg-dark.webp",
+    "width": 393,
+    "height": 814,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/chat-mobile-bg-dim.webp",
+    "width": 393,
+    "height": 814,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/chat-mobile-bg-light.webp",
+    "width": 393,
+    "height": 814,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/drafts_announcement_nux.webp",
+    "width": 1572,
+    "height": 904,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/find_friends_illustration.webp",
+    "width": 1278,
+    "height": 661,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/find_friends_illustration_small.webp",
+    "width": 573,
+    "height": 286,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/groupchats_announcement_dark.webp",
+    "width": 1435,
+    "height": 962,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/groupchats_announcement_dim.webp",
+    "width": 1435,
+    "height": 962,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/groupchats_announcement_light.webp",
+    "width": 1435,
+    "height": 962,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/initial_verification_announcement_1.png",
+    "width": 706,
+    "height": 320,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/initial_verification_announcement_2.png",
+    "width": 706,
+    "height": 392,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/invite_friends_announcement_nux.webp",
+    "width": 754,
+    "height": 440,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/invite_friends_promo_banner.webp",
+    "width": 573,
+    "height": 286,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/live_now_beta.webp",
+    "width": 652,
+    "height": 211,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_1_dark.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_1_dark_borderless.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_1_dim.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_1_dim_borderless.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_1_light.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_1_light_borderless.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_2_dark.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_2_dim.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_2_light.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_3_dark.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_3_dim.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/onboarding/value_prop_3_light.webp",
+    "width": 786,
+    "height": 786,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/images/welcome-modal-bg.jpg",
+    "width": 1432,
+    "height": 1025,
+    "source": "editorial.svg"
+  },
+  {
+    "path": "assets/kawaii.png",
+    "width": 1920,
+    "height": 1080,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/kawaii_smol.png",
+    "width": 246,
+    "height": 138,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/logo.png",
+    "width": 500,
+    "height": 441,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/splash/android-splash-logo-white.png",
+    "width": 306,
+    "height": 271,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/splash/splash-dark.png",
+    "width": 1170,
+    "height": 2529,
+    "source": "mark.svg"
+  },
+  {
+    "path": "assets/splash/splash.png",
+    "width": 1170,
+    "height": 2529,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/embedr-static/favicon-16x16.png",
+    "width": 16,
+    "height": 16,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/embedr-static/favicon-32x32.png",
+    "width": 32,
+    "height": 32,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/embedr-static/favicon.png",
+    "width": 64,
+    "height": 64,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/static/apple-touch-icon.png",
+    "width": 180,
+    "height": 180,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/static/favicon-16x16.png",
+    "width": 16,
+    "height": 16,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/static/favicon-32x32.png",
+    "width": 32,
+    "height": 32,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/static/favicon.png",
+    "width": 64,
+    "height": 64,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/static/social-card-default-gradient.png",
+    "width": 1200,
+    "height": 630,
+    "source": "mark.svg"
+  },
+  {
+    "path": "bskyweb/static/social-card-default.png",
+    "width": 1200,
+    "height": 630,
+    "source": "mark.svg"
+  },
+  {
+    "path": "modules/BlueskyClip/Images.xcassets/AppIcon.appiconset/App-Icon-1024x1024@1x.png",
+    "width": 1024,
+    "height": 1024,
+    "source": "mark.svg"
+  }
+]

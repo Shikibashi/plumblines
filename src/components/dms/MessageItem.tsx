@@ -35,7 +35,7 @@ import {useMaybeProfileShadow} from '#/state/cache/profile-shadow'
 import {type Shadow} from '#/state/cache/types'
 import {type ConvoItem} from '#/state/messages/convo/types'
 import {useModerationOpts} from '#/state/preferences/moderation-opts'
-import {useProfileBlockMutationQueue} from '#/state/queries/profile'
+import {useProfileUnblockMutationQueue} from '#/state/queries/profile'
 import {unstableCacheProfileView} from '#/state/queries/unstable-profile-cache'
 import {useSession} from '#/state/session'
 import {PreviewableUserAvatar} from '#/view/com/util/UserAvatar'
@@ -683,7 +683,7 @@ function BlockedPlaceholder({
   const {t: l} = useLingui()
   const t = useTheme()
   const control = Prompt.usePromptControl()
-  const [_queueBlock, queueUnblock] = useProfileBlockMutationQueue(profile)
+  const queueUnblock = useProfileUnblockMutationQueue(profile)
 
   return (
     <>

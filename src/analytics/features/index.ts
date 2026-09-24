@@ -50,19 +50,23 @@ export const features = new GrowthBook({
  * that case, we may see a flash of uncustomized content until the
  * initialization completes.
  */
-export const init = features.init({timeout: TIMEOUT_INIT}).then(res => {
-  if (!res.success) {
-    logger.warn('GrowthBook initialization failed or timed out', {
-      source: res.source,
-      safeMessage: res.error?.toString(),
-    })
-  }
-})
+export const init =
+  !env.GROWTHBOOK_API_HOST || !env.GROWTHBOOK_CLIENT_KEY
+    ? Promise.resolve()
+    : features.init({timeout: TIMEOUT_INIT}).then(res => {
+        if (!res.success) {
+          logger.warn('GrowthBook initialization failed or timed out', {
+            source: res.source,
+            safeMessage: res.error?.toString(),
+          })
+        }
+      })
 
 /**
  * Refresh feature gates from GrowthBook.
  */
 export async function refresh({strategy}: {strategy: FeatureFetchStrategy}) {
+  if (!env.GROWTHBOOK_API_HOST || !env.GROWTHBOOK_CLIENT_KEY) return
   await features.refreshFeatures({
     timeout:
       strategy === 'prefer-low-latency'

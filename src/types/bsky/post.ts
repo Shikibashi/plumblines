@@ -1,6 +1,7 @@
 import {type $Typed} from '@atproto/lex'
 
 import {app} from '#/lexicons'
+import {getRecordRenderer} from '#/plumblines/records/registry'
 import {isType} from '#/types/bsky'
 
 export type Embed =
@@ -59,7 +60,7 @@ export type Embed =
     }
   | {
       type: 'unknown'
-      view: null
+      view: unknown
     }
 
 export type EmbedType<T extends Embed['type']> = Extract<Embed, {type: T}>
@@ -68,6 +69,9 @@ export function parseEmbedRecordView({
   record,
 }: app.bsky.embed.record.View): Embed {
   if (isType(app.bsky.embed.record.viewRecord, record)) {
+    if (getRecordRenderer(record.value) !== 'post') {
+      return {type: 'unknown', view: record}
+    }
     return {
       type: 'post',
       view: record,
@@ -110,7 +114,7 @@ export function parseEmbedRecordView({
   } else {
     return {
       type: 'unknown',
-      view: null,
+      view: record ?? null,
     }
   }
 }
@@ -147,7 +151,7 @@ export function parseEmbed(embed: app.bsky.feed.defs.PostView['embed']): Embed {
   } else {
     return {
       type: 'unknown',
-      view: null,
+      view: embed ?? null,
     }
   }
 }
