@@ -47,7 +47,25 @@ export function PageNavigator({pageCount}: {pageCount: number}) {
               <a
                 href={`#newspaper-page-${page}`}
                 aria-label={l`Page ${page}`}
-                onClick={() => setCurrentPage(page)}
+                onClick={event => {
+                  if (
+                    event.button !== 0 ||
+                    event.metaKey ||
+                    event.ctrlKey ||
+                    event.shiftKey ||
+                    event.altKey
+                  ) {
+                    return
+                  }
+                  event.preventDefault()
+                  const target = document.getElementById(
+                    `newspaper-page-${page}`,
+                  )
+                  if (!target) return
+                  window.history.pushState({}, '', `#newspaper-page-${page}`)
+                  target.scrollIntoView({block: 'start', behavior: 'auto'})
+                  setCurrentPage(page)
+                }}
                 aria-current={currentPage === page ? 'location' : undefined}>
                 {String(page).padStart(2, '0')}
               </a>
