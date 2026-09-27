@@ -1574,6 +1574,24 @@ body[data-plumblines-front-page='true']
   background: var(--press-accent);
   content: '';
 }
+[data-testid^='plumblines-nav-tooltip-'] {
+  border: 1px solid var(--press-edge) !important;
+  border-radius: 0 !important;
+  background: var(--press-raised-paper) !important;
+  box-shadow:
+    1px 1px 0 var(--press-edge),
+    2px 3px 0 var(--press-shadow) !important;
+  color: var(--press-ink) !important;
+  font-family: system-ui, sans-serif;
+}
+[data-testid^='plumblines-nav-tooltip-'] > svg {
+  fill: var(--press-raised-paper) !important;
+}
+[data-testid^='plumblines-nav-tooltip-'] > div:last-child,
+[data-testid^='plumblines-nav-tooltip-'] > div:last-child * {
+  color: var(--press-ink) !important;
+  font-family: system-ui, sans-serif;
+}
 body[data-plumblines-front-page='true'] [data-testid='plumblines-utility-bar'] {
   display: flex;
   justify-content: flex-end;

@@ -23,6 +23,7 @@ import {
   getTooltipStyle,
   MIN_EDGE_SPACE,
   type TooltipColor,
+  type TooltipPosition,
 } from '#/components/Tooltip/const'
 import {Text} from '#/components/Typography'
 
@@ -60,7 +61,7 @@ SheetCompatProvider.displayName = 'TooltipSheetCompatProvider'
 const ARROW_VISUAL_OFFSET = ARROW_SIZE / 1.25 // vibes-based, slightly off the target
 
 type TooltipContextType = {
-  position: 'top' | 'bottom'
+  position: TooltipPosition
   color: TooltipColor
   visible: boolean
   onVisibleChange: (visible: boolean) => void
@@ -102,7 +103,7 @@ export function Outer({
   onVisibleChange,
 }: {
   children: React.ReactNode
-  position?: 'top' | 'bottom'
+  position?: TooltipPosition
   color?: TooltipColor
   visible: boolean
   onVisibleChange: (visible: boolean) => void
@@ -202,9 +203,11 @@ export function Target({children}: {children: React.ReactNode}) {
 export function Content({
   children,
   label,
+  testID,
 }: {
   children: React.ReactNode
   label: string
+  testID?: string
 }) {
   const {position, color, visible, onVisibleChange} = useContext(TooltipContext)
   const {targetMeasurements} = useContext(TargetContext)
@@ -221,6 +224,7 @@ export function Content({
     <Portal>
       <Bubble
         label={label}
+        testID={testID}
         position={position}
         color={color}
         /*
@@ -238,6 +242,7 @@ export function Content({
 function Bubble({
   children,
   label,
+  testID,
   position,
   color,
   requestClose,
@@ -245,6 +250,7 @@ function Bubble({
 }: {
   children: React.ReactNode
   label: string
+  testID?: string
   position: TooltipContextType['position']
   color: TooltipColor
   requestClose: () => void
@@ -267,6 +273,7 @@ function Bubble({
   const coords = useMemo(() => {
     if (!bubbleMeasurements)
       return {
+        computedPosition: position,
         top: 0,
         bottom: 0,
         left: 0,
@@ -282,7 +289,50 @@ function Bubble({
     const minLeft = MIN_EDGE_SPACE
     const maxLeft = ww - minLeft
 
-    let computedPosition: 'top' | 'bottom' = position
+    if (position === 'left' || position === 'right') {
+      const targetCenterY = targetMeasurements.y + targetMeasurements.height / 2
+      const rightLeft =
+        targetMeasurements.x + targetMeasurements.width + ARROW_VISUAL_OFFSET
+      const leftLeft = targetMeasurements.x - cw - ARROW_VISUAL_OFFSET
+      const rightFits = rightLeft + cw <= maxLeft
+      const leftFits = leftLeft >= minLeft
+      let computedPosition = position
+
+      if (position === 'right' && !rightFits && leftFits) {
+        computedPosition = 'left'
+      } else if (position === 'left' && !leftFits && rightFits) {
+        computedPosition = 'right'
+      }
+
+      const minTop = insets.top
+      const maxBubbleTop = Math.max(minTop, maxBottom - ch)
+      const top = Math.max(
+        minTop,
+        Math.min(targetCenterY - ch / 2, maxBubbleTop),
+      )
+      const left = Math.max(
+        minLeft,
+        Math.min(
+          computedPosition === 'right' ? rightLeft : leftLeft,
+          maxLeft - cw,
+        ),
+      )
+
+      return {
+        computedPosition,
+        top,
+        bottom: top + ch,
+        left,
+        right: left + cw,
+        tipTop: targetCenterY - top - ARROW_HALF_SIZE,
+        tipLeft:
+          computedPosition === 'right'
+            ? -ARROW_HALF_SIZE
+            : cw - ARROW_HALF_SIZE,
+      }
+    }
+
+    let computedPosition: TooltipPosition = position
     let top = targetMeasurements.y + targetMeasurements.height
     let left = Math.max(
       minLeft,
@@ -380,6 +430,7 @@ function Bubble({
       importantForAccessibility="yes"
       // ios
       accessibilityViewIsModal
+      testID={testID}
       style={[
         a.absolute,
         a.align_start,
@@ -392,7 +443,7 @@ function Bubble({
       ]}>
       <Animated.View
         entering={ZoomIn.easing(Easing.out(Easing.exp))}
-        style={{transformOrigin: opposite(position)}}>
+        style={{transformOrigin: opposite(coords.computedPosition)}}>
         <View
           style={[
             a.absolute,
@@ -439,30 +490,34 @@ function Bubble({
   )
 }
 
-function opposite(position: 'top' | 'bottom') {
+function opposite(position: TooltipPosition) {
   switch (position) {
     case 'top':
       return 'center bottom'
     case 'bottom':
       return 'center top'
-    default:
-      return 'center'
+    case 'left':
+      return 'center right'
+    case 'right':
+      return 'center left'
   }
 }
 
 export function BubbleText({
   children,
   label,
+  testID,
 }: {
   children: React.ReactNode
   label: string
+  testID?: string
 }) {
   const t = useTheme()
   const {color} = useContext(TooltipContext)
   const style = getTooltipStyle(t, color)
   // eslint-disable-next-line bsky-internal/avoid-unwrapped-text
   return (
-    <Content label={label}>
+    <Content label={label} testID={testID}>
       <View style={[a.gap_xs]}>
         <Text style={[a.text_sm, a.leading_snug, {color: style.text}]}>
           {children}

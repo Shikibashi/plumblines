@@ -22,6 +22,18 @@ Product Design gate: `RESTART_REQUIRED`. `product-design@openai-curated-remote` 
 - After the first production render, moved the active rule fully inside the rail's clipped padding so it remains visible at the viewport edge.
 - `DESIGN.md` records the compact-rail wayfinding rule for future UI work.
 
+## Follow-up: Labels on the compact rail
+
+The authenticated production render now shows the complete 68px icon rail, but its icon-only destinations still require readers to recognize each symbol. Keep the rail and newspaper measure fixed while making each destination legible on demand.
+
+### Implemented
+
+- Compact and front-page icon links open the existing tooltip component to the right on pointer hover and keyboard focus.
+- The compose control uses the same interaction, with its existing accessible label.
+- Tooltips use the raised-paper token, ink, edge, and offset shadow so they read as small editorial slips in light, dim, and dark themes.
+- Tooltip placement supports left and right sides in addition to its existing top and bottom positions; edge collision can flip a side tooltip.
+- The front-page rail stays 68px wide; route targets, active-page semantics, and the paper sheet measure remain unchanged.
+
 ## Verification
 
 - `lint:files src/view/shell/desktop/LeftNav.tsx`: PASS.

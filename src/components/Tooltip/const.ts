@@ -5,6 +5,7 @@ import {atoms as a, select, type Theme} from '#/alf'
  * `primary` is a subtle blue surface matching the `primary_subtle` button.
  */
 export type TooltipColor = 'default' | 'primary'
+export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right'
 
 export const BUBBLE_MAX_WIDTH = 240
 export const ARROW_SIZE = 12
