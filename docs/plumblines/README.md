@@ -6,7 +6,7 @@ Fork: https://github.com/Shikibashi/plumblines
 
 ## Develop and verify
 
-Use the Node and pnpm versions declared by `package.json`. The initial local verification used Node 26.8.2 and pnpm 12.4.2; pnpm warns that the repository prefers 11.23.0.
+Use the Node and pnpm versions declared by `package.json` (Node 24.19.0 and pnpm 11.23.0).
 
 ```sh
 pnpm install --frozen-lockfile
@@ -36,7 +36,7 @@ curl http://127.0.0.1:8139/healthz
 
 The build script creates the Expo export on the host, then packages it in a digest-pinned, non-root nginx image. It is intentionally an artifact container, not a claim that the application was compiled in Docker. The runtime has a read-only filesystem, a temporary `/tmp`, no Linux capabilities and no new privileges. `PLUMBLINES_PORT` changes the local port. There is no new database or server API. The upstream Go server and its Dockerfile remain available separately; this static preview does not provide its server-rendered link previews.
 
-The newspaper client is deployed at https://plumblines.uk on the existing Cloudflare Pages project. The [editorial front-page receipt](../zeus/editorial-frontpage-deployment-2026-09-23.md) records the current exact artifact, live browser acceptance and immediate rollback. The [earlier v1 receipt](../zeus/cloudflare-deployment-2026-09-23.md) retains its version-specific PDS discovery and hosted verification. Native signing/push credentials and authenticated account acceptance remain separate release work.
+The newspaper client is deployed at https://plumblines.uk on the existing Cloudflare Pages project. The [Story Interiors deployment receipt](../zeus/plumblines-story-interiors-deployment-2026-09-27.md) records the current artifact and live HTTP verification. The [editorial front-page receipt](../zeus/editorial-frontpage-deployment-2026-09-23.md) and [earlier v1 receipt](../zeus/cloudflare-deployment-2026-09-23.md) retain their version-specific evidence. Native signing/push credentials and authenticated account acceptance remain separate release work.
 
 ## Product contracts
 
