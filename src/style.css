@@ -1564,7 +1564,7 @@ body[data-plumblines-front-page='true']
   [role='link'][aria-current='page']::before {
   position: absolute;
   inset-block: 9px;
-  inset-inline-start: -8px;
+  inset-inline-start: 0;
   width: 3px;
   background: var(--press-accent);
   content: '';

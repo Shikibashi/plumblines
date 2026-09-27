@@ -17,9 +17,10 @@ Product Design gate: `RESTART_REQUIRED`. `product-design@openai-curated-remote` 
 - The active left-nav link now carries `aria-current="page"`.
 - On the compact newspaper front-page rail, the active destination receives a 3px accent margin rule using the existing paper token. The rail width and link targets do not change.
 - Removed the overbroad child-hiding rule so compact navigation keeps its icon controls visible.
+- After the first production render, moved the active rule fully inside the rail's clipped padding so it remains visible at the viewport edge.
 - `DESIGN.md` records the compact-rail wayfinding rule for future UI work.
 
 ## Verification
 
-- Focused source lint and web typecheck passed; the final web build completed successfully after the CSS correction. Live preview render verification is pending.
+- Focused source lint and web typecheck passed; the first corrected web build completed successfully. Production render confirmed the icons were restored and exposed a clipped active rule; rebuilding now with that final placement adjustment.
 - No data, routing, feed order, or protocol behavior changed.
