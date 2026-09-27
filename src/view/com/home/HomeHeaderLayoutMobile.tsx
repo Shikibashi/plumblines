@@ -42,6 +42,7 @@ export function HomeHeaderLayoutMobile({
 
   return (
     <Animated.View
+      testID="plumblines-mobile-feed-header"
       style={[
         a.fixed,
         a.z_10,

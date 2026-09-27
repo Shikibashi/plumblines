@@ -23,7 +23,6 @@ import {type SessionAccount, useSession, useSessionApi} from '#/state/session'
 import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {useCloseAllActiveElements} from '#/state/util'
 import {LoadingPlaceholder} from '#/view/com/util/LoadingPlaceholder'
-import {PressableWithHover} from '#/view/com/util/PressableWithHover'
 import {UserAvatar} from '#/view/com/util/UserAvatar'
 import {NavSignupCard} from '#/view/shell/NavSignupCard'
 import {
@@ -79,22 +78,25 @@ import {
 } from '#/components/icons/UserCircle'
 import {CENTER_COLUMN_OFFSET, CENTER_COLUMN_WIDTH} from '#/components/Layout'
 import * as Menu from '#/components/Menu'
+import {Pressable} from '#/components/Pressable'
 import * as Prompt from '#/components/Prompt'
+import * as Tooltip from '#/components/Tooltip'
 import {Text} from '#/components/Typography'
 import {useAgeAssurance} from '#/ageAssurance'
 import {useAnalytics} from '#/analytics'
 import {type Events} from '#/analytics/metrics/types'
 import {useActorStatus} from '#/features/liveNow'
 import {type app} from '#/lexicons'
+import {NewspaperDirectory} from '#/plumblines/components/NewspaperDirectory'
 import {router} from '#/routes'
 import {PlatformInfo} from '../../../../modules/expo-bluesky-swiss-army'
 
 const LARGE_ELEMENT_SIZE = 48
 const NAV_ICON_WIDTH = 28
 
-export const LEFT_NAV_STANDARD_WIDTH = 240
+export const LEFT_NAV_STANDARD_WIDTH = 280
 export const LEFT_NAV_MINIMAL_WIDTH = 80
-const LEFT_NAV_PWI_WIDTH = 245
+const LEFT_NAV_PWI_WIDTH = 280
 
 function ProfileCard({minimal}: {minimal: boolean}) {
   const {currentAccount, accounts} = useSession()
@@ -393,6 +395,7 @@ interface NavItemProps {
   label: string
   minimal: boolean
   navItem: Events['nav:click']['item']
+  showTooltip: boolean
 }
 function NavItem({
   count,
@@ -402,11 +405,15 @@ function NavItem({
   label,
   minimal,
   navItem,
+  showTooltip,
 }: NavItemProps) {
   const t = useTheme()
   const {t: l} = useLingui()
   const ax = useAnalytics()
   const {currentAccount} = useSession()
+  const [isHovered, setIsHovered] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
+  const [tooltipDismissed, setTooltipDismissed] = useState(false)
 
   const [pathName] = useMemo(() => router.matchPath(href), [href])
   const currentRouteInfo = useNavigationState(state => {
@@ -442,10 +449,12 @@ function NavItem({
   )
 
   const Icon = isCurrent || isRelated ? icons.active : icons.inactive
+  const tooltipVisible =
+    showTooltip && (isHovered || isFocused) && !tooltipDismissed
 
-  return (
-    <PressableWithHover
-      style={[
+  const link = (
+    <Pressable
+      style={({hovered}) => [
         a.flex_row,
         a.align_center,
         a.p_md,
@@ -453,13 +462,24 @@ function NavItem({
         a.gap_sm,
         a.outline_inset_1,
         a.transition_color,
+        hovered && t.atoms.bg_contrast_25,
       ]}
-      hoverStyle={t.atoms.bg_contrast_25}
       // @ts-expect-error the function signature differs on web -prf
       onPress={onPressWrapped}
+      onHoverIn={() => {
+        setIsHovered(true)
+        setTooltipDismissed(false)
+      }}
+      onHoverOut={() => setIsHovered(false)}
+      onFocus={() => {
+        setIsFocused(true)
+        setTooltipDismissed(false)
+      }}
+      onBlur={() => setIsFocused(false)}
       href={href}
       dataSet={{noUnderline: 1}}
       role="link"
+      aria-current={isCurrent ? 'page' : undefined}
       accessibilityLabel={label}
       accessibilityHint="">
       <View
@@ -528,11 +548,31 @@ function NavItem({
         ) : null}
       </View>
       {!minimal && (
-        <Text style={[a.text_xl, isCurrent ? a.font_bold : a.font_normal]}>
+        <Text
+          dataSet={{plumblinesNavLabel: 1}}
+          style={[a.text_xl, isCurrent ? a.font_bold : a.font_normal]}>
           {label}
         </Text>
       )}
-    </PressableWithHover>
+    </Pressable>
+  )
+
+  if (!showTooltip) return link
+
+  return (
+    <Tooltip.Outer
+      position="right"
+      visible={tooltipVisible}
+      onVisibleChange={visible => {
+        if (!visible) setTooltipDismissed(true)
+      }}>
+      <Tooltip.Target>{link}</Tooltip.Target>
+      <Tooltip.BubbleText
+        label={label}
+        testID={`plumblines-nav-tooltip-${navItem}`}>
+        {label}
+      </Tooltip.BubbleText>
+    </Tooltip.Outer>
   )
 }
 
@@ -542,7 +582,11 @@ function ComposeBtn({minimal}: {minimal: boolean}) {
   const {openComposer} = useOpenComposer()
   const {t: l} = useLingui()
   const [isFetchingHandle, setIsFetchingHandle] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isFocused, setIsFocused] = useState(false)
+  const [tooltipDismissed, setTooltipDismissed] = useState(false)
   const fetchHandle = useFetchHandle()
+  const tooltipLabel = l`Compose new post`
 
   const getProfileHandle = async () => {
     const routes = getState()?.routes
@@ -579,25 +623,59 @@ function ComposeBtn({minimal}: {minimal: boolean}) {
   const onPressCompose = async () =>
     openComposer({mention: await getProfileHandle(), logContext: 'Fab'})
 
+  const button = (
+    <Button
+      disabled={isFetchingHandle}
+      label={tooltipLabel}
+      onPress={() => void onPressCompose()}
+      onHoverIn={() => {
+        setIsHovered(true)
+        setTooltipDismissed(false)
+      }}
+      onHoverOut={() => setIsHovered(false)}
+      onFocus={() => {
+        setIsFocused(true)
+        setTooltipDismissed(false)
+      }}
+      onBlur={() => setIsFocused(false)}
+      size="large"
+      shape={minimal ? 'round' : 'default'}
+      color="primary"
+      style={[
+        a.rounded_full,
+        minimal && {width: LARGE_ELEMENT_SIZE, height: LARGE_ELEMENT_SIZE},
+      ]}>
+      <ButtonIcon icon={EditBigIcon} size={minimal ? 'lg' : 'sm'} />
+      {!minimal && (
+        <ButtonText>
+          <Trans context="action">New post</Trans>
+        </ButtonText>
+      )}
+    </Button>
+  )
+
   return (
-    <View style={minimal ? [a.px_sm, a.pt_lg] : [a.flex_row, a.pl_md, a.pt_lg]}>
-      <Button
-        disabled={isFetchingHandle}
-        label={l`Compose new post`}
-        onPress={() => void onPressCompose()}
-        size="large"
-        color="primary"
-        style={[
-          a.rounded_full,
-          minimal && {width: LARGE_ELEMENT_SIZE, height: LARGE_ELEMENT_SIZE},
-        ]}>
-        <ButtonIcon icon={EditBigIcon} size={minimal ? 'lg' : 'sm'} />
-        {!minimal && (
-          <ButtonText>
-            <Trans context="action">New post</Trans>
-          </ButtonText>
-        )}
-      </Button>
+    <View
+      style={
+        minimal ? [a.pt_lg, a.align_center] : [a.flex_row, a.pl_md, a.pt_lg]
+      }>
+      {minimal ? (
+        <Tooltip.Outer
+          position="right"
+          visible={(isHovered || isFocused) && !tooltipDismissed}
+          onVisibleChange={visible => {
+            if (!visible) setTooltipDismissed(true)
+          }}>
+          <Tooltip.Target>{button}</Tooltip.Target>
+          <Tooltip.BubbleText
+            label={tooltipLabel}
+            testID="plumblines-nav-tooltip-compose">
+            {tooltipLabel}
+          </Tooltip.BubbleText>
+        </Tooltip.Outer>
+      ) : (
+        button
+      )}
     </View>
   )
 }
@@ -618,6 +696,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
   const numUnreadMessages = useUnreadMessageCount()
 
   const leftNavMinimal = isMessagesRelatedScreen || leftNavMinimalBreakpoint
+  const showRailTooltips = leftNavMinimal || routeName === 'Home'
 
   if (!hasSession && !gtMobile) {
     return null
@@ -626,10 +705,11 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
   return (
     <View
       role="navigation"
+      testID="plumblines-left-nav"
       style={[
         a.fixed,
         a.top_0,
-        a.p_lg,
+        leftNavMinimal ? a.p_sm : a.p_lg,
         styles.leftNav,
         !hasSession && !leftNavMinimal && {width: LEFT_NAV_PWI_WIDTH},
         leftNavMinimal && [
@@ -653,6 +733,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
           ],
         },
       ]}>
+      {!leftNavMinimal && <NewspaperDirectory />}
       {hasSession ? (
         <ProfileCard minimal={leftNavMinimal} />
       ) : !leftNavMinimal ? (
@@ -660,6 +741,37 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
           <NavSignupCard />
         </View>
       ) : null}
+      {!hasSession && (
+        <>
+          <NavItem
+            label={l`Home`}
+            href="/"
+            navItem="home"
+            minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
+            icons={{inactive: HomeIcon, active: HomeFilledIcon}}
+          />
+          <NavItem
+            label={l`Explore`}
+            href="/search"
+            navItem="search"
+            minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
+            icons={{
+              inactive: MagnifyingGlassIcon,
+              active: MagnifyingGlassFilledIcon,
+            }}
+          />
+          <NavItem
+            label={l`Feeds`}
+            href="/feeds"
+            navItem="feeds"
+            minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
+            icons={{inactive: HashtagIcon, active: HashtagFilledIcon}}
+          />
+        </>
+      )}
       {hasSession && (
         <>
           <NavItem
@@ -667,6 +779,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             href="/"
             navItem="home"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             icons={{
               inactive: HomeIcon,
               active: HomeFilledIcon,
@@ -677,6 +790,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             href="/search"
             navItem="search"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             icons={{
               inactive: MagnifyingGlassIcon,
               active: MagnifyingGlassFilledIcon,
@@ -687,6 +801,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             href="/notifications"
             navItem="notifications"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             count={numUnreadNotifications}
             icons={{
               inactive: BellIcon,
@@ -694,10 +809,11 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             }}
           />
           <NavItem
-            label={l`Chat`}
+            label={l`Messages`}
             href="/messages"
             navItem="chat"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             count={
               aa.flags.chatDisabled ? undefined : numUnreadMessages.numUnread
             }
@@ -712,6 +828,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             href="/feeds"
             navItem="feeds"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             icons={{
               inactive: HashtagIcon,
               active: HashtagFilledIcon,
@@ -722,6 +839,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             href="/lists"
             navItem="lists"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             icons={{
               inactive: ListIcon,
               active: ListFilledIcon,
@@ -729,12 +847,13 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
           />
           <NavItem
             label={l({
-              message: 'Saved',
+              message: 'Bookmarks',
               context: 'link to bookmarks screen',
             })}
             href="/saved"
             navItem="saved"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             icons={{
               inactive: BookmarkIcon,
               active: BookmarkFilledIcon,
@@ -745,6 +864,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             href={makeProfileLink(currentAccount!)}
             navItem="profile"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             icons={{
               inactive: UserCircleIcon,
               active: UserCircleFilledIcon,
@@ -755,13 +875,14 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             href="/settings"
             navItem="settings"
             minimal={leftNavMinimal}
+            showTooltip={showRailTooltips}
             icons={{
               inactive: SettingsIcon,
               active: SettingsFilledIcon,
             }}
           />
 
-          <ComposeBtn minimal={leftNavMinimal} />
+          <ComposeBtn minimal={leftNavMinimal || routeName === 'Home'} />
         </>
       )}
     </View>

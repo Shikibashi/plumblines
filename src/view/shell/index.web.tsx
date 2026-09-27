@@ -1,3 +1,5 @@
+import '#/plumblines/reading/reading.css'
+
 import {useCallback, useEffect, useLayoutEffect, useState} from 'react'
 import {StyleSheet, TouchableWithoutFeedback, View} from 'react-native'
 import {msg} from '@lingui/core/macro'
@@ -20,7 +22,6 @@ import {LinkWarningDialog} from '#/components/dialogs/LinkWarning'
 import {MutedWordsDialog} from '#/components/dialogs/MutedWords'
 import {NuxDialogs} from '#/components/dialogs/nuxs'
 import {SigninDialog} from '#/components/dialogs/Signin'
-import {useWelcomeModal} from '#/components/hooks/useWelcomeModal'
 import {Lightbox} from '#/components/Lightbox'
 import {GlobalReportDialog} from '#/components/moderation/ReportDialog'
 import {
@@ -28,13 +29,13 @@ import {
   usePolicyUpdateContext,
 } from '#/components/PolicyUpdateOverlay'
 import {Outlet as PortalOutlet} from '#/components/Portal'
-import {WelcomeModal} from '#/components/WelcomeModal'
 import {useAgeAssurance} from '#/ageAssurance'
 import {DataUnavailableScreen} from '#/ageAssurance/components/DataUnavailableScreen'
 import {NoAccessScreen} from '#/ageAssurance/components/NoAccessScreen'
 import {RedirectOverlay} from '#/ageAssurance/components/RedirectOverlay'
 import {PassiveAnalytics} from '#/analytics/PassiveAnalytics'
 import {FlatNavigator, RoutesContainer} from '#/Navigation'
+import {NewspaperMasthead} from '#/plumblines/components/NewspaperMasthead'
 import {Composer} from './Composer'
 import {DrawerContent} from './Drawer'
 
@@ -42,7 +43,6 @@ function ShellInner() {
   const navigator = useNavigation<NavigationProp>()
   const closeAllActiveElements = useCloseAllActiveElements()
   const {state: policyUpdateState} = usePolicyUpdateContext()
-  const welcomeModalControl = useWelcomeModal()
 
   useIntentHandler()
 
@@ -73,10 +73,6 @@ function ShellInner() {
       <Lightbox />
       <NuxDialogs />
       <GlobalReportDialog />
-
-      {welcomeModalControl.isOpen && (
-        <WelcomeModal control={welcomeModalControl} />
-      )}
 
       {/* Until policy update has been completed by the user, don't render anything that is portaled */}
       {policyUpdateState.completed && (
@@ -156,12 +152,16 @@ function DrawerLayout({children}: {children: React.ReactNode}) {
   )
 }
 
+import {ReaderPreferencesEffect} from '#/plumblines/reading/preferences'
+
 export function Shell() {
   const t = useTheme()
   const aa = useAgeAssurance()
   const {currentAccount} = useSession()
   return (
-    <View style={[a.util_screen_outer, t.atoms.bg]}>
+    <View style={[a.util_screen_outer, t.atoms.bg]} testID="plumblines-shell">
+      <ReaderPreferencesEffect />
+      <NewspaperMasthead />
       {currentAccount?.status === 'takendown' ? (
         <Takendown />
       ) : currentAccount?.status === 'deactivated' ? (

@@ -1,6 +1,10 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const SettingsSliderVertical_Stroke2_Corner0_Rounded =
   createSinglePathSVG({
-    path: 'M7 3a1 1 0 0 1 1 1v1.126a4 4 0 0 1 0 7.748V20a1 1 0 1 1-2 0v-7.126a4 4 0 0 1 0-7.748V4a1 1 0 0 1 1-1Zm10 0a1 1 0 0 1 1 1v9.126a4 4 0 1 1-2 0V4a1 1 0 0 1 1-1ZM7 7a2 2 0 1 0 0 4 2 2 0 1 0 0-4Zm10 8a2 2 0 1 0 0 4 2 2 0 1 0 0-4Z',
+    path: 'M10 8h4 M12 21v-9 M12 8V3 M17 16h4 M19 12V3 M19 21v-5 M3 14h4 M5 10V3 M5 21v-7',
+    strokeWidth: 2,
+    strokeLinecap: 'round',
+    strokeLinejoin: 'round',
   })

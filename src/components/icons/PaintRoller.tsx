@@ -1,5 +1,9 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const PaintRoller_Stroke2_Corner2_Rounded = createSinglePathSVG({
-  path: 'M6 6a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3H5v3a1 1 0 0 0 1 1h7a1 1 0 0 1 1 1v2.17c1.165.412 2 1.524 2 2.83v3a1 1 0 1 1-2 0v-3a1 1 0 1 0-2 0v3a1 1 0 1 1-2 0v-3c0-1.306.835-2.418 2-2.83V14H6a3 3 0 0 1-3-3V8a2 2 0 0 1 2-2h1Zm3-1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H9Z',
+  path: 'M4.0 2.0H16.0Q18.0 2.0 18.0 4.0V6.0Q18.0 8.0 16.0 8.0H4.0Q2.0 8.0 2.0 6.0V4.0Q2.0 2.0 4.0 2.0Z M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2 M9.0 16.0H11.0Q12.0 16.0 12.0 17.0V21.0Q12.0 22.0 11.0 22.0H9.0Q8.0 22.0 8.0 21.0V17.0Q8.0 16.0 9.0 16.0Z',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })

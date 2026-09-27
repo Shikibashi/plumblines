@@ -10,6 +10,7 @@ import {
   getTooltipStyle,
   MIN_EDGE_SPACE,
   type TooltipColor,
+  type TooltipPosition,
 } from '#/components/Tooltip/const'
 import {Text} from '#/components/Typography'
 
@@ -20,7 +21,7 @@ export function Provider({children}: {children: React.ReactNode}) {
 Provider.displayName = 'TooltipProvider'
 
 type TooltipContextType = {
-  position: 'top' | 'bottom'
+  position: TooltipPosition
   color: TooltipColor
   onVisibleChange: (open: boolean) => void
 }
@@ -41,7 +42,7 @@ export function Outer({
   onVisibleChange,
 }: {
   children: React.ReactNode
-  position?: 'top' | 'bottom'
+  position?: TooltipPosition
   color?: TooltipColor
   visible: boolean
   onVisibleChange: (visible: boolean) => void
@@ -65,9 +66,11 @@ export function Target({children}: {children: React.ReactNode}) {
 export function Content({
   children,
   label,
+  testID,
 }: {
   children: React.ReactNode
   label: string
+  testID?: string
 }) {
   const t = useTheme()
   const {position, color} = useContext(TooltipContext)
@@ -77,6 +80,7 @@ export function Content({
       <Popover.Content
         className="radix-popover-content"
         aria-label={label}
+        data-testid={testID}
         side={position}
         sideOffset={4}
         collisionPadding={MIN_EDGE_SPACE}
@@ -112,16 +116,18 @@ export function Content({
 export function BubbleText({
   children,
   label,
+  testID,
 }: {
   children: React.ReactNode
   label: string
+  testID?: string
 }) {
   const t = useTheme()
   const {color} = useContext(TooltipContext)
   const style = getTooltipStyle(t, color)
   // eslint-disable-next-line bsky-internal/avoid-unwrapped-text
   return (
-    <Content label={label}>
+    <Content label={label} testID={testID}>
       <View style={[a.gap_xs]}>
         <Text style={[a.text_sm, a.leading_snug, {color: style.text}]}>
           {children}

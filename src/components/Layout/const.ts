@@ -23,4 +23,4 @@ export const CENTER_COLUMN_OFFSET = -105
 /**
  * How wide the center column is
  */
-export const CENTER_COLUMN_WIDTH = 600
+export const CENTER_COLUMN_WIDTH = 840

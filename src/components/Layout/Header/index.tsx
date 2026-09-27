@@ -55,6 +55,7 @@ export function Outer({
   return (
     <View
       ref={headerRef}
+      testID={sticky ? 'plumblines-page-header' : undefined}
       style={[
         a.w_full,
         !noBottomBorder && a.border_b,

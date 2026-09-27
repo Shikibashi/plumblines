@@ -56,7 +56,7 @@ async function _registerPushToken({
         : PUBLIC_APPVIEW_DID,
       platform: Platform.OS,
       token: token.data,
-      appId: 'xyz.blueskyweb.app',
+      appId: 'uk.plumblines.app',
       ageRestricted: extra.ageRestricted ?? false,
     }
 
@@ -359,7 +359,7 @@ export async function unregisterPushToken(clients: TemporaryPushClient[]) {
               : PUBLIC_APPVIEW_DID,
             platform: Platform.OS,
             token: token.data,
-            appId: 'xyz.blueskyweb.app',
+            appId: 'uk.plumblines.app',
           },
           {
             service: NOTIF_SERVICE,

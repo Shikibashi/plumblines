@@ -43,6 +43,10 @@ export function applyFonts(
   style: MutableTextStyle,
   fontFamily: 'system' | 'theme',
 ) {
+  if (IS_WEB && fontFamily === 'theme') {
+    style.fontFamily = 'Georgia, "Times New Roman", "Liberation Serif", serif'
+    return
+  }
   if (fontFamily === 'theme') {
     if (IS_ANDROID) {
       style.fontFamily =

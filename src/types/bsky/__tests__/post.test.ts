@@ -185,7 +185,10 @@ describe('types/bsky/post parseEmbed', () => {
 
   it('returns the unknown arm for an unrecognised $type', () => {
     const embed = parseEmbed(asEmbed({$type: 'com.example.someEmbed#view'}))
-    expect(embed).toEqual({type: 'unknown', view: null})
+    expect(embed).toEqual({
+      type: 'unknown',
+      view: {$type: 'com.example.someEmbed#view'},
+    })
   })
 
   it('returns the unknown arm for undefined', () => {
@@ -195,7 +198,7 @@ describe('types/bsky/post parseEmbed', () => {
   it('does not match an embed with no $type', () => {
     expect(parseEmbed(asEmbed({images: []}))).toEqual({
       type: 'unknown',
-      view: null,
+      view: {images: []},
     })
   })
 })
@@ -240,7 +243,18 @@ describe('types/bsky/post parseEmbedRecordView', () => {
   it('returns the unknown arm for an unrecognised record', () => {
     expect(
       parseEmbedRecordView(asRecordView({$type: 'com.example.thing'})),
-    ).toEqual({type: 'unknown', view: null})
+    ).toEqual({type: 'unknown', view: {$type: 'com.example.thing'}})
+  })
+
+  it('preserves a custom record wrapped in viewRecord instead of pretending it is a post', () => {
+    const custom = {
+      ...viewRecord,
+      value: {$type: 'com.example.article', title: '<script>alert(1)</script>'},
+    }
+    expect(parseEmbedRecordView(asRecordView(custom))).toEqual({
+      type: 'unknown',
+      view: custom,
+    })
   })
 })
 

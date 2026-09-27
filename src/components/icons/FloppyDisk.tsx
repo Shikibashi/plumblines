@@ -1,5 +1,9 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const FloppyDisk_Stroke2_Corner0_Rounded = createSinglePathSVG({
-  path: 'M3 4a1 1 0 0 1 1-1h13a1 1 0 0 1 .707.293l3 3A1 1 0 0 1 21 7v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4Zm6 15h6v-5H9v5Zm8 0v-6a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v6H5V5h2v3a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5.414l2 2V19h-2ZM15 5H9v2h6V5Z',
+  path: 'M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7 M7 3v4a1 1 0 0 0 1 1h7',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })

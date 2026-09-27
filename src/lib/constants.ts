@@ -4,6 +4,7 @@ import {api} from '@bsky/sdk'
 
 import {BLUESKY_PROXY_DID, CHAT_PROXY_DID, IS_DEV} from '#/env'
 import {type app} from '#/lexicons'
+import {APP_CONFIG} from '#/plumblines/config'
 
 export const LOCAL_DEV_SERVICE =
   Platform.OS === 'android' ? 'http://10.0.2.2:2583' : 'http://localhost:2583'
@@ -12,12 +13,11 @@ export const BSKY_SERVICE = 'https://bsky.social'
 export const BSKY_SERVICE_DID = 'did:web:bsky.social'
 export const PUBLIC_BSKY_SERVICE = 'https://public.api.bsky.app'
 export const DEFAULT_SERVICE = BSKY_SERVICE
-const HELP_DESK_LANG = 'en-us'
-export const HELP_DESK_URL = `https://blueskyweb.zendesk.com/hc/${HELP_DESK_LANG}`
+export const HELP_DESK_URL = APP_CONFIG.supportUrl
 export const CHAT_SERVICE = 'https://api.bsky.chat'
 export const EMBED_SERVICE = 'https://embed.bsky.app'
 export const EMBED_SCRIPT = `${EMBED_SERVICE}/static/embed.js`
-export const BSKY_DOWNLOAD_URL = 'https://bsky.app/download'
+export const BSKY_DOWNLOAD_URL = APP_CONFIG.sourceUrl
 export const STARTER_PACK_MAX_SIZE = 150
 export const CARD_ASPECT_RATIO = 1200 / 630
 
@@ -41,22 +41,12 @@ export const DISCOVER_DEBUG_DIDS: Record<string, true> = {
   'did:plc:2dzyut5lxna5ljiaasgeuffz': true, // darrin.bsky.team
 }
 
-const BASE_FEEDBACK_FORM_URL = `${HELP_DESK_URL}/requests/new`
-export function FEEDBACK_FORM_URL({
-  email,
-  handle,
-}: {
+/** Do not send account details to an upstream support service. */
+export function FEEDBACK_FORM_URL(_context: {
   email?: string
   handle?: string
 }): string {
-  let str = BASE_FEEDBACK_FORM_URL
-  if (email) {
-    str += `?tf_anonymous_requester_email=${encodeURIComponent(email)}`
-    if (handle) {
-      str += `&tf_17205412673421=${encodeURIComponent(handle)}`
-    }
-  }
-  return str
+  return `${APP_CONFIG.supportUrl}/new`
 }
 
 export const MAX_DISPLAY_NAME = 64

@@ -10,10 +10,7 @@ import {toShareUrl} from '#/lib/strings/url-helpers'
 import {type Shadow} from '#/state/cache/types'
 import {
   RQKEY as profileQueryKey,
-  useProfileBlockMutationQueue,
   useProfileFollowMutationQueue,
-  useProfileMuteMutationQueue,
-  useProfileMuteRepostsMutationQueue,
 } from '#/state/queries/profile'
 import {useSession} from '#/state/session'
 import {EventStopper} from '#/view/com/util/EventStopper'
@@ -33,10 +30,6 @@ import {Live_Stroke2_Corner0_Rounded as LiveIcon} from '#/components/icons/Live'
 import {MagnifyingGlass_Stroke2_Corner0_Rounded as SearchIcon} from '#/components/icons/MagnifyingGlass'
 import {Mute_Stroke2_Corner0_Rounded as MuteIcon} from '#/components/icons/Mute'
 import {PeopleRemove2_Stroke2_Corner0_Rounded as UserMinusIcon} from '#/components/icons/PeopleRemove2'
-import {
-  PersonCheck_Stroke2_Corner0_Rounded as PersonCheckIcon,
-  PersonX_Stroke2_Corner0_Rounded as PersonXIcon,
-} from '#/components/icons/Person'
 import {PlusLarge_Stroke2_Corner0_Rounded as PlusIcon} from '#/components/icons/Plus'
 import {
   Repost_Stroke2_Corner0_Rounded as RepostIcon,
@@ -45,7 +38,6 @@ import {
 import {SpeakerVolumeFull_Stroke2_Corner0_Rounded as UnmuteIcon} from '#/components/icons/Speaker'
 import {StarterPack_Stroke2_Corner0_Rounded as StarterPackIcon} from '#/components/icons/StarterPack'
 import * as Menu from '#/components/Menu'
-import {BlockDialog} from '#/components/moderation/BlockDialog'
 import {
   ReportDialog,
   useReportDialogControl,
@@ -62,6 +54,12 @@ import {EditLiveDialog} from '#/features/liveNow/components/EditLiveDialog'
 import {GoLiveDialog} from '#/features/liveNow/components/GoLiveDialog'
 import {GoLiveDisabledDialog} from '#/features/liveNow/components/GoLiveDisabledDialog'
 import {type app} from '#/lexicons'
+import {useAccountActions} from '#/plumblines/account-actions'
+import {
+  UnblockAccountDialog,
+  useUnblockAccountMenuItem,
+} from '#/plumblines/components/UnblockAccountMenuItem'
+import {useSnoozeAccountMenuItems} from '#/plumblines/local-attention'
 import {useDevMode} from '#/storage/hooks/dev-mode'
 
 let ProfileMenu = ({
@@ -85,16 +83,18 @@ let ProfileMenu = ({
   const {canGoLive} = useLiveNowConfig()
   const status = useActorStatus(profile)
 
-  const [queueMute, queueUnmute] = useProfileMuteMutationQueue(profile)
-  const [queueMuteReposts, queueUnmuteReposts] =
-    useProfileMuteRepostsMutationQueue(profile)
-  const [queueBlock, queueUnblock] = useProfileBlockMutationQueue(profile)
+  const {
+    mute: queueMute,
+    unmute: queueUnmute,
+    muteReposts: queueMuteReposts,
+    unmuteReposts: queueUnmuteReposts,
+  } = useAccountActions(profile)
   const [queueFollow, queueUnfollow] = useProfileFollowMutationQueue(
     profile,
     'ProfileMenu',
   )
 
-  const blockPromptControl = Prompt.usePromptControl()
+  const unblockPromptControl = Prompt.usePromptControl()
   const loggedOutWarningPromptControl = Prompt.usePromptControl()
   const goLiveDialogControl = useDialogControl()
   const goLiveDisabledDialogControl = useDialogControl()
@@ -191,36 +191,6 @@ let ProfileMenu = ({
     }
   }, [ax, profile.viewer, queueUnmuteReposts, l, queueMuteReposts])
 
-  const blockAccount = useCallback(async () => {
-    if (profile.viewer?.blocking) {
-      try {
-        await queueUnblock()
-        Toast.show(l({message: 'Account unblocked', context: 'toast'}))
-      } catch (err) {
-        const e = err as Error
-        if (e?.name !== 'AbortError') {
-          ax.logger.error('Failed to unblock account', {message: e})
-          Toast.show(l`There was an issue! ${e.toString()}`, {
-            type: 'error',
-          })
-        }
-      }
-    } else {
-      try {
-        await queueBlock()
-        Toast.show(l({message: 'Account blocked', context: 'toast'}))
-      } catch (err) {
-        const e = err as Error
-        if (e?.name !== 'AbortError') {
-          ax.logger.error('Failed to block account', {message: e})
-          Toast.show(l`There was an issue! ${e.toString()}`, {
-            type: 'error',
-          })
-        }
-      }
-    }
-  }, [ax, profile.viewer?.blocking, l, queueUnblock, queueBlock])
-
   const onPressFollowAccount = useCallback(async () => {
     try {
       await queueFollow()
@@ -274,6 +244,13 @@ let ProfileMenu = ({
       return v.issuer === currentAccount?.did
     }) ?? []
 
+  const snoozeItems = useSnoozeAccountMenuItems(profile)
+  const unblockMenuItem = useUnblockAccountMenuItem({
+    profile: profile,
+    onPress: unblockPromptControl.open,
+    testID: 'profileHeaderDropdownUnblockBtn',
+  })
+
   return (
     <EventStopper onKeyDown={false}>
       <Menu.Root>
@@ -299,6 +276,9 @@ let ProfileMenu = ({
         </Menu.Trigger>
 
         <Menu.Outer style={{minWidth: 170}}>
+          {profile.did !== currentAccount?.did && (
+            <Menu.Group>{snoozeItems}</Menu.Group>
+          )}
           <Menu.Group>
             <Menu.Item
               testID="profileHeaderDropdownShareBtn"
@@ -435,82 +415,55 @@ let ProfileMenu = ({
                   ))}
                 {!isSelf && (
                   <>
-                    {!profile.viewer?.blocking &&
-                      !profile.viewer?.mutedByList && (
-                        <>
-                          {!profile.viewer?.muted && (
-                            <Menu.Item
-                              testID="profileHeaderDropdownMuteRepostsBtn"
-                              label={
-                                profile.viewer?.mutedOnlyReposts
-                                  ? l`Show reposts in feeds`
-                                  : l`Hide reposts in feeds`
-                              }
-                              onPress={() => void onPressMuteReposts()}>
-                              <Menu.ItemText>
-                                {profile.viewer?.mutedOnlyReposts ? (
-                                  <Trans>Show reposts in feeds</Trans>
-                                ) : (
-                                  <Trans>Hide reposts in feeds</Trans>
-                                )}
-                              </Menu.ItemText>
-                              <Menu.ItemIcon
-                                icon={
-                                  profile.viewer?.mutedOnlyReposts
-                                    ? RepostIcon
-                                    : RepostStrikeIcon
-                                }
-                              />
-                            </Menu.Item>
-                          )}
+                    {!profile.viewer?.mutedByList && (
+                      <>
+                        {!profile.viewer?.muted && (
                           <Menu.Item
-                            testID="profileHeaderDropdownMuteBtn"
+                            testID="profileHeaderDropdownMuteRepostsBtn"
                             label={
-                              profile.viewer?.muted
-                                ? l`Unmute account`
-                                : l`Mute account`
+                              profile.viewer?.mutedOnlyReposts
+                                ? l`Show reposts in feeds`
+                                : l`Hide reposts in feeds`
                             }
-                            onPress={() => void onPressMuteAccount()}>
+                            onPress={() => void onPressMuteReposts()}>
                             <Menu.ItemText>
-                              {profile.viewer?.muted ? (
-                                <Trans>Unmute account</Trans>
+                              {profile.viewer?.mutedOnlyReposts ? (
+                                <Trans>Show reposts in feeds</Trans>
                               ) : (
-                                <Trans>Mute account</Trans>
+                                <Trans>Hide reposts in feeds</Trans>
                               )}
                             </Menu.ItemText>
                             <Menu.ItemIcon
                               icon={
-                                profile.viewer?.muted ? UnmuteIcon : MuteIcon
+                                profile.viewer?.mutedOnlyReposts
+                                  ? RepostIcon
+                                  : RepostStrikeIcon
                               }
                             />
                           </Menu.Item>
-                        </>
-                      )}
-                    {!profile.viewer?.blockingByList && (
-                      <Menu.Item
-                        testID="profileHeaderDropdownBlockBtn"
-                        label={
-                          profile.viewer?.blocking
-                            ? l`Unblock account`
-                            : l`Block account`
-                        }
-                        onPress={() => blockPromptControl.open()}>
-                        <Menu.ItemText>
-                          {profile.viewer?.blocking ? (
-                            <Trans>Unblock account</Trans>
-                          ) : (
-                            <Trans>Block account</Trans>
-                          )}
-                        </Menu.ItemText>
-                        <Menu.ItemIcon
-                          icon={
-                            profile.viewer?.blocking
-                              ? PersonCheckIcon
-                              : PersonXIcon
+                        )}
+                        <Menu.Item
+                          testID="profileHeaderDropdownMuteBtn"
+                          label={
+                            profile.viewer?.muted
+                              ? l`Unmute account`
+                              : l`Mute account`
                           }
-                        />
-                      </Menu.Item>
+                          onPress={() => void onPressMuteAccount()}>
+                          <Menu.ItemText>
+                            {profile.viewer?.muted ? (
+                              <Trans>Unmute account</Trans>
+                            ) : (
+                              <Trans>Mute account</Trans>
+                            )}
+                          </Menu.ItemText>
+                          <Menu.ItemIcon
+                            icon={profile.viewer?.muted ? UnmuteIcon : MuteIcon}
+                          />
+                        </Menu.Item>
+                      </>
                     )}
+                    {unblockMenuItem}
                     <Menu.Item
                       testID="profileHeaderDropdownReportBtn"
                       label={l`Report account`}
@@ -569,11 +522,7 @@ let ProfileMenu = ({
           $type: 'app.bsky.actor.defs#profileViewDetailed',
         }}
       />
-      <BlockDialog
-        control={blockPromptControl}
-        profile={profile}
-        onBlock={blockAccount}
-      />
+      <UnblockAccountDialog control={unblockPromptControl} profile={profile} />
       <Prompt.Basic
         control={loggedOutWarningPromptControl}
         title={l`Note about sharing`}

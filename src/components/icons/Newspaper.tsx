@@ -1,5 +1,9 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const Newspaper_Stroke2_Corner2_Rounded = createSinglePathSVG({
-  path: 'M1 6.5A2.5 2.5 0 0 1 3.5 4H9a4 4 0 0 1 3 1.354A4 4 0 0 1 15 4h5.5A2.5 2.5 0 0 1 23 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-5.223c-.52 0-1 .125-1.4.372-.421.26-.761.633-.983 1.075a1 1 0 0 1-1.788 0 2.66 2.66 0 0 0-.983-1.075c-.4-.247-.88-.372-1.4-.372H3.5A2.5 2.5 0 0 1 1 17.5v-11ZM11 8a2 2 0 0 0-2-2H3.5a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h5.223c.776 0 1.564.173 2.277.569V8Zm2 10.569A4.7 4.7 0 0 1 15.277 18H20.5a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5H15a2 2 0 0 0-2 2v10.569Z',
+  path: 'M15 18h-5 M18 14h-8 M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-4 0v-9a2 2 0 0 1 2-2h2 M11.0 6.0H17.0Q18.0 6.0 18.0 7.0V9.0Q18.0 10.0 17.0 10.0H11.0Q10.0 10.0 10.0 9.0V7.0Q10.0 6.0 11.0 6.0Z',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })

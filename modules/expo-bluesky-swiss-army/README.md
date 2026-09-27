@@ -51,7 +51,7 @@ Tracks how users arrive at the app from external sources.
 
 ### SharedPrefs
 
-Native key-value storage that persists across app restarts. Uses iOS App Groups (`group.app.bsky`) for sharing data with extensions, and Android SharedPreferences.
+Native key-value storage that persists across app restarts. Uses iOS App Groups (`group.uk.plumblines.app`) for sharing data with extensions, and Android SharedPreferences.
 
 **Functions:**
 
@@ -81,8 +81,8 @@ The Android implementation initializes certain keys with default values on first
 - Web: Not implemented
 
 **Implementation Notes:**
-- iOS uses App Group suite `group.app.bsky` to share preferences with app extensions
-- Android stores preferences in `xyz.blueskyweb.app`
+- iOS uses App Group suite `group.uk.plumblines.app` to share preferences with app extensions
+- Android stores preferences in `uk.plumblines.app`
 - Both platforms work around a bug where `JavaScriptValue.isString()` can cause crashes, so there's a separate `setString` function internally
 
 ### VisibilityView
@@ -135,7 +135,7 @@ Bluesky. Tapping it launches the app and triggers
 `userNotificationCenter(_:openSettingsFor:)`. expo-notifications owns the
 `UNUserNotificationCenter` delegate and fans this callback out to registered
 `NotificationDelegate`s. This module registers one and converts the callback into
-a `bluesky://settings/notifications` deep link, which the app's existing linking
+a `plumblines://settings/notifications` deep link, which the app's existing linking
 config routes to the notification settings screen.
 
 **Platform Support:**
@@ -192,7 +192,7 @@ and Android; NotificationSettings is iOS only.
 
 ### iOS
 
-Requires iOS 13.4 or later. Uses the App Group `group.app.bsky` for SharedPrefs - ensure this is configured in your app's entitlements.
+Requires iOS 13.4 or later. Uses the App Group `group.uk.plumblines.app` for SharedPrefs - ensure this is configured in your app's entitlements.
 
 ### Android
 

@@ -1,13 +1,18 @@
-import {
-  createThemes,
-  DEFAULT_PALETTE,
-  DEFAULT_SUBDUED_PALETTE,
-} from '@bsky.app/alf'
+import {createThemes} from '@bsky.app/alf'
+
+import {paperPalette} from '#/plumblines/theme/palette'
 
 const DEFAULT_THEMES = createThemes({
-  defaultPalette: DEFAULT_PALETTE,
-  subduedPalette: DEFAULT_SUBDUED_PALETTE,
+  defaultPalette: paperPalette,
+  subduedPalette: paperPalette,
 })
+
+// Dark ink editions need a lighter accent than the light edition.
+for (const theme of [DEFAULT_THEMES.dark, DEFAULT_THEMES.dim]) {
+  theme.palette.primary_500 = '#e4aaa0'
+  theme.palette.primary_600 = '#f0cec5'
+  theme.atoms.text_link.color = '#f0cec5'
+}
 
 export const themes = {
   lightPalette: DEFAULT_THEMES.light.palette,

@@ -97,7 +97,7 @@ export const Login = ({
   useEffect(() => {
     if (serviceError) {
       setError(
-        l`Unable to contact your service. Please check your Internet connection.`,
+        l`Could not load sign-in information from this service. Enter a full handle to continue with automatic provider detection, or retry.`,
       )
       logger.warn(`Failed to fetch service description for ${serviceUrl}`, {
         error: String(serviceError),

@@ -33,7 +33,7 @@ import {
   ThreadItemPostNumber,
   useHasThreadItemPostNumber,
 } from '#/screens/PostThread/components/ThreadItemPostNumber'
-import {atoms as a, select, useTheme} from '#/alf'
+import {atoms as a, select, useTheme, web} from '#/alf'
 import {
   GalleryBleed,
   maybeApplyGalleryOffsetStyles,
@@ -53,8 +53,10 @@ import {DiscoverDebug} from '#/components/PostControls/DiscoverDebug'
 import {RichText} from '#/components/RichText'
 import {SubtleHover} from '#/components/SubtleHover'
 import {Features, useAnalytics} from '#/analytics'
+import {IS_WEB} from '#/env'
 import {useActorStatus} from '#/features/liveNow'
 import {app} from '#/lexicons'
+import {type EditorialDispatchSlots} from '#/plumblines/frontpage/EditorialDispatch'
 import * as bsky from '#/types/bsky'
 import {PostFeedReason} from './PostFeedReason'
 
@@ -78,6 +80,8 @@ interface FeedItemProps {
   hideTopBorder?: boolean
   isParentBlocked?: boolean
   isParentNotFound?: boolean
+  /** Plumblines supplies an editorial shell around upstream behavior slots. */
+  renderPlumblinesEditorial?: (slots: EditorialDispatchSlots) => React.ReactNode
 }
 
 export function PostFeedItem({
@@ -96,6 +100,7 @@ export function PostFeedItem({
   hideTopBorder,
   isParentBlocked,
   isParentNotFound,
+  renderPlumblinesEditorial,
   rootPost,
   onShowLess,
 }: FeedItemProps & {
@@ -135,6 +140,7 @@ export function PostFeedItem({
           hideTopBorder={hideTopBorder}
           isParentBlocked={isParentBlocked}
           isParentNotFound={isParentNotFound}
+          renderPlumblinesEditorial={renderPlumblinesEditorial}
           rootPost={rootPost}
           onShowLess={onShowLess}
         />
@@ -161,6 +167,7 @@ let FeedItemInner = ({
   hideTopBorder,
   isParentBlocked,
   isParentNotFound,
+  renderPlumblinesEditorial,
   rootPost,
   onShowLess,
 }: FeedItemProps & {
@@ -337,6 +344,67 @@ let FeedItemInner = ({
       : []
   }, [post, currentAccount?.did, threadgateHiddenReplies])
 
+  const reasonNode = reason ? (
+    <PostFeedReason
+      reason={reason}
+      moderation={moderation}
+      onOpenReposter={onOpenReposter}
+    />
+  ) : null
+  const bylineNode = (
+    <PostMeta
+      author={post.author}
+      moderation={moderation}
+      timestamp={post.indexedAt}
+      postHref={href}
+      onOpenAuthor={onOpenAuthor}
+    />
+  )
+  const replyContextNode =
+    showReplyTo && (parentAuthor || isParentBlocked || isParentNotFound) ? (
+      <PostRepliedTo
+        parentAuthor={parentAuthor}
+        isParentBlocked={isParentBlocked}
+        isParentNotFound={isParentNotFound}
+      />
+    ) : null
+  const bodyNode = (
+    <PostContent
+      moderation={moderation}
+      richText={richText}
+      postNumbering={postNumbering}
+      postEmbed={post.embed}
+      postAuthor={post.author}
+      onOpenEmbed={onOpenEmbed}
+      post={post}
+      additionalPostAlerts={additionalPostAlerts}
+      feedDescriptor={feedDescriptor}
+      plumblinesEditorial={Boolean(renderPlumblinesEditorial)}
+    />
+  )
+  const actionsNode = (
+    <PostControls
+      post={post}
+      record={record}
+      richText={richText}
+      onPressReply={onPressReply}
+      logContext="FeedItem"
+      feedContext={feedContext}
+      reqId={reqId}
+      threadgateRecord={threadgateRecord}
+      onShowLess={onShowLess}
+      viaRepost={viaRepost}
+      variant={renderPlumblinesEditorial ? 'compact' : undefined}
+    />
+  )
+  const supplementalNode = (
+    <KnownLikers
+      post={post}
+      feature={Features.PostFeedKnownLikersEnable}
+      outerStyle={[a.py_sm]}
+    />
+  )
+
   return (
     <GalleryBleed>
       <Link
@@ -346,7 +414,10 @@ let FeedItemInner = ({
         noFeedback
         accessible={false}
         onBeforePress={onBeforePress}
-        dataSet={{feedContext}}
+        dataSet={{
+          feedContext,
+          plumblinesEditorial: renderPlumblinesEditorial ? 'true' : undefined,
+        }}
         onPointerEnter={() => {
           setHover(true)
         }}
@@ -354,118 +425,85 @@ let FeedItemInner = ({
           setHover(false)
         }}>
         <SubtleHover hover={hover} />
-        <View style={{flexDirection: 'row', gap: 10, paddingLeft: 8}}>
-          <View style={{width: 42}}>
-            {isThreadChild && (
-              <View
-                style={[
-                  styles.replyLine,
-                  {
-                    backgroundColor: select(t.name, {
-                      light: t.palette.contrast_100,
-                      dim: t.palette.contrast_200,
-                      dark: t.palette.contrast_200,
-                    }),
-                    marginBottom: 4,
-                  },
-                ]}
-              />
-            )}
-          </View>
-
-          <View style={[a.pt_sm, a.flex_shrink]}>
-            {reason && (
-              <PostFeedReason
-                reason={reason}
-                moderation={moderation}
-                onOpenReposter={onOpenReposter}
-              />
-            )}
-          </View>
-        </View>
-
-        <View style={styles.layout}>
-          <View style={styles.layoutAvi}>
-            <PreviewableUserAvatar
-              size={42}
-              profile={post.author}
-              moderation={moderation.ui('avatar')}
-              type={post.author.associated?.labeler ? 'labeler' : 'user'}
-              onBeforePress={onOpenAuthor}
-              live={live}
-            />
-            {isThreadParent && (
-              <View
-                style={[
-                  styles.replyLine,
-                  {
-                    backgroundColor: select(t.name, {
-                      light: t.palette.contrast_100,
-                      dim: t.palette.contrast_200,
-                      dark: t.palette.contrast_200,
-                    }),
-                    marginTop: live ? 8 : 4,
-                  },
-                ]}
-              />
-            )}
-          </View>
-          <View
-            style={[
-              styles.layoutContent,
-              maybeApplyGalleryOffsetStyles('meta', {
-                post,
-                modui: moderation.ui('contentList'),
-                additionalCauses: additionalPostAlerts,
-              }),
-            ]}>
-            <PostMeta
-              author={post.author}
-              moderation={moderation}
-              timestamp={post.indexedAt}
-              postHref={href}
-              onOpenAuthor={onOpenAuthor}
-            />
-            {showReplyTo &&
-              (parentAuthor || isParentBlocked || isParentNotFound) && (
-                <PostRepliedTo
-                  parentAuthor={parentAuthor}
-                  isParentBlocked={isParentBlocked}
-                  isParentNotFound={isParentNotFound}
+        {renderPlumblinesEditorial ? (
+          renderPlumblinesEditorial({
+            reason: reasonNode,
+            byline: bylineNode,
+            context: replyContextNode,
+            body: bodyNode,
+            actions: actionsNode,
+            supplemental: supplementalNode,
+          })
+        ) : (
+          <>
+            <View style={{flexDirection: 'row', gap: 10, paddingLeft: 8}}>
+              <View style={{width: 42}}>
+                {isThreadChild && (
+                  <View
+                    style={[
+                      styles.replyLine,
+                      {
+                        backgroundColor: select(t.name, {
+                          light: t.palette.contrast_100,
+                          dim: t.palette.contrast_200,
+                          dark: t.palette.contrast_200,
+                        }),
+                        marginBottom: 4,
+                      },
+                    ]}
+                  />
+                )}
+              </View>
+              <View style={[a.pt_sm, a.flex_shrink]}>{reasonNode}</View>
+            </View>
+            <View style={styles.layout}>
+              <View style={styles.layoutAvi}>
+                <PreviewableUserAvatar
+                  size={IS_WEB ? 64 : 42}
+                  profile={post.author}
+                  moderation={moderation.ui('avatar')}
+                  type={post.author.associated?.labeler ? 'labeler' : 'user'}
+                  onBeforePress={onOpenAuthor}
+                  live={live}
                 />
-              )}
-            <PostContent
-              moderation={moderation}
-              richText={richText}
-              postNumbering={postNumbering}
-              postEmbed={post.embed}
-              postAuthor={post.author}
-              onOpenEmbed={onOpenEmbed}
-              post={post}
-              additionalPostAlerts={additionalPostAlerts}
-              feedDescriptor={feedDescriptor}
-            />
-            <PostControls
-              post={post}
-              record={record}
-              richText={richText}
-              onPressReply={onPressReply}
-              logContext="FeedItem"
-              feedContext={feedContext}
-              reqId={reqId}
-              threadgateRecord={threadgateRecord}
-              onShowLess={onShowLess}
-              viaRepost={viaRepost}
-            />
-            <KnownLikers
-              post={post}
-              feature={Features.PostFeedKnownLikersEnable}
-              outerStyle={[a.py_sm]}
-            />
-          </View>
-
+                {isThreadParent && (
+                  <View
+                    style={[
+                      styles.replyLine,
+                      {
+                        backgroundColor: select(t.name, {
+                          light: t.palette.contrast_100,
+                          dim: t.palette.contrast_200,
+                          dark: t.palette.contrast_200,
+                        }),
+                        marginTop: live ? 8 : 4,
+                      },
+                    ]}
+                  />
+                )}
+              </View>
+              <View
+                style={[
+                  styles.layoutContent,
+                  maybeApplyGalleryOffsetStyles('meta', {
+                    post,
+                    modui: moderation.ui('contentList'),
+                    additionalCauses: additionalPostAlerts,
+                  }),
+                ]}>
+                {bylineNode}
+                {replyContextNode}
+                {bodyNode}
+                {actionsNode}
+                {supplementalNode}
+              </View>
+              <DiscoverDebug feedContext={feedContext} />
+            </View>
+          </>
+        )}
+        {renderPlumblinesEditorial && (
           <DiscoverDebug feedContext={feedContext} />
-        </View>
+        )}
       </Link>
     </GalleryBleed>
   )
@@ -482,6 +520,7 @@ let PostContent = ({
   onOpenEmbed,
   additionalPostAlerts,
   feedDescriptor,
+  plumblinesEditorial,
 }: {
   moderation: ModerationDecision
   richText: RichTextAPI
@@ -492,6 +531,7 @@ let PostContent = ({
   postNumbering: FeedPostNumbering | undefined
   additionalPostAlerts?: AppModerationCause[]
   feedDescriptor?: string
+  plumblinesEditorial?: boolean
 }): React.ReactNode => {
   const [limitLines, setLimitLines] = useState(
     () => countLines(richText.text) >= MAX_POST_LINES,
@@ -508,69 +548,85 @@ let PostContent = ({
     setLimitLines(false)
   }, [setLimitLines])
 
+  const copyNode = richText.text ? (
+    <View style={[a.mb_2xs]}>
+      <RichText
+        enableTags
+        testID="postText"
+        value={richText}
+        numberOfLines={limitLines ? MAX_POST_LINES : undefined}
+        style={[a.flex_1, a.text_md, web({fontSize: 18, lineHeight: 25})]}
+        authorHandle={postAuthor.handle}
+        shouldProxyLinks={true}
+        suffixOffset={POST_NUMBER_INLINE_OFFSET}
+        suffix={
+          !limitLines && showPostNumber ? (
+            <ThreadItemPostNumber value={postNumbering} />
+          ) : undefined
+        }
+      />
+      {limitLines && (
+        <View style={[a.flex_row, a.align_center, a.gap_xs]}>
+          <ShowMoreTextButton style={[a.text_md]} onPress={onPressShowMore} />
+          <ThreadItemPostNumber inline={false} value={postNumbering} />
+        </View>
+      )}
+    </View>
+  ) : (
+    <ThreadItemPostNumber inline={false} value={postNumbering} />
+  )
+  const mediaNode = postEmbed ? (
+    <View
+      testID={plumblinesEditorial ? 'plumblines-dispatch-media' : undefined}
+      style={[
+        a.pb_xs,
+        maybeApplyGalleryOffsetStyles('embed', {
+          post,
+          modui: moderation.ui('contentList'),
+          additionalCauses: additionalPostAlerts,
+        }),
+      ]}>
+      <Embed
+        embed={postEmbed}
+        moderation={moderation}
+        onOpen={onOpenEmbed}
+        viewContext={PostEmbedViewContext.Feed}
+        post={post}
+        feedDescriptor={feedDescriptor}
+      />
+    </View>
+  ) : null
+
   return (
     <ContentHider
       testID="contentHider-post"
       modui={moderation.ui('contentList')}
       ignoreMute
-      childContainerStyle={styles.contentHiderChild}>
+      style={plumblinesEditorial ? web({display: 'grid'}) : undefined}
+      childContainerStyle={[
+        styles.contentHiderChild,
+        plumblinesEditorial ? web({display: 'grid'}) : undefined,
+      ]}>
       <PostAlerts
         post={post}
         modui={moderation.ui('contentList')}
         style={[a.pb_xs]}
         additionalCauses={additionalPostAlerts}
       />
-      {richText.text ? (
-        <View style={[a.mb_2xs]}>
-          <RichText
-            enableTags
-            testID="postText"
-            value={richText}
-            numberOfLines={limitLines ? MAX_POST_LINES : undefined}
-            style={[a.flex_1, a.text_md]}
-            authorHandle={postAuthor.handle}
-            shouldProxyLinks={true}
-            suffixOffset={POST_NUMBER_INLINE_OFFSET}
-            suffix={
-              !limitLines && showPostNumber ? (
-                <ThreadItemPostNumber value={postNumbering} />
-              ) : undefined
-            }
-          />
-          {limitLines && (
-            <View style={[a.flex_row, a.align_center, a.gap_xs]}>
-              <ShowMoreTextButton
-                style={[a.text_md]}
-                onPress={onPressShowMore}
-              />
-              <ThreadItemPostNumber inline={false} value={postNumbering} />
-            </View>
-          )}
+      {plumblinesEditorial ? (
+        <View
+          testID="plumblines-dispatch-copy"
+          style={web({display: 'contents'})}>
+          {copyNode}
+          {record && <TranslatedPost hideTranslateLink post={post} />}
         </View>
       ) : (
-        <ThreadItemPostNumber inline={false} value={postNumbering} />
+        <>
+          {copyNode}
+          {record && <TranslatedPost hideTranslateLink post={post} />}
+        </>
       )}
-      {record && <TranslatedPost hideTranslateLink post={post} />}
-      {postEmbed ? (
-        <View
-          style={[
-            a.pb_xs,
-            maybeApplyGalleryOffsetStyles('embed', {
-              post,
-              modui: moderation.ui('contentList'),
-              additionalCauses: additionalPostAlerts,
-            }),
-          ]}>
-          <Embed
-            embed={postEmbed}
-            moderation={moderation}
-            onOpen={onOpenEmbed}
-            viewContext={PostEmbedViewContext.Feed}
-            post={post}
-            feedDescriptor={feedDescriptor}
-          />
-        </View>
-      ) : null}
+      {mediaNode}
     </ContentHider>
   )
 }

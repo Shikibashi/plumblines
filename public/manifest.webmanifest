@@ -1,0 +1,20 @@
+{
+  "id": "/",
+  "name": "Plumblines",
+  "short_name": "Plumblines",
+  "description": "An independent AT Protocol client. Free people, free thought, free association.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5efdf",
+  "theme_color": "#f5efdf",
+  "icons": [
+    {
+      "src": "/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

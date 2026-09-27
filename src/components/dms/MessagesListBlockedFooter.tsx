@@ -4,7 +4,7 @@ import {type ModerationDecision} from '@bsky/sdk/moderation'
 import {Trans, useLingui} from '@lingui/react/macro'
 
 import {useProfileShadow} from '#/state/cache/profile-shadow'
-import {useProfileBlockMutationQueue} from '#/state/queries/profile'
+import {useProfileUnblockMutationQueue} from '#/state/queries/profile'
 import {atoms as a, useTheme} from '#/alf'
 import {Button, ButtonIcon, ButtonText} from '#/components/Button'
 import {useDialogControl} from '#/components/Dialog'
@@ -32,7 +32,7 @@ export function MessagesListBlockedFooter({
   const t = useTheme()
   const {t: l} = useLingui()
   const recipient = useProfileShadow(initialRecipient)
-  const [_queueBlock, queueUnblock] = useProfileBlockMutationQueue(recipient)
+  const queueUnblock = useProfileUnblockMutationQueue(recipient)
 
   const leaveConvoControl = useDialogControl()
   const blockedByListControl = useDialogControl()

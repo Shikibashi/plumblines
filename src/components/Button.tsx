@@ -625,7 +625,9 @@ export function useSharedButtonTextStyles() {
     if (variant === 'solid') {
       if (color === 'primary') {
         if (!disabled) {
-          baseStyles.push({color: t.palette.white})
+          baseStyles.push({
+            color: t.name === 'light' ? t.palette.white : t.palette.contrast_0,
+          })
         } else {
           baseStyles.push({
             color: select(t.name, {

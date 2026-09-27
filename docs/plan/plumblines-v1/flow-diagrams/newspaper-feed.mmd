@@ -1,0 +1,18 @@
+flowchart TD
+  start([Guest or member opens route]) --> shell[Existing navigator with newspaper shell]
+  shell --> route{Feed route?}
+  route -->|Yes| source[Resolve active feed source]
+  route -->|No| normal[Existing screen and neutral context]
+  source --> known{Metadata verified or supplied?}
+  known -->|Yes| display[Show source with evidence qualifier]
+  known -->|No| unknown[Show unknown inputs and ordering]
+  display --> state{Query state?}
+  unknown --> state
+  state -->|Loading| loading[Existing loading state]
+  state -->|Error| failure[Existing retry state]
+  state -->|Success or empty| feed[Existing feed rows or empty state]
+  normal --> done([Usable responsive route])
+  loading --> done
+  failure --> done
+  feed --> done
+  %% web shell, desktop rails, feed query source; no new API

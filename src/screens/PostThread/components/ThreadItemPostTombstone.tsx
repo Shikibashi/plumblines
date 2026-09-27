@@ -8,12 +8,17 @@ import {atoms as a, useTheme} from '#/alf'
 import {PersonX_Stroke2_Corner0_Rounded as PersonXIcon} from '#/components/icons/Person'
 import {Trash_Stroke2_Corner0_Rounded as TrashIcon} from '#/components/icons/Trash'
 import {Text} from '#/components/Typography'
+import {PublicPostReader} from '#/plumblines/components/PublicPostReader'
 
 export type ThreadItemPostTombstoneProps = {
   type: 'not-found' | 'blocked'
+  uri?: string
 }
 
-export function ThreadItemPostTombstone({type}: ThreadItemPostTombstoneProps) {
+export function ThreadItemPostTombstone({
+  type,
+  uri,
+}: ThreadItemPostTombstoneProps) {
   const t = useTheme()
   const {_} = useLingui()
   const {copy, Icon} = useMemo(() => {
@@ -25,6 +30,8 @@ export function ThreadItemPostTombstone({type}: ThreadItemPostTombstoneProps) {
         return {copy: _(msg`Post not found`), Icon: TrashIcon}
     }
   }, [_, type])
+
+  if (type === 'blocked' && uri) return <PublicPostReader key={uri} uri={uri} />
 
   return (
     <View

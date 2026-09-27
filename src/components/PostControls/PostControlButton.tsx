@@ -128,6 +128,7 @@ export function PostControlButtonText({style, ...props}: TextProps) {
 
   return (
     <Text
+      dataSet={{plumblinesEngagement: 'true'}}
       style={[
         color,
         a.user_select_none,

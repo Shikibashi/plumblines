@@ -81,30 +81,31 @@ export const CHAT_PROXY_DID: DidString =
  * Metrics API host
  */
 export const METRICS_API_HOST: string =
-  process.env.EXPO_PUBLIC_METRICS_API_HOST || 'https://events.bsky.app'
+  process.env.EXPO_PUBLIC_PLUMLINES_METRICS_API_HOST || ''
 
 /**
  * Growthbook API host
  */
 export const GROWTHBOOK_API_HOST: string =
-  process.env.EXPO_PUBLIC_GROWTHBOOK_API_HOST || `${METRICS_API_HOST}/gb`
+  process.env.EXPO_PUBLIC_PLUMLINES_GROWTHBOOK_API_HOST || ''
 
 /**
  * Growthbook client key
  */
 export const GROWTHBOOK_CLIENT_KEY: string =
-  process.env.EXPO_PUBLIC_GROWTHBOOK_CLIENT_KEY || 'sdk-7gkUkGy9wguUjyFe'
+  process.env.EXPO_PUBLIC_PLUMLINES_GROWTHBOOK_CLIENT_KEY || ''
 
 /**
  * Sentry DSN for telemetry
  */
-export const SENTRY_DSN: string | undefined = process.env.EXPO_PUBLIC_SENTRY_DSN
+export const SENTRY_DSN: string | undefined =
+  process.env.EXPO_PUBLIC_PLUMLINES_SENTRY_DSN
 
 /**
  * Bitdrift API key. If undefined, Bitdrift should be disabled.
  */
 export const BITDRIFT_API_KEY: string | undefined =
-  process.env.EXPO_PUBLIC_BITDRIFT_API_KEY
+  process.env.EXPO_PUBLIC_PLUMLINES_BITDRIFT_API_KEY
 
 /**
  * GCP project ID which is required for native device attestation. On web, this

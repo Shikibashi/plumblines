@@ -34,7 +34,7 @@ export class MetricsClient<M extends Record<string, any>> {
   private backoffUntil = 0
 
   start() {
-    if (this.started) return
+    if (this.started || !env.METRICS_API_HOST) return
     this.started = true
     this.flushInterval = setInterval(() => {
       this.flush()
@@ -53,6 +53,7 @@ export class MetricsClient<M extends Record<string, any>> {
     payload: M[E],
     metadata: Record<string, any> = {},
   ) {
+    if (!env.METRICS_API_HOST) return
     this.start()
 
     const e: Event<M> = {

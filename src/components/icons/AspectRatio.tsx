@@ -1,13 +1,23 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const AspectRatio11_Stroke2_Corner0_Rounded = createSinglePathSVG({
-  path: 'M3 4a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4Zm2 1v14h14V5H5Z',
+  path: 'M5.0 3.0H19.0Q21.0 3.0 21.0 5.0V19.0Q21.0 21.0 19.0 21.0H5.0Q3.0 21.0 3.0 19.0V5.0Q3.0 3.0 5.0 3.0Z',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })
 
 export const AspectRatio43_Stroke2_Corner0_Rounded = createSinglePathSVG({
-  path: 'M2 20.5c-.552 0-1-.41-1-.917V4.917C1 4.41 1.448 4 2 4h20c.552 0 1 .41 1 .917v14.666c0 .507-.448.917-1 .917H2Zm1-1.833h18V5.833H3v12.834Z',
+  path: 'M4.0 6.0H20.0Q22.0 6.0 22.0 8.0V16.0Q22.0 18.0 20.0 18.0H4.0Q2.0 18.0 2.0 16.0V8.0Q2.0 6.0 4.0 6.0Z',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })
 
 export const AspectRatio34_Stroke2_Corner0_Rounded = createSinglePathSVG({
-  path: 'M4 2c0-.552.41-1 .917-1h14.666c.507 0 .917.448.917 1v20c0 .552-.41 1-.917 1H4.917C4.41 23 4 22.552 4 22V2Zm1.833 1v18h12.834V3H5.833Z',
+  path: 'M8.0 2.0H16.0Q18.0 2.0 18.0 4.0V20.0Q18.0 22.0 16.0 22.0H8.0Q6.0 22.0 6.0 20.0V4.0Q6.0 2.0 8.0 2.0Z',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })

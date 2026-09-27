@@ -60,3 +60,44 @@ Copyright (c) 2020 @catamphetamine <purecatamphetamine@gmail.com>
 ---
 
 For the licensing position of assets that are **not** covered by our MIT license — commissioned artwork, the licensed icon system, Bluesky trademarks, third-party marks, and the product imagery in `assets/images/` — see [`ASSETS.md`](./ASSETS.md), which names known rights holders and identifies the product imagery whose provenance is still being documented.
+
+
+## Plumblines replacement icons
+
+Runtime UI glyphs in `src/components/icons/` and the replacement SVGs in
+`assets/plumblines/lucide/` and `bskyembed/assets/` derive from Lucide revision
+`f06ac67e33d645c40b8ce19a0419c85c5d7dd751`. The complete ISC and Feather MIT
+license notices are retained in [licenses/LUCIDE.txt](./licenses/LUCIDE.txt).
+The export-to-source map is `assets/plumblines/icon-map.json`.
+
+The plumb-bob mark and editorial ornament in `assets/plumblines/` are original
+Plumblines artwork distributed under this repository's MIT license.
+
+## @standard-reader/renderer-react
+
+**Path:** `src/plumblines/reading/standard/` (the package is bundled into the web application)
+**License:** MIT
+
+```
+MIT License
+
+Copyright (c) 2026 Andrew Lisowski
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

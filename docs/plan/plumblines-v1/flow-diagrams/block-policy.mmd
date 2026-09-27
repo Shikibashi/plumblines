@@ -1,0 +1,11 @@
+flowchart TD
+  start([Member attention action]) --> classify{Creates block?}
+  classify -->|Direct or list| deny[Local policy error before shadow or request]
+  classify -->|No| existing[Existing mute or unblock handler]
+  existing --> network{Request succeeds?}
+  network -->|Yes| refresh[Existing cache refresh]
+  network -->|No| error[Existing error feedback]
+  deny --> done([No block write])
+  refresh --> endState([Updated attention state])
+  error --> endState
+  %% profile.ts queueBlock and block mutation; list.ts useListBlockMutation

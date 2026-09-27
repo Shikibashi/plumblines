@@ -352,10 +352,7 @@ function LandingScreenLoaded({
         </Prompt.Actions>
       </Prompt.Outer>
       {IS_WEB && (
-        <meta
-          name="apple-itunes-app"
-          content="app-id=xyz.blueskyweb.app, app-clip-bundle-id=xyz.blueskyweb.app.AppClip, app-clip-display=card"
-        />
+        <meta name="apple-itunes-app" content="app-id=uk.plumblines.app" />
       )}
     </View>
   )

@@ -1,5 +1,9 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const BellPlus_Stroke2_Corner0_Rounded = createSinglePathSVG({
-  path: 'M12 2a1 1 0 0 1 0 2 5.85 5.85 0 0 0-5.802 5.08L5.143 17h13.715l-.382-2.868-.01-.102a1 1 0 0 1 1.973-.262l.02.1.532 4a1 1 0 0 1-.99 1.132h-3.357c-.905 1.747-2.606 3-4.644 3s-3.74-1.253-4.643-3H4a1 1 0 0 1-.991-1.132l1.207-9.053A7.85 7.85 0 0 1 12 2ZM9.78 19c.61.637 1.397 1 2.22 1s1.611-.363 2.22-1H9.78ZM17 2.5a1 1 0 0 1 1 1V6h2.5a1 1 0 0 1 0 2H18v2.5a1 1 0 0 1-2 0V8h-2.5a1 1 0 1 1 0-2H16V3.5a1 1 0 0 1 1-1Z',
+  path: 'M10.268 21a2 2 0 0 0 3.464 0 M15 8h6 M18 5v6 M20.002 14.464a9 9 0 0 0 .738.863A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 8.75-5.332',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })

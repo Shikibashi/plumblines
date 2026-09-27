@@ -50,6 +50,7 @@ import {NoFeedsPinned} from '#/screens/Home/NoFeedsPinned'
 import * as Layout from '#/components/Layout'
 import {useAnalytics} from '#/analytics'
 import {IS_LIQUID_GLASS, IS_WEB} from '#/env'
+import {NewspaperHome} from '#/plumblines/NewspaperHome'
 import {useDemoMode} from '#/storage/hooks/demo-mode'
 
 type Props = NativeStackScreenProps<HomeTabNavigatorParams, 'Home' | 'Start'>
@@ -89,6 +90,8 @@ export function HomeScreen(props: Props) {
     props.route.params,
     setShowLoggedOut,
   ])
+
+  if (IS_WEB) return <NewspaperHome />
 
   if (preferences && pinnedFeedInfos && !isPinnedFeedsLoading) {
     return (

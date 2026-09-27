@@ -34,7 +34,7 @@ export function HomeHeader(
   const items = useMemo(() => {
     const pinnedNames = feeds.map(f => getLocalizedFeedName(f, i18n))
     if (!hasPinnedCustom) {
-      return pinnedNames.concat(l`Feeds ✨`)
+      return pinnedNames.concat(l`Feeds`)
     }
     return pinnedNames
   }, [i18n, l, hasPinnedCustom, feeds])

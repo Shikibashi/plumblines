@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import {ScrollForwarderView} from 'react-native-scroll-forwarder'
 import {moderateProfile, type ModerationOpts} from '@bsky/sdk/moderation'
@@ -41,6 +41,7 @@ import {ProfileHeader, ProfileHeaderLoading} from '#/screens/Profile/Header'
 import {ProfileFeedSection} from '#/screens/Profile/Sections/Feed'
 import {ProfileLabelsSection} from '#/screens/Profile/Sections/Labels'
 import {atoms as a, useTheme} from '#/alf'
+import {Button, ButtonText} from '#/components/Button'
 import {Circle_And_Square_Stroke1_Corner0_Rounded_Filled as CircleAndSquareIcon} from '#/components/icons/CircleAndSquare'
 import {EditBig_Stroke2_Corner2_Rounded as EditBigIcon} from '#/components/icons/EditBig'
 import {Heart2_Stroke1_Corner0_Rounded as HeartIcon} from '#/components/icons/Heart2'
@@ -50,8 +51,10 @@ import {VideoClip_Stroke1_Corner0_Rounded as VideoIcon} from '#/components/icons
 import * as Layout from '#/components/Layout'
 import {ScreenHider} from '#/components/moderation/ScreenHider'
 import {ProfileStarterPacks} from '#/components/StarterPack/ProfileStarterPacks'
+import {Text} from '#/components/Typography'
 import {type app} from '#/lexicons'
 import {navigate} from '#/Navigation'
+import {PublicProfileReader} from '#/plumblines/components/PublicProfileReader'
 
 interface SectionRef {
   scrollToTop: () => void
@@ -73,6 +76,7 @@ function ProfileScreenInner({route}: Props) {
   const name =
     route.params.name === 'me' ? currentAccount?.did : route.params.name
   const moderationOpts = useModerationOpts()
+  const [publicProfileDid, setPublicProfileDid] = useState<string>()
   const {
     data: resolvedDid,
     error: resolveError,
@@ -138,13 +142,51 @@ function ProfileScreenInner({route}: Props) {
     )
   }
   if (profile && moderationOpts) {
+    if (publicProfileDid === profile.did) {
+      return (
+        <PublicProfileReader
+          key={profile.did}
+          accountProfile={profile}
+          onClose={() => setPublicProfileDid(undefined)}
+        />
+      )
+    }
+    const hasBlockRelationship = !!(
+      profile.viewer?.blocking ||
+      profile.viewer?.blockingByList ||
+      profile.viewer?.blockedBy
+    )
     return (
-      <ProfileScreenLoaded
-        profile={profile}
-        moderationOpts={moderationOpts}
-        isPlaceholderProfile={isPlaceholderProfile}
-        hideBackButton={!!route.params.hideBackButton}
-      />
+      <>
+        {hasBlockRelationship && (
+          <Layout.Center>
+            <View style={[a.p_md, a.gap_sm]}>
+              <Text>
+                <Trans>
+                  A block affects this account view. You can read this account’s
+                  public profile without changing the block.
+                </Trans>
+              </Text>
+              <Button
+                testID="viewPublicProfile"
+                label={_(msg`View public profile`)}
+                size="small"
+                color="secondary"
+                onPress={() => setPublicProfileDid(profile.did)}>
+                <ButtonText>
+                  <Trans>View public profile</Trans>
+                </ButtonText>
+              </Button>
+            </View>
+          </Layout.Center>
+        )}
+        <ProfileScreenLoaded
+          profile={profile}
+          moderationOpts={moderationOpts}
+          isPlaceholderProfile={isPlaceholderProfile}
+          hideBackButton={!!route.params.hideBackButton}
+        />
+      </>
     )
   }
   // should never happen

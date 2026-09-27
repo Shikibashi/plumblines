@@ -10,22 +10,20 @@ import {type Shadow} from '#/state/cache/types'
 import {useGetConvoAvailabilityQuery} from '#/state/queries/messages/get-convo-availability'
 import {useGetConvoForMembers} from '#/state/queries/messages/get-convo-for-members'
 import {useRemoveFromGroupChat} from '#/state/queries/messages/remove-from-group'
-import {useProfileBlockMutationQueue} from '#/state/queries/profile'
 import {atoms as a, useTheme} from '#/alf'
 import {canBeMessaged, type ConvoWithDetails} from '#/components/dms/util'
 import {ArrowBoxLeft_Stroke2_Corner0_Rounded as ArrowBoxLeftIcon} from '#/components/icons/ArrowBoxLeft'
 import {DotGrid3x1_Stroke2_Corner0_Rounded as EllipsisIcon} from '#/components/icons/DotGrid'
 import {Message_Stroke2_Corner0_Rounded as MessageIcon} from '#/components/icons/Message'
-import {
-  Person_Stroke2_Corner2_Rounded as PersonIcon,
-  PersonCheck_Stroke2_Corner0_Rounded as PersonCheck,
-  PersonX_Stroke2_Corner0_Rounded as PersonXIcon,
-} from '#/components/icons/Person'
+import {Person_Stroke2_Corner2_Rounded as PersonIcon} from '#/components/icons/Person'
 import * as Menu from '#/components/Menu'
-import {BlockDialog} from '#/components/moderation/BlockDialog'
 import * as Prompt from '#/components/Prompt'
 import * as Toast from '#/components/Toast'
 import {useAnalytics} from '#/analytics'
+import {
+  UnblockAccountDialog,
+  useUnblockAccountMenuItem,
+} from '#/plumblines/components/UnblockAccountMenuItem'
 import type * as bsky from '#/types/bsky'
 import {RemoveMemberPrompt} from './prompts'
 import {StatusBadge} from './StatusBadge'
@@ -50,7 +48,7 @@ export function MemberMenu({
 
   const requireEmailVerification = useRequireEmailVerification()
 
-  const blockMemberPrompt = Prompt.usePromptControl()
+  const unblockControl = Prompt.usePromptControl()
   const removeMemberPrompt = Prompt.usePromptControl()
 
   const [menuDidOpen, setMenuDidOpen] = useState(false)
@@ -76,7 +74,6 @@ export function MemberMenu({
       Toast.show(l`Failed to remove group chat member`, {type: 'error'})
     },
   })
-  const [queueBlock, queueUnblock] = useProfileBlockMutationQueue(profile)
 
   const messageMember = () => {
     if (!convoAvailability?.canChat) {
@@ -102,39 +99,13 @@ export function MemberMenu({
     ],
   })
 
-  const handleBlockMember = async () => {
-    if (profile.viewer?.blocking) {
-      try {
-        await queueUnblock()
-        Toast.show(l({message: 'Account unblocked', context: 'toast'}))
-      } catch (err) {
-        const e = err as Error
-        if (e?.name !== 'AbortError') {
-          logger.error('Failed to unblock account', {message: e})
-          Toast.show(l`There was an issue! ${e.toString()}`, {
-            type: 'error',
-          })
-        }
-      }
-    } else {
-      try {
-        await queueBlock()
-        Toast.show(l({message: 'Account blocked', context: 'toast'}))
-      } catch (err) {
-        const e = err as Error
-        if (e?.name !== 'AbortError') {
-          logger.error('Failed to block account', {message: e})
-          Toast.show(l`There was an issue! ${e.toString()}`, {
-            type: 'error',
-          })
-        }
-      }
-    }
-  }
-
   const canMessageMember = canBeMessaged(profile)
-  const canBlockMember = type === 'owner' || type === 'standard'
   const canRemoveMember = isOwner
+
+  const unblockMenuItem = useUnblockAccountMenuItem({
+    profile: profile,
+    onPress: unblockControl.open,
+  })
 
   return (
     <>
@@ -207,27 +178,7 @@ export function MemberMenu({
           </Menu.Group>
           <Menu.Divider />
           <Menu.Group>
-            {canBlockMember ? (
-              <Menu.Item
-                destructive
-                label={
-                  profile.viewer?.blocking
-                    ? l`Unblock ${displayName}`
-                    : l`Block ${displayName}`
-                }
-                onPress={
-                  profile.viewer?.blocking
-                    ? handleBlockMember
-                    : blockMemberPrompt.open
-                }>
-                <Menu.ItemIcon
-                  icon={profile.viewer?.blocking ? PersonCheck : PersonXIcon}
-                />
-                <Menu.ItemText>
-                  {profile.viewer?.blocking ? l`Unblock` : l`Block`}
-                </Menu.ItemText>
-              </Menu.Item>
-            ) : null}
+            {unblockMenuItem}
             {canRemoveMember ? (
               <Menu.Item
                 destructive
@@ -242,12 +193,7 @@ export function MemberMenu({
           </Menu.Group>
         </Menu.Outer>
       </Menu.Root>
-      <BlockDialog
-        control={blockMemberPrompt}
-        profile={profile}
-        onBlock={handleBlockMember}
-        currentConvoId={convoId}
-      />
+      <UnblockAccountDialog profile={profile} control={unblockControl} />
       <RemoveMemberPrompt
         control={removeMemberPrompt}
         displayName={displayName}

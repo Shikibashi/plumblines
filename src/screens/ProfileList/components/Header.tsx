@@ -8,7 +8,7 @@ import {Trans} from '@lingui/react/macro'
 import {useHaptics} from '#/lib/haptics'
 import {makeListLink} from '#/lib/routes/links'
 import {logger} from '#/logger'
-import {useListBlockMutation, useListMuteMutation} from '#/state/queries/list'
+import {useListMuteMutation, useListUnblockMutation} from '#/state/queries/list'
 import {
   useAddSavedFeedsMutation,
   type UsePreferencesQueryResponse,
@@ -47,8 +47,8 @@ export function Header({
 
   const {mutateAsync: muteList, isPending: isMutePending} =
     useListMuteMutation()
-  const {mutateAsync: blockList, isPending: isBlockPending} =
-    useListBlockMutation()
+  const {mutateAsync: unblockList, isPending: isUnblockPending} =
+    useListUnblockMutation()
   const {mutateAsync: addSavedFeeds, isPending: isAddSavedFeedPending} =
     useAddSavedFeedsMutation()
   const {mutateAsync: updateSavedFeeds, isPending: isUpdatingSavedFeeds} =
@@ -116,7 +116,7 @@ export function Header({
 
   const onUnsubscribeBlock = async () => {
     try {
-      await blockList({uri: list.uri, block: false})
+      await unblockList({uri: list.uri})
       Toast.show(_(msg({message: 'List unblocked', context: 'toast'})))
       ax.metric('moderation:unsubscribedFromList', {listType: 'block'})
     } catch {
@@ -172,8 +172,8 @@ export function Header({
               onPress={onUnsubscribeBlock}
               size="small"
               style={[a.rounded_full]}
-              disabled={isBlockPending}>
-              {isBlockPending && <ButtonIcon icon={Loader} />}
+              disabled={isUnblockPending}>
+              {isUnblockPending && <ButtonIcon icon={Loader} />}
               <ButtonText>
                 <Trans>Unblock</Trans>
               </ButtonText>

@@ -8,9 +8,9 @@ import {shareUrl} from '#/lib/sharing'
 import {toShareUrl} from '#/lib/strings/url-helpers'
 import {logger} from '#/logger'
 import {
-  useListBlockMutation,
   useListDeleteMutation,
   useListMuteMutation,
+  useListUnblockMutation,
   useReferenceListOptOutMutation,
 } from '#/state/queries/list'
 import {useRemoveFeedMutation} from '#/state/queries/preferences'
@@ -57,7 +57,7 @@ export function MoreOptionsMenu({
   const {mutateAsync: removeSavedFeed} = useRemoveFeedMutation()
   const {mutateAsync: deleteList} = useListDeleteMutation()
   const {mutateAsync: muteList} = useListMuteMutation()
-  const {mutateAsync: blockList} = useListBlockMutation()
+  const {mutateAsync: unblockList} = useListUnblockMutation()
 
   const isCurateList = list.purpose === app.bsky.graph.defs.curatelist.value
   const isModList = list.purpose === app.bsky.graph.defs.modlist.value
@@ -152,7 +152,7 @@ export function MoreOptionsMenu({
 
   const onUnsubscribeBlock = async () => {
     try {
-      await blockList({uri: list.uri, block: false})
+      await unblockList({uri: list.uri})
       Toast.show(l({message: 'List unblocked', context: 'toast'}))
       ax.metric('moderation:unsubscribedFromList', {listType: 'block'})
     } catch {

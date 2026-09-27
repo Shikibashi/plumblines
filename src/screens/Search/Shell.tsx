@@ -520,6 +520,7 @@ export function SearchScreenShell({
     <Layout.Screen testID={testID}>
       <View
         ref={headerRef}
+        testID="plumblines-search-header"
         onLayout={evt => {
           if (IS_WEB) setHeaderHeight(evt.nativeEvent.layout.height)
         }}
@@ -538,7 +539,7 @@ export function SearchScreenShell({
               // on the search input because it messes up the layout animation
               // if we add it only when the header is hidden
               style={{marginBottom: tokens.space.xs * -1}}>
-              <Layout.Header.Outer noBottomBorder>
+              <Layout.Header.Outer noBottomBorder sticky={false}>
                 {navButton === 'menu' ? (
                   <Layout.Header.MenuButton />
                 ) : (

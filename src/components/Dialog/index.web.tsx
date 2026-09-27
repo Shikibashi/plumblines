@@ -135,6 +135,8 @@ export function Outer({
           <Context.Provider value={context}>
             <RemoveScrollBar />
             <Pressable
+              // The portal root must sit above the fixed newspaper masthead.
+              style={{zIndex: 30}}
               accessibilityHint={undefined}
               accessibilityLabel={_(msg`Close active dialog`)}
               onPress={handleBackgroundPress}>

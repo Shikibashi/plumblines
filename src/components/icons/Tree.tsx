@@ -1,5 +1,9 @@
+/* Lucide icon adapters. See licenses/LUCIDE.txt and assets/plumblines/icon-map.json. */
 import {createSinglePathSVG} from './TEMPLATE'
 
 export const Tree_Stroke2_Corner0_Rounded = createSinglePathSVG({
-  path: 'M6 2a2.998 2.998 0 0 1 1 5.825V8a2 2 0 0 0 2 2h1.174c.412-1.165 1.52-2 2.826-2h5a3 3 0 1 1 0 6h-5a2.998 2.998 0 0 1-2.826-2H9a3.98 3.98 0 0 1-2-.537V16a2 2 0 0 0 2 2h1.174c.412-1.165 1.52-2 2.826-2h5a3 3 0 1 1 0 6h-5a2.998 2.998 0 0 1-2.826-2H9a4 4 0 0 1-4-4V7.825A2.998 2.998 0 0 1 6 2Zm7 16a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2h-5Zm0-8a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2h-5ZM6 4a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z',
+  path: 'M8 19a4 4 0 0 1-2.24-7.32A3.5 3.5 0 0 1 9 6.03V6a3 3 0 1 1 6 0v.04a3.5 3.5 0 0 1 3.24 5.65A4 4 0 0 1 16 19Z M12 19v3',
+  strokeWidth: 2,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
 })

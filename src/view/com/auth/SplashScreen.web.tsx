@@ -20,6 +20,7 @@ import {TimesLarge_Stroke2_Corner0_Rounded as TimesIcon} from '#/components/icon
 import * as Layout from '#/components/Layout'
 import {InlineLinkText} from '#/components/Link'
 import {Text} from '#/components/Typography'
+import {APP_CONFIG} from '#/plumblines/config'
 
 export const SplashScreen = ({
   onDismiss,
@@ -96,7 +97,7 @@ export const SplashScreen = ({
                   a.font_semi_bold,
                   t.atoms.text_contrast_medium,
                 ]}>
-                <Trans>What's up?</Trans>
+                <Trans>Free people. Free thought. Free association.</Trans>
               </Text>
             </View>
 
@@ -108,7 +109,7 @@ export const SplashScreen = ({
                 onPress={onPressCreateAccount}
                 label={_(msg`Create new account`)}
                 accessibilityHint={_(
-                  msg`Opens flow to create a new Bluesky account`,
+                  msg`Opens flow to create an AT Protocol account`,
                 )}
                 size="large"
                 variant="solid"
@@ -122,7 +123,7 @@ export const SplashScreen = ({
                 onPress={onPressSignin}
                 label={_(msg`Sign in`)}
                 accessibilityHint={_(
-                  msg`Opens flow to sign in to your existing Bluesky account`,
+                  msg`Opens flow to sign in to your existing AT Protocol account`,
                 )}
                 size="large"
                 variant="solid"
@@ -165,21 +166,12 @@ function Footer() {
         t.atoms.border_contrast_medium,
       ]}>
       <InlineLinkText
-        label={_(msg`Learn more about Bluesky`)}
-        to="https://bsky.social">
-        <Trans>Business</Trans>
+        label={_(msg`View the source code`)}
+        to={APP_CONFIG.sourceUrl}>
+        <Trans>Source code</Trans>
       </InlineLinkText>
-      <InlineLinkText
-        label={_(msg`Read the Bluesky blog`)}
-        to="https://bsky.social/about/blog">
-        <Trans>Blog</Trans>
-      </InlineLinkText>
-      <InlineLinkText
-        label={_(msg`See jobs at Bluesky`)}
-        to="https://bsky.social/about/join">
-        <Trans comment="Link to a page with job openings at Bluesky">
-          Jobs
-        </Trans>
+      <InlineLinkText label={_(msg`Get support`)} to={APP_CONFIG.supportUrl}>
+        <Trans>Support</Trans>
       </InlineLinkText>
 
       <View style={a.flex_1} />

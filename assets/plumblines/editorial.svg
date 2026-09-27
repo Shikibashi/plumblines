@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480">
+<rect width="800" height="480" fill="#f2ead7"/>
+<g stroke="#2d2923" fill="none">
+<path stroke-width="2" d="M40 42H760M40 48H760M40 430H760M40 436H760M48 60V415M752 60V415"/>
+<path stroke-width="1" d="M76 338H290M76 351H270M76 364H282M76 377H252M76 390H285M510 338H724M510 351H710M510 364H716M510 377H694M510 390H724"/>
+<path stroke-width="3" d="M120 290Q190 235 242 120M155 255Q126 228 130 211Q157 215 171 236M178 226Q188 191 211 185Q214 212 193 214M195 199Q167 172 176 154Q200 160 208 174M216 162Q219 129 241 121M680 290Q610 235 558 120M645 255Q674 228 670 211Q643 215 629 236M622 226Q612 191 589 185Q586 212 607 214M605 199Q633 172 624 154Q600 160 592 174M584 162Q581 129 559 121"/>
+</g>
+<g transform="translate(310 95) scale(7.5)" fill="#812b24"><path d="M3 2h18v2h-8v9l4 3-5 7-5-7 4-3V4H3Z"/></g>
+<text x="400" y="316" text-anchor="middle" font-family="Liberation Serif" font-size="40" font-weight="bold" letter-spacing="3" fill="#2d2923">PLUMLINES</text>
+<text x="400" y="352" text-anchor="middle" font-family="Liberation Serif" font-size="14" letter-spacing="2" fill="#2d2923">FREE ASSOCIATION</text>
+<text x="400" y="381" text-anchor="middle" font-family="Liberation Serif" font-size="14" letter-spacing="2" fill="#2d2923">A WIDER CONVERSATION</text>
+</svg>
