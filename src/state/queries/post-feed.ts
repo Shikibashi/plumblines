@@ -17,7 +17,10 @@ import {
 import {AuthorFeedAPI} from '#/lib/api/feed/author'
 import {CustomFeedAPI} from '#/lib/api/feed/custom'
 import {DemoFeedAPI} from '#/lib/api/feed/demo'
-import {FollowingFeedAPI} from '#/lib/api/feed/following'
+import {
+  FollowingFeedAPI,
+  FollowingFeedTimeoutError,
+} from '#/lib/api/feed/following'
 import {HomeFeedAPI} from '#/lib/api/feed/home'
 import {LikesFeedAPI} from '#/lib/api/feed/likes'
 import {ListFeedAPI} from '#/lib/api/feed/list'
@@ -204,8 +207,19 @@ export function usePostFeedQuery(
   >({
     enabled,
     staleTime: STALE.INFINITY,
+    retry:
+      feedDesc === 'following'
+        ? (failureCount, error) =>
+            !(error instanceof FollowingFeedTimeoutError) && failureCount < 3
+        : undefined,
     queryKey: RQKEY(feedDesc, params),
-    async queryFn({pageParam}: {pageParam: RQPageParam}) {
+    async queryFn({
+      pageParam,
+      signal,
+    }: {
+      pageParam: RQPageParam
+      signal: AbortSignal
+    }) {
       logger.debug('usePostFeedQuery', {feedDesc, cursor: pageParam?.cursor})
       const {api, cursor} = pageParam
         ? pageParam
@@ -223,7 +237,7 @@ export function usePostFeedQuery(
             cursor: undefined,
           }
 
-      const res = await api.fetch({cursor, limit: fetchLimit})
+      const res = await api.fetch({cursor, limit: fetchLimit, signal})
 
       /*
        * If this is a public view, we need to check if posts fail moderation.

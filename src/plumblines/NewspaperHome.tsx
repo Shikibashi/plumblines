@@ -9,6 +9,7 @@ import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {atoms as a} from '#/alf'
 import {Button, ButtonText} from '#/components/Button'
 import * as Layout from '#/components/Layout'
+import {Text} from '#/components/Typography'
 import {IS_WEB} from '#/env'
 import {ReaderControls} from '#/plumblines/reading/preferences'
 import {NewspaperSections} from '#/plumblines/sections'
@@ -31,12 +32,23 @@ export function NewspaperHome() {
     <Layout.Screen testID="HomeScreen" fullWidth>
       <View testID="plumblines-front-page">
         <View
-          accessibilityRole="toolbar"
-          accessibilityLabel={l`Reading tools`}
-          accessibilityHint={l`Reader display controls`}
           style={[a.flex_row, a.flex_wrap, a.gap_sm, a.p_lg]}
           testID="plumblines-utility-bar">
-          <ReaderControls />
+          <details className="newspaper-view-menu">
+            <summary>
+              <Text>
+                <Trans>View</Trans>
+              </Text>
+            </summary>
+            <div className="newspaper-view-panel">
+              <span className="newspaper-view-label">
+                <Text>
+                  <Trans>VIEW</Trans>
+                </Text>
+              </span>
+              <ReaderControls />
+            </div>
+          </details>
           {!hasSession && (
             <>
               <Button

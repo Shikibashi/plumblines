@@ -135,6 +135,19 @@ test('QA13: sign in reaches the existing account form', async ({page}) => {
   })
 })
 
+test('EFP: Reader mode is tucked under View furniture', async ({page}) => {
+  await page.goto('/')
+  const view = page.locator('.newspaper-view-menu')
+  await expect(view.locator(':scope > summary')).toHaveText('View')
+  await expect(page.getByTestId('plumblines-reader-toggle')).toBeHidden()
+  await view.locator(':scope > summary').click()
+  await expect(page.getByTestId('plumblines-reader-toggle')).toBeVisible()
+  await expect(page.getByTestId('plumblines-utility-bar')).not.toContainText(
+    'Manage sections',
+  )
+  await expect(page.locator('#splash')).toBeHidden()
+})
+
 test('full handle sign-in stays available when service description fails', async ({
   page,
 }) => {
@@ -269,6 +282,9 @@ test('EFP: composed sheets use the document scroll and expose Reading as a disti
   await expect(
     page.getByText('The index has no readable body for this document.'),
   ).toBeVisible()
+  await expect(page.locator('.pl-standard-list')).toHaveCount(0)
+  await page.getByRole('button', {name: 'Back to Reading'}).click()
+  await expect(page.locator('.pl-standard-list')).toBeVisible()
 
   const renderableArticle = page.getByRole('button', {
     name: 'Read article: Readable article fixture',
@@ -282,11 +298,14 @@ test('EFP: composed sheets use the document scroll and expose Reading as a disti
     page.getByRole('heading', {name: renderableTitle, exact: true}),
   ).toBeVisible()
   await expect(page.locator('.pl-standard-prose')).toContainText(/\S/u)
+  await expect(page.locator('.pl-standard-list')).toHaveCount(0)
   await page.locator('.pl-standard-article').scrollIntoViewIfNeeded()
   await page.screenshot({
     animations: 'disabled',
     path: 'docs/zeus/evidence/standard-reader-article.png',
   })
+  await page.getByRole('button', {name: 'Back to Reading'}).click()
+  await expect(page.locator('.pl-standard-list')).toBeVisible()
 })
 
 test('EFP: reader-selected lead and template controls update the composed sheet', async ({
@@ -294,6 +313,7 @@ test('EFP: reader-selected lead and template controls update the composed sheet'
 }) => {
   await page.goto('/')
   const editor = page.locator('.newspaper-layout-settings')
+  await page.locator('.newspaper-edition-menu > summary').click()
   await editor.locator('summary').click()
   await editor.getByLabel('Page composition').selectOption('compact')
   await expect(page.locator('.newspaper-layout').first()).toHaveAttribute(

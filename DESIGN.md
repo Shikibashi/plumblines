@@ -6,6 +6,7 @@ A working AT Protocol newspaper: reading and choosing a feed are the primary tas
 
 ## Tokens
 - Paper: #f5efdf; raised paper: #eee6d5; ink: #24221e; muted ink: #625b50; rule: #a49a87; accent: #8d2924.
+- Paper depth uses a crisp, offset lower/right stock edge and a restrained cast shadow. Quote clippings use raised stock, square edges, and one source rule. Avoid paper texture, broad floating-card shadows, and rounded cards.
 - Web headline/body serif: Georgia, Times New Roman, serif. Keep existing sans-serif where technical handles/forms need clarity. Native uses supported existing fonts unless separately verified.
 - Fine 1px rules and double masthead divider. The reading surface is visibly darker than the paper sheet; give each sheet a hairline edge, slight lift, and deliberate gap. Use square newsroom slips; avoid card shadows and pill-heavy chrome.
 - Masthead large uppercase, tightly spaced on desktop, compact on phone. Use publication metadata and a short product strapline (“A newspaper for the Atmosphere”), not manifesto copy or fabricated issue facts.
@@ -32,5 +33,13 @@ Up to eight local Following/feed/list/latest-search sections retain the existing
 - Reading is a separate destination for the Standard Reader index and article renderer, not another timeline region on the front page.
 - Muted accounts, muted words, and local snoozes are managed in Settings. Contextual hide/report controls remain with the story or account; front-page layout controls do not become moderation controls.
 - The paper metaphor affects surface, organization, and navigation. It does not alter AT Protocol records or invent headlines, rankings, issue numbers, bylines, or dates.
+
+## Story interiors and Reading
+
+Social posts are wrapped as dispatches with treatment-specific hierarchy, a quiet lead marginal rule, and ruled quote clippings. The upstream post component remains the behavior engine for authorship/time, reply and repost attribution, content warnings, embeds, media alt text, and protocol actions; Plumblines uses a narrowly scoped opt-in presentation seam for dispatches. This seam is a transitional boundary, not a duplicated renderer.
+
+Paper depth comes from the exposed edge of a second sheet and a soft lower shadow. A quoted record sits on raised paper with square edges and its existing source rule. Keep Reading's grid and the article measure unchanged; do not add texture or turn each story into a card. Keep sheet and clipping edges visible in light, dim, and dark themes.
+
+The Reading destination opens with a source-ordered article front. Choosing an article replaces that front with a separate article sheet using its real Standard.site metadata and existing normalized body renderer; “Back to Reading” returns to the index. Long-form reading stays in one narrow column. Implementation and verification limits are recorded in [the Story Interiors implementation log](docs/design-refs/2026-09-24-impl-log-story-interiors.md).
 
 Ornament is sparse. Rules, scale and alignment create structure; complete story borders and nested feed scrollbars are avoided. Keep controls sans-serif, body prose around 55–65ch, focus visible, mobile targets large, content warnings/provenance intact, and movement disabled under reduced-motion preferences. Light, dim and dark paper use separate readable colors; never invert to black. Dark/phone screenshots must be reviewed on the real rendered application, not inferred from these tokens.

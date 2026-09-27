@@ -160,6 +160,7 @@ async function installFixtures(page: Page, muted = false) {
 }
 
 async function addFeed(page: Page) {
+  await openEditionMenu(page)
   await page.getByRole('button', {name: 'Manage sections', exact: true}).click()
   await page.getByLabel('New section name', {exact: true}).fill('Fixture wire')
   await page
@@ -175,7 +176,20 @@ async function addFeed(page: Page) {
       exact: true,
     }),
   ).toBeVisible()
+  const dispatch = section.locator('.plumblines-dispatch').first()
+  await expect(dispatch).toHaveAttribute('data-story-kind', 'dispatch')
+  await expect(dispatch.locator('.plumblines-dispatch-byline')).toBeVisible()
+  await expect(dispatch.locator('.plumblines-dispatch-content')).toContainText(
+    /dispatch\./,
+  )
+  await expect(dispatch.locator('.plumblines-dispatch-actions')).toBeVisible()
   return section
+}
+
+async function openEditionMenu(page: Page) {
+  const menu = page.locator('.newspaper-edition-menu')
+  if ((await menu.getAttribute('open')) === null)
+    await menu.locator(':scope > summary').click()
 }
 
 for (const width of [390, 1040, 1586]) {
@@ -241,6 +255,7 @@ for (const width of [390, 1040, 1586]) {
       animations: 'disabled',
       path: `docs/zeus/evidence/v1-sections-${width}.png`,
     })
+    await openEditionMenu(page)
     await page
       .getByRole('button', {name: 'Manage sections', exact: true})
       .click()
@@ -259,6 +274,7 @@ test('v1 saved search persists as a section without pretending guest access exis
 }) => {
   await installFixtures(page)
   await page.goto('/')
+  await openEditionMenu(page)
   await page.getByRole('button', {name: 'Manage sections', exact: true}).click()
   await page.getByLabel('New section name', {exact: true}).fill('Town desk')
   await page
@@ -430,6 +446,7 @@ test('v1 composed front page continues the lead source after its opening package
   await page.goto('/')
   await addFeed(page)
   await page.getByRole('button', {name: 'Front page', exact: true}).click()
+  await openEditionMenu(page)
   await page.locator('.newspaper-layout-settings summary').click()
   await page
     .locator('.newspaper-layout-controls select')

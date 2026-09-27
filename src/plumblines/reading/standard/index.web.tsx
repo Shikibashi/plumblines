@@ -326,6 +326,7 @@ export function StandardReading() {
   const {t: l} = useLingui()
   const theme = useTheme()
   const [selectedUri, setSelectedUri] = useState<string>()
+  const [readingView, setReadingView] = useState<'front' | 'article'>('front')
   const feed = useInfiniteQuery({
     queryKey: feedKey,
     queryFn: ({pageParam, signal}) => fetchLatestFeed(pageParam, signal),
@@ -388,11 +389,14 @@ export function StandardReading() {
         .pl-standard-heading-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
         .pl-standard-heading-row h1{font-size:clamp(30px,4vw,52px);line-height:1;margin:0;text-transform:uppercase;letter-spacing:.035em}
         .pl-standard-source{font-family:Arial,sans-serif;font-size:13px;color:var(--pl-muted);margin:8px 0 0}
-        .pl-standard-layout{display:grid;grid-template-columns:minmax(210px,30%) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
-        .pl-standard-list{list-style:none;padding:0;margin:0;border-top:1px solid var(--pl-rule)}
-        .pl-standard-entry{border-bottom:1px solid var(--pl-rule)}
-        .pl-standard-entry button{display:grid;gap:5px;width:100%;padding:14px 8px;min-height:72px}
-        .pl-standard-entry button[aria-current=true]{border-left:3px solid var(--pl-red);padding-left:12px}
+        .pl-standard-layout{display:block}
+        .pl-standard-list{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));align-items:stretch;list-style:none;padding:0;margin:0;border-top:1px solid var(--pl-rule)}
+        .pl-standard-entry{grid-column:span 6;min-width:0;border-bottom:1px solid var(--pl-rule)}
+        .pl-standard-entry:first-child{grid-column:span 7;grid-row:span 2;border-right:1px solid var(--pl-rule);padding-right:clamp(12px,2vw,28px)}
+        .pl-standard-entry:nth-child(2),.pl-standard-entry:nth-child(3){grid-column:span 5;padding-left:clamp(12px,2vw,28px)}
+        .pl-standard-entry button{display:grid;align-content:start;gap:6px;width:100%;padding:18px 8px;min-height:104px}
+        .pl-standard-entry:first-child button{min-height:200px;padding-left:0}
+        .pl-standard-entry:nth-child(n+4) button{min-height:84px}
         .pl-standard-entry-type,.pl-standard-kicker{font:600 11px/1.3 Arial,sans-serif;letter-spacing:.12em;color:var(--pl-red)}
         .pl-standard-entry-title{font-size:18px;line-height:1.22;overflow-wrap:anywhere}
         .pl-standard-entry-source,.pl-standard-entry time,.pl-standard-provenance{font:13px/1.45 Arial,sans-serif;color:var(--pl-muted)}
@@ -401,7 +405,9 @@ export function StandardReading() {
         .pl-standard-reading-more,.pl-standard-error button{margin-top:14px;padding:10px 2px;border-bottom:1px solid var(--pl-ink)}
         .pl-standard-load-sentinel{height:1px;width:100%}
         .pl-standard-reading-more:disabled,.pl-standard-error button:disabled{opacity:.55;cursor:wait}
-        .pl-standard-detail{min-width:0;border-left:1px solid var(--pl-rule);padding-left:clamp(16px,3vw,40px)}
+        .pl-standard-detail{min-width:0}
+        .pl-standard-article-nav{max-width:60ch;margin:0 auto 16px;padding-bottom:8px;border-bottom:1px solid var(--pl-rule)}
+        .pl-standard-article-nav button{min-height:40px;padding:4px 0;border-bottom:1px solid var(--pl-red);color:var(--pl-red);cursor:pointer}
         .pl-standard-article{max-width:60ch;margin:0 auto}
         .pl-standard-article h2{font-size:clamp(30px,4vw,44px);line-height:1.08;margin:8px 0 12px;overflow-wrap:anywhere}
         .pl-standard-provenance p{margin:0 0 8px}
@@ -425,7 +431,7 @@ export function StandardReading() {
         .pl-standard-article-footer{border-top:1px solid var(--pl-rule);margin-top:36px;padding-top:12px;font:12px/1.5 Arial,sans-serif;color:var(--pl-muted);overflow-wrap:anywhere}
         .pl-standard-article-footer p{margin:0 0 8px}
         .pl-standard-article-footer code{font-size:11px}
-        @media(max-width:700px){.pl-standard-reading{padding:16px}.pl-standard-layout{grid-template-columns:minmax(0,1fr);gap:24px}.pl-standard-detail{border-left:0;border-top:3px double var(--pl-rule);padding:20px 0 0}.pl-standard-entry button{min-height:60px}.pl-standard-article h2{font-size:32px}}
+        @media(max-width:700px){.pl-standard-reading{padding:16px}.pl-standard-list{grid-template-columns:minmax(0,1fr)}.pl-standard-entry,.pl-standard-entry:first-child,.pl-standard-entry:nth-child(2),.pl-standard-entry:nth-child(3){grid-column:1;grid-row:auto;border-right:0;padding-left:0;padding-right:0}.pl-standard-entry button,.pl-standard-entry:first-child button,.pl-standard-entry:nth-child(n+4) button{min-height:60px;padding:14px 4px}.pl-standard-article h2{font-size:32px}}
       `}</style>
       <header className="pl-standard-head">
         <div className="pl-standard-heading-row">
@@ -433,7 +439,11 @@ export function StandardReading() {
             <Trans>Reading</Trans>
           </h1>
           <span className="pl-standard-kicker">
-            <Trans>LONG-FORM</Trans>
+            {readingView === 'article' ? (
+              <Trans>READING EDITION</Trans>
+            ) : (
+              <Trans>LONG-FORM</Trans>
+            )}
           </span>
         </div>
         <p className="pl-standard-source">
@@ -461,6 +471,22 @@ export function StandardReading() {
         <p>
           <Trans>The public index has no readable documents right now.</Trans>
         </p>
+      ) : readingView === 'article' && selected ? (
+        <div className="pl-standard-detail" aria-live="polite">
+          <nav
+            className="pl-standard-article-nav"
+            aria-label={l`Reading navigation`}>
+            <button
+              type="button"
+              onClick={() => {
+                setReadingView('front')
+                window.scrollTo({top: 0, behavior: 'auto'})
+              }}>
+              ← <Trans>Back to Reading</Trans>
+            </button>
+          </nav>
+          <ArticleReader item={selected} />
+        </div>
       ) : (
         <div className="pl-standard-layout">
           <nav aria-label={l`Latest public articles`}>
@@ -470,7 +496,11 @@ export function StandardReading() {
                   key={item.uri}
                   item={item}
                   selected={item.uri === selectedUri}
-                  onOpen={() => setSelectedUri(item.uri)}
+                  onOpen={() => {
+                    setSelectedUri(item.uri)
+                    setReadingView('article')
+                    window.scrollTo({top: 0, behavior: 'auto'})
+                  }}
                 />
               ))}
             </ol>
@@ -503,17 +533,6 @@ export function StandardReading() {
               </p>
             ) : null}
           </nav>
-          <div className="pl-standard-detail" aria-live="polite">
-            {selected ? (
-              <ArticleReader item={selected} />
-            ) : (
-              <p>
-                <Trans>
-                  Select an article to open its full text from the public index.
-                </Trans>
-              </p>
-            )}
-          </div>
         </div>
       )}
     </section>

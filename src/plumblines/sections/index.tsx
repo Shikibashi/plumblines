@@ -17,7 +17,7 @@ import {useLoggedOutViewControls} from '#/state/shell/logged-out'
 import {Post} from '#/view/com/post/Post'
 import {PostFeedItem} from '#/view/com/posts/PostFeedItem'
 import {ViewFullThread} from '#/view/com/posts/ViewFullThread'
-import {DispatchStory} from '#/plumblines/frontpage/DispatchStory'
+import {EditorialDispatch} from '#/plumblines/frontpage/EditorialDispatch'
 import {PageNavigator} from '#/plumblines/frontpage/PageNavigator'
 import {useLocalAttention} from '#/plumblines/local-attention'
 import {usePlumblinesStorage} from '#/plumblines/local-preferences'
@@ -71,6 +71,7 @@ export function NewspaperSections() {
   const secondaryLeftSection = sectionFor(packages.secondaryLeft)
   const secondaryRightSection = sectionFor(packages.secondaryRight)
   const root = useRef<HTMLDivElement>(null)
+  const editionMenu = useRef<HTMLDetailsElement>(null)
   const [activePage, setActivePage] = useState<'front' | 'section' | 'reading'>(
     'front',
   )
@@ -156,66 +157,80 @@ export function NewspaperSections() {
             </button>
           ))}
           <button
-            className="newspaper-manage-button"
-            onClick={() => setManaging(value => !value)}
-            aria-expanded={managing}>
-            <Trans>Manage sections</Trans>
-          </button>
-          <button
             aria-current={activePage === 'reading' ? 'page' : undefined}
             onClick={() => setActivePage('reading')}>
             <Trans>Reading</Trans>
           </button>
         </nav>
-        <details className="newspaper-layout-settings">
+        <details ref={editionMenu} className="newspaper-edition-menu">
           <summary>
-            <Trans>Edit edition</Trans>
+            <Trans>Edition</Trans>
           </summary>
-          <div className="newspaper-layout-controls">
-            <label>
-              <Trans>Lead section</Trans>
-              <select
-                value={frontPage.leadSectionId ?? packages.lead?.id ?? ''}
-                onChange={event =>
-                  saveFrontPage({
-                    ...frontPage,
-                    leadSectionId: event.target.value || null,
-                  })
-                }>
-                {config.sections.map(section => (
-                  <option key={section.id} value={section.id}>
-                    {section.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              <Trans>Page composition</Trans>
-              <select
-                value={frontPage.template}
-                onChange={event =>
-                  saveFrontPage({
-                    ...frontPage,
-                    template: event.target.value as typeof frontPage.template,
-                  })
-                }>
-                <option value="broadsheet">{l`Broadsheet`}</option>
-                <option value="compact">{l`Compact`}</option>
-                <option value="reading">{l`Reading`}</option>
-              </select>
-            </label>
+          <div className="newspaper-edition-panel">
+            <p className="newspaper-slip-heading">
+              <Trans>EDITION DESK</Trans>
+            </p>
+            <button
+              className="newspaper-manage-button"
+              onClick={() => {
+                setManaging(value => !value)
+                editionMenu.current?.removeAttribute('open')
+              }}
+              aria-expanded={managing}>
+              <Trans>Manage sections</Trans>
+            </button>
+            <details className="newspaper-layout-settings">
+              <summary>
+                <Trans>Edit front page</Trans>
+              </summary>
+              <div className="newspaper-layout-controls">
+                <label>
+                  <Trans>Lead section</Trans>
+                  <select
+                    value={frontPage.leadSectionId ?? packages.lead?.id ?? ''}
+                    onChange={event =>
+                      saveFrontPage({
+                        ...frontPage,
+                        leadSectionId: event.target.value || null,
+                      })
+                    }>
+                    {config.sections.map(section => (
+                      <option key={section.id} value={section.id}>
+                        {section.title}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  <Trans>Page composition</Trans>
+                  <select
+                    value={frontPage.template}
+                    onChange={event =>
+                      saveFrontPage({
+                        ...frontPage,
+                        template: event.target
+                          .value as typeof frontPage.template,
+                      })
+                    }>
+                    <option value="broadsheet">{l`Broadsheet`}</option>
+                    <option value="compact">{l`Compact`}</option>
+                    <option value="reading">{l`Reading`}</option>
+                  </select>
+                </label>
+              </div>
+            </details>
+            <details className="newspaper-keyboard-help">
+              <summary>
+                <Trans>Shortcuts</Trans>
+              </summary>
+              <p>
+                <Trans>
+                  j / k move between stories; o opens the focused story; 1–8
+                  select configured sections.
+                </Trans>
+              </p>
+            </details>
           </div>
-        </details>
-        <details className="newspaper-keyboard-help">
-          <summary>
-            <Trans>Shortcuts</Trans>
-          </summary>
-          <p>
-            <Trans>
-              j / k move between stories; o opens the focused story; 1–8 select
-              configured sections.
-            </Trans>
-          </p>
         </details>
       </div>
       {managing && (
@@ -697,7 +712,9 @@ function FeedColumn({
             className={
               segment === 'continuation'
                 ? 'newspaper-sheet newspaper-stream-sheet'
-                : undefined
+                : segment === 'section'
+                  ? 'newspaper-section-stories'
+                  : undefined
             }
             id={
               segment === 'continuation'
@@ -785,34 +802,35 @@ export function SectionFeedSlice({
             {incomplete && position === 1 && (
               <ViewFullThread uri={slice.items[0].uri} />
             )}
-            <DispatchStory
-              uri={item.uri}
-              treatment={
-                hasImageEmbed(item.post.embed)
-                  ? 'visual'
-                  : (treatments[offset + index] ?? 'standard')
-              }
-              label={dispatchLabel}>
-              <PostFeedItem
-                post={item.post}
-                record={item.record}
-                postNumbering={item.postNumbering}
-                reason={index === 0 ? slice.reason : undefined}
-                feedContext={slice.feedContext}
-                reqId={slice.reqId}
-                moderation={item.moderation}
-                parentAuthor={item.parentAuthor}
-                showReplyTo={showReplyTo}
-                isThreadParent={index < slice.items.length - 1}
-                isThreadChild={index > 0}
-                isThreadLastChild={
-                  index > 0 && index === slice.items.length - 1
-                }
-                isParentBlocked={item.isParentBlocked}
-                isParentNotFound={item.isParentNotFound}
-                rootPost={slice.items[0].post}
-              />
-            </DispatchStory>
+            <PostFeedItem
+              post={item.post}
+              record={item.record}
+              postNumbering={item.postNumbering}
+              reason={index === 0 ? slice.reason : undefined}
+              feedContext={slice.feedContext}
+              reqId={slice.reqId}
+              moderation={item.moderation}
+              parentAuthor={item.parentAuthor}
+              showReplyTo={showReplyTo}
+              isThreadParent={index < slice.items.length - 1}
+              isThreadChild={index > 0}
+              isThreadLastChild={index > 0 && index === slice.items.length - 1}
+              isParentBlocked={item.isParentBlocked}
+              isParentNotFound={item.isParentNotFound}
+              rootPost={slice.items[0].post}
+              renderPlumblinesEditorial={slots => (
+                <EditorialDispatch
+                  uri={item.uri}
+                  treatment={
+                    hasImageEmbed(item.post.embed)
+                      ? 'visual'
+                      : (treatments[offset + index] ?? 'standard')
+                  }
+                  label={dispatchLabel}
+                  {...slots}
+                />
+              )}
+            />
           </Fragment>
         )
       })}
@@ -896,7 +914,7 @@ function SearchColumn({
             </div>
           )}
           {page.map((post, index) => (
-            <DispatchStory
+            <EditorialDispatch
               key={post.uri}
               uri={post.uri}
               treatment={
@@ -906,7 +924,7 @@ function SearchColumn({
               }
               label={l`Dispatch`}>
               <Post post={post} />
-            </DispatchStory>
+            </EditorialDispatch>
           ))}
           {segment === 'continuation' && (
             <footer className="newspaper-page-colophon">

@@ -581,12 +581,16 @@ function ComposeBtn({minimal}: {minimal: boolean}) {
     openComposer({mention: await getProfileHandle(), logContext: 'Fab'})
 
   return (
-    <View style={minimal ? [a.px_sm, a.pt_lg] : [a.flex_row, a.pl_md, a.pt_lg]}>
+    <View
+      style={
+        minimal ? [a.pt_lg, a.align_center] : [a.flex_row, a.pl_md, a.pt_lg]
+      }>
       <Button
         disabled={isFetchingHandle}
         label={l`Compose new post`}
         onPress={() => void onPressCompose()}
         size="large"
+        shape={minimal ? 'round' : 'default'}
         color="primary"
         style={[
           a.rounded_full,
@@ -631,7 +635,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
       style={[
         a.fixed,
         a.top_0,
-        a.p_lg,
+        leftNavMinimal ? a.p_sm : a.p_lg,
         styles.leftNav,
         !hasSession && !leftNavMinimal && {width: LEFT_NAV_PWI_WIDTH},
         leftNavMinimal && [
