@@ -796,7 +796,7 @@ export function DesktopLeftNav({routeName}: {routeName: string}) {
             }}
           />
 
-          <ComposeBtn minimal={leftNavMinimal} />
+          <ComposeBtn minimal={leftNavMinimal || routeName === 'Home'} />
         </>
       )}
     </View>
