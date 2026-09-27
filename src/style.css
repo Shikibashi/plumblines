@@ -1554,6 +1554,11 @@ body[data-plumblines-front-page='true']
 }
 body[data-plumblines-front-page='true']
   [data-testid='plumblines-left-nav']
+  [data-plumblines-nav-label] {
+  display: none;
+}
+body[data-plumblines-front-page='true']
+  [data-testid='plumblines-left-nav']
   [role='link'] {
   position: relative;
   justify-content: center;

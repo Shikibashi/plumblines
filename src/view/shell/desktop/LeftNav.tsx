@@ -530,7 +530,9 @@ function NavItem({
         ) : null}
       </View>
       {!minimal && (
-        <Text style={[a.text_xl, isCurrent ? a.font_bold : a.font_normal]}>
+        <Text
+          dataSet={{plumblinesNavLabel: 1}}
+          style={[a.text_xl, isCurrent ? a.font_bold : a.font_normal]}>
           {label}
         </Text>
       )}
