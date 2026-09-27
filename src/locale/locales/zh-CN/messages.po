@@ -2434,7 +2434,7 @@ msgstr "模糊化图片"
 msgid "Blur images and filter from feeds"
 msgstr "模糊化图片并从动态源中过滤"
 
-#: src/view/shell/desktop/LeftNav.tsx:768
+#: src/view/shell/desktop/LeftNav.tsx:766
 msgctxt "link to bookmarks screen"
 msgid "Bookmarks"
 msgstr ""
@@ -3230,7 +3230,7 @@ msgstr "完成验证"
 
 #: src/lib/hotkeys/index.tsx:66
 #: src/view/com/feeds/ComposerPrompt.tsx:161
-#: src/view/shell/desktop/LeftNav.tsx:592
+#: src/view/shell/desktop/LeftNav.tsx:590
 msgid "Compose new post"
 msgstr "撰写新帖文"
 
@@ -5008,8 +5008,8 @@ msgstr "露骨的色情图片。"
 
 #: src/Navigation.tsx:793
 #: src/screens/Search/Shell.tsx:550
-#: src/view/shell/desktop/LeftNav.tsx:682
-#: src/view/shell/desktop/LeftNav.tsx:713
+#: src/view/shell/desktop/LeftNav.tsx:680
+#: src/view/shell/desktop/LeftNav.tsx:711
 #: src/view/shell/Drawer.tsx:476
 msgid "Explore"
 msgstr "探索"
@@ -5466,8 +5466,8 @@ msgstr "已提交反馈给动态源维护者"
 #: src/view/com/home/HomeHeader.tsx:37
 #: src/view/screens/Feeds.tsx:505
 #: src/view/screens/Profile.tsx:282
-#: src/view/shell/desktop/LeftNav.tsx:692
-#: src/view/shell/desktop/LeftNav.tsx:748
+#: src/view/shell/desktop/LeftNav.tsx:690
+#: src/view/shell/desktop/LeftNav.tsx:746
 #: src/view/shell/Drawer.tsx:592
 msgid "Feeds"
 msgstr "动态源"
@@ -6595,8 +6595,8 @@ msgstr "请稍等！我们正在逐步开放上传视频的权限。你目前仍
 #: src/Navigation.tsx:788
 #: src/Navigation.tsx:809
 #: src/view/shell/bottom-bar/BottomBar.tsx:196
-#: src/view/shell/desktop/LeftNav.tsx:675
-#: src/view/shell/desktop/LeftNav.tsx:703
+#: src/view/shell/desktop/LeftNav.tsx:673
+#: src/view/shell/desktop/LeftNav.tsx:701
 #: src/view/shell/Drawer.tsx:502
 msgid "Home"
 msgstr "主页"
@@ -7595,7 +7595,7 @@ msgstr ""
 #: src/view/screens/Lists.tsx:60
 #: src/view/screens/Profile.tsx:276
 #: src/view/screens/Profile.tsx:284
-#: src/view/shell/desktop/LeftNav.tsx:758
+#: src/view/shell/desktop/LeftNav.tsx:756
 #: src/view/shell/Drawer.tsx:607
 msgid "Lists"
 msgstr "列表"
@@ -8015,7 +8015,7 @@ msgid "Message options"
 msgstr "信息选项"
 
 #: src/Navigation.tsx:803
-#: src/view/shell/desktop/LeftNav.tsx:734
+#: src/view/shell/desktop/LeftNav.tsx:732
 msgid "Messages"
 msgstr "信息"
 
@@ -8500,7 +8500,7 @@ msgid "New post"
 msgstr "新帖文"
 
 #: src/view/com/feeds/FeedPage.tsx:179
-#: src/view/shell/desktop/LeftNav.tsx:604
+#: src/view/shell/desktop/LeftNav.tsx:602
 msgctxt "action"
 msgid "New post"
 msgstr "新帖文"
@@ -8985,7 +8985,7 @@ msgstr "通知提示音"
 #: src/screens/Settings/Settings.tsx:215
 #: src/view/screens/Notifications.tsx:128
 #: src/view/shell/bottom-bar/BottomBar.tsx:279
-#: src/view/shell/desktop/LeftNav.tsx:723
+#: src/view/shell/desktop/LeftNav.tsx:721
 #: src/view/shell/Drawer.tsx:555
 msgid "Notifications"
 msgstr "通知"
@@ -10285,7 +10285,7 @@ msgid "profile"
 msgstr "个人资料"
 
 #: src/view/shell/bottom-bar/BottomBar.tsx:322
-#: src/view/shell/desktop/LeftNav.tsx:781
+#: src/view/shell/desktop/LeftNav.tsx:779
 #: src/view/shell/Drawer.tsx:92
 #: src/view/shell/Drawer.tsx:658
 msgid "Profile"
@@ -12044,7 +12044,7 @@ msgstr "设置用于重置密码的电子邮箱"
 
 #: src/Navigation.tsx:239
 #: src/screens/Settings/Settings.tsx:104
-#: src/view/shell/desktop/LeftNav.tsx:791
+#: src/view/shell/desktop/LeftNav.tsx:789
 #: src/view/shell/Drawer.tsx:671
 msgid "Settings"
 msgstr "设置"

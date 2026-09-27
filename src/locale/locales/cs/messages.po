@@ -2434,7 +2434,7 @@ msgstr "Rozostřit obrázky"
 msgid "Blur images and filter from feeds"
 msgstr "Rozostřit obrázky a odfiltrovat je z kanálů"
 
-#: src/view/shell/desktop/LeftNav.tsx:768
+#: src/view/shell/desktop/LeftNav.tsx:766
 msgctxt "link to bookmarks screen"
 msgid "Bookmarks"
 msgstr ""
@@ -3230,7 +3230,7 @@ msgstr "Dokončete výzvu"
 
 #: src/lib/hotkeys/index.tsx:66
 #: src/view/com/feeds/ComposerPrompt.tsx:161
-#: src/view/shell/desktop/LeftNav.tsx:592
+#: src/view/shell/desktop/LeftNav.tsx:590
 msgid "Compose new post"
 msgstr "Vytvořit nový příspěvek"
 
@@ -5008,8 +5008,8 @@ msgstr "Explicitní sexuální obrázky."
 
 #: src/Navigation.tsx:793
 #: src/screens/Search/Shell.tsx:550
-#: src/view/shell/desktop/LeftNav.tsx:682
-#: src/view/shell/desktop/LeftNav.tsx:713
+#: src/view/shell/desktop/LeftNav.tsx:680
+#: src/view/shell/desktop/LeftNav.tsx:711
 #: src/view/shell/Drawer.tsx:476
 msgid "Explore"
 msgstr "Prozkoumat"
@@ -5466,8 +5466,8 @@ msgstr "Zpětná vazba byla odeslána provozovateli kanálu"
 #: src/view/com/home/HomeHeader.tsx:37
 #: src/view/screens/Feeds.tsx:505
 #: src/view/screens/Profile.tsx:282
-#: src/view/shell/desktop/LeftNav.tsx:692
-#: src/view/shell/desktop/LeftNav.tsx:748
+#: src/view/shell/desktop/LeftNav.tsx:690
+#: src/view/shell/desktop/LeftNav.tsx:746
 #: src/view/shell/Drawer.tsx:592
 msgid "Feeds"
 msgstr "Kanály"
@@ -6595,8 +6595,8 @@ msgstr "Vydržte! Přístup k videu zpřístupňujeme postupně a vy stále ček
 #: src/Navigation.tsx:788
 #: src/Navigation.tsx:809
 #: src/view/shell/bottom-bar/BottomBar.tsx:196
-#: src/view/shell/desktop/LeftNav.tsx:675
-#: src/view/shell/desktop/LeftNav.tsx:703
+#: src/view/shell/desktop/LeftNav.tsx:673
+#: src/view/shell/desktop/LeftNav.tsx:701
 #: src/view/shell/Drawer.tsx:502
 msgid "Home"
 msgstr "Domů"
@@ -7595,7 +7595,7 @@ msgstr ""
 #: src/view/screens/Lists.tsx:60
 #: src/view/screens/Profile.tsx:276
 #: src/view/screens/Profile.tsx:284
-#: src/view/shell/desktop/LeftNav.tsx:758
+#: src/view/shell/desktop/LeftNav.tsx:756
 #: src/view/shell/Drawer.tsx:607
 msgid "Lists"
 msgstr "Seznamy"
@@ -8015,7 +8015,7 @@ msgid "Message options"
 msgstr "Možnosti zprávy"
 
 #: src/Navigation.tsx:803
-#: src/view/shell/desktop/LeftNav.tsx:734
+#: src/view/shell/desktop/LeftNav.tsx:732
 msgid "Messages"
 msgstr "Zprávy"
 
@@ -8500,7 +8500,7 @@ msgid "New post"
 msgstr "Nový příspěvek"
 
 #: src/view/com/feeds/FeedPage.tsx:179
-#: src/view/shell/desktop/LeftNav.tsx:604
+#: src/view/shell/desktop/LeftNav.tsx:602
 msgctxt "action"
 msgid "New post"
 msgstr "Nový příspěvek"
@@ -8985,7 +8985,7 @@ msgstr "Zvuky oznámení"
 #: src/screens/Settings/Settings.tsx:215
 #: src/view/screens/Notifications.tsx:128
 #: src/view/shell/bottom-bar/BottomBar.tsx:279
-#: src/view/shell/desktop/LeftNav.tsx:723
+#: src/view/shell/desktop/LeftNav.tsx:721
 #: src/view/shell/Drawer.tsx:555
 msgid "Notifications"
 msgstr "Oznámení"
@@ -10285,7 +10285,7 @@ msgid "profile"
 msgstr "profil"
 
 #: src/view/shell/bottom-bar/BottomBar.tsx:322
-#: src/view/shell/desktop/LeftNav.tsx:781
+#: src/view/shell/desktop/LeftNav.tsx:779
 #: src/view/shell/Drawer.tsx:92
 #: src/view/shell/Drawer.tsx:658
 msgid "Profile"
@@ -12044,7 +12044,7 @@ msgstr "Nastaví e-mail pro obnovení hesla"
 
 #: src/Navigation.tsx:239
 #: src/screens/Settings/Settings.tsx:104
-#: src/view/shell/desktop/LeftNav.tsx:791
+#: src/view/shell/desktop/LeftNav.tsx:789
 #: src/view/shell/Drawer.tsx:671
 msgid "Settings"
 msgstr "Nastavení"

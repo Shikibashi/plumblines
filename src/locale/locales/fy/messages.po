@@ -2434,7 +2434,7 @@ msgstr "Ofbyldingen ferdizenje"
 msgid "Blur images and filter from feeds"
 msgstr "Ofbyldingen dizich meitsje en út dyn feeds filterje"
 
-#: src/view/shell/desktop/LeftNav.tsx:768
+#: src/view/shell/desktop/LeftNav.tsx:766
 msgctxt "link to bookmarks screen"
 msgid "Bookmarks"
 msgstr ""
@@ -3230,7 +3230,7 @@ msgstr "Foltôgje de útdaging"
 
 #: src/lib/hotkeys/index.tsx:66
 #: src/view/com/feeds/ComposerPrompt.tsx:161
-#: src/view/shell/desktop/LeftNav.tsx:592
+#: src/view/shell/desktop/LeftNav.tsx:590
 msgid "Compose new post"
 msgstr "Nij berjocht opstelle"
 
@@ -5008,8 +5008,8 @@ msgstr "Eksplisite seksuele ôfbyldingen."
 
 #: src/Navigation.tsx:793
 #: src/screens/Search/Shell.tsx:550
-#: src/view/shell/desktop/LeftNav.tsx:682
-#: src/view/shell/desktop/LeftNav.tsx:713
+#: src/view/shell/desktop/LeftNav.tsx:680
+#: src/view/shell/desktop/LeftNav.tsx:711
 #: src/view/shell/Drawer.tsx:476
 msgid "Explore"
 msgstr "Untdekke"
@@ -5466,8 +5466,8 @@ msgstr ""
 #: src/view/com/home/HomeHeader.tsx:37
 #: src/view/screens/Feeds.tsx:505
 #: src/view/screens/Profile.tsx:282
-#: src/view/shell/desktop/LeftNav.tsx:692
-#: src/view/shell/desktop/LeftNav.tsx:748
+#: src/view/shell/desktop/LeftNav.tsx:690
+#: src/view/shell/desktop/LeftNav.tsx:746
 #: src/view/shell/Drawer.tsx:592
 msgid "Feeds"
 msgstr "Feeds"
@@ -6595,8 +6595,8 @@ msgstr "Wachtsje even! Wy jouwe stadichoan tagong ta fideo en do stiest noch hie
 #: src/Navigation.tsx:788
 #: src/Navigation.tsx:809
 #: src/view/shell/bottom-bar/BottomBar.tsx:196
-#: src/view/shell/desktop/LeftNav.tsx:675
-#: src/view/shell/desktop/LeftNav.tsx:703
+#: src/view/shell/desktop/LeftNav.tsx:673
+#: src/view/shell/desktop/LeftNav.tsx:701
 #: src/view/shell/Drawer.tsx:502
 msgid "Home"
 msgstr "Startside"
@@ -7595,7 +7595,7 @@ msgstr ""
 #: src/view/screens/Lists.tsx:60
 #: src/view/screens/Profile.tsx:276
 #: src/view/screens/Profile.tsx:284
-#: src/view/shell/desktop/LeftNav.tsx:758
+#: src/view/shell/desktop/LeftNav.tsx:756
 #: src/view/shell/Drawer.tsx:607
 msgid "Lists"
 msgstr "Listen"
@@ -8015,7 +8015,7 @@ msgid "Message options"
 msgstr "Berjochtopsjes"
 
 #: src/Navigation.tsx:803
-#: src/view/shell/desktop/LeftNav.tsx:734
+#: src/view/shell/desktop/LeftNav.tsx:732
 msgid "Messages"
 msgstr "Berjochten"
 
@@ -8500,7 +8500,7 @@ msgid "New post"
 msgstr "Nij berjocht"
 
 #: src/view/com/feeds/FeedPage.tsx:179
-#: src/view/shell/desktop/LeftNav.tsx:604
+#: src/view/shell/desktop/LeftNav.tsx:602
 msgctxt "action"
 msgid "New post"
 msgstr "Nij berjocht"
@@ -8985,7 +8985,7 @@ msgstr "Meldingslûden"
 #: src/screens/Settings/Settings.tsx:215
 #: src/view/screens/Notifications.tsx:128
 #: src/view/shell/bottom-bar/BottomBar.tsx:279
-#: src/view/shell/desktop/LeftNav.tsx:723
+#: src/view/shell/desktop/LeftNav.tsx:721
 #: src/view/shell/Drawer.tsx:555
 msgid "Notifications"
 msgstr "Meldingen"
@@ -10285,7 +10285,7 @@ msgid "profile"
 msgstr "profyl"
 
 #: src/view/shell/bottom-bar/BottomBar.tsx:322
-#: src/view/shell/desktop/LeftNav.tsx:781
+#: src/view/shell/desktop/LeftNav.tsx:779
 #: src/view/shell/Drawer.tsx:92
 #: src/view/shell/Drawer.tsx:658
 msgid "Profile"
@@ -12044,7 +12044,7 @@ msgstr "Stelt e-mail yn foar it opnij ynstellen fan wachtwurden"
 
 #: src/Navigation.tsx:239
 #: src/screens/Settings/Settings.tsx:104
-#: src/view/shell/desktop/LeftNav.tsx:791
+#: src/view/shell/desktop/LeftNav.tsx:789
 #: src/view/shell/Drawer.tsx:671
 msgid "Settings"
 msgstr "Ynstellingen"
