@@ -43,3 +43,11 @@ The authenticated production render now shows the complete 68px icon rail, but i
 - Authenticated production browser render: PASS. The rail shows every icon, the active Home route has a visible red marker, labels stay hidden within the narrow rail, and the compose control remains visible.
 - Deployment IDs, artifact hashes and hosted checks are in [the compact rail deployment receipt](../zeus/compact-left-rail-deployment-2026-09-27.md).
 - No data, routing, feed order, or protocol behavior changed.
+
+### Tooltip deployment verification
+
+- Deployed the same 389-file package to the `newspaper-preview` and `main` Pages branches. Its recorded manifest and all 389 artifact file hashes matched before upload.
+- Preview and production deployment URLs returned HTTP 200 for `/`, the primary stylesheet, and the app bundle; all three matched the package SHA-256 values. The custom domain's HTML differs because Cloudflare injects Web Analytics; its stylesheet and app bundle match.
+- Authenticated production browser render: PASS. The front-page rail retains its active Home marker and fixed width. Focusing Home displays the raised-paper “Home” label to the right of the icon.
+- The preview browser was signed out, so it showed the anonymous shell without the account rail. The authenticated visual check was made on production after promotion.
+- See [the tooltip deployment receipt](../zeus/compact-rail-tooltip-deployment-2026-09-27.md) for deployment IDs, hashes and checks.
