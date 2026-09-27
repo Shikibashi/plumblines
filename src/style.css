@@ -1555,14 +1555,19 @@ body[data-plumblines-front-page='true']
 body[data-plumblines-front-page='true']
   [data-testid='plumblines-left-nav']
   [role='link'] {
+  position: relative;
   justify-content: center;
   padding-inline: 8px;
 }
 body[data-plumblines-front-page='true']
   [data-testid='plumblines-left-nav']
-  [role='link']
-  > div:last-child {
-  display: none;
+  [role='link'][aria-current='page']::before {
+  position: absolute;
+  inset-block: 9px;
+  inset-inline-start: -8px;
+  width: 3px;
+  background: var(--press-accent);
+  content: '';
 }
 body[data-plumblines-front-page='true'] [data-testid='plumblines-utility-bar'] {
   display: flex;

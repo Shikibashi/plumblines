@@ -461,6 +461,7 @@ function NavItem({
       href={href}
       dataSet={{noUnderline: 1}}
       role="link"
+      aria-current={isCurrent ? 'page' : undefined}
       accessibilityLabel={label}
       accessibilityHint="">
       <View
