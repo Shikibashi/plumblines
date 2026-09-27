@@ -24,5 +24,10 @@ Product Design gate: `RESTART_REQUIRED`. `product-design@openai-curated-remote` 
 
 ## Verification
 
-- Focused source lint and web typecheck passed; the final web build completed successfully after the label-specific CSS correction. Preview and authenticated production render checks for this exact build are pending.
+- `lint:files src/view/shell/desktop/LeftNav.tsx`: PASS.
+- `typecheck:web`: PASS.
+- Final `build-web`: PASS. Metro reported the existing `multiformats` and `hls.js` fallback-resolution warnings; export completed.
+- Preview and production `/`, primary stylesheet and app bundle returned HTTP 200 and matched the packaged SHA-256 bytes. The custom-domain HTML differs from the deployment URL because Cloudflare injects Web Analytics; its stylesheet and app bundle match.
+- Authenticated production browser render: PASS. The rail shows every icon, the active Home route has a visible red marker, labels stay hidden within the narrow rail, and the compose control remains visible.
+- Deployment IDs, artifact hashes and hosted checks are in [the compact rail deployment receipt](../zeus/compact-left-rail-deployment-2026-09-27.md).
 - No data, routing, feed order, or protocol behavior changed.
